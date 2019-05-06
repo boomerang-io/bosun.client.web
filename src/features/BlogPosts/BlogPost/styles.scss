@@ -1,0 +1,10 @@
+@import '~Styles/variables';
+
+.b-blog-post {
+  color: $white;
+  padding: 2rem;
+}
+
+.b-blog-post__author {
+  font-weight: 300;
+}

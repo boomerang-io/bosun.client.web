@@ -1,0 +1,83 @@
+{
+  "name": "boomerang.app.policies",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@boomerang/boomerang-react-scripts": "3.2.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "homepage": "https://launch.boomerangplatform.net/BMRG_APP_ROOT_CONTEXT",
+  "scripts": {
+    "analyze": "source-map-explorer server/build/static/js/main.*",
+    "apiServer": "json-server -c api/json-server.json --watch api/db.json api/routes.json",
+    "build": "react-scripts build",
+    "cm": "git cz",
+    "cypress": "cypress open",
+    "cypress:run": "$(npm bin)/cypress run --config video=false",
+    "dev": "run-p apiServer start",
+    "docker": "run-p docker:run apiServer",
+    "docker:build": "docker build -t BMRG_APP_ROOT_CONTEXT .",
+    "docker:run": "docker run -i -t -p 3000: 3000 -e APP_ROOT=/BMRG_APP_ROOT_CONTEXT -e BASE_SERVICE_ENV_URL=http: //localhost:8000 BMRG_APP_ROOT_CONTEXT",
+    "eject": "react-scripts eject",
+    "lint": "eslint src",
+    "predocker": "run-s build docker:build",
+    "preprod": "run-s build prod:installServerDependencies prod:rewriteAssetPaths",
+    "prod:installServerDependencies": "yarn --cwd server install",
+    "prod:rewriteAssetPaths": "APP_ROOT= node server/scripts/rewriteAssetPaths.js",
+    "prod:server": "NODE_ENV=local node server/app.js",
+    "prod": "run-p apiServer prod:server",
+    "start": "react-scripts start",
+    "test": "is-ci \"test:ci\" \"test:watch\"",
+    "test:watch": "react-scripts test --env=jsdom",
+    "test:coverage": "react-scripts test --env=jsdom --coverage",
+    "test:ci": "react-scripts test --env=jsdom  --coverage --outputFile=mocha.json --json",
+    "test:ci-cypress": "start-server-and-test dev http://localhost:3000 cypress:run",
+    "upgradePackage": "react-scripts upgradePackage"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "lint-staged": {
+      "*.{js,jsx,json,scss,css,md}": [
+        "prettier --print-width 120 --write"
+      ],
+      "src/**/*.{js,jsx}": [
+        "npm run-script lint",
+        "cross-env CI=true npm test"
+      ],
+      "*": [
+        "git add"
+      ]
+    }
+  }
+}

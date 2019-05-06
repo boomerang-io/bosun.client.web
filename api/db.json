@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "All about Boomerang",
+      "date": "1540216337",
+      "author": "Bob McDougal",
+      "content": "Boomerang is a platform that does some things"
+    },
+    {
+      "id": 2,
+      "title": "Introducing Boomerang",
+      "date": "1539043200",
+      "author": "Tyson Lawrie",
+      "content": "New shiny things!"
+    }
+  ],
+  "docs": [
+    {
+      "id": 1,
+      "title": "Documentation",
+      "date": "1539129600",
+      "author": "Tyson Lawrie",
+      "content": "We write great documenation"
+    },
+    {
+      "id": 2,
+      "title": "More Documentation!",
+      "date": "1538956800",
+      "author": "Glen Hickman",
+      "content": "I love writing documentation"
+    }
+  ]
+}

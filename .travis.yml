@@ -1,0 +1,20 @@
+group: bluezone
+sudo: required
+dist: trusty
+before_install:
+  - export TZ=Etc/UTC
+language: node_js
+node_js:
+  - "lts/*"
+notifications:
+  slack: ibm-aic-offerings:pKEkgH3hXaZQg8UCl6eLWyYB
+cache:
+  directories:
+    - ~/.npm
+    - ~/.cache
+  override:
+    - npm ci
+install:
+  - npm ci
+script:
+  - npm run test

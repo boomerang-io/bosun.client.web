@@ -1,0 +1,19 @@
+{
+  "name": "boomerang-launchpad-server",
+  "version": "0.0.1",
+  "description": "Boomerang Launchpad Express Server",
+  "scripts": {
+    "start": "boomerang-webapp-server serve",
+    "dev": "boomerang-webapp-server serve -p \"config/.env.local\""
+  },
+  "contributors": [
+    {
+      "name": "Tim Bula",
+      "email": "trbula@us.ibm.com"
+    }
+  ],
+  "dependencies": {
+    "@boomerang/boomerang-webapp-server": "^1.1.0",
+    "replace-in-file": "^3.4.3"
+  }
+}
