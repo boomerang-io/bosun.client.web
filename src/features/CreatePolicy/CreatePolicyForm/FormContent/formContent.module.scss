@@ -1,0 +1,9 @@
+.container {
+  padding: 2rem;
+}
+
+.container {
+  & > :global(.bx--form-item) > :global(.bx--text-input) {
+    max-width: 38rem;
+  }
+}

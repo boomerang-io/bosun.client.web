@@ -30,5 +30,109 @@
       "author": "Glen Hickman",
       "content": "I love writing documentation"
     }
+  ],
+  "policiesDefinitions": [
+    {
+      "id": 1,
+      "key": "static_code_analysis",
+      "name": "Static Code Analysis",
+      "description": "The following policy metrics are retrieved from SonarQube.",
+      "order": "0",
+      "config": [
+        {
+          "key": "metric",
+          "label": "Metric",
+          "type": "select",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": ["lines", "complexity", "issues"]
+        },
+        {
+          "key": "operator",
+          "label": "Operator",
+          "type": "select",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": ["less than", "greater than", "equals"]
+        },
+        {
+          "key": "value",
+          "label": "Value",
+          "type": "text",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "key": "xray_results",
+      "name": "X-Ray Results",
+      "description": "JFROG X-Ray is run against Docker containers to ensure that there are no security vulernabilities.",
+      "order": "0",
+      "config": [
+        {
+          "key": "metric",
+          "label": "Metric",
+          "type": "select",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": ["lines", "complexity", "issues"]
+        },
+        {
+          "key": "operator",
+          "label": "Operator",
+          "type": "select",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": ["less than", "greater than", "equals"]
+        },
+        {
+          "key": "value",
+          "label": "Value",
+          "type": "text",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": null
+        }
+      ]
+    }
+  ],
+  "policiesOperators": [
+    {
+      "key": "LESS_THAN",
+      "name": "less than"
+    },
+    {
+      "key": "MORE_THAN",
+      "name": "more than"
+    },
+    {
+      "key": "EQUALS",
+      "name": "equals"
+    }
+  ],
+  "policies": [
+    {
+      "name": "Code Medium Validation",
+      "templateId": "12345",
+      "rules": [
+        {
+          "key": "lines",
+          "value": ""
+        },
+        {
+          "key": "complexity",
+          "value": ""
+        }
+      ]
+    }
   ]
 }

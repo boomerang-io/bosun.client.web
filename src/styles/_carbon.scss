@@ -1,4 +1,5 @@
 $carbon-addons-bmrg-theme: boomerang;
-$bmrgLightTheme: true;
+$carbon--theme--bmrg-light: true;
 
 @import "~@boomerang/carbon-addons-boomerang/scss/styles";
+@import "~carbon-components/scss/globals/scss/styles.scss";

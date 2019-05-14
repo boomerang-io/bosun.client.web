@@ -23,3 +23,5 @@ yarn-error.log*
 
 # analytics
 newrelic*.log
+
+server/node_modules

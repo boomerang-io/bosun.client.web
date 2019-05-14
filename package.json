@@ -5,7 +5,7 @@
   "dependencies": {
     "@boomerang/boomerang-react-scripts": "3.2.1",
     "@boomerang/boomerang-styles": "^1.0.0",
-    "@boomerang/carbon-addons-boomerang": "^1.4.0-beta.2",
+    "@boomerang/carbon-addons-boomerang": "^1.4.0",
     "@boomerang/carbon-addons-boomerang-react": "^1.3.0",
     "axios": "0.18.0",
     "carbon-components": "^9.91.0",
@@ -22,7 +22,8 @@
     "react-router-dom": "4.3.1",
     "redux": "4.0.0",
     "redux-immutable-state-invariant": "2.1.0",
-    "redux-thunk": "2.3.0"
+    "redux-thunk": "2.3.0",
+    "uuid": "^3.3.2"
   },
   "homepage": "https://launch.boomerangplatform.net/BMRG_APP_ROOT_CONTEXT",
   "scripts": {
@@ -40,10 +41,10 @@
     "lint": "eslint src",
     "predocker": "run-s build docker:build",
     "preprod": "run-s build prod:installServerDependencies prod:rewriteAssetPaths",
-    "prod:installServerDependencies": "yarn --cwd server install",
-    "prod:rewriteAssetPaths": "APP_ROOT= node server/scripts/rewriteAssetPaths.js",
-    "prod:server": "NODE_ENV=local node server/app.js",
     "prod": "run-p apiServer prod:server",
+    "prod:installServerDependencies": "npm --prefix ./server install ./server",
+    "prod:rewriteAssetPaths": "cross-env APP_ROOT=/citadel node server/scripts/rewriteAssetPaths.js",
+    "prod:server": "cd server && npm run-script dev",
     "start": "react-scripts start",
     "test": "is-ci \"test:ci\" \"test:watch\"",
     "test:watch": "react-scripts test --env=jsdom",

@@ -1,0 +1,44 @@
+.form {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  :global .bx--btn {
+    margin-top: 1rem;
+  }
+}
+
+.row {
+  display: flex;
+  margin-top: 1rem;
+  :global .bx--dropdown.bx--list-box,
+  :global .bx--form-item,
+  :global .bx--text-input {
+    margin-right: 1rem;
+    max-width: 12rem;
+    min-width: 12rem;
+  }
+
+  &:hover {
+    .delete {
+      opacity: 1;
+    }
+  }
+
+  :global .bx--form-item {
+    order: 2;
+  }
+}
+
+.delete {
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  margin: 0;
+  opacity: 0;
+  order: 3;
+  padding: 0rem;
+  transition: opacity 0.1s linear;
+}

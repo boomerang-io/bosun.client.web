@@ -1,4 +1,8 @@
 {
   "/api/posts": "/posts",
-  "/api/docs": "/docs"
+  "/api/docs": "/docs",
+  "/citadel/policies/definitions": "/policiesDefinitions",
+  "/citadel/policies/operators": "/policiesOperators",
+  "/citadel/policies?teamId=$1": "policies",
+  "/citadel/$1": "/$1"
 }
