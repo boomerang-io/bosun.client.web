@@ -1,0 +1,200 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overview --- Snapshot Capturing Snapshot of Overview 1`] = `
+<div
+  className="c-overview"
+>
+  <Header
+    activeTeam={Object {}}
+    handleChangeTeam={[Function]}
+  />
+  <section
+    className="c-overview-general-info"
+  >
+    <h2
+      className="b-overview-general-title"
+    >
+      Insights
+    </h2>
+    <div
+      className="c-overview-general-info__content"
+    >
+      <div
+        className="c-tiles"
+      >
+        <div
+          className="bx--tile"
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "height": "10rem",
+              "padding": "0",
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            className="b-tile-info__counter"
+            style={
+              Object {
+                "color": "#047cc0",
+              }
+            }
+          >
+            0
+          </div>
+          <div
+            className="b-tile-info__divider"
+          />
+          <div
+            className="c-tile-info__text"
+          >
+            <h3
+              className="b-tile-info__title"
+            >
+              Current Gates
+            </h3>
+            <p
+              className="b-tile-info__content"
+            >
+              Software never is perfect and it won’t be. But is that a license to create garbage?
+            </p>
+          </div>
+        </div>
+        <div
+          className="bx--tile"
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "height": "10rem",
+              "padding": "0",
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            className="b-tile-info__counter"
+            style={
+              Object {
+                "color": "#ffaa9d",
+              }
+            }
+          >
+            0
+          </div>
+          <div
+            className="b-tile-info__divider"
+          />
+          <div
+            className="c-tile-info__text"
+          >
+            <h3
+              className="b-tile-info__title"
+            >
+              Current Violations
+            </h3>
+            <p
+              className="b-tile-info__content"
+            >
+              Code will set you free. Think of this as an opportunity for better code. Drive towards zero.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c-graphs"
+      >
+        <div
+          className="bx--tile"
+          style={
+            Object {
+              "alignItems": "spaceBetween",
+              "display": "flex",
+              "flexDirection": "column",
+              "minHeight": "10rem",
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            className="c-graph-header"
+          >
+            <h3
+              className="b-graph-header__title"
+            >
+              Violations Trend
+            </h3>
+            <div
+              className="c-graph-filters"
+            />
+          </div>
+          <div
+            className="c-graph"
+          >
+            <p>
+              No violations data to de displayed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div
+    className="c-policies"
+  >
+    <div
+      className="b-policies-header"
+    >
+      <h2
+        className="b-policies-header__title"
+      >
+        Policies (0)
+      </h2>
+      <p
+        className="b-policies-header__message"
+      >
+        All of your teams policies can be found here. Go forth and define rules to enforce your standards!
+      </p>
+      <button
+        className="b-policies-header__button bx--btn bx--btn--primary"
+        disabled={false}
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        Add Policy
+      </button>
+    </div>
+    <div
+      className="container"
+    >
+      <div
+        className="bmrg--b-no-display --bmrg-white"
+        style={
+          Object {
+            "width": "20rem",
+          }
+        }
+      >
+        <p
+          className="bmrg--b-no-display__text "
+        >
+          
+        </p>
+        <img
+          alt="no-display"
+          className="bmrg--b-no-display__img"
+          src="ship_sharks.svg"
+        />
+      </div>
+      <p
+        className="message"
+      >
+        No policies to be found. Add some!
+      </p>
+    </div>
+  </div>
+</div>
+`;

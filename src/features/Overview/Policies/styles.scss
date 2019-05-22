@@ -1,0 +1,22 @@
+@import "~@boomerang/boomerang-styles/lib/colors";
+
+.c-policies {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.b-policies-header__title {
+  padding: 1rem 0;
+}
+
+.b-policies-header__message {
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.b-policies-header__button {
+  position: absolute;
+  right: 0rem;
+  top: 1rem;
+}

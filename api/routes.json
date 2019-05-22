@@ -1,8 +1,9 @@
 {
-  "/api/posts": "/posts",
-  "/api/docs": "/docs",
-  "/citadel/policies/definitions": "/policiesDefinitions",
-  "/citadel/policies/operators": "/policiesOperators",
-  "/citadel/policies?teamId=$1": "policies",
-  "/citadel/$1": "/$1"
+  "/citadel/policies/definitions": "/definitions",
+  "/citadel/policies/operators": "/operators",
+  "/citadel/policies/insights?ciTeamId=:ciTeamId": "/insights",
+  "/citadel/policies/violations?ciTeamId=:ciTeamId": "/violations",
+  "/citadel/policies/:id": "/policies/:id?singular=1",
+  "/citadel/*": "/$1",
+  "/users/*": "/$1"
 }

@@ -1,0 +1,35 @@
+.container {
+  padding: 2rem;
+  display: flex;
+  padding-top: 13rem;
+}
+
+.content {
+  & > :global(.bx--form-item) > :global(.bx--text-input) {
+    max-width: 31rem;
+  }
+}
+
+.containerGraphics {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 20rem);
+  width: 50%;
+}
+
+.graphic {
+  height: 22rem;
+  width: 22rem;
+  margin-top: 5rem;
+  position: fixed;
+}
+
+@media (max-width: 50rem) {
+  .container {
+    padding-top: 16rem;
+  }
+  .containerGraphics {
+    display: none;
+  }
+}

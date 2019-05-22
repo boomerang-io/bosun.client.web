@@ -1,0 +1,55 @@
+@import "~@boomerang/boomerang-styles/lib/colors";
+
+.content {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (max-width: 50rem) {
+  .content {
+    flex-direction: column;
+  }
+}
+
+.info {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.back {
+  background: none;
+  border: none;
+  color: $cerulean-50;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.meta-data {
+  display: flex;
+}
+
+.metaDataLabel {
+  font-weight: 500;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  button {
+    margin-top: 1rem;
+  }
+}
+
+.button {
+  width: 9rem;
+}

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Graph --- Snapshot Capturing Snapshot of Graph 1`] = `
+<div
+  className="bx--tile"
+  style={
+    Object {
+      "alignItems": "spaceBetween",
+      "display": "flex",
+      "flexDirection": "column",
+      "minHeight": "10rem",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    className="c-graph-header"
+  >
+    <h3
+      className="b-graph-header__title"
+    >
+      Violations Trend
+    </h3>
+    <div
+      className="c-graph-filters"
+    />
+  </div>
+  <div
+    className="c-graph"
+  >
+    <LineChart
+      chartData={
+        Array [
+          Object {
+            "date": 1558457676,
+            "test1": 1,
+            "test2": 2,
+          },
+        ]
+      }
+      higherValue={2}
+      lines={
+        Array [
+          "test1",
+          "test2",
+        ]
+      }
+    />
+  </div>
+</div>
+`;

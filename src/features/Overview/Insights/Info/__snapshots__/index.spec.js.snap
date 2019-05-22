@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Info --- Snapshot Capturing Snapshot of Info 1`] = `
+<div
+  className="bx--tile"
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "height": "10rem",
+      "padding": "0",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    className="b-tile-info__counter"
+    style={
+      Object {
+        "color": "#ffaa9d",
+      }
+    }
+  >
+    ---
+  </div>
+  <div
+    className="b-tile-info__divider"
+  />
+  <div
+    className="c-tile-info__text"
+  >
+    <h3
+      className="b-tile-info__title"
+    >
+      Test title
+    </h3>
+    <p
+      className="b-tile-info__content"
+    >
+      Test content text
+    </p>
+  </div>
+</div>
+`;

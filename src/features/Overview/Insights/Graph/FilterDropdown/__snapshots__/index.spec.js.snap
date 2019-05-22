@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterDropdown --- Snapshot Capturing Snapshot of FilterDropdown 1`] = `
+<div
+  style={
+    Object {
+      "height": "3rem",
+      "width": "15rem",
+    }
+  }
+>
+  <label
+    className="bx--label"
+  >
+    testLabel
+  </label>
+  <div
+    aria-label="Choose an item"
+    className="bx--dropdown bx--list-box"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    role="listbox"
+    tabIndex={0}
+  >
+    <div
+      aria-expanded={false}
+      aria-haspopup={true}
+      aria-label="open menu"
+      className="bx--list-box__field"
+      data-toggle={true}
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
+      type="button"
+    >
+      <span
+        className="bx--list-box__label"
+        htmlFor="downshift-0-input"
+      >
+        testLabel
+      </span>
+      <div
+        className="bx--list-box__menu-icon"
+      >
+        <svg
+          alt="Open menu"
+          aria-label="Open menu"
+          fillRule="evenodd"
+          focusable="false"
+          height="5"
+          role="img"
+          viewBox="0 0 10 5"
+          width="10"
+        >
+          <title>
+            Open menu
+          </title>
+          <path
+            d="M0 0l5 4.998L10 0z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;

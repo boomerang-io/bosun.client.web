@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header --- Snapshot Capturing Snapshot of Header 1`] = `
+<div
+  className="container"
+>
+  <h2
+    className="title"
+  >
+    Team
+  </h2>
+  <div
+    aria-label="Choose an item"
+    className="bx--form-item bx--combo-box bx--list-box"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    role="listbox"
+    tabIndex={0}
+  >
+    <div
+      aria-expanded={false}
+      aria-haspopup={true}
+      aria-label="open menu"
+      className="bx--list-box__field"
+      data-toggle={true}
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex="0"
+      type="button"
+    >
+      <input
+        aria-activedescendant={null}
+        aria-autocomplete="list"
+        aria-expanded={false}
+        aria-label="ListBox input field"
+        autoComplete="off"
+        className="bx--text-input"
+        disabled={false}
+        id="downshift-0-input"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Select a team"
+        role="combobox"
+        selectedItem={null}
+        title="Team"
+        value=""
+      />
+      
+      <div
+        className="bx--list-box__menu-icon"
+      >
+        <svg
+          alt="Open menu"
+          aria-label="Open menu"
+          fillRule="evenodd"
+          focusable="false"
+          height="5"
+          role="img"
+          viewBox="0 0 10 5"
+          width="10"
+        >
+          <title>
+            Open menu
+          </title>
+          <path
+            d="M0 0l5 4.998L10 0z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;

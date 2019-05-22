@@ -1,138 +1,866 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "All about Boomerang",
-      "date": "1540216337",
-      "author": "Bob McDougal",
-      "content": "Boomerang is a platform that does some things"
+  "navigation": {
+    "navigation": [
+      {
+        "name": "Launchpad",
+        "url": "https://launch.boomerangplatform.net/launchpad"
+      },
+      {
+        "name": "Status",
+        "url": "${BASE_LAUNCH_ENV_URL}/status"
+      },
+      {
+        "name": "Docs",
+        "url": "${BASE_LAUNCH_ENV_URL}/docs"
+      },
+      {
+        "name": "Next",
+        "url": "${BASE_LAUNCH_ENV_URL}/next"
+      },
+      {
+        "name": "Admin",
+        "url": "${BASE_LAUNCH_ENV_URL}/admin"
+      }
+    ],
+    "features": {
+      "notifications.enabled": true
     },
-    {
-      "id": 2,
-      "title": "Introducing Boomerang",
-      "date": "1539043200",
-      "author": "Tyson Lawrie",
-      "content": "New shiny things!"
-    }
-  ],
-  "docs": [
-    {
-      "id": 1,
-      "title": "Documentation",
-      "date": "1539129600",
-      "author": "Tyson Lawrie",
-      "content": "We write great documenation"
-    },
-    {
-      "id": 2,
-      "title": "More Documentation!",
-      "date": "1538956800",
-      "author": "Glen Hickman",
-      "content": "I love writing documentation"
-    }
-  ],
-  "policiesDefinitions": [
-    {
-      "id": 1,
-      "key": "static_code_analysis",
-      "name": "Static Code Analysis",
-      "description": "The following policy metrics are retrieved from SonarQube.",
-      "order": "0",
-      "config": [
+    "platformApps": {
+      "name": "APPS",
+      "isDropdown": true,
+      "adminOnly": false,
+      "options": [
         {
-          "key": "metric",
-          "label": "Metric",
-          "type": "select",
-          "defaultValue": "",
-          "required": false,
-          "description": "",
-          "options": ["lines", "complexity", "issues"]
+          "name": "Scorecard",
+          "url": "https://launch.boomerangplatform.net/apps/ci"
         },
         {
-          "key": "operator",
-          "label": "Operator",
-          "type": "select",
-          "defaultValue": "",
-          "required": false,
-          "description": "",
-          "options": ["less than", "greater than", "equals"]
+          "name": "Engagement Assist Help",
+          "url": "https://launch.boomerangplatform.net/apps/ci"
         },
         {
-          "key": "value",
-          "label": "Value",
-          "type": "text",
-          "defaultValue": "",
-          "required": false,
-          "description": "",
-          "options": null
+          "name": "CI",
+          "url": "https://launch.boomerangplatform.net/apps/ci"
+        },
+        {
+          "name": "Artifactory",
+          "url": "https://launch.boomerangplatform.net/apps/ci"
         }
       ]
     },
-    {
-      "id": 2,
-      "key": "xray_results",
-      "name": "X-Ray Results",
-      "description": "JFROG X-Ray is run against Docker containers to ensure that there are no security vulernabilities.",
-      "order": "0",
-      "config": [
-        {
-          "key": "metric",
-          "label": "Metric",
-          "type": "select",
-          "defaultValue": "",
-          "required": false,
-          "description": "",
-          "options": ["lines", "complexity", "issues"]
-        },
-        {
-          "key": "operator",
-          "label": "Operator",
-          "type": "select",
-          "defaultValue": "",
-          "required": false,
-          "description": "",
-          "options": ["less than", "greater than", "equals"]
-        },
-        {
-          "key": "value",
-          "label": "Value",
-          "type": "text",
-          "defaultValue": "",
-          "required": false,
-          "description": "",
-          "options": null
-        }
-      ]
+    "platform": {
+      "name": "IBM Boomerang Platform",
+      "version": "5.0.0",
+      "signOutUrl": "ibm.com"
     }
-  ],
-  "policiesOperators": [
+  },
+  "profile": {
+    "id": "59aebd0c7424530fce952fde",
+    "email": "trbula@us.ibm.com",
+    "name": "Timothy Bula",
+    "isFirstVisit": false,
+    "type": "admin",
+    "hasConsented": true,
+    "isShowHelp": true,
+    "firstLoginDate": 1504649578000,
+    "lastLoginDate": 1525885894391,
+    "lowerLevelGroupIds": [
+      "59aebce97424530fce952f46",
+      "59aebce47424530fce952f2a",
+      "59aebce57424530fce952f2d",
+      "59aebceb7424530fce952f5b",
+      "59aebcf47424530fce952fa3",
+      "59aebcfa7424530fce952fd6",
+      "59e77125d823a6693c0ddd6c",
+      "5a03e24b5b9a510007232bfb",
+      "5a04e5446d800e00076e8085"
+    ],
+    "pinnedToolIds": [],
+    "favoritePackages": [],
+    "personalizations": {},
+    "notificationSettings": {}
+  },
+  "teams": [
     {
-      "key": "LESS_THAN",
-      "name": "less than"
+      "id": "5a8b331e262a70306622df73",
+      "name": "ATT",
+      "higherLevelGroupId": "59aebcf47424530fce952fa2",
+      "ucdApplicationId": "96c22f37-5443-4bf5-83bb-7ce90deec820",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072030853,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "AT&T MIL Mobile@Scale",
+      "boomerangTeamShortname": "ms-att-mil"
     },
     {
-      "key": "MORE_THAN",
-      "name": "more than"
+      "id": "5a8b331e262a70306622df74",
+      "name": "BSH",
+      "higherLevelGroupId": "5a554fcb3da6ea00078f6aaa",
+      "ucdApplicationId": "88ad5635-36ff-4461-8352-cd5effac37b5",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072030928,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "BSH Mobile Service",
+      "boomerangTeamShortname": "bsh-mobile-service"
     },
     {
-      "key": "EQUALS",
-      "name": "equals"
+      "id": "5a8b331e262a70306622df72",
+      "name": "Allianz",
+      "higherLevelGroupId": "59aebcf57424530fce952fb1",
+      "ucdApplicationId": "161af972-d007-4501-e362-d28d0a455ad8",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072030742,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "Allianz PoC",
+      "boomerangTeamShortname": "allianz-poc"
+    },
+    {
+      "id": "5a8b331f262a70306622df75",
+      "name": "Demo",
+      "higherLevelGroupId": "5a399185fe6c5c000a26663f",
+      "ucdApplicationId": "b89224cb-4f45-46e5-8721-0b09205e9bc6",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031004,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "Boomerang Demo",
+      "boomerangTeamShortname": "boomerang-demo"
+    },
+    {
+      "id": "5a8b331f262a70306622df76",
+      "name": "EJ",
+      "higherLevelGroupId": "5a824d8fbc0a5e00073239c0",
+      "ucdApplicationId": "161afae1-2044-d92d-1657-173bb70b4e6c",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031085,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "Emerald Jewellers",
+      "boomerangTeamShortname": "emerald-jewellers"
+    },
+    {
+      "id": "5a8b331f262a70306622df77",
+      "name": "FMC",
+      "higherLevelGroupId": "5a04e5446d800e00076e8084",
+      "ucdApplicationId": "161af94f-d1cc-1771-4079-82fb9091ab6a",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031185,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "Find My Coworker",
+      "boomerangTeamShortname": "find-my-coworker"
+    },
+    {
+      "id": "5a8b331f262a70306622df78",
+      "name": "IAA",
+      "higherLevelGroupId": "5a824fbfbc0a5e00073239ce",
+      "ucdApplicationId": "161afaaa-f170-d3f1-23e4-2d4102773f9a",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031260,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "India Aids Alliance",
+      "boomerangTeamShortname": "india-aids-alliance"
+    },
+    {
+      "id": "5a8b331f262a70306622df79",
+      "name": "IBM Assistant",
+      "higherLevelGroupId": "59aebcf17424530fce952f83",
+      "ucdApplicationId": "161afa45-af6f-2385-fbcc-9ea5c1c34c30",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031346,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "IBM Assistant",
+      "boomerangTeamShortname": "ibm-assistant"
+    },
+    {
+      "id": "5a8b331f262a70306622df7a",
+      "name": "ISAP",
+      "higherLevelGroupId": "5a6905603bc99d0007c9aa21",
+      "ucdApplicationId": "161afaec-e2ce-12eb-48ba-465458d476b1",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031436,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "IBM Services Automation Platform",
+      "boomerangTeamShortname": "isap"
+    },
+    {
+      "id": "5a8b331f262a70306622df7c",
+      "name": "OI",
+      "higherLevelGroupId": "59b0a7810aa79f163ea0a16d",
+      "ucdApplicationId": "161af95e-5ef4-9646-3449-eeee5f93c59b",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031618,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "Oi Approva",
+      "boomerangTeamShortname": "oi-approva"
+    },
+    {
+      "id": "5a8b331f262a70306622df7d",
+      "name": "PARKDIG",
+      "higherLevelGroupId": "5a3d3200396bed0007002712",
+      "ucdApplicationId": "2a745180-1922-4fcd-80eb-07bf9cf52362",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031711,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "Parkway Digital",
+      "boomerangTeamShortname": "parkway-digital"
+    },
+    {
+      "id": "5a8b331f262a70306622df7e",
+      "name": "Pluto",
+      "higherLevelGroupId": "5a5d2bb7d91eb90007f486ca",
+      "ucdApplicationId": "8fdfbdb9-5338-45a8-bf39-d6debd90f1bd",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031783,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "Pluto",
+      "boomerangTeamShortname": "pluto"
+    },
+    {
+      "id": "5a8b331f262a70306622df7f",
+      "name": "RBRO",
+      "higherLevelGroupId": "5a0c6d8353597600083f5d79",
+      "ucdApplicationId": "e361b583-b948-46c9-9e16-f97e0f273505",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031872,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "RBRO eToken",
+      "boomerangTeamShortname": "rbro-etoken"
+    },
+    {
+      "id": "5a8b331f262a70306622df7b",
+      "name": "ISE",
+      "higherLevelGroupId": "59aebceb7424530fce952f5a",
+      "ucdApplicationId": "0f048385-5fc8-42d0-bf19-6c9f04f854da",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031524,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "GBS Engineering",
+      "boomerangTeamShortname": "gbs-engineering"
+    },
+    {
+      "id": "5a8b3320262a70306622df81",
+      "name": "YNAP",
+      "higherLevelGroupId": "59aebcf87424530fce952fc2",
+      "ucdApplicationId": "e78c60b2-b6c1-47cc-b1e5-8a9b60290bb2",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072032066,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "YNAP Mobile@Scale",
+      "boomerangTeamShortname": "ms-ynap"
+    },
+    {
+      "id": "5a8b331f262a70306622df80",
+      "name": "United Airlines",
+      "higherLevelGroupId": "59aebce67424530fce952f33",
+      "ucdApplicationId": "02e31184-c8c3-47ed-b8ec-f2a2aa154ddf",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519072031988,
+          "note": "CI-Team created"
+        }
+      ],
+      "boomerangTeamName": "United Airlines Mobile@Scale",
+      "boomerangTeamShortname": "ms-ua"
+    },
+    {
+      "id": "5a8c5bdfb846bd0007693d46",
+      "name": "MSKOIL",
+      "higherLevelGroupId": "5a8c576abc0a5e00073239fd",
+      "ucdApplicationId": "161b443e-1e0c-698a-6c56-0bf3e7fc55bc",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519147999259,
+          "note": "Team created"
+        }
+      ],
+      "boomerangTeamName": "Maersk Oil - Total",
+      "boomerangTeamShortname": "maersk-oil-total"
+    },
+    {
+      "id": "5a97709d7d69950bb53fe843",
+      "name": "iXMAD",
+      "higherLevelGroupId": "5a9760f7bc0a5e0007323a38",
+      "ucdApplicationId": "161df8be-19d0-1268-205d-f3becc29fd72",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1519850030088,
+          "note": "Team created"
+        }
+      ],
+      "boomerangTeamName": "iX Mobile Australia Demo",
+      "boomerangTeamShortname": "ix-mobile-australia-demo"
+    },
+    {
+      "id": "5ae34ef577c35f0007b0eef4",
+      "name": "KONE-WEA",
+      "higherLevelGroupId": "5ae3483ede557400076a2e16",
+      "ucdApplicationId": "16307da4-4819-3b3e-6eb3-8e6db229d295",
+      "isActive": true,
+      "audits": [
+        {
+          "auditerId": null,
+          "date": 1524846325323,
+          "note": "Team created"
+        }
+      ],
+      "boomerangTeamName": "KONE - Watson Equipment Advisor ",
+      "boomerangTeamShortname": "kone-wea"
     }
   ],
   "policies": [
     {
-      "name": "Code Medium Validation",
-      "templateId": "12345",
-      "rules": [
+      "id": "5cd49adff6ea74a9bb6adef3",
+      "createdDate": 1558051200000,
+      "name": "Tyson's Policy",
+      "teamId": "5a8b331e262a70306622df73",
+      "definitions": [
         {
-          "key": "lines",
-          "value": ""
+          "ciPolicyDefinitionId": "5cd49777f6ea74a9bb6ac629",
+          "rules": [
+            {
+              "metric": "lines",
+              "operator": "",
+              "value": "10"
+            },
+            {
+              "metric": "complexity",
+              "operator": "",
+              "value": "1000"
+            }
+          ]
         },
         {
-          "key": "complexity",
-          "value": ""
+          "ciPolicyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
+          "rules": [
+            {
+              "type": "maven",
+              "artifact": "commons-.*",
+              "version": ".*"
+            },
+            {
+              "type": "maven",
+              "artifact": "jackson-annotator",
+              "version": "1.8.9"
+            }
+          ]
+        }
+      ],
+      "stages":[
+        "dev"
+     ]
+    },
+    {
+      "createdDate": 1558051200000,
+      "name": "Timss",
+      "teamId": "5a8b331e262a70306622df73",
+      "definitions": [
+        {
+          "ciPolicyDefinitionId": "5cd49777f6ea74a9bb6ac629",
+          "rules": [
+            {
+              "value": "sdfgsdfg",
+              "operator": "less than",
+              "metric": "complexity"
+            }
+          ]
+        },
+        {
+          "ciPolicyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
+          "rules": [
+            {
+              "version": " asdfasdf",
+              "artifact": "asdasdf`",
+              "type": "maven"
+            }
+          ]
+        }
+      ],
+      "stages":[
+        "dev"
+      ],
+      "id": "R4nuqJE"
+    },
+    {
+      "createdDate": 1558051200000,
+      "name": "New Policy",
+      "teamId": "5a8b331e262a70306622df73",
+      "definitions": [
+        {
+          "ciPolicyDefinitionId": "5cd49777f6ea74a9bb6ac629",
+          "rules": []
+        },
+        {
+          "ciPolicyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
+          "rules": []
+        }
+      ],
+      "stages":[
+     ],
+      "id": "XIkcXao"
+    },
+    {
+      "createdDate": 1558051200000,
+      "name": "asdasdf",
+      "teamId": "5a8b331e262a70306622df74",
+      "definitions": [
+        {
+          "ciPolicyDefinitionId": "5cd49777f6ea74a9bb6ac629",
+          "rules": [
+            {
+              "metric": "issues-blocker",
+              "operator": "less than",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "ciPolicyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
+          "rules": []
+        },
+        {
+          "ciPolicyDefinitionId": "5cdd8667f6ea74a9bbaf5022",
+          "rules": []
+        },
+        {
+          "ciPolicyDefinitionId": "5cdd8425f6ea74a9bbaf2fe6",
+          "rules": []
+        }
+      ],
+      "stages":[
+     ],
+      "id": "SaYOqFW"
+    }
+  ],
+  "definitions": [
+    {
+      "id": "5cd49777f6ea74a9bb6ac629",
+      "key": "static_code_analysis",
+      "name": "Static Code Analysis",
+      "description": "The following policy metrics are validated from SonarQube data collected in your CI pipeline.",
+      "order": 0,
+      "config": [
+        {
+          "key": "metric",
+          "label": "Metric",
+          "type": "select",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": [
+            "issues-total",
+            "issues-blocker",
+            "issues-critical",
+            "issues-major",
+            "issues-minor",
+            "issues-info",
+            "issues-filesAnalyzed",
+            "ncloc",
+            "complexity",
+            "violations"
+          ]
+        },
+        {
+          "key": "operator",
+          "label": "Operator",
+          "type": "select",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": ["equal", "not equal", "less than", "less than or equal", "greater than", "greater than or equal"]
+        },
+        {
+          "key": "value",
+          "label": "Value",
+          "type": "text",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": null
         }
       ]
+    },
+    {
+      "id": "5cd498f3f6ea74a9bb6ad0f3",
+      "key": "package_safelist",
+      "name": "Package Safe List",
+      "description": "The following package and artifact validation is validated against scans by JFrog Xray. Artifact and Version are validated through regular expression.",
+      "order": 1,
+      "config": [
+        {
+          "key": "type",
+          "label": "Type",
+          "type": "select",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": ["maven"]
+        },
+        {
+          "key": "artifact",
+          "label": "Package",
+          "type": "text",
+          "defaultValue": "",
+          "required": false,
+          "description": "Regular Expression",
+          "options": null
+        },
+        {
+          "key": "version",
+          "label": "Version",
+          "type": "text",
+          "defaultValue": "",
+          "required": false,
+          "description": "Regular expression",
+          "options": null
+        }
+      ]
+    },
+    {
+      "id": "5cdd8667f6ea74a9bbaf5022",
+      "key": "security_issue_analysis",
+      "name": "Security Issue Analysis",
+      "description": "Create rules to guide the general health of your repositories with respect to security and other vulnerabilities.",
+      "order": 2,
+      "config": [
+        {
+          "key": "severity",
+          "label": "Severity",
+          "type": "select",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": ["All", "Critical", "High", "Medium", "Low"]
+        },
+        {
+          "key": "operator",
+          "label": "Operator",
+          "type": "select",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": ["equal", "not equal", "less than", "less than or equal", "greater than", "greater than or equal"]
+        },
+        {
+          "key": "count",
+          "label": "Issue Count",
+          "type": "text",
+          "defaultValue": "",
+          "required": false,
+          "description": "",
+          "options": null
+        }
+      ]
+    },
+    {
+      "id": "5cdd8425f6ea74a9bbaf2fe6",
+      "key": "cve_safelist",
+      "name": "CVE Safe List",
+      "description": "The Common Vulnerabilities & Exposures (CVE) are validated against JFrog Xray Security Issues. Artifact and Version are validated through regular expression.",
+      "order": 3,
+      "config": [
+        {
+          "key": "cve",
+          "label": "CVE",
+          "type": "text",
+          "defaultValue": "",
+          "required": false,
+          "description": "Regular Expression",
+          "options": null
+        }
+      ]
+    }
+  ],
+  "insights": [
+    {
+      "ciPolicyId": "5cddc15ff6ea74a9bbb2291b",
+      "ciPolicyName": "Marcus's Policy",
+      "ciPolicyCreatedDate": 1557791295946,
+      "insights": [
+        {
+          "ciPolicyActivityId": "5cddc13fbc6f9400013360a9",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 1
+        },
+        {
+          "ciPolicyActivityId": "5cddc177bc6f9400013360aa",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 1
+        },
+        {
+          "ciPolicyActivityId": "5cddc430bc6f9400013360b2",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 1
+        },
+        {
+          "ciPolicyActivityId": "5cddc44fbc6f9400013360b4",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 1
+        },
+        {
+          "ciPolicyActivityId": "5ce1d56d76a4e100013eaab4",
+          "ciPolicyActivityCreatedDate": 1558304109636,
+          "violations": 1
+        }
+      ]
+    },
+    {
+      "ciPolicyId": "5cd49adff6ea74a9bb6adef3",
+      "ciPolicyName": "Tyson's Policy",
+      "ciPolicyCreatedDate": 1558051200000,
+      "insights": [
+        {
+          "ciPolicyActivityId": "5cdda90fc9351100013e13f5",
+          "ciPolicyActivityCreatedDate": 1557446400000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddbd0cbc6f9400013360a5",
+          "ciPolicyActivityCreatedDate": 1557532800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddbe96bc6f9400013360a6",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 3
+        },
+        {
+          "ciPolicyActivityId": "5cddbec2bc6f9400013360a7",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddc006bc6f9400013360a8",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddc304bc6f9400013360ab",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddc307bc6f9400013360ac",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddc34ebc6f9400013360ad",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddc3b1bc6f9400013360ae",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddc3b2bc6f9400013360af",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddc3b7bc6f9400013360b0",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddc58ebc6f9400013360b6",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddc6d1bc6f9400013360b7",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cddd15e5cbb5d00010705e2",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cdddafbadd878000146a7ab",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 3
+        },
+        {
+          "ciPolicyActivityId": "5cdeeb9780b7a70001ec9b8e",
+          "ciPolicyActivityCreatedDate": 1558113175952,
+          "violations": 3
+        },
+        {
+          "ciPolicyActivityId": "5cdf394076a4e100013eaab2",
+          "ciPolicyActivityCreatedDate": 1558133056686,
+          "violations": 3
+        },
+        {
+          "ciPolicyActivityId": "5ce2f70a9cda7100010dad8a",
+          "ciPolicyActivityCreatedDate": 1558378250869,
+          "violations": 4
+        },
+        {
+          "ciPolicyActivityId": "5ce2f78a9cda7100010dad8b",
+          "ciPolicyActivityCreatedDate": 1558378378795,
+          "violations": 4
+        },
+        {
+          "ciPolicyActivityId": "5ce2f86d9cda7100010dad8c",
+          "ciPolicyActivityCreatedDate": 1558378605129,
+          "violations": 4
+        },
+        {
+          "ciPolicyActivityId": "5ce2f92d9cda7100010dad8d",
+          "ciPolicyActivityCreatedDate": 1558378797800,
+          "violations": 4
+        },
+        {
+          "ciPolicyActivityId": "5ce2f9399cda7100010dad8e",
+          "ciPolicyActivityCreatedDate": 1558378809899,
+          "violations": 4
+        },
+        {
+          "ciPolicyActivityId": "5ce2ffc7ad2fa40001a300cd",
+          "ciPolicyActivityCreatedDate": 1558380487902,
+          "violations": 4
+        },
+        {
+          "ciPolicyActivityId": "5ce3020aad2fa40001a300ce",
+          "ciPolicyActivityCreatedDate": 1558381066186,
+          "violations": 3
+        },
+        {
+          "ciPolicyActivityId": "5ce30210ad2fa40001a300cf",
+          "ciPolicyActivityCreatedDate": 1558381072909,
+          "violations": 3
+        }
+      ]
+    },
+    {
+      "ciPolicyId": "5cddd25eadd878000146a7aa",
+      "ciPolicyName": "Tim's Policy",
+      "ciPolicyCreatedDate": 1558051200000,
+      "insights": [
+        {
+          "ciPolicyActivityId": "5cdddafcadd878000146a7ac",
+          "ciPolicyActivityCreatedDate": 1557964800000,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cdeeb9880b7a70001ec9b8f",
+          "ciPolicyActivityCreatedDate": 1558113176218,
+          "violations": 2
+        },
+        {
+          "ciPolicyActivityId": "5cdf394176a4e100013eaab3",
+          "ciPolicyActivityCreatedDate": 1558133057466,
+          "violations": 2
+        }
+      ]
+    }
+  ],
+  "violations": [
+    {
+      "ciPolicyId": "5cd49adff6ea74a9bb6adef4",
+      "ciPolicyName": "Tyson's Policy",
+      "ciStageId": "5cb123bdf6ea74a9bb5425b6",
+      "ciStageName": "dev",
+      "ciComponentId": "5cdb4c15f6ea74a9bb9cfdba",
+      "ciComponentName": "boomerang.service.ci",
+      "ciComponentVersionId": "5cdb4ca3f6ea74a9bb9cf251",
+      "ciComponentVersionName": "6.4.9-175",
+      "ciPolicyActivityCreatedDate": 1558453998666,
+      "violations": 3
+    },
+    {
+      "ciPolicyId": "5cd49adff6ea74a9bb6adef3",
+      "ciPolicyName": "Tim's Policy",
+      "ciStageId": "5cb123bdf6ea74a9bb5425b6",
+      "ciStageName": "dev",
+      "ciComponentId": "5cdb4c15f6ea74a9bb9cedda",
+      "ciComponentName": "boomerang.service.ci",
+      "ciComponentVersionId": "5cdb4ca3f6ea74a9bb9cf251",
+      "ciComponentVersionName": "6.1.9-175",
+      "ciPolicyActivityCreatedDate": 1558453998666,
+      "violations": 3
     }
   ]
 }

@@ -1,0 +1,276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
+<div
+  className="bx--data-table-v2-container"
+>
+  <table
+    className="bx--data-table-v2 c-policies-table"
+    sortable={true}
+  >
+    <thead
+      className="b-policies-table-head"
+    >
+      <tr
+        className="b-policies-table-head__row"
+      >
+        <th
+          aria-sort="none"
+          className="b-policies-table-head__header --name"
+          scope="col"
+        >
+          <button
+            className="b-policies-table-head__header --name bx--table-sort-v2"
+            onClick={[Function]}
+          >
+            <span
+              className="bx--table-header-label"
+            >
+              Name
+            </span>
+            <svg
+              alt="Sort rows by this header in ascending order"
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort-v2__icon"
+              fillRule="evenodd"
+              height="5"
+              role="img"
+              viewBox="0 0 10 5"
+              width="10"
+            >
+              <title>
+                Sort rows by this header in ascending order
+              </title>
+              <path
+                d="M0 5L5 .002 10 5z"
+              />
+            </svg>
+          </button>
+        </th>
+        <th
+          aria-sort="none"
+          className="b-policies-table-head__header --definitions"
+          scope="col"
+        >
+          <button
+            className="b-policies-table-head__header --definitions bx--table-sort-v2"
+            onClick={[Function]}
+          >
+            <span
+              className="bx--table-header-label"
+            >
+              Definitions
+            </span>
+            <svg
+              alt="Sort rows by this header in ascending order"
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort-v2__icon"
+              fillRule="evenodd"
+              height="5"
+              role="img"
+              viewBox="0 0 10 5"
+              width="10"
+            >
+              <title>
+                Sort rows by this header in ascending order
+              </title>
+              <path
+                d="M0 5L5 .002 10 5z"
+              />
+            </svg>
+          </button>
+        </th>
+        <th
+          aria-sort="none"
+          className="b-policies-table-head__header --definitions"
+          scope="col"
+        >
+          <button
+            className="b-policies-table-head__header --definitions bx--table-sort-v2"
+            onClick={[Function]}
+          >
+            <span
+              className="bx--table-header-label"
+            >
+              Rules
+            </span>
+            <svg
+              alt="Sort rows by this header in ascending order"
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort-v2__icon"
+              fillRule="evenodd"
+              height="5"
+              role="img"
+              viewBox="0 0 10 5"
+              width="10"
+            >
+              <title>
+                Sort rows by this header in ascending order
+              </title>
+              <path
+                d="M0 5L5 .002 10 5z"
+              />
+            </svg>
+          </button>
+        </th>
+        <th
+          aria-sort="none"
+          className="b-policies-table-head__header --stages"
+          scope="col"
+        >
+          <button
+            className="b-policies-table-head__header --stages bx--table-sort-v2"
+            onClick={[Function]}
+          >
+            <span
+              className="bx--table-header-label"
+            >
+              Stage Gate Allocations
+            </span>
+            <svg
+              alt="Sort rows by this header in ascending order"
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort-v2__icon"
+              fillRule="evenodd"
+              height="5"
+              role="img"
+              viewBox="0 0 10 5"
+              width="10"
+            >
+              <title>
+                Sort rows by this header in ascending order
+              </title>
+              <path
+                d="M0 5L5 .002 10 5z"
+              />
+            </svg>
+          </button>
+        </th>
+        <th
+          aria-sort="none"
+          className="b-policies-table-head__header --violations"
+          scope="col"
+        >
+          <button
+            className="b-policies-table-head__header --violations bx--table-sort-v2"
+            onClick={[Function]}
+          >
+            <span
+              className="bx--table-header-label"
+            >
+              Violations
+            </span>
+            <svg
+              alt="Sort rows by this header in ascending order"
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort-v2__icon"
+              fillRule="evenodd"
+              height="5"
+              role="img"
+              viewBox="0 0 10 5"
+              width="10"
+            >
+              <title>
+                Sort rows by this header in ascending order
+              </title>
+              <path
+                d="M0 5L5 .002 10 5z"
+              />
+            </svg>
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="b-policies-table-body"
+    >
+      <tr
+        className="b-policies-table-body__row"
+        onClick={[Function]}
+      >
+        <td
+          style={
+            Object {
+              "padding": "0",
+            }
+          }
+        >
+          <div
+            className="b-policies-table-body__cell"
+          >
+            <p
+              className="b-policies-table-body__textarea"
+            >
+              Timss
+            </p>
+          </div>
+        </td>
+        <td
+          style={
+            Object {
+              "padding": "0",
+            }
+          }
+        >
+          <div
+            className="b-policies-table-body__cell"
+          >
+            <p
+              className="b-policies-table-body__textarea"
+            >
+              2
+            </p>
+          </div>
+        </td>
+        <td
+          style={
+            Object {
+              "padding": "0",
+            }
+          }
+        >
+          <div
+            className="b-policies-table-body__cell"
+          >
+            <p
+              className="b-policies-table-body__textarea"
+            >
+              2
+            </p>
+          </div>
+        </td>
+        <td
+          style={
+            Object {
+              "padding": "0",
+            }
+          }
+        >
+          <div
+            className="b-policies-table-body__cell"
+          >
+            <p
+              className="b-policies-table-body__textarea"
+            >
+              dev
+            </p>
+          </div>
+        </td>
+        <td
+          style={
+            Object {
+              "padding": "0",
+            }
+          }
+        >
+          <div
+            className="b-policies-table-body__cell"
+          >
+            ---
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
