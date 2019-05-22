@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@boomerang/boomerang-components": "^9.1.3",
-    "@boomerang/boomerang-react-scripts": "3.2.1",
+    "@boomerang/boomerang-react-scripts": "3.2.3",
     "@boomerang/boomerang-styles": "^1.0.0",
     "@boomerang/boomerang-utilities": "^2.2.0",
     "@boomerang/carbon-addons-boomerang": "^1.4.0",
