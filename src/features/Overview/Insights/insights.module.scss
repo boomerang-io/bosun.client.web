@@ -1,20 +1,20 @@
 @import "~@boomerang/boomerang-styles/lib/colors";
 
-.c-overview-general-info {
+.container {
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
 }
-.c-overview-general-info__content {
+.contentContainer {
   display: flex;
   height: auto;
 }
 
-.b-overview-general-title {
+.title {
   padding: 1rem 0rem;
 }
 
-.c-tiles {
+.tilesContainer {
   display: flex;
   flex-direction: column;
   // height: 17rem;
@@ -23,7 +23,7 @@
   margin-right: 2.75rem;
   justify-content: space-between;
 }
-.c-graphs {
+.graphsContainer {
   // height: 17rem;
   // max-width: 65rem;
   width: 100%;

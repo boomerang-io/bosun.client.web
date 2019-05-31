@@ -5,22 +5,20 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
   className="bx--data-table-v2-container"
 >
   <table
-    className="bx--data-table-v2 c-violations-table"
+    className="bx--data-table-v2 tableContainer"
     sortable={true}
   >
-    <thead
-      className="b-violations-table-head"
-    >
+    <thead>
       <tr
-        className="b-violations-table-head__row"
+        className="tableHeadRow"
       >
         <th
           aria-sort="none"
-          className="b-violations-table-head__header --ciPolicyName"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-violations-table-head__header --ciPolicyName bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -49,11 +47,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="b-violations-table-head__header --ciStageName"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-violations-table-head__header --ciStageName bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -82,11 +80,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="b-violations-table-head__header --ciComponentName"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-violations-table-head__header --ciComponentName bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -115,11 +113,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="b-violations-table-head__header --ciComponentVersionName"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-violations-table-head__header --ciComponentVersionName bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -148,11 +146,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="b-violations-table-head__header --violations"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-violations-table-head__header --violations bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -181,11 +179,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="b-violations-table-head__header --ciPolicyActivityCreatedDate"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-violations-table-head__header --ciPolicyActivityCreatedDate bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -215,11 +213,9 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
       </tr>
     </thead>
     <tbody
-      className="b-violations-table-body"
+      className="tableBody"
     >
-      <tr
-        className="b-violations-table-body__row"
-      >
+      <tr>
         <td
           style={
             Object {
@@ -228,10 +224,10 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
           }
         >
           <div
-            className="b-violations-table-body__cell"
+            className="tableCell"
           >
             <p
-              className="b-policies-table-body__textarea"
+              className="tableTextarea"
             >
               Tyson's Policy
             </p>
@@ -245,10 +241,10 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
           }
         >
           <div
-            className="b-violations-table-body__cell"
+            className="tableCell"
           >
             <p
-              className="b-policies-table-body__textarea"
+              className="tableTextarea"
             >
               dev
             </p>
@@ -262,10 +258,10 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
           }
         >
           <div
-            className="b-violations-table-body__cell"
+            className="tableCell"
           >
             <p
-              className="b-policies-table-body__textarea"
+              className="tableTextarea"
             >
               boomerang.service.ci
             </p>
@@ -279,10 +275,10 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
           }
         >
           <div
-            className="b-violations-table-body__cell"
+            className="tableCell"
           >
             <p
-              className="b-policies-table-body__textarea"
+              className="tableTextarea"
             >
               6.4.9-175
             </p>
@@ -296,10 +292,10 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
           }
         >
           <div
-            className="b-violations-table-body__cell"
+            className="tableCell"
           >
             <p
-              className="b-policies-table-body__textarea"
+              className="tableTextarea"
             >
               3
             </p>
@@ -313,10 +309,10 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
           }
         >
           <div
-            className="b-violations-table-body__cell"
+            className="tableCell"
           >
             <p
-              className="b-policies-table-body__textarea"
+              className="tableTextarea"
             >
               Jan 01, 2019 - 12:00 am
             </p>

@@ -7,13 +7,13 @@ import "./loading.scss";
 const Loading = ({ centered = true }) => {
   return centered ? (
     ReactDom.createPortal(
-      <div className={cx("c-loading", { "--centered": centered })}>
+      <div className={cx("c-loading", { "--centered": centered })} data-testid="loading-centered">
         <LoadingAnimation theme="bmrg-white" />
       </div>,
       document.body
     )
   ) : (
-    <div className="c-loading">
+    <div className="c-loading" data-testid="loading">
       <LoadingAnimation theme="bmrg-white" />
     </div>
   );

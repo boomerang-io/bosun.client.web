@@ -14,19 +14,20 @@ exports[`Graph --- Snapshot Capturing Snapshot of Graph 1`] = `
   }
 >
   <div
-    className="c-graph-header"
+    className="header"
   >
     <h3
-      className="b-graph-header__title"
+      className="title"
     >
       Violations Trend
     </h3>
     <div
-      className="c-graph-filters"
+      className="filters"
     />
   </div>
   <div
-    className="c-graph"
+    className="container"
+    data-testid="insights-graph"
   >
     <LineChart
       chartData={

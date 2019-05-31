@@ -3,6 +3,7 @@
 exports[`Info --- Snapshot Capturing Snapshot of Info 1`] = `
 <div
   className="bx--tile"
+  data-testid="tile-info"
   style={
     Object {
       "alignItems": "center",
@@ -14,7 +15,7 @@ exports[`Info --- Snapshot Capturing Snapshot of Info 1`] = `
   }
 >
   <div
-    className="b-tile-info__counter"
+    className="counter"
     style={
       Object {
         "color": "#ffaa9d",
@@ -24,18 +25,18 @@ exports[`Info --- Snapshot Capturing Snapshot of Info 1`] = `
     ---
   </div>
   <div
-    className="b-tile-info__divider"
+    className="divider"
   />
   <div
-    className="c-tile-info__text"
+    className="text"
   >
     <h3
-      className="b-tile-info__title"
+      className="title"
     >
       Test title
     </h3>
     <p
-      className="b-tile-info__content"
+      className="content"
     >
       Test content text
     </p>

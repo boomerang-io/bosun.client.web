@@ -1,6 +1,6 @@
 @import "~@boomerang/boomerang-styles/lib/colors";
 
-.b-tile-info__counter {
+.counter {
   align-items: center;
   display: flex;
   font-size: 2.5rem;
@@ -9,12 +9,12 @@
   justify-content: center;
   width: 30%;
 }
-.b-tile-info__divider {
+.divider {
   border: $gray-1 0.01rem solid;
   width: 0.15rem;
   height: 4.25rem;
 }
-.c-tile-info__text {
+.text {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -22,12 +22,12 @@
   width: 60%;
   margin-left: 1rem;
 }
-.b-tile-info__title {
+.title {
   font-size: 1.25rem;
   font-weight: 500;
   margin-top: 1.5rem;
 }
-.b-tile-info__content {
+.content {
   font-size: 1rem;
   margin-top: 1rem;
   font-weight: 400;

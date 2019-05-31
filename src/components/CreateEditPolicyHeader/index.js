@@ -21,6 +21,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
   const config = ACTION_TYPE_CONFIG[type];
   const { name, errors, isPerformingAffirmativeAction } = form;
   const hasErrors = Object.values(errors).filter(Boolean).length;
+
   return (
     <FullPageHeader>
       <button role="link" className={styles.back} onClick={navigateBack}>

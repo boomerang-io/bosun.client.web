@@ -5,7 +5,7 @@ import { Tile } from "carbon-components-react";
 import LineChart from "./LineChart";
 // import VisLineChart from "./VisLineChart";
 // import FilterDropdown from "./FilterDropdown";
-import "./styles.scss";
+import styles from "./graph.module.scss";
 
 export class Graph extends Component {
   static propTypes = {
@@ -38,15 +38,15 @@ export class Graph extends Component {
           minHeight: "10rem"
         }}
       >
-        <div className="c-graph-header">
-          <h3 className="b-graph-header__title">Violations Trend</h3>
-          <div className="c-graph-filters">
+        <div className={styles.header}>
+          <h3 className={styles.title}>Violations Trend</h3>
+          <div className={styles.filters}>
             {/* <FilterDropdown options={mockFilterData} onChange={()=>console.log("selected")} label="Standards" selectedItem={{}} />
             <FilterDropdown options={mockFilterData} onChange={()=>console.log("selected")} label="From" selectedItem={{}} />
             <FilterDropdown options={mockFilterData} onChange={()=>console.log("selected")} label="To" selectedItem={{}} /> */}
           </div>
         </div>
-        <div className="c-graph">
+        <div className={styles.container} data-testid="insights-graph">
           {formatedData.chartData.length > 0 ? (
             <LineChart
               chartData={formatedData.chartData}

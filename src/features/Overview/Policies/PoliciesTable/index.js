@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { DataTable } from "carbon-components-react";
+import styles from "./policiesTable.module.scss";
 import "./styles.scss";
 
 export class PoliciesTable extends Component {
@@ -42,12 +43,12 @@ export class PoliciesTable extends Component {
     const column = this.headers[cellIndex];
     switch (column.header) {
       case "Name":
-        return <p className="b-policies-table-body__textarea">{value}</p>;
+        return <p className={styles.tableTextarea}>{value}</p>;
       case "Definitions":
-        return <p className="b-policies-table-body__textarea">{Array.isArray(value) ? value.length : "---"}</p>;
+        return <p className={styles.tableTextarea}>{Array.isArray(value) ? value.length : "---"}</p>;
       case "Rules":
         return (
-          <p className="b-policies-table-body__textarea">
+          <p className={styles.tableTextarea}>
             {Array.isArray(value)
               ? value.reduce((accum, definition) => {
                   accum += definition.rules.length;
@@ -57,17 +58,17 @@ export class PoliciesTable extends Component {
           </p>
         );
       // case "Violations":
-      //   return <p className="b-policies-table-body__textarea">{value}</p>;
+      //   return <p className={styles.tableTextarea}>{value}</p>;
       case "Stage Gate Allocations":
-        return <p className="b-policies-table-body__textarea">{ !!value.length?value.join(", "):"---"}</p>;
+        return <p className={styles.tableTextarea}>{ !!value.length?value.join(", "):"---"}</p>;
       case "":
         return (
-          <div className="c-policies-table-body__icons">
+          <div className={styles.tableIcons}>
             {/* <div>
               <Icon
                 data-tip
                 data-for={`policies-table-${value}-${cellIndex}-edit`}
-                className="b-policies-table-body__icon"
+                className={styles.tableIcon}
                 name="icon--edit"
                 alt="Edit Policy"
               />
@@ -77,7 +78,7 @@ export class PoliciesTable extends Component {
               <Icon
                 data-tip
                 data-for={`policies-table-${value}-${cellIndex}-delete`}
-                className="b-policies-table-body__icon"
+                className={styles.tableIcon}
                 name="icon--delete"
                 alt="Delete Policy"
               />
@@ -92,10 +93,6 @@ export class PoliciesTable extends Component {
 
   render() {
     const { policies } = this.props;
-    // const policiesList = policies.map(policy => {
-    //   const def = definitions.find( def =>(policy.ciPolicyDefinitionId === def.id));
-    //   return {...policy, ...def};
-    // });
     const { TableContainer, Table, TableHead, TableRow, TableBody, TableCell, TableHeader } = DataTable;
     return (
       <DataTable
@@ -103,28 +100,28 @@ export class PoliciesTable extends Component {
         headers={this.headers}
         render={({ rows, headers, getHeaderProps }) => (
           <TableContainer>
-            <Table className="c-policies-table" sortable={true} zebra={false}>
-              <TableHead className="b-policies-table-head">
-                <TableRow className="b-policies-table-head__row">
+            <Table className={styles.tableContainer} sortable={true} zebra={false}>
+              <TableHead>
+                <TableRow className={styles.tableHeadRow}>
                   {headers.map(header => (
                     <TableHeader
-                      {...getHeaderProps({ header, className: `b-policies-table-head__header --${header.key}` })}
+                      {...getHeaderProps({ header, className: `${styles.tableHeader}` })}
                     >
                       {header.header}
                     </TableHeader>
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody className="b-policies-table-body">
+              <TableBody className={styles.tableBody}  data-testid="policies-tbody">
                 {rows.map((row, rowIndex) => (
                   <TableRow
                     key={row.id}
-                    className="b-policies-table-body__row"
-                    onClick={() => this.handleRowClick(row)}
+                    className={styles.tableRow}
+                    onClick={() => this.handleRowClick(row)}                   
                   >
                     {row.cells.map((cell, cellIndex) => (
                       <TableCell key={`${cell.id}-${cellIndex}`} style={{ padding: "0" }}>
-                        <div className="b-policies-table-body__cell">
+                        <div className={styles.tableCell}>
                           {this.renderCell(rowIndex, cellIndex, cell.value)}
                         </div>
                       </TableCell>

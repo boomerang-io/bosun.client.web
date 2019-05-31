@@ -1,0 +1,56 @@
+@import "~@boomerang/boomerang-styles/lib/colors";
+@import "~Styles/variables";
+
+.tableContainer {
+  margin-top: 1rem;
+}
+
+.tableHeadRow {
+  background-color: $cool-white-1;
+}
+
+.tableHeadRow > .tableHeader {
+  color: $cerulean-40;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  height: 3rem;
+}
+.tableBody {
+  background-color: #f2f2f2;
+  color: $gray-90;
+  font-weight: 400;
+}
+.tableRow {
+  cursor: pointer;
+}
+.tableCell {
+  align-items: center;
+  display: flex;
+  height: 3.5rem;
+  padding-left: 0.75rem;
+  width: 100%;
+}
+.tableIcons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.tableIcon {
+  cursor: pointer;
+  display: flex;
+  height: 1.25rem;
+  margin-right: 1.5rem;
+  width: 1.25rem;
+}
+
+.tableTextarea {
+  background: inherit;
+  color: $black;
+  max-width: 100%;
+  resize: none;
+  text-align: left;
+  white-space: normal;
+  width: 90%;
+  margin-left: 0.25rem;
+}

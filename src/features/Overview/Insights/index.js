@@ -9,7 +9,7 @@ import Info from "./Info";
 // import LoadingAnimation from "Components/Loading";
 // import { notify, Notification } from "@boomerang/boomerang-components/lib/Notifications";
 import { getLineChartData } from "./helpers/formatLineChartData";
-import "./styles.scss";
+import styles from "./insights.module.scss";
 
 export class Insights extends Component {
   static propTypes = {
@@ -38,14 +38,14 @@ export class Insights extends Component {
     };
 
     return (
-      <section className="c-overview-general-info">
-        <h2 className="b-overview-general-title">Insights</h2>
-        <div className="c-overview-general-info__content">
-          <div className="c-tiles">
+      <section className={styles.container}>
+        <h2 className={styles.title}>Insights</h2>
+        <div className={styles.contentContainer}>
+          <div className={styles.tilesContainer}>
             <Info info={gatesData} />
             <Info info={violationsData} />
           </div>
-          <div className="c-graphs">
+          <div className={styles.graphsContainer}>
             <Graph formatedData={formatedData} />
           </div>
         </div>

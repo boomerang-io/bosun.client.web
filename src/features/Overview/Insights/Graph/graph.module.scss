@@ -1,27 +1,24 @@
 @import "~@boomerang/boomerang-styles/lib/colors";
 
-.c-graph {
+.container {
   align-items: center;
   display: flex;
   height: 100%;
   justify-content: center;
   font-weight: 400;
-  .recharts-legend-item {
-    margin-bottom: 1rem;
-  }
 }
-.c-graph-header {
+.header {
   align-items: center;
   margin-bottom: 2rem;
   display: flex;
   justify-content: space-between;
 }
-.b-graph-header__title {
+.title {
   margin-left: 1.5rem;
   font-size: 1.25rem;
   font-weight: 500;
 }
-.c-graph-filters {
+.filters {
   display: flex;
   justify-items: flex-end;
 }

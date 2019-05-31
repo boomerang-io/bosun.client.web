@@ -4,7 +4,7 @@ import NoDisplay from "Components/NoDisplay";
 import { Button } from "carbon-components-react";
 import { withRouter } from "react-router-dom";
 import PoliciesTable from "./PoliciesTable";
-import "./styles.scss";
+import styles from "./policies.module.scss";
 
 export class Policies extends Component {
   static propTypes = {
@@ -15,15 +15,16 @@ export class Policies extends Component {
     const { policies } = this.props;
     
     return (
-      <div className="c-policies">
-        <div className="b-policies-header">
-          <h2 className="b-policies-header__title">{`Policies (${policies.length})`}</h2>
-          <p className="b-policies-header__message">
+      <div className={styles.container} data-testid="policies-container" id="policies-container">
+        <div>
+          <h2 className={styles.title}>{`Policies (${policies.length})`}</h2>
+          <p className={styles.message}>
             All of your teams policies can be found here. Go forth and define rules to enforce your standards!
           </p>
           <Button
             onClick={() => this.props.history.push(`${this.props.location.pathname}/policy/create`)}
-            className="b-policies-header__button"
+            className={styles.button}
+            data-testid="add-policy-button"
           >
             Add Policy
           </Button>

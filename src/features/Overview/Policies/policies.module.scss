@@ -1,0 +1,22 @@
+@import "~@boomerang/boomerang-styles/lib/colors";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.title {
+  padding: 1rem 0;
+}
+
+.message {
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.button {
+  position: absolute;
+  right: 0rem;
+  top: 1rem;
+}

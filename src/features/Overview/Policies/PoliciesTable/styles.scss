@@ -1,76 +1,11 @@
 @import "~@boomerang/boomerang-styles/lib/colors";
 @import "~Styles/variables";
 
-.c-policies-table {
-  margin-top: 1rem;
-}
-
-.b-policies-table-head__row {
-  background-color: $cool-white-1;
-}
-
-.b-policies-table-head__row > .b-policies-table-head__header {
-  color: $cerulean-40;
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: 600;
-  height: 3rem;
-
+#policies-container {
   .bx--table-header-label {
     color: $cerulean-50;
     font-size: 0.9rem;
     font-weight: bolder;
     padding-right: 0.5rem;
   }
-
-  &.--name {
-    width: 20%;
-  }
-  &.--stageGateAllocation {
-    width: 20%;
-  }
-  &.--definitions {
-    width: 20%;
-  }
-  &.--violations {
-    width: 20%;
-  }
-}
-.b-policies-table-body {
-  background-color: #f2f2f2;
-  color: $gray-90;
-  font-weight: 400;
-}
-.b-policies-table-body__row {
-  cursor: pointer;
-}
-.b-policies-table-body__cell {
-  align-items: center;
-  display: flex;
-  height: 3.5rem;
-  padding-left: 0.75rem;
-  width: 100%;
-}
-.c-policies-table-body__icons {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-}
-.b-policies-table-body__icon {
-  cursor: pointer;
-  display: flex;
-  height: 1.25rem;
-  margin-right: 1.5rem;
-  width: 1.25rem;
-}
-
-.b-policies-table-body__textarea {
-  background: inherit;
-  color: $black;
-  max-width: 100%;
-  resize: none;
-  text-align: left;
-  white-space: normal;
-  width: 90%;
-  margin-left: 0.25rem;
 }

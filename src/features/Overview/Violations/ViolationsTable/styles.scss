@@ -1,78 +1,10 @@
 @import "~@boomerang/boomerang-styles/lib/colors";
-@import "~Styles/variables";
 
-.c-violations-table {
-  margin-top: 1rem;
-}
-
-.b-violations-table-head__row {
-  background-color: $cool-white-1;
-}
-
-.b-violations-table-head__row > .b-violations-table-head__header {
-  color: $cerulean-40;
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: 600;
-  height: 3rem;
-
+#violations-container {
   .bx--table-header-label {
     color: $cerulean-50;
     font-size: 0.9rem;
     font-weight: bolder;
     padding-right: 0.5rem;
   }
-
-  &.--policyName {
-    width: 20%;
-  }
-  &.--stage {
-    width: 20%;
-  }
-  &.--componentName {
-    width: 20%;
-  }
-  &.--componentName {
-    width: 20%;
-  }
-  &.--reason {
-    width: 20%;
-  }
-}
-
-.b-violations-table-body {
-  background-color: #f2f2f2;
-  color: $gray-90;
-  font-weight: 400;
-}
-
-.b-violations-table-body__cell {
-  align-items: center;
-  display: flex;
-  height: 3.5rem;
-  padding-left: 0.75rem;
-  width: 100%;
-}
-.c-violations-table-body__icons {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-}
-.b-violations-table-body__icon {
-  cursor: pointer;
-  display: flex;
-  height: 1.25rem;
-  margin-right: 1.5rem;
-  width: 1.25rem;
-}
-
-.b-violations-table-body__textarea {
-  background: inherit;
-  color: $black;
-  max-width: 100%;
-  resize: none;
-  text-align: left;
-  white-space: normal;
-  width: 90%;
-  margin-left: 0.25rem;
 }

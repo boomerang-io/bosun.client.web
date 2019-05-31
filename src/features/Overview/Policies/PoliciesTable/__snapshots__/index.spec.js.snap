@@ -5,22 +5,20 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
   className="bx--data-table-v2-container"
 >
   <table
-    className="bx--data-table-v2 c-policies-table"
+    className="bx--data-table-v2 tableContainer"
     sortable={true}
   >
-    <thead
-      className="b-policies-table-head"
-    >
+    <thead>
       <tr
-        className="b-policies-table-head__row"
+        className="tableHeadRow"
       >
         <th
           aria-sort="none"
-          className="b-policies-table-head__header --name"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-policies-table-head__header --name bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -49,11 +47,11 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
         </th>
         <th
           aria-sort="none"
-          className="b-policies-table-head__header --definitions"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-policies-table-head__header --definitions bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -82,11 +80,11 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
         </th>
         <th
           aria-sort="none"
-          className="b-policies-table-head__header --definitions"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-policies-table-head__header --definitions bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -115,11 +113,11 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
         </th>
         <th
           aria-sort="none"
-          className="b-policies-table-head__header --stages"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-policies-table-head__header --stages bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -148,11 +146,11 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
         </th>
         <th
           aria-sort="none"
-          className="b-policies-table-head__header --violations"
+          className="tableHeader"
           scope="col"
         >
           <button
-            className="b-policies-table-head__header --violations bx--table-sort-v2"
+            className="tableHeader bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -182,10 +180,11 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
       </tr>
     </thead>
     <tbody
-      className="b-policies-table-body"
+      className="tableBody"
+      data-testid="policies-tbody"
     >
       <tr
-        className="b-policies-table-body__row"
+        className="tableRow"
         onClick={[Function]}
       >
         <td
@@ -196,10 +195,10 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
           }
         >
           <div
-            className="b-policies-table-body__cell"
+            className="tableCell"
           >
             <p
-              className="b-policies-table-body__textarea"
+              className="tableTextarea"
             >
               Timss
             </p>
@@ -213,10 +212,10 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
           }
         >
           <div
-            className="b-policies-table-body__cell"
+            className="tableCell"
           >
             <p
-              className="b-policies-table-body__textarea"
+              className="tableTextarea"
             >
               2
             </p>
@@ -230,10 +229,10 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
           }
         >
           <div
-            className="b-policies-table-body__cell"
+            className="tableCell"
           >
             <p
-              className="b-policies-table-body__textarea"
+              className="tableTextarea"
             >
               2
             </p>
@@ -247,10 +246,10 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
           }
         >
           <div
-            className="b-policies-table-body__cell"
+            className="tableCell"
           >
             <p
-              className="b-policies-table-body__textarea"
+              className="tableTextarea"
             >
               dev
             </p>
@@ -264,7 +263,7 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
           }
         >
           <div
-            className="b-policies-table-body__cell"
+            className="tableCell"
           >
             ---
           </div>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { DropdownV2 } from "carbon-components-react";
-import "./styles.scss";
 
 export class FilterDropdown extends Component {
   static propTypes = {

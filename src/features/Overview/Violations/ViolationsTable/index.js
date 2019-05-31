@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import { DataTable } from "carbon-components-react";
+import styles from "./violationsTable.module.scss";
 import "./styles.scss";
 
 export class ViolationsTable extends Component {
@@ -39,9 +40,9 @@ export class ViolationsTable extends Component {
     const column = this.headers[cellIndex];
     switch (column.header) {
       case "Activity Date":
-        return <p className="b-policies-table-body__textarea">{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
+        return <p className={styles.tableTextarea} >{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
       default:
-        return <p className="b-policies-table-body__textarea">{value || "---"}</p>;
+        return <p className={styles.tableTextarea}>{value || "---"}</p>;
     }
   };
 
@@ -55,24 +56,24 @@ export class ViolationsTable extends Component {
         headers={this.headers}
         render={({ rows, headers, getHeaderProps }) => (
           <TableContainer>
-            <Table className="c-violations-table" sortable={true} zebra={false}>
-              <TableHead className="b-violations-table-head">
-                <TableRow className="b-violations-table-head__row">
+            <Table className={styles.tableContainer} sortable={true} zebra={false}>
+              <TableHead>
+                <TableRow className={styles.tableHeadRow}>
                   {headers.map(header => (
                     <TableHeader
-                      {...getHeaderProps({ header, className: `b-violations-table-head__header --${header.key}` })}
+                      {...getHeaderProps({ header, className: `${styles.tableHeader}` })}
                     >
                       {header.header}
                     </TableHeader>
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody className="b-violations-table-body">
+              <TableBody className={styles.tableBody}>
                 {rows.map((row, rowIndex) => (
-                  <TableRow key={row.id} className="b-violations-table-body__row">
+                  <TableRow key={row.id}>
                     {row.cells.map((cell, cellIndex) => (
                       <TableCell key={cell.id} style={{ padding: "0" }}>
-                        <div className="b-violations-table-body__cell">
+                        <div className={styles.tableCell}>
                           {this.renderCell(rowIndex, cellIndex, cell.value)}
                         </div>
                       </TableCell>

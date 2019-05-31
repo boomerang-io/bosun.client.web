@@ -19,7 +19,8 @@ import {
   SERVICE_PRODUCT_VIOLATIONS_PATH
 } from "Config/servicesConfig";
 import sortBy from "lodash/sortBy";
-import "./styles.scss";
+import styles from "./overview.module.scss";
+
 
 export class Overview extends Component {
   static propTypes = {
@@ -28,6 +29,7 @@ export class Overview extends Component {
     insights: PropTypes.object.isRequired,
     getPoliciesActions: PropTypes.object.isRequired,
     policies: PropTypes.object.isRequired,
+    teams: PropTypes.array,
     violationsActions: PropTypes.object.isRequired,
     violations: PropTypes.object.isRequired
   };
@@ -63,7 +65,6 @@ export class Overview extends Component {
 
   renderContent() {
     const { activeTeam, policies, violations, insights } = this.props;
-
     if (!activeTeam) {
       return <Welcome />;
     }
@@ -101,7 +102,7 @@ export class Overview extends Component {
   render() {
     const { activeTeam, teams } = this.props;
     return (
-      <div className="c-overview">
+      <div className={styles.container}>
         <Header activeTeam={activeTeam} handleChangeTeam={this.handleChangeTeam} teams={teams} />
         {this.renderContent()}
       </div>
