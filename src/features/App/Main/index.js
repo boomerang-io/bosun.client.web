@@ -1,6 +1,6 @@
 import React, { Suspense, Component } from "react";
 import PropTypes from "prop-types";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import { NotificationContainer } from "@boomerang/boomerang-components/lib/Notifications";
 import GdprRedirectModal from "@boomerang/boomerang-components/lib/GdprRedirectModal";
 import LoadingAnimation from "Components/Loading";
@@ -33,8 +33,8 @@ class Main extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { globalMatch, router, setActiveTeam } = this.props;
-    if (router.location.pathname !== prevProps.router.location.pathname) {
+    const { globalMatch, setActiveTeam } = this.props;
+    if (this.props.location.pathname !== prevProps.location.pathname) {
       const teamName = globalMatch && globalMatch.params && globalMatch.params.teamName;
       setActiveTeam(teamName);
     }
@@ -75,4 +75,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default withRouter(Main);

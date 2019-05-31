@@ -108,13 +108,13 @@ export class AppContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
   return {
-    globalMatch: matchPath(state.router.location.pathname, { path: "/:teamName" }),
+    globalMatch: matchPath(props.location.pathname, { path: "/:teamName" }),
     navigation: state.navigation,
     teams: state.teams,
     user: state.user,
-    router: state.router
+    router: props.location
   };
 };
 

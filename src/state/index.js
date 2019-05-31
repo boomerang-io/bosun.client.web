@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router';
 import app from "./app";
 import insights from "./insights";
 import navigation from "./navigation";
@@ -8,9 +7,8 @@ import teams from "./teams";
 import user from "./user";
 import violations from "./violations";
 
-const rootReducer = history =>
+const rootReducer = () =>
   combineReducers({
-    router: connectRouter(history),
     app,
     insights,
     navigation,

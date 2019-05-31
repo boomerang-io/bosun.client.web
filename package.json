@@ -13,7 +13,6 @@
     "carbon-components": "^9.91.0",
     "carbon-components-react": "^6.114.1",
     "classnames": "^2.2.6",
-    "connected-react-router": "6.1.0",
     "history": "4.7.2",
     "prop-types": "15.6.2",
     "react": "16.8.3",
