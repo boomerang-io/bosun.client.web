@@ -21,7 +21,6 @@ import {
 import sortBy from "lodash/sortBy";
 import styles from "./overview.module.scss";
 
-
 export class Overview extends Component {
   static propTypes = {
     activeTeam: PropTypes.object,
@@ -48,12 +47,18 @@ export class Overview extends Component {
     }
   }
 
-  fetchData() {
+  fetchData = async () => {
     const { id } = this.props.activeTeam;
-    this.props.getPoliciesActions.fetch(`${SERVICE_PRODUCT_POLICIES_PATH}?ciTeamId=${id}`);
-    this.props.insightsActions.fetch(`${SERVICE_PRODUCT_INSIGHTS_PATH}?ciTeamId=${id}`);
-    this.props.violationsActions.fetch(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?ciTeamId=${id}`);
-  }
+    try {
+      await Promise.all([
+        this.props.getPoliciesActions.fetch(`${SERVICE_PRODUCT_POLICIES_PATH}?ciTeamId=${id}`),
+        this.props.insightsActions.fetch(`${SERVICE_PRODUCT_INSIGHTS_PATH}?ciTeamId=${id}`),
+        this.props.violationsActions.fetch(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?ciTeamId=${id}`)
+      ]);
+    } catch (err) {
+      //noop
+    }
+  };
 
   handleChangeTeam = ({ selectedItem }) => {
     if (selectedItem && selectedItem.name) {

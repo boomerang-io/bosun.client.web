@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import axios from "axios";
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import { actions } from "State/teamMembers";
 import Graph from "./Graph";
 import Info from "./Info";
-// import LoadingAnimation from "Components/Loading";
-// import { notify, Notification } from "@boomerang/boomerang-components/lib/Notifications";
 import { getLineChartData } from "./helpers/formatLineChartData";
 import styles from "./insights.module.scss";
 
