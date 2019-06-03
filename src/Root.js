@@ -14,7 +14,7 @@ export default class Root extends Component {
     const { store } = this.props;
     return (
       <Provider store={store}>
-        <BrowserRouter basename={APP_ROOT} >
+        <BrowserRouter basename={APP_ROOT}>
           <App />
         </BrowserRouter>
       </Provider>

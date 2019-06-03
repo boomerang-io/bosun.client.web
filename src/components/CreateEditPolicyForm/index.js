@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { TextInput } from "carbon-components-react";
 import PolicyFormDefinitionSection from "./PolicyFormDefinitionSection";
 import KingJellyGraphic from "Components/KingJellyGraphic";
-import ThanksRoosGraphic from "Components/ThanksRoosGraphic";
+//import ThanksRoosGraphic from "Components/ThanksRoosGraphic";
 import styles from "./createEditPolicyForm.module.scss";
 
 CreateEditPolicyForm.propTypes = {
