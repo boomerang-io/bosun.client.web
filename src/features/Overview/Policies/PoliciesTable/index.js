@@ -27,10 +27,6 @@ export class PoliciesTable extends Component {
     {
       header: "Stage Gate Allocations",
       key: "stages"
-    },
-    {
-      header: "Violations",
-      key: "violations"
     }
   ];
 
@@ -57,10 +53,9 @@ export class PoliciesTable extends Component {
               : "---"}
           </p>
         );
-      // case "Violations":
-      //   return <p className={styles.tableTextarea}>{value}</p>;
+
       case "Stage Gate Allocations":
-        return <p className={styles.tableTextarea}>{ !!value.length?value.join(", "):"---"}</p>;
+        return <p className={styles.tableTextarea}>{!!value.length ? value.join(", ") : "---"}</p>;
       case "":
         return (
           <div className={styles.tableIcons}>
@@ -104,26 +99,18 @@ export class PoliciesTable extends Component {
               <TableHead>
                 <TableRow className={styles.tableHeadRow}>
                   {headers.map(header => (
-                    <TableHeader
-                      {...getHeaderProps({ header, className: `${styles.tableHeader}` })}
-                    >
+                    <TableHeader {...getHeaderProps({ header, className: `${styles.tableHeader}` })}>
                       {header.header}
                     </TableHeader>
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody className={styles.tableBody}  data-testid="policies-tbody">
+              <TableBody className={styles.tableBody} data-testid="policies-tbody">
                 {rows.map((row, rowIndex) => (
-                  <TableRow
-                    key={row.id}
-                    className={styles.tableRow}
-                    onClick={() => this.handleRowClick(row)}                   
-                  >
+                  <TableRow key={row.id} className={styles.tableRow} onClick={() => this.handleRowClick(row)}>
                     {row.cells.map((cell, cellIndex) => (
                       <TableCell key={`${cell.id}-${cellIndex}`} style={{ padding: "0" }}>
-                        <div className={styles.tableCell}>
-                          {this.renderCell(rowIndex, cellIndex, cell.value)}
-                        </div>
+                        <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
                       </TableCell>
                     ))}
                   </TableRow>
