@@ -4,7 +4,7 @@ import axios from "axios";
 import uuid from "uuid";
 import { notify, Notification } from "@boomerang/boomerang-components/lib/Notifications";
 import LoadingAnimation from "Components/Loading";
-import Error from "Components/Error";
+import ErrorDragon from "Components/ErrorDragon";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
 import {
@@ -244,7 +244,7 @@ class EditPolicy extends React.Component {
     }
 
     if (error) {
-      return <Error />;
+      return <ErrorDragon />;
     }
 
     if (status === SERVICE_REQUEST_STATUSES.SUCCESS) {

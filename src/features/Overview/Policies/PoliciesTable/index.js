@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { DataTable } from "carbon-components-react";
 import styles from "./policiesTable.module.scss";
-import "./styles.scss";
 
 export class PoliciesTable extends Component {
   static propTypes = {

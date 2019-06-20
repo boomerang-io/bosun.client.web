@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import { DataTable } from "carbon-components-react";
 import styles from "./violationsTable.module.scss";
-import "./styles.scss";
 
 export class ViolationsTable extends Component {
   static propTypes = {
@@ -44,9 +43,9 @@ export class ViolationsTable extends Component {
     const column = this.headers[cellIndex];
     switch (column.header) {
       case "Activity Date":
-        return <p className={styles.tableTextarea} >{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
+        return <p className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
       case "Failed Definition Types":
-          return <p className={styles.tableTextarea}>{value && value.length ? value.join(", ") : "---"}</p>;
+        return <p className={styles.tableTextarea}>{value && value.length ? value.join(", ") : "---"}</p>;
       default:
         return <p className={styles.tableTextarea}>{value || "---"}</p>;
     }
@@ -79,9 +78,7 @@ export class ViolationsTable extends Component {
                   <TableRow key={row.id}>
                     {row.cells.map((cell, cellIndex) => (
                       <TableCell key={cell.id} style={{ padding: "0" }}>
-                        <div className={styles.tableCell}>
-                          {this.renderCell(rowIndex, cellIndex, cell.value)}
-                        </div>
+                        <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
                       </TableCell>
                     ))}
                   </TableRow>

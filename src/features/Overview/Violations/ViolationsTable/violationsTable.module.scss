@@ -5,11 +5,11 @@
   margin-top: 1rem;
 }
 
-.tableHeadRow{
+.tableHeadRow {
   background-color: $cool-white-1;
 }
 
-.tableHeadRow> .tableHeader {
+.tableHeadRow > .tableHeader {
   color: $cerulean-40;
   font-size: inherit;
   font-family: inherit;
@@ -21,11 +21,11 @@
   }
 
   &.ciStageName {
-    width: 10%;
+    width: 7.5%;
   }
 
   &.ciComponentName {
-    width: 10%;
+    width: 15%;
   }
 
   &.ciComponentVersionName {
@@ -37,7 +37,8 @@
   }
 
   &.ciPolicyDefinitionTypes {
-    width: 43%;
+    width: 25%;
+    overflow-y: auto;
   }
 
   &.ciPolicyActivityCreatedDate {

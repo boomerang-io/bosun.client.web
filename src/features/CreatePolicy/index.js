@@ -3,7 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { notify, Notification } from "@boomerang/boomerang-components/lib/Notifications";
 import LoadingAnimation from "Components/Loading";
-import Error from "Components/Error";
+import ErrorDragon from "Components/ErrorDragon";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import {
@@ -178,7 +178,7 @@ class CreatePolicy extends React.Component {
     }
 
     if (error) {
-      return <Error />;
+      return <ErrorDragon />;
     }
 
     if (status === SERVICE_REQUEST_STATUSES.SUCCESS) {

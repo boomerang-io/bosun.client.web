@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import CustomLegend from "./CustomLegend";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"; //Removed "Legend"
+//import CustomLegend from "./CustomLegend";
 import CustomTooltip from "./CustomTooltip";
 const colors = ["#047CC0", "#0cd455", "#f39200", "#f0430a", "#8206b3"];
 

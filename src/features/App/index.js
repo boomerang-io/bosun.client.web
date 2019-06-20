@@ -59,14 +59,14 @@ export class AppContainer extends Component {
     this.fetchData();
   };
 
-  fetchData = async() => {
-    try{
+  fetchData = async () => {
+    try {
       await Promise.all([
         this.props.navigationActions.fetchNavigation(SERVICE_USERS_NAVIGATION_PATH),
         this.props.userActions.fetchUser(SERVICE_USERS_PROFILE_PATH),
         this.props.teamsActions.fetch(SERVICE_PRODUCT_TEAM_PATH)
-      ])
-    }catch(err){
+      ]);
+    } catch (err) {
       //noop
     }
   };
