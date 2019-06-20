@@ -92,9 +92,6 @@ class CreatePolicy extends React.Component {
     }
   };
 
-  // TODO
-  deletePolicy = () => {};
-
   // State updates
 
   setError = error => {
@@ -173,7 +170,6 @@ class CreatePolicy extends React.Component {
       removeRow: this.removeRow,
       validateRow: this.validateRow,
       affirmativeAction: this.createPolicy,
-      deletePolicy: this.deletePolicy,
       isPerformingAffirmativeAction: isCreating
     };
 

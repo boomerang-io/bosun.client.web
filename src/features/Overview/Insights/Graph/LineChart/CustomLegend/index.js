@@ -18,11 +18,17 @@ class CustomLegend extends Component {
             <div
               key={`${data.payload.name}-${index}`}
               className="c-legend-icon"
-              onClick={(e)=>this.toggleWithIsAccessibleEventCheck(e,data)}
-              onKeyDown={(e)=>this.toggleWithIsAccessibleEventCheck(e,data)}
+              onClick={e => this.toggleWithIsAccessibleEventCheck(e, data)}
+              onKeyDown={e => this.toggleWithIsAccessibleEventCheck(e, data)}
               role="button"
               tabIndex="0"
-              style={{position:"relative", left:"2rem", top:lastDot?lastDot.y:"", marginTop:"-0.75rem"}}
+              style={{
+                position: "relative",
+                left: "2rem",
+                top: lastDot ? lastDot.y : "",
+                marginTop: "-1.75rem",
+                padding: "0.25rem"
+              }}
             >
               <LegendIcon className="b-legend-icon" strokeColor={data.payload.stroke} />
               <span className={`b-legend-label${isToggled ? " --toggled" : ""}`} key={data.dataKey}>

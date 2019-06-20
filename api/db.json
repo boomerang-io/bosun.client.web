@@ -839,6 +839,23 @@
   ],
   "violations": [
     {
+      "id":"5cf144d17d5cc80001d190a25cedbec5dd1be20001f3d9425cee1d76dd1be20001f3d9c45cedf589dd1be20001f3d994",
+      "ciPolicyId":"5cf144d17d5cc80001d190a2",
+      "ciPolicyName":"Glens Policy",
+      "ciStageId":"5cedf589dd1be20001f3d994",
+      "ciStageName":"dev",
+      "ciComponentId":"5cedbec5dd1be20001f3d942",
+      "ciComponentName":"next-gen-docker",
+      "ciComponentVersionId":"5cee1d76dd1be20001f3d9c4",
+      "ciComponentVersionName":"nextgen-2",
+      "ciPolicyActivityCreatedDate":1560178117335,
+      "ciPolicyDefinitionTypes":[
+         "Static Code Analysis"
+      ],
+      "violations":1
+    },
+    {
+      "id": "cc80001d190a25cedbec5dd1be20001f3d9425cee1d7",
       "ciPolicyId": "5cd49adff6ea74a9bb6adef4",
       "ciPolicyName": "Tyson's Policy",
       "ciStageId": "5cb123bdf6ea74a9bb5425b6",
@@ -848,9 +865,14 @@
       "ciComponentVersionId": "5cdb4ca3f6ea74a9bb9cf251",
       "ciComponentVersionName": "6.4.9-175",
       "ciPolicyActivityCreatedDate": 1558453998666,
+      "ciPolicyDefinitionTypes":[
+        "Static Code Analysis",
+        "Unit Tests"
+     ],
       "violations": 3
     },
     {
+      "id": "001f3d9425cee1d76dd1be20001f3d9c45cedf5",
       "ciPolicyId": "5cd49adff6ea74a9bb6adef3",
       "ciPolicyName": "Tim's Policy",
       "ciStageId": "5cb123bdf6ea74a9bb5425b6",
@@ -860,7 +882,31 @@
       "ciComponentVersionId": "5cdb4ca3f6ea74a9bb9cf251",
       "ciComponentVersionName": "6.1.9-175",
       "ciPolicyActivityCreatedDate": 1558453998666,
+      "ciPolicyDefinitionTypes":[],
       "violations": 3
-    }
+    },
+    {
+      "id":"5cf95aefa814cf00017816365cf6892e411b910001eaa1d25cf68979411b910001eaa2185cedf589dd1be20001f3d994",
+      "ciPolicyId":"5cf95aefa814cf0001781636",
+      "ciPolicyName":"AdriennePolicy",
+      "ciStageId":"5cedf589dd1be20001f3d994",
+      "ciStageName":"dev",
+      "ciComponentId":"5cf6892e411b910001eaa1d2",
+      "ciComponentName":"demo.lib.jar",
+      "ciComponentVersionId":"5cf68979411b910001eaa218",
+      "ciComponentVersionName":"1.0.0-0",
+      "ciPolicyActivityCreatedDate":1559877730858,
+      "ciPolicyDefinitionTypes":[
+        "Static Code Analysis",
+        "Tool Automation",
+        "Unit Tests",
+        "Users",
+        "Boomerang",
+        "Code Coverage",
+        "Watson Cloud",
+        "Some random type"
+      ],
+      "violations":1
+   }
   ]
 }

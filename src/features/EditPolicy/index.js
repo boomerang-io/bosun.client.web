@@ -24,6 +24,7 @@ class EditPolicy extends React.Component {
     error: null,
     isFetching: false,
     isUpdating: false,
+    isDeleting: false,
     policy: null,
     definitions: null,
     status: null,
@@ -93,7 +94,7 @@ class EditPolicy extends React.Component {
       this.setState({
         isUpdating: false
       });
-      notify(<Notification type="success" title="Policy Updated" message="Policy was successfully updated" />);
+      notify(<Notification type="success" title="Policy Updated" message="Policy successfully updated" />);
     } catch (e) {
       console.log(e);
       this.setState({
@@ -103,8 +104,31 @@ class EditPolicy extends React.Component {
     }
   };
 
-  // TODO
-  deletePolicy = () => {};
+  deletePolicy = async () => {
+    this.setState({
+      isDeleting: true
+    });
+    const { policy } = this.state;
+
+    try {
+      await axios.delete(`${SERVICE_PRODUCT_POLICIES_PATH}/${policy.id}`);
+      this.setState({
+        isDeleting: false
+      });
+      notify(
+        <Notification type="success" title="Policy deleted" message={`Policy ${policy.name} successfully deleted`} />
+      );
+      this.navigateBack();
+    } catch (err) {
+      this.setState({
+        isDeleting: false
+      });
+      const { data } = err && err.response;
+      notify(<Notification type="error" title={`${data.status} - ${data.error}`} message={data.message} />, {
+        autoClose: 5000
+      });
+    }
+  };
 
   // State updates
 
@@ -199,7 +223,7 @@ class EditPolicy extends React.Component {
   };
 
   render() {
-    const { name, error, isFetching, isUpdating, status, definitions, inputs, errors } = this.state;
+    const { name, error, isFetching, isUpdating, isDeleting, status, definitions, inputs, errors } = this.state;
     const form = {
       name,
       inputs,
@@ -211,7 +235,8 @@ class EditPolicy extends React.Component {
       validateRow: this.validateRow,
       affirmativeAction: this.updatePolicy,
       deletePolicy: this.deletePolicy,
-      isPerformingAffirmativeAction: isUpdating
+      isPerformingAffirmativeAction: isUpdating,
+      isDeleting
     };
 
     if (isFetching) {

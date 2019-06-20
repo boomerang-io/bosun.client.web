@@ -1,3 +1,4 @@
 const singular = require("./singular");
+const handleDeletePolicy = require("./handleDeletePolicy");
 
-module.exports = [singular];
+module.exports = [handleDeletePolicy, singular];

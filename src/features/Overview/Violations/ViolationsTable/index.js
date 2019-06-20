@@ -31,6 +31,10 @@ export class ViolationsTable extends Component {
       key: "violations"
     },
     {
+      header: "Failed Definition Types",
+      key: "ciPolicyDefinitionTypes"
+    },
+    {
       header: "Activity Date",
       key: "ciPolicyActivityCreatedDate"
     }
@@ -41,6 +45,8 @@ export class ViolationsTable extends Component {
     switch (column.header) {
       case "Activity Date":
         return <p className={styles.tableTextarea} >{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
+      case "Failed Definition Types":
+          return <p className={styles.tableTextarea}>{value && value.length ? value.join(", ") : "---"}</p>;
       default:
         return <p className={styles.tableTextarea}>{value || "---"}</p>;
     }
@@ -61,7 +67,7 @@ export class ViolationsTable extends Component {
                 <TableRow className={styles.tableHeadRow}>
                   {headers.map(header => (
                     <TableHeader
-                      {...getHeaderProps({ header, className: `${styles.tableHeader}` })}
+                      {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
                     >
                       {header.header}
                     </TableHeader>

@@ -6,7 +6,7 @@ import {
   InteriorLeftNavItem,
   InteriorLeftNavList
 } from "@boomerang/carbon-addons-boomerang-react";
-import { BASE_APPS_ENV_URL, BASE_LAUNCH_ENV_URL, BASE_WWW_ENV_URL } from "Config/platformUrlConfig";
+import { BASE_APPS_ENV_URL, BASE_LAUNCH_ENV_URL } from "Config/platformUrlConfig";
 import { BASE_SERVICE_ENV_URL, SERVICE_REQUEST_STATUSES } from "Config/servicesConfig";
 
 const defaultUIShellProps = {
@@ -14,49 +14,19 @@ const defaultUIShellProps = {
   renderLogo: true
 };
 
+const baseLaunchUrl = new URL(BASE_LAUNCH_ENV_URL);
+const baseURL = baseLaunchUrl.origin;
 const onMenuClick = ({ isOpen }) => (
   <InteriorLeftNav isOpen={isOpen}>
-    <InteriorLeftNavItem
-      href={`${BASE_APPS_ENV_URL}/ci/`}
-      label="CI"
-      baseURL={BASE_LAUNCH_ENV_URL.replace("/stage", "").replace("/dev", "")}
-    />
-    <InteriorLeftNavItem
-      href={`${BASE_APPS_ENV_URL}/scorecard/`}
-      label="Scorecard"
-      baseURL={BASE_LAUNCH_ENV_URL.replace("/stage", "").replace("/dev", "")}
-    />
-    <InteriorLeftNavItem
-      href={`${BASE_APPS_ENV_URL}/insights/`}
-      label="Insights"
-      baseURL={BASE_LAUNCH_ENV_URL.replace("/stage", "").replace("/dev", "")}
-    />
-    <InteriorLeftNavItem
-      href={`${BASE_APPS_ENV_URL}/lib/`}
-      label="Lib"
-      baseURL={BASE_LAUNCH_ENV_URL.replace("/stage", "").replace("/dev", "")}
-    />
-    <InteriorLeftNavItem
-      href={`${BASE_APPS_ENV_URL}/citadel/`}
-      label="Citadel"
-      baseURL={BASE_LAUNCH_ENV_URL.replace("/stage", "").replace("/dev", "")}
-    />
+    <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/ci/`} label="CI" baseURL={baseURL} />
+    <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/scorecard/`} label="Scorecard" baseURL={baseURL} />
+    <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/insights/`} label="Insights" baseURL={baseURL} />
+    <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/lib/`} label="Lib" baseURL={baseURL} />
+    <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/citadel/`} label="Citadel" baseURL={baseURL} />
     <InteriorLeftNavList title="Manage">
-      <InteriorLeftNavItem
-        href={`${BASE_APPS_ENV_URL}/ci/configuration`}
-        label="Configurations"
-        baseURL={BASE_LAUNCH_ENV_URL.replace("/stage", "").replace("/dev", "")}
-      />
-      <InteriorLeftNavItem
-        href={`${BASE_APPS_ENV_URL}/ci/repositories`}
-        label="Repositories"
-        baseURL={BASE_LAUNCH_ENV_URL.replace("/stage", "").replace("/dev", "")}
-      />
-      <InteriorLeftNavItem
-        href={`${BASE_APPS_ENV_URL}/ci/component-modes`}
-        label="Modes"
-        baseURL={BASE_LAUNCH_ENV_URL.replace("/stage", "").replace("/dev", "")}
-      />
+      <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/ci/configuration`} label="Configurations" baseURL={baseURL} />
+      <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/ci/repositories`} label="Repositories" baseURL={baseURL} />
+      <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/ci/component-modes`} label="Modes" baseURL={baseURL} />
     </InteriorLeftNavList>
   </InteriorLeftNav>
 );
