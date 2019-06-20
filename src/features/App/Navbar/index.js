@@ -52,6 +52,11 @@ const onMenuClick = ({ isOpen }) => (
         label="Repositories"
         baseURL={BASE_LAUNCH_ENV_URL.replace("/stage", "").replace("/dev", "")}
       />
+      <InteriorLeftNavItem
+        href={`${BASE_APPS_ENV_URL}/ci/component-modes`}
+        label="Modes"
+        baseURL={BASE_LAUNCH_ENV_URL.replace("/stage", "").replace("/dev", "")}
+      />
     </InteriorLeftNavList>
   </InteriorLeftNav>
 );
