@@ -3,7 +3,7 @@ import { Button, ComboBox, TextInput, TextArea } from "carbon-components-react";
 import styles from "./policyFormDefinitionSection.module.scss";
 import uuid from "uuid";
 import DeleteIcon from "@carbon/icons-react/lib/delete/16";
-import { shouldFilterItem } from "Utils";
+//import { shouldFilterItem } from "Utils";
 
 const INPUT_TYPES = {
   text: { type: "text" },
@@ -67,7 +67,7 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
         placeholder={label}
         required={required}
         selectedItem={inputs[key]}
-        shouldFilterItem={shouldFilterItem}
+        //shouldFilterItem={shouldFilterItem}
       />
     );
   }
