@@ -16,8 +16,8 @@ import styles from "./editPolicy.module.scss";
 
 class EditPolicy extends React.Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired
+    history: PropTypes.object,
+    match: PropTypes.object
   };
 
   state = {

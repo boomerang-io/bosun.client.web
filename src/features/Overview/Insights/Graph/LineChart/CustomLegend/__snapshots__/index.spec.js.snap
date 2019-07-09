@@ -12,7 +12,8 @@ exports[`CustomLegend --- Snapshot Capturing Snapshot of CustomLegend 1`] = `
     style={
       Object {
         "left": "2rem",
-        "marginTop": "-0.75rem",
+        "marginTop": "-1.75rem",
+        "padding": "0.25rem",
         "position": "relative",
         "top": "",
       }
@@ -29,7 +30,10 @@ exports[`CustomLegend --- Snapshot Capturing Snapshot of CustomLegend 1`] = `
     >
       <path
         class="recharts-legend-icon"
-        d="M0,16h10.666666666666666 A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16 H32M21.333333333333332,16 A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+        d="M0,16h10.666666666666666
+ A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+ H32M21.333333333333332,16
+ A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
         fill="none"
         stroke-width="4"
       />

@@ -64,6 +64,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
             className={styles.button}
             onClick={form.affirmativeAction}
             type="submit"
+            data-testid="policy-header-affirmative-action"
           >
             {isPerformingAffirmativeAction ? config.isPerformingActionVerb : config.affirmativeActionVerb}
           </Button>

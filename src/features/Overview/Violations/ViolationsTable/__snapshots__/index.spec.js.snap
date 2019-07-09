@@ -14,11 +14,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
       >
         <th
           aria-sort="none"
-          className="tableHeader"
+          className="tableHeader ciPolicyName"
           scope="col"
         >
           <button
-            className="tableHeader bx--table-sort-v2"
+            className="tableHeader ciPolicyName bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -47,11 +47,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="tableHeader"
+          className="tableHeader ciStageName"
           scope="col"
         >
           <button
-            className="tableHeader bx--table-sort-v2"
+            className="tableHeader ciStageName bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -80,11 +80,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="tableHeader"
+          className="tableHeader ciComponentName"
           scope="col"
         >
           <button
-            className="tableHeader bx--table-sort-v2"
+            className="tableHeader ciComponentName bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -113,11 +113,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="tableHeader"
+          className="tableHeader ciComponentVersionName"
           scope="col"
         >
           <button
-            className="tableHeader bx--table-sort-v2"
+            className="tableHeader ciComponentVersionName bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -146,11 +146,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="tableHeader"
+          className="tableHeader violations"
           scope="col"
         >
           <button
-            className="tableHeader bx--table-sort-v2"
+            className="tableHeader violations bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -179,11 +179,44 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="tableHeader"
+          className="tableHeader ciPolicyDefinitionTypes"
           scope="col"
         >
           <button
-            className="tableHeader bx--table-sort-v2"
+            className="tableHeader ciPolicyDefinitionTypes bx--table-sort-v2"
+            onClick={[Function]}
+          >
+            <span
+              className="bx--table-header-label"
+            >
+              Failed Definition Types
+            </span>
+            <svg
+              alt="Sort rows by this header in ascending order"
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort-v2__icon"
+              fillRule="evenodd"
+              height="5"
+              role="img"
+              viewBox="0 0 10 5"
+              width="10"
+            >
+              <title>
+                Sort rows by this header in ascending order
+              </title>
+              <path
+                d="M0 5L5 .002 10 5z"
+              />
+            </svg>
+          </button>
+        </th>
+        <th
+          aria-sort="none"
+          className="tableHeader ciPolicyActivityCreatedDate"
+          scope="col"
+        >
+          <button
+            className="tableHeader ciPolicyActivityCreatedDate bx--table-sort-v2"
             onClick={[Function]}
           >
             <span
@@ -298,6 +331,23 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
               className="tableTextarea"
             >
               3
+            </p>
+          </div>
+        </td>
+        <td
+          style={
+            Object {
+              "padding": "0",
+            }
+          }
+        >
+          <div
+            className="tableCell"
+          >
+            <p
+              className="tableTextarea"
+            >
+              ---
             </p>
           </div>
         </td>

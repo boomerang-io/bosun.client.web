@@ -171,39 +171,6 @@ exports[`Policies --- Snapshot Capturing Snapshot of Policies 1`] = `
               </svg>
             </button>
           </th>
-          <th
-            aria-sort="none"
-            className="tableHeader"
-            scope="col"
-          >
-            <button
-              className="tableHeader bx--table-sort-v2"
-              onClick={[Function]}
-            >
-              <span
-                className="bx--table-header-label"
-              >
-                Violations
-              </span>
-              <svg
-                alt="Sort rows by this header in ascending order"
-                aria-label="Sort rows by this header in ascending order"
-                className="bx--table-sort-v2__icon"
-                fillRule="evenodd"
-                height="5"
-                role="img"
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Sort rows by this header in ascending order
-                </title>
-                <path
-                  d="M0 5L5 .002 10 5z"
-                />
-              </svg>
-            </button>
-          </th>
         </tr>
       </thead>
       <tbody
@@ -280,19 +247,6 @@ exports[`Policies --- Snapshot Capturing Snapshot of Policies 1`] = `
               >
                 dev
               </p>
-            </div>
-          </td>
-          <td
-            style={
-              Object {
-                "padding": "0",
-              }
-            }
-          >
-            <div
-              className="tableCell"
-            >
-              ---
             </div>
           </td>
         </tr>
