@@ -11,7 +11,8 @@ import { BASE_SERVICE_ENV_URL, SERVICE_REQUEST_STATUSES } from "Config/servicesC
 
 const defaultUIShellProps = {
   baseServiceUrl: BASE_SERVICE_ENV_URL,
-  renderLogo: true
+  renderLogo: true,
+  baseLaunchEnvUrl: BASE_LAUNCH_ENV_URL
 };
 
 const baseLaunchUrl = new URL(BASE_LAUNCH_ENV_URL);
@@ -33,11 +34,12 @@ const onMenuClick = ({ isOpen }) => (
 
 Navbar.propTypes = {
   navigation: PropTypes.object.isRequired,
-  handleOnTutorialClick: PropTypes.func.isRequired
+  handleOnTutorialClick: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 function Navbar(props) {
-  const { handleOnTutorialClick, navigation } = props;
+  const { handleOnTutorialClick, navigation, user } = props;
 
   if (navigation.status === SERVICE_REQUEST_STATUSES.SUCCESS) {
     const navbarLinks = navigation.data.navigation.map(link => {
@@ -51,6 +53,7 @@ function Navbar(props) {
         {...defaultUIShellProps}
         headerConfig={headerConfig}
         onTutorialClick={handleOnTutorialClick}
+        user={user}
         onMenuClick={onMenuClick}
       />
     );

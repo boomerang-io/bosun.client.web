@@ -106,7 +106,11 @@ export class AppContainer extends Component {
     return (
       <ErrorBoundary errorComponent={ErrorDragon}>
         <div className="c-app">
-          <Navbar navigation={this.props.navigation} handleOnTutorialClick={this.handleOnQuestionClick} />
+          <Navbar
+            navigation={this.props.navigation}
+            handleOnTutorialClick={this.handleOnQuestionClick}
+            user={this.props.user.data}
+          />
           {this.renderMain()}
         </div>
       </ErrorBoundary>

@@ -2,13 +2,11 @@ import React, { Suspense, Component } from "react";
 import PropTypes from "prop-types";
 import { Switch, Route, withRouter } from "react-router-dom";
 import { NotificationContainer } from "@boomerang/boomerang-components/lib/Notifications";
-import GdprRedirectModal from "@boomerang/boomerang-components/lib/GdprRedirectModal";
 import LoadingAnimation from "Components/Loading";
 import CreatePolicy from "Features/CreatePolicy";
 import EditPolicy from "Features/EditPolicy";
 import Overview from "Features/Overview";
 import NotificationBanner from "Components/NotificationBanner";
-import { BASE_LAUNCH_ENV_URL, BASE_WWW_ENV_URL } from "Config/platformUrlConfig";
 
 class Main extends Component {
   static propTypes = {
@@ -45,15 +43,8 @@ class Main extends Component {
   };
 
   render() {
-    const { user } = this.props;
-    const hasConsented = user.data ? user.data.hasConsented : false;
-    if (!hasConsented) {
-      return (
-        <GdprRedirectModal isOpen baseLaunchEnvUrl={BASE_LAUNCH_ENV_URL} baseWWWEnvUrl={BASE_WWW_ENV_URL} user={user} />
-      );
-    }
-
     this.setNewRelicCustomAttribute();
+
     return (
       <>
         <div className="c-app-content">
