@@ -25,7 +25,8 @@ const onMenuClick = ({ isOpen }) => (
     <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/lib/`} label="Lib" baseURL={baseURL} />
     <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/citadel/`} label="Citadel" baseURL={baseURL} />
     <InteriorLeftNavList title="Manage">
-      <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/ci/configuration`} label="Configurations" baseURL={baseURL} />
+      <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/ci/properties`} label="Properties" baseURL={baseURL} />
+      <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/ci/team-properties`} label="Team Properties" baseURL={baseURL} />
       <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/ci/repositories`} label="Repositories" baseURL={baseURL} />
       <InteriorLeftNavItem href={`${BASE_APPS_ENV_URL}/ci/component-modes`} label="Modes" baseURL={baseURL} />
     </InteriorLeftNavList>
