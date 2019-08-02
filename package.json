@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@boomerang/boomerang-components": "9.2.18",
+    "@boomerang/boomerang-components": "9.3.4",
     "@boomerang/boomerang-react-scripts": "3.3.0",
     "@boomerang/boomerang-styles": "1.1.0",
     "@boomerang/boomerang-utilities": "^2.2.0",
