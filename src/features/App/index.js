@@ -8,10 +8,10 @@ import { actions as teamsActions } from "State/teams";
 import { actions as userActions } from "State/user";
 import { matchPath, withRouter } from "react-router-dom";
 import ErrorBoundary from "@boomerang/boomerang-components/lib/ErrorBoundary";
+import ErrorDragon from "Components/ErrorDragon";
 import Loading from "Components/Loading";
 import Main from "./Main";
 import Navbar from "./Navbar";
-import ErrorDragon from "Components/ErrorDragon";
 import {
   SERVICE_PRODUCT_TEAM_PATH,
   SERVICE_USERS_NAVIGATION_PATH,
