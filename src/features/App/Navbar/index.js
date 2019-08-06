@@ -47,9 +47,9 @@ function Navbar(props) {
       <UIShell
         {...defaultUIShellProps}
         headerConfig={navigation.data}
+        onMenuClick={onMenuClick}
         onTutorialClick={handleOnTutorialClick}
         user={user}
-        onMenuClick={onMenuClick}
       />
     );
   }
