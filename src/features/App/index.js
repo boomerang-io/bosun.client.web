@@ -109,7 +109,7 @@ export class AppContainer extends Component {
           <Navbar
             navigation={this.props.navigation}
             handleOnTutorialClick={this.handleOnQuestionClick}
-            user={this.props.user.data}
+            user={this.props.user}
           />
           {this.renderMain()}
         </div>

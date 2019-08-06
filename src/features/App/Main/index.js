@@ -15,7 +15,7 @@ class Main extends Component {
     setActiveTeam: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
   };
-
+  
   componentDidMount() {
     const { globalMatch, setActiveTeam } = this.props;
     const teamName = globalMatch && globalMatch.params && globalMatch.params.teamName;
@@ -39,7 +39,7 @@ class Main extends Component {
   };
 
   setNewRelicCustomAttribute() {
-    if (window.newrelic) {
+    if (window.newrelic && this.props.user.data.id) {
       window.newrelic.setCustomAttribute("userId", this.props.user.data.id);
     }
   }

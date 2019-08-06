@@ -42,14 +42,14 @@ Navbar.propTypes = {
 function Navbar(props) {
   const { handleOnTutorialClick, navigation, user } = props;
 
-  if (navigation.status === SERVICE_REQUEST_STATUSES.SUCCESS) {
+  if (navigation.status === SERVICE_REQUEST_STATUSES.SUCCESS && user.status === SERVICE_REQUEST_STATUSES.SUCCESS) {
     return (
       <UIShell
         {...defaultUIShellProps}
         headerConfig={navigation.data}
         onMenuClick={onMenuClick}
         onTutorialClick={handleOnTutorialClick}
-        user={user}
+        user={user.data}
       />
     );
   }
