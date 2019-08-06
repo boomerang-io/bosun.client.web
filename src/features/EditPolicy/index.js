@@ -53,7 +53,6 @@ class EditPolicy extends React.Component {
         status: SERVICE_REQUEST_STATUSES.SUCCESS
       });
     } catch (e) {
-      console.log(e);
       this.setState({
         error: e,
         isFetching: false,
