@@ -1,6 +1,6 @@
 /* eslint-disable no-console*/
 import createReducer from "@boomerang/boomerang-utilities/lib/createReducer";
-import requestGenerator from "@boomerang/boomerang-utilities/lib/requestGenerator";
+import requestFactory from "@boomerang/boomerang-utilities/lib/requestFactory";
 
 //action types
 export const types = {
@@ -38,7 +38,7 @@ const actionHandlers = {
 export default createReducer(initialState, actionHandlers);
 
 /*
- action creators declared to be passed into the violations generator boilerplate
+ action creators declared to be passed into the violations factory boilerplate
 */
 const reset = () => ({ type: types.RESET_VIOLATIONS });
 const fetchViolationsRequest = () => ({ type: types.FETCH_VIOLATIONS_REQUEST });
@@ -53,7 +53,7 @@ const fetchViolationsActionCreators = {
 };
 
 // fetchViolations api call
-const fetchViolationsApi = requestGenerator(fetchViolationsActionCreators);
+const fetchViolationsApi = requestFactory(fetchViolationsActionCreators);
 
 const fetch = url => dispatch => dispatch(fetchViolationsApi.request({ method: "get", url }));
 

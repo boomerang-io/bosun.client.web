@@ -33,7 +33,7 @@ exports[`Policies --- Snapshot Capturing Snapshot of Policies 1`] = `
   >
     <table
       className="bx--data-table-v2 tableContainer"
-      sortable={true}
+      sortable="true"
     >
       <thead>
         <tr

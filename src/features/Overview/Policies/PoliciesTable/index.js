@@ -94,7 +94,7 @@ export class PoliciesTable extends Component {
         headers={this.headers}
         render={({ rows, headers, getHeaderProps }) => (
           <TableContainer>
-            <Table className={styles.tableContainer} sortable={true} zebra={false}>
+            <Table className={styles.tableContainer} sortable={"true"} zebra={false}>
               <TableHead>
                 <TableRow className={styles.tableHeadRow}>
                   {headers.map(header => (

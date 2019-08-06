@@ -1,6 +1,6 @@
 /* eslint-disable no-console*/
 import createReducer from "@boomerang/boomerang-utilities/lib/createReducer";
-import requestGenerator from "@boomerang/boomerang-utilities/lib/requestGenerator";
+import requestFactory from "@boomerang/boomerang-utilities/lib/requestFactory";
 
 //action types
 export const types = {
@@ -38,7 +38,7 @@ const actionHandlers = {
 export default createReducer(initialState, actionHandlers);
 
 /*
- action creators declared to be passed into the teams generator boilerplate
+ action creators declared to be passed into the teams factory boilerplate
 */
 const reset = () => ({ type: types.RESET_TEAMS });
 const postPolicyRequest = () => ({ type: types.CREATE_POLICY_REQUEST });
@@ -53,7 +53,7 @@ const postPolicyActionCreators = {
 };
 
 // postPolicy api call
-const postPolicyApi = requestGenerator(postPolicyActionCreators);
+const postPolicyApi = requestFactory(postPolicyActionCreators);
 
 const post = url => dispatch => dispatch(postPolicyApi.request({ method: "post", url }));
 

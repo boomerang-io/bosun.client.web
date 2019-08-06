@@ -21,7 +21,7 @@ const actionHandlers = {
 export default createReducer(initialState, actionHandlers);
 
 /*
- action creators declared to be passed into the GET request generator boilerplate
+ action creators declared to be passed into the GET request factory boilerplate
 */
 export const setActiveTeam = data => ({ type: types.SET_ACTIVE_TEAM, data });
 

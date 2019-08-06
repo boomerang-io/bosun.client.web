@@ -1,7 +1,7 @@
 /* eslint-disable no-console*/
 /* eslint-disable no-unused-vars*/
 import createReducer from "@boomerang/boomerang-utilities/lib/createReducer";
-import requestGenerator from "@boomerang/boomerang-utilities/lib/requestGenerator";
+import requestFactory from "@boomerang/boomerang-utilities/lib/requestFactory";
 import SERVICE_REQUEST_STATUSES from "Constants/serviceRequestStatuses";
 
 //action types
@@ -40,7 +40,7 @@ const actionHandlers = {
 export default createReducer(initialState, actionHandlers);
 
 /*
- action creators declared to be passed into the request generator boilerplate
+ action creators declared to be passed into the request factory boilerplate
 */
 const resetNavigation = () => ({ type: types.RESET_NAVIGATION });
 const fetchNavigationRequest = () => ({ type: types.FETCH_NAVIGATION_REQUEST });
@@ -55,7 +55,7 @@ const fetchNavigationActionCreators = {
 };
 
 //Fetch navbar links api call
-const fetchNavigationApi = requestGenerator(fetchNavigationActionCreators);
+const fetchNavigationApi = requestFactory(fetchNavigationActionCreators);
 
 const fetchNavigation = url => dispatch => dispatch(fetchNavigationApi.request({ method: "get", url }));
 

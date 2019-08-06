@@ -11,18 +11,17 @@ import NotificationBanner from "Components/NotificationBanner";
 class Main extends Component {
   static propTypes = {
     globalMatch: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
     setActiveTeam: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
   };
-  
+
   componentDidMount() {
     const { globalMatch, setActiveTeam } = this.props;
     const teamName = globalMatch && globalMatch.params && globalMatch.params.teamName;
     if (teamName) {
       setActiveTeam(teamName);
     }
-    
+
     this.setNewRelicCustomAttribute();
   }
 

@@ -93,7 +93,6 @@ class EditPolicy extends React.Component {
       });
       notify(<Notification type="success" title="Policy Updated" message="Policy successfully updated" />);
     } catch (e) {
-      console.log(e);
       this.setState({
         isUpdating: false
       });

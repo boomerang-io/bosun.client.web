@@ -6,8 +6,8 @@ import MockAdapter from "axios-mock-adapter";
 import { SERVICE_PRODUCT_DEFINITIONS_PATH, SERVICE_PRODUCT_POLICIES_PATH } from "Config/servicesConfig";
 
 const route = "/111/policy/edit/222";
-const props = { 
-  match: { params: { policyId: "222" }}
+const props = {
+  match: { params: { policyId: "222" } }
 };
 
 const definitions = [
@@ -58,7 +58,7 @@ const definitions = [
       }
     ]
   }
-]
+];
 
 const policy = {
   id: "5cd49adff6ea74a9bb6adef3",
@@ -82,9 +82,7 @@ const policy = {
       ]
     }
   ],
-  stages:[
-    "dev"
-  ]
+  stages: ["dev"]
 };
 
 describe("EditPolicy --- Snapshot", () => {
@@ -92,7 +90,7 @@ describe("EditPolicy --- Snapshot", () => {
   mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
   mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
   it("+++ renders correctly", async () => {
-    const { baseElement, getByText } = rtlRouterRender(<EditPolicy {...props} />, { route })
+    const { baseElement, getByText } = rtlRouterRender(<EditPolicy {...props} />, { route });
     await waitForElement(() => getByText(/Edit Policy Definitions/i));
     expect(baseElement).toMatchSnapshot();
   });
@@ -104,7 +102,7 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(404);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
 
-    const { getByText } = rtlRouterRender(<EditPolicy {...props} />, { route })
+    const { getByText } = rtlRouterRender(<EditPolicy {...props} />, { route });
     const errorMessage = await waitForElement(() => getByText("Don’t lose your daks"));
     expect(errorMessage).toBeInTheDocument();
   });
@@ -114,7 +112,7 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(404);
 
-    const { getByText } = rtlRouterRender(<EditPolicy {...props} />, { route })
+    const { getByText } = rtlRouterRender(<EditPolicy {...props} />, { route });
     const errorMessage = await waitForElement(() => getByText("Don’t lose your daks"));
     expect(errorMessage).toBeInTheDocument();
   });

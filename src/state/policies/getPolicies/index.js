@@ -1,6 +1,6 @@
 /* eslint-disable no-console*/
 import createReducer from "@boomerang/boomerang-utilities/lib/createReducer";
-import requestGenerator from "@boomerang/boomerang-utilities/lib/requestGenerator";
+import requestFactory from "@boomerang/boomerang-utilities/lib/requestFactory";
 
 //action types
 export const types = {
@@ -38,7 +38,7 @@ const actionHandlers = {
 export default createReducer(initialState, actionHandlers);
 
 /*
- action creators declared to be passed into the request generator boilerplate
+ action creators declared to be passed into the request factory boilerplate
 */
 const reset = () => ({ type: types.RESET_POLICIES });
 const fetchPoliciesRequest = () => ({ type: types.FETCH_POLICIES_REQUEST });
@@ -53,7 +53,7 @@ const fetchPoliciesActionCreators = {
 };
 
 // fetchPolicies api call
-const fetchPoliciesApi = requestGenerator(fetchPoliciesActionCreators);
+const fetchPoliciesApi = requestFactory(fetchPoliciesActionCreators);
 
 const fetch = url => dispatch => dispatch(fetchPoliciesApi.request({ method: "get", url }));
 

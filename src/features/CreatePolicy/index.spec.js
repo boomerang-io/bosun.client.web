@@ -3,7 +3,7 @@ import axios from "axios";
 import { fireEvent, waitForElement } from "react-testing-library";
 import CreatePolicy from ".";
 import MockAdapter from "axios-mock-adapter";
-import { SERVICE_PRODUCT_DEFINITIONS_PATH, SERVICE_PRODUCT_POLICIES_PATH } from "Config/servicesConfig";
+import { SERVICE_PRODUCT_DEFINITIONS_PATH } from "Config/servicesConfig";
 
 const route = "/111/policy/create";
 const props = {
@@ -12,7 +12,7 @@ const props = {
       id: "111"
     }
   }
-}
+};
 
 const definitions = [
   {
@@ -62,13 +62,13 @@ const definitions = [
       }
     ]
   }
-]
+];
 
 describe("CreatePolicy --- Snapshot", () => {
   const mockAxios = new MockAdapter(axios);
   mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
   it("+++ renders correctly", async () => {
-    const { baseElement, getByText } = rtlReduxRouterRender(<CreatePolicy {...props} />, { route })
+    const { baseElement, getByText } = rtlReduxRouterRender(<CreatePolicy {...props} />, { route });
     await waitForElement(() => getByText(/Create Policy Definitions/i));
     expect(baseElement).toMatchSnapshot();
   });
@@ -79,7 +79,7 @@ describe("CreatePolicy --- RTL", () => {
     const mockAxios = new MockAdapter(axios);
     mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(404);
 
-    const { getByText } = rtlReduxRouterRender(<CreatePolicy {...props} />, { route })
+    const { getByText } = rtlReduxRouterRender(<CreatePolicy {...props} />, { route });
     const errorMessage = await waitForElement(() => getByText("Don’t lose your daks"));
     expect(errorMessage).toBeInTheDocument();
   });

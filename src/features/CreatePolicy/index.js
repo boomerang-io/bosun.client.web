@@ -44,7 +44,6 @@ class CreatePolicy extends React.Component {
         status: SERVICE_REQUEST_STATUSES.SUCCESS
       });
     } catch (e) {
-      console.log(e);
       this.setState({
         error: e,
         isFetching: false,
@@ -84,7 +83,6 @@ class CreatePolicy extends React.Component {
       });
       notify(<Notification type="success" title="Policy Created" message="Policy was successfully created" />);
     } catch (e) {
-      console.log(e);
       this.setState({
         isCreating: false
       });

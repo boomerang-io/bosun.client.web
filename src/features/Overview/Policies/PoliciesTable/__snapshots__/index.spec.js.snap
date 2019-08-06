@@ -6,7 +6,7 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
 >
   <table
     className="bx--data-table-v2 tableContainer"
-    sortable={true}
+    sortable="true"
   >
     <thead>
       <tr

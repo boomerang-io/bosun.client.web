@@ -1,6 +1,6 @@
 /* eslint-disable no-console*/
 import createReducer from "@boomerang/boomerang-utilities/lib/createReducer";
-import requestGenerator from "@boomerang/boomerang-utilities/lib/requestGenerator";
+import requestFactory from "@boomerang/boomerang-utilities/lib/requestFactory";
 
 //action types
 export const types = {
@@ -38,7 +38,7 @@ const actionHandlers = {
 export default createReducer(initialState, actionHandlers);
 
 /*
- action creators declared to be passed into the teams generator boilerplate
+ action creators declared to be passed into the teams factory boilerplate
 */
 const reset = () => ({ type: types.RESET_TEAMS });
 const fetchTeamsRequest = () => ({ type: types.FETCH_TEAMS_REQUEST });
@@ -53,7 +53,7 @@ const fetchTeamsActionCreators = {
 };
 
 // fetchTeams api call
-const fetchTeamsApi = requestGenerator(fetchTeamsActionCreators);
+const fetchTeamsApi = requestFactory(fetchTeamsActionCreators);
 
 const fetch = url => dispatch => dispatch(fetchTeamsApi.request({ method: "get", url }));
 

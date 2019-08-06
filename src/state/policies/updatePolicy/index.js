@@ -1,6 +1,6 @@
 /* eslint-disable no-console*/
 import createReducer from "@boomerang/boomerang-utilities/lib/createReducer";
-import requestGenerator from "@boomerang/boomerang-utilities/lib/requestGenerator";
+import requestFactory from "@boomerang/boomerang-utilities/lib/requestFactory";
 
 //action types
 export const types = {
@@ -38,7 +38,7 @@ const actionHandlers = {
 export default createReducer(initialState, actionHandlers);
 
 /*
- action creators declared to be passed into the policy generator boilerplate
+ action creators declared to be passed into the policy factory boilerplate
 */
 const reset = () => ({ type: types.RESET_TEAMS });
 const patchPolicyRequest = () => ({ type: types.UPDATE_POLICY_REQUEST });
@@ -53,7 +53,7 @@ const patchPolicyActionCreators = {
 };
 
 // patchPolicy api call
-const patchPolicyApi = requestGenerator(patchPolicyActionCreators);
+const patchPolicyApi = requestFactory(patchPolicyActionCreators);
 
 const patch = url => dispatch => dispatch(patchPolicyApi.request({ method: "patch", url }));
 

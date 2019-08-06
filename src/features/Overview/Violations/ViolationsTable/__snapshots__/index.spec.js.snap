@@ -6,7 +6,7 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
 >
   <table
     className="bx--data-table-v2 tableContainer"
-    sortable={true}
+    sortable="true"
   >
     <thead>
       <tr

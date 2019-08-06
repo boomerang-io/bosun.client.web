@@ -23,11 +23,11 @@ import "./styles.scss";
 export class AppContainer extends Component {
   static propTypes = {
     navigationActions: PropTypes.object.isRequired,
-    navigation: PropTypes.object,
+    navigationState: PropTypes.object,
     teamsActions: PropTypes.object.isRequired,
-    teams: PropTypes.object,
+    teamsState: PropTypes.object,
     userActions: PropTypes.object.isRequired,
-    user: PropTypes.object
+    userState: PropTypes.object
   };
 
   state = {
@@ -67,14 +67,14 @@ export class AppContainer extends Component {
   };
 
   setActiveTeam = teamName => {
-    const matchedTeamFromState = this.props.teams.data.find(team => team.boomerangTeamShortname === teamName);
+    const matchedTeamFromState = this.props.teamsState.data.find(team => team.boomerangTeamShortname === teamName);
     this.props.appActions.setActiveTeam(matchedTeamFromState);
   };
 
   renderMain() {
-    const { globalMatch, navigation, router, teams, user } = this.props;
+    const { globalMatch, navigationState, teamsState, userState } = this.props;
 
-    if (user.isFetching || user.isCreating || navigation.isFetching || teams.isFetching) {
+    if (userState.isFetching || navigationState.isFetching || teamsState.isFetching) {
       return (
         <div className="c-app-content c-app-content--not-loaded">
           <Loading />
@@ -82,16 +82,16 @@ export class AppContainer extends Component {
       );
     }
     if (
-      user.status === SERVICE_REQUEST_STATUSES.SUCCESS &&
-      navigation.status === SERVICE_REQUEST_STATUSES.SUCCESS &&
-      teams.status === SERVICE_REQUEST_STATUSES.SUCCESS
+      userState.status === SERVICE_REQUEST_STATUSES.SUCCESS &&
+      navigationState.status === SERVICE_REQUEST_STATUSES.SUCCESS &&
+      teamsState.status === SERVICE_REQUEST_STATUSES.SUCCESS
     ) {
-      return <Main globalMatch={globalMatch} router={router} setActiveTeam={this.setActiveTeam} user={user} />;
+      return <Main globalMatch={globalMatch} setActiveTeam={this.setActiveTeam} user={userState} />;
     }
     if (
-      user.status === SERVICE_REQUEST_STATUSES.FAILURE ||
-      navigation.status === SERVICE_REQUEST_STATUSES.FAILURE ||
-      teams.status === SERVICE_REQUEST_STATUSES.FAILURE
+      userState.status === SERVICE_REQUEST_STATUSES.FAILURE ||
+      navigationState.status === SERVICE_REQUEST_STATUSES.FAILURE ||
+      teamsState.status === SERVICE_REQUEST_STATUSES.FAILURE
     ) {
       return (
         <div className="c-app-content c-app-content--not-loaded">
@@ -107,9 +107,9 @@ export class AppContainer extends Component {
       <ErrorBoundary errorComponent={ErrorDragon}>
         <div className="c-app">
           <Navbar
-            navigation={this.props.navigation}
+            navigation={this.props.navigationState}
             handleOnTutorialClick={this.handleOnQuestionClick}
-            user={this.props.user}
+            user={this.props.userState}
           />
           {this.renderMain()}
         </div>
@@ -121,10 +121,9 @@ export class AppContainer extends Component {
 const mapStateToProps = (state, props) => {
   return {
     globalMatch: matchPath(props.location.pathname, { path: "/:teamName" }),
-    navigation: state.navigation,
-    router: props.location,
-    teams: state.teams,
-    user: state.user
+    navigationState: state.navigation,
+    teamsState: state.teams,
+    userState: state.user
   };
 };
 

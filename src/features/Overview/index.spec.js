@@ -146,7 +146,6 @@ describe("Overview --- RTL", () => {
     const { getByText, getAllByText, getAllByTestId, getByTestId, debug } = render(
       <Overview {...props} activeTeam={teams[0]} policies={policiesReducerState} />
     );
-    debug();
     expect(getByText(/Insights/i)).toBeInTheDocument();
     expect(getAllByText(/Policies/i).length).toBeGreaterThan(1);
     expect(getAllByText(/Violations/i).length).toBeGreaterThan(1);
