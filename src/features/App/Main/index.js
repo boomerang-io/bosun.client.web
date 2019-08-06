@@ -16,18 +16,14 @@ class Main extends Component {
     user: PropTypes.object.isRequired
   };
 
-  setNewRelicCustomAttribute() {
-    if (window.newrelic) {
-      window.newrelic.setCustomAttribute("userId", this.props.user.data.id);
-    }
-  }
-
   componentDidMount() {
     const { globalMatch, setActiveTeam } = this.props;
     const teamName = globalMatch && globalMatch.params && globalMatch.params.teamName;
     if (teamName) {
       setActiveTeam(teamName);
     }
+    
+    this.setNewRelicCustomAttribute();
   }
 
   componentDidUpdate(prevProps) {
@@ -42,26 +38,28 @@ class Main extends Component {
     this.setState({ bannerClosed: true });
   };
 
-  render() {
-    this.setNewRelicCustomAttribute();
+  setNewRelicCustomAttribute() {
+    if (window.newrelic) {
+      window.newrelic.setCustomAttribute("userId", this.props.user.data.id);
+    }
+  }
 
+  render() {
     return (
-      <>
-        <div className="c-app-content">
-          <NotificationBanner />
-          <main className="c-app-main">
-            <Suspense fallback={<LoadingAnimation theme="bmrg-white" />}>
-              <Switch>
-                <Route path="/:teamName/policy/edit/:policyId" component={EditPolicy} />
-                <Route path="/:teamName/policy/create" component={CreatePolicy} />
-                <Route path="/:teamName" component={Overview} />
-                <Route path="/" component={Overview} />
-              </Switch>
-            </Suspense>
-          </main>
-          <NotificationContainer />
-        </div>
-      </>
+      <div className="c-app-content">
+        <NotificationBanner />
+        <main className="c-app-main">
+          <Suspense fallback={<LoadingAnimation theme="bmrg-white" />}>
+            <Switch>
+              <Route path="/:teamName/policy/edit/:policyId" component={EditPolicy} />
+              <Route path="/:teamName/policy/create" component={CreatePolicy} />
+              <Route path="/:teamName" component={Overview} />
+              <Route path="/" component={Overview} />
+            </Switch>
+          </Suspense>
+        </main>
+        <NotificationContainer />
+      </div>
     );
   }
 }
