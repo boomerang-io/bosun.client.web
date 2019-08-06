@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import uuid from "uuid";
 import { notify, Notification } from "@boomerang/boomerang-components/lib/Notifications";
-import LoadingAnimation from "Components/Loading";
-import ErrorDragon from "Components/ErrorDragon";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
+import ErrorDragon from "Components/ErrorDragon";
+import LoadingAnimation from "Components/Loading";
 import {
   SERVICE_PRODUCT_DEFINITIONS_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
