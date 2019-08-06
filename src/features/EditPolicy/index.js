@@ -129,7 +129,6 @@ class EditPolicy extends React.Component {
   };
 
   // State updates
-
   setError = error => {
     this.setState(prevState => ({ errors: { ...prevState.errors, ...error } }));
   };
@@ -193,7 +192,6 @@ class EditPolicy extends React.Component {
   };
 
   // Local methods
-
   /**
    * Transform the policy object into shape that can be read by the child form
    * @param {object} policy - policy to read in and create input state from
