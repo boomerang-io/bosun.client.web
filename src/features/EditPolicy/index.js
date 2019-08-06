@@ -37,8 +37,6 @@ class EditPolicy extends React.Component {
     this.fetchPolicyData();
   }
 
-  // Network requests
-
   async fetchPolicyData() {
     this.setState({
       isFetching: true
