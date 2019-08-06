@@ -94,10 +94,10 @@ function PolicyFormDefinitionSection({ definition, form }) {
     form.validateRow(definition.key);
   }
 
-  function removeRow(idx) {
-    const rowToRemove = rows[idx];
+  function removeRow(index) {
+    const rowToRemove = rows[index];
     const newRows = [...rows];
-    newRows.splice(idx, 1);
+    newRows.splice(index, 1);
     setRows(newRows);
     form.removeRow({ definitionKey: definition.key, uuid: rowToRemove.uuid });
   }
