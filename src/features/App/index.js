@@ -22,16 +22,32 @@ import "./styles.scss";
 
 export class AppContainer extends Component {
   static propTypes = {
+    navigationActions: PropTypes.object.isRequired,
+    navigation: PropTypes.object,
     teamsActions: PropTypes.object.isRequired,
     teams: PropTypes.object,
     userActions: PropTypes.object.isRequired,
-    user: PropTypes.object,
-    navigationActions: PropTypes.object.isRequired,
-    navigation: PropTypes.object
+    user: PropTypes.object
   };
 
   state = {
     showFirstTimeExperience: false
+  };
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = async () => {
+    try {
+      await Promise.all([
+        this.props.navigationActions.fetchNavigation(SERVICE_USERS_NAVIGATION_PATH),
+        this.props.userActions.fetchUser(SERVICE_USERS_PROFILE_PATH),
+        this.props.teamsActions.fetch(SERVICE_PRODUCT_TEAM_PATH)
+      ]);
+    } catch (err) {
+      //noop
+    }
   };
 
   handleOnQuestionClick = () => {
@@ -46,29 +62,13 @@ export class AppContainer extends Component {
     });
   };
 
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  setActiveTeam = teamName => {
-    const matchedTeamFromState = this.props.teams.data.find(team => team.boomerangTeamShortname === teamName);
-    this.props.appActions.setActiveTeam(matchedTeamFromState);
-  };
-
   refreshPage = () => {
     this.fetchData();
   };
 
-  fetchData = async () => {
-    try {
-      await Promise.all([
-        this.props.navigationActions.fetchNavigation(SERVICE_USERS_NAVIGATION_PATH),
-        this.props.userActions.fetchUser(SERVICE_USERS_PROFILE_PATH),
-        this.props.teamsActions.fetch(SERVICE_PRODUCT_TEAM_PATH)
-      ]);
-    } catch (err) {
-      //noop
-    }
+  setActiveTeam = teamName => {
+    const matchedTeamFromState = this.props.teams.data.find(team => team.boomerangTeamShortname === teamName);
+    this.props.appActions.setActiveTeam(matchedTeamFromState);
   };
 
   renderMain() {
@@ -122,9 +122,9 @@ const mapStateToProps = (state, props) => {
   return {
     globalMatch: matchPath(props.location.pathname, { path: "/:teamName" }),
     navigation: state.navigation,
+    router: props.location,
     teams: state.teams,
-    user: state.user,
-    router: props.location
+    user: state.user
   };
 };
 
