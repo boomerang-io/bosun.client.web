@@ -83,6 +83,15 @@ export class AppContainer extends Component {
     }
     if (
       userState.status === SERVICE_REQUEST_STATUSES.SUCCESS &&
+      (!userState.data.id || userState.data.hasConsented === false)
+    ) {
+      /**
+       * render null for a non-user
+       */
+      return null;
+    }
+    if (
+      userState.status === SERVICE_REQUEST_STATUSES.SUCCESS &&
       navigationState.status === SERVICE_REQUEST_STATUSES.SUCCESS &&
       teamsState.status === SERVICE_REQUEST_STATUSES.SUCCESS
     ) {

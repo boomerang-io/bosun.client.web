@@ -12,7 +12,7 @@ import { BASE_SERVICE_ENV_URL, SERVICE_REQUEST_STATUSES } from "Config/servicesC
 const defaultUIShellProps = {
   baseLaunchEnvUrl: BASE_LAUNCH_ENV_URL,
   baseServiceUrl: BASE_SERVICE_ENV_URL,
-  renderLogo: true,
+  renderLogo: true
 };
 
 const baseLaunchUrl = new URL(BASE_LAUNCH_ENV_URL);
