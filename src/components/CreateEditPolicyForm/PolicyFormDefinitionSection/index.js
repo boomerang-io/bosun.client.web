@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button, ComboBox, TextInput, TextArea } from "carbon-components-react";
+import { Button, TextInput, TextArea } from "carbon-components-react";
+import { ComboBox } from "@boomerang/carbon-addons-boomerang-react";
 import styles from "./policyFormDefinitionSection.module.scss";
 import uuid from "uuid";
-import DeleteIcon from "@carbon/icons-react/lib/delete/16";
-//import { shouldFilterItem } from "Utils";
+import { Add16, Delete16 } from "@carbon/icons-react";
 
 const INPUT_TYPES = {
   text: { type: "text" },
@@ -24,7 +24,7 @@ const SELECT_TYPES = {
 
 function determineInput({ onChange, inputs, inputData, uuid }) {
   const { type, label, key, required, options } = inputData;
-
+  console.log(options);
   if (Object.keys(INPUT_TYPES).includes(type)) {
     const config = INPUT_TYPES[type];
     return (
@@ -67,7 +67,6 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
         placeholder={label}
         required={required}
         selectedItem={inputs[key]}
-        //shouldFilterItem={shouldFilterItem}
       />
     );
   }
@@ -124,13 +123,15 @@ function PolicyFormDefinitionSection({ definition, form }) {
                 })
               )}
               <button className={styles.delete} onClick={() => removeRow(index)}>
-                <DeleteIcon />
+                <Delete16 />
               </button>
             </div>
           );
         })}
       </div>
-      <Button onClick={addRow}>Add Rule</Button>
+      <Button iconDescription={"Add Rule"} onClick={addRow} renderIcon={Add16} size="field">
+        Add Rule
+      </Button>
     </section>
   );
 }

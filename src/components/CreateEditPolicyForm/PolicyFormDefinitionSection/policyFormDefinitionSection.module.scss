@@ -20,12 +20,14 @@
 
 .row {
   display: flex;
-  flex-flow: row wrap;
+  justify-content: space-between;
   margin-top: 1rem;
-  :global .bx--dropdown.bx--list-box,
+  > div:not(:last-child) {
+    margin-right: 1rem;
+  }
+  :global .bx--bmrg-select,
   :global .bx--form-item,
   :global .bx--text-input {
-    margin-right: 1rem;
     max-width: 15rem;
     min-width: 15rem;
   }
