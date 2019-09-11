@@ -7,14 +7,16 @@ before_install:
 language: node_js
 node_js:
   - "lts/*"
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
 notifications:
   slack: ibm-aic-offerings:pKEkgH3hXaZQg8UCl6eLWyYB
 cache:
   directories:
     - ~/.npm
     - ~/.cache
-  override:
-    - npm ci
 install:
   - npm ci
 script:

@@ -4,12 +4,15 @@ module.exports = {
   env: {
     "jest/globals": true
   },
-  globals: {
-    shallow: true,
-    render: true,
-    mount: true,
-    rtlReduxRender: true,
-    rtlRouterRender: true,
-    rtlReduxRouterRender: true
+  globals: {    
+    shallow: true,    
+    render: true,    
+    mount: true,    
+    renderer: true,    
+    rtlRender: true,    
+    renderWithProvider: true,    
+    renderWithRouter: true,    
+    renderWithProviderAndRouter: true,    
+    cy: true  
   }
 };

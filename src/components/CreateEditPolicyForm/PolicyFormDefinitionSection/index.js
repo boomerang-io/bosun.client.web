@@ -21,18 +21,15 @@ const SELECT_TYPES = {
   select: { type: "select", isMultiselect: false, valueProperty: "value" },
   multiselect: { type: "multiselect", isMultiselect: true, valueProperty: "values" }
 };
-
 function determineInput({ onChange, inputs, inputData, uuid }) {
   const { type, label, key, required, options } = inputData;
-  console.log(options);
   if (Object.keys(INPUT_TYPES).includes(type)) {
     const config = INPUT_TYPES[type];
     return (
       <TextInput
         id={key}
         key={key}
-        label={label}
-        name={key}
+        labelText={label}
         onChange={e => onChange(e, uuid)}
         placeholder={label}
         required={required}
@@ -45,9 +42,9 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
   if (Object.keys(TEXT_AREA_TYPES).includes(type)) {
     return (
       <TextArea
-        name={key}
+        id={key}
         key={key}
-        label={label}
+        labelText={label}
         onChange={e => onChange(e, uuid)}
         placeholder={label}
         required={required}
@@ -59,14 +56,14 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
   if (Object.keys(SELECT_TYPES).includes(type)) {
     return (
       <ComboBox
+        id={key}
         key={key}
-        label={label}
+        titleText={label}
         initialSelectedItem={inputs[key]}
         items={options}
         onChange={({ selectedItem }) => onChange({ target: { name: `${key}`, value: selectedItem } }, uuid)}
         placeholder={label}
         required={required}
-        selectedItem={inputs[key]}
       />
     );
   }

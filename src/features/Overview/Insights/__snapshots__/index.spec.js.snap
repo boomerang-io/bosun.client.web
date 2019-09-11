@@ -142,10 +142,10 @@ exports[`Insights --- Snapshot Capturing Snapshot of Insights 1`] = `
               className="recharts-responsive-container"
               style={
                 Object {
-                  "height": "100%",
+                  "height": "auto",
                   "maxHeight": undefined,
                   "minHeight": 100,
-                  "minWidth": undefined,
+                  "minWidth": 0,
                   "width": "100%",
                 }
               }

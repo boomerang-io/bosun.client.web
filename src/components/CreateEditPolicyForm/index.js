@@ -15,7 +15,7 @@ export default function CreateEditPolicyForm({ definitions, form }) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <TextInput labelText="Name" name="name" onChange={form.setName} placeholder="Name" value={form.name} />
+        <TextInput labelText="Name" name="name" id="name" onChange={form.setName} placeholder="Name" value={form.name} />
         {definitions.map(definition => (
           <PolicyFormDefinitionSection key={definition.id + definition.key} definition={definition} form={form} />
         ))}

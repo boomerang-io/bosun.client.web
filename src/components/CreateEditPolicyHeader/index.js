@@ -67,7 +67,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
           </Button>
           <Button
             data-testid="policy-header-affirmative-action"
-            disabled={isPerformingAffirmativeAction || isDeleting || !name || hasErrors}
+            disabled={isPerformingAffirmativeAction || isDeleting || !name || !!hasErrors}
             className={styles.button}
             iconDescription={config.title}
             onClick={form.affirmativeAction}
@@ -82,6 +82,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
       {deleteModalIsOpen && (
         <AlertModalWrapper
           isOpen
+          modalProps={{ariaHideApp:false}}
           modalContent={(closeModal, rest) => (
             <ConfirmModal
               closeModal={() => setDeleteModalIsOpen(false)}

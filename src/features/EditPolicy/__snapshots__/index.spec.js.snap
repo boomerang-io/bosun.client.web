@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EditPolicy --- Snapshot +++ renders correctly 1`] = `
-<body>
+<body
+  id="app"
+>
   <div>
     <div
       class="container"
@@ -35,7 +37,7 @@ exports[`EditPolicy --- Snapshot +++ renders correctly 1`] = `
                 >
                   Created: 
                 </span>
-                December 31, 2018
+                January 1st, 2019
               </p>
             </div>
           </div>
@@ -43,27 +45,63 @@ exports[`EditPolicy --- Snapshot +++ renders correctly 1`] = `
             class="buttons"
           >
             <button
-              class="button bx--btn bx--btn--danger--primary"
+              class="button bx--btn bx--btn--field bx--btn--danger"
               tabindex="0"
               type="button"
             >
               Delete
+              <svg
+                aria-hidden="true"
+                aria-label="Delete"
+                class="bx--btn__icon"
+                focusable="false"
+                height="16"
+                preserveAspectRatio="xMidYMid meet"
+                role="img"
+                style="will-change: transform;"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 6h1v6H6zm3 0h1v6H9z"
+                />
+                <path
+                  d="M2 3v1h1v10c0 .6.4 1 1 1h8c.6 0 1-.4 1-1V4h1V3H2zm2 11V4h8v10H4zM6 1h4v1H6z"
+                />
+              </svg>
             </button>
             <button
-              class="button bx--btn bx--btn--secondary"
-              style="margin-left: 1rem;"
+              class="button bx--btn bx--btn--field bx--btn--secondary"
               tabindex="0"
               type="button"
             >
               Cancel
             </button>
             <button
-              class="button bx--btn bx--btn--primary"
+              class="button bx--btn bx--btn--field bx--btn--primary"
               data-testid="policy-header-affirmative-action"
               tabindex="0"
               type="submit"
             >
               Save
+              <svg
+                aria-hidden="true"
+                aria-label="Edit"
+                class="bx--btn__icon"
+                focusable="false"
+                height="16"
+                preserveAspectRatio="xMidYMid meet"
+                role="img"
+                style="will-change: transform;"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.9 4.6l-2.5-2.5c-.1 0-.3-.1-.4-.1H3c-.6 0-1 .4-1 1v10c0 .6.4 1 1 1h10c.6 0 1-.4 1-1V5c0-.1-.1-.3-.1-.4zM6 3h4v2H6V3zm4 10H6V9h4v4zm1 0V9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v4H3V3h2v2c0 .6.4 1 1 1h4c.6 0 1-.4 1-1V3.2l2 2V13h-2z"
+                />
+              </svg>
             </button>
           </section>
         </div>
@@ -75,20 +113,26 @@ exports[`EditPolicy --- Snapshot +++ renders correctly 1`] = `
           class="content"
         >
           <div
-            class="bx--form-item"
+            class="bx--form-item bx--text-input-wrapper"
           >
             <label
               class="bx--label"
+              for="name"
             >
               Name
             </label>
-            <input
-              class="bx--text-input bx--text__input"
-              name="name"
-              placeholder="Name"
-              type="text"
-              value="Tyson's Policy"
-            />
+            <div
+              class="bx--text-input__field-wrapper"
+            >
+              <input
+                class="bx--text-input bx--text__input"
+                id="name"
+                name="name"
+                placeholder="Name"
+                type="text"
+                value="Tyson's Policy"
+              />
+            </div>
           </div>
           <section
             class="section"
@@ -104,144 +148,180 @@ exports[`EditPolicy --- Snapshot +++ renders correctly 1`] = `
                 class="row"
               >
                 <div
-                  aria-label="Choose an item"
-                  class="bx--form-item bx--combo-box bx--list-box"
-                  role="listbox"
+                  class="bx--bmrg-select"
                 >
                   <div
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    aria-label="open menu"
-                    class="bx--list-box__field"
-                    data-toggle="true"
-                    role="button"
-                    tabindex="0"
-                    type="button"
+                    class="bx--list-box__wrapper"
                   >
-                    <input
-                      aria-autocomplete="list"
-                      aria-expanded="false"
-                      aria-label="ListBox input field"
-                      autocomplete="off"
-                      class="bx--text-input"
-                      id="downshift-0-input"
-                      label="Metric"
-                      placeholder="Metric"
-                      role="combobox"
-                      selecteditem="lines"
-                      value="lines"
-                    />
-                    <div
-                      class="bx--list-box__selection"
-                      role="button"
-                      tabindex="0"
-                      title="Clear selected item"
+                    <label
+                      class="bx--label"
+                      for="metric"
                     >
-                      <svg
-                        alt="Clear selected item"
-                        aria-label="Clear selected item"
-                        fill-rule="evenodd"
-                        focusable="false"
-                        height="10"
-                        role="img"
-                        viewBox="0 0 10 10"
-                        width="10"
-                      >
-                        <title>
-                          Clear selected item
-                        </title>
-                        <path
-                          d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
-                        />
-                      </svg>
-                    </div>
+                      Metric
+                    </label>
                     <div
-                      class="bx--list-box__menu-icon"
+                      class="bx--combo-box bx--list-box"
+                      role="listbox"
+                      tabindex="-1"
                     >
-                      <svg
-                        alt="Open menu"
+                      <div
+                        aria-expanded="false"
+                        aria-haspopup="true"
                         aria-label="Open menu"
-                        fill-rule="evenodd"
-                        focusable="false"
-                        height="5"
-                        role="img"
-                        viewBox="0 0 10 5"
-                        width="10"
+                        class="bx--list-box__field"
+                        data-toggle="true"
+                        role="button"
+                        tabindex="-1"
+                        type="button"
                       >
-                        <title>
-                          Open menu
-                        </title>
-                        <path
-                          d="M0 0l5 4.998L10 0z"
+                        <input
+                          aria-autocomplete="list"
+                          aria-controls="metric__menu"
+                          aria-expanded="false"
+                          aria-label="Choose an item"
+                          autocomplete="off"
+                          class="bx--text-input"
+                          id="metric"
+                          placeholder="Metric"
+                          role="combobox"
+                          value="lines"
                         />
-                      </svg>
+                        <div
+                          class="bx--list-box__selection"
+                          role="button"
+                          tabindex="0"
+                          title="Clear selected item"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            height="16"
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style="will-change: transform;"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="bx--list-box__menu-icon"
+                        >
+                          <svg
+                            aria-label="Open menu"
+                            focusable="false"
+                            height="16"
+                            name="chevron--down"
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style="will-change: transform;"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
+                            />
+                            <title>
+                              Open menu
+                            </title>
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  aria-label="Choose an item"
-                  class="bx--form-item bx--combo-box bx--list-box"
-                  role="listbox"
+                  class="bx--bmrg-select"
                 >
                   <div
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    aria-label="open menu"
-                    class="bx--list-box__field"
-                    data-toggle="true"
-                    role="button"
-                    tabindex="0"
-                    type="button"
+                    class="bx--list-box__wrapper"
                   >
-                    <input
-                      aria-autocomplete="list"
-                      aria-expanded="false"
-                      aria-label="ListBox input field"
-                      autocomplete="off"
-                      class="bx--text-input"
-                      id="downshift-1-input"
-                      label="Operator"
-                      placeholder="Operator"
-                      role="combobox"
-                      selecteditem=""
-                      value=""
-                    />
-                    
-                    <div
-                      class="bx--list-box__menu-icon"
+                    <label
+                      class="bx--label"
+                      for="operator"
                     >
-                      <svg
-                        alt="Open menu"
+                      Operator
+                    </label>
+                    <div
+                      class="bx--combo-box bx--list-box"
+                      role="listbox"
+                      tabindex="-1"
+                    >
+                      <div
+                        aria-expanded="false"
+                        aria-haspopup="true"
                         aria-label="Open menu"
-                        fill-rule="evenodd"
-                        focusable="false"
-                        height="5"
-                        role="img"
-                        viewBox="0 0 10 5"
-                        width="10"
+                        class="bx--list-box__field"
+                        data-toggle="true"
+                        role="button"
+                        tabindex="-1"
+                        type="button"
                       >
-                        <title>
-                          Open menu
-                        </title>
-                        <path
-                          d="M0 0l5 4.998L10 0z"
+                        <input
+                          aria-autocomplete="list"
+                          aria-controls="operator__menu"
+                          aria-expanded="false"
+                          aria-label="Choose an item"
+                          autocomplete="off"
+                          class="bx--text-input"
+                          id="operator"
+                          placeholder="Operator"
+                          role="combobox"
+                          value=""
                         />
-                      </svg>
+                        
+                        <div
+                          class="bx--list-box__menu-icon"
+                        >
+                          <svg
+                            aria-label="Open menu"
+                            focusable="false"
+                            height="16"
+                            name="chevron--down"
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style="will-change: transform;"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
+                            />
+                            <title>
+                              Open menu
+                            </title>
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="bx--form-item"
+                  class="bx--form-item bx--text-input-wrapper"
                 >
-                  <input
-                    class="bx--text-input bx--text__input"
-                    id="value"
-                    label="Value"
-                    name="value"
-                    placeholder="Value"
-                    type="text"
-                    value="10"
-                  />
+                  <label
+                    class="bx--label"
+                    for="value"
+                  >
+                    Value
+                  </label>
+                  <div
+                    class="bx--text-input__field-wrapper"
+                  >
+                    <input
+                      class="bx--text-input bx--text__input"
+                      id="value"
+                      placeholder="Value"
+                      type="text"
+                      value="10"
+                    />
+                  </div>
                 </div>
                 <button
                   class="delete"
@@ -269,144 +349,180 @@ exports[`EditPolicy --- Snapshot +++ renders correctly 1`] = `
                 class="row"
               >
                 <div
-                  aria-label="Choose an item"
-                  class="bx--form-item bx--combo-box bx--list-box"
-                  role="listbox"
+                  class="bx--bmrg-select"
                 >
                   <div
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    aria-label="open menu"
-                    class="bx--list-box__field"
-                    data-toggle="true"
-                    role="button"
-                    tabindex="0"
-                    type="button"
+                    class="bx--list-box__wrapper"
                   >
-                    <input
-                      aria-autocomplete="list"
-                      aria-expanded="false"
-                      aria-label="ListBox input field"
-                      autocomplete="off"
-                      class="bx--text-input"
-                      id="downshift-2-input"
-                      label="Metric"
-                      placeholder="Metric"
-                      role="combobox"
-                      selecteditem="complexity"
-                      value="complexity"
-                    />
-                    <div
-                      class="bx--list-box__selection"
-                      role="button"
-                      tabindex="0"
-                      title="Clear selected item"
+                    <label
+                      class="bx--label"
+                      for="metric"
                     >
-                      <svg
-                        alt="Clear selected item"
-                        aria-label="Clear selected item"
-                        fill-rule="evenodd"
-                        focusable="false"
-                        height="10"
-                        role="img"
-                        viewBox="0 0 10 10"
-                        width="10"
-                      >
-                        <title>
-                          Clear selected item
-                        </title>
-                        <path
-                          d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
-                        />
-                      </svg>
-                    </div>
+                      Metric
+                    </label>
                     <div
-                      class="bx--list-box__menu-icon"
+                      class="bx--combo-box bx--list-box"
+                      role="listbox"
+                      tabindex="-1"
                     >
-                      <svg
-                        alt="Open menu"
+                      <div
+                        aria-expanded="false"
+                        aria-haspopup="true"
                         aria-label="Open menu"
-                        fill-rule="evenodd"
-                        focusable="false"
-                        height="5"
-                        role="img"
-                        viewBox="0 0 10 5"
-                        width="10"
+                        class="bx--list-box__field"
+                        data-toggle="true"
+                        role="button"
+                        tabindex="-1"
+                        type="button"
                       >
-                        <title>
-                          Open menu
-                        </title>
-                        <path
-                          d="M0 0l5 4.998L10 0z"
+                        <input
+                          aria-autocomplete="list"
+                          aria-controls="metric__menu"
+                          aria-expanded="false"
+                          aria-label="Choose an item"
+                          autocomplete="off"
+                          class="bx--text-input"
+                          id="metric"
+                          placeholder="Metric"
+                          role="combobox"
+                          value="complexity"
                         />
-                      </svg>
+                        <div
+                          class="bx--list-box__selection"
+                          role="button"
+                          tabindex="0"
+                          title="Clear selected item"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            height="16"
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style="will-change: transform;"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="bx--list-box__menu-icon"
+                        >
+                          <svg
+                            aria-label="Open menu"
+                            focusable="false"
+                            height="16"
+                            name="chevron--down"
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style="will-change: transform;"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
+                            />
+                            <title>
+                              Open menu
+                            </title>
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  aria-label="Choose an item"
-                  class="bx--form-item bx--combo-box bx--list-box"
-                  role="listbox"
+                  class="bx--bmrg-select"
                 >
                   <div
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    aria-label="open menu"
-                    class="bx--list-box__field"
-                    data-toggle="true"
-                    role="button"
-                    tabindex="0"
-                    type="button"
+                    class="bx--list-box__wrapper"
                   >
-                    <input
-                      aria-autocomplete="list"
-                      aria-expanded="false"
-                      aria-label="ListBox input field"
-                      autocomplete="off"
-                      class="bx--text-input"
-                      id="downshift-3-input"
-                      label="Operator"
-                      placeholder="Operator"
-                      role="combobox"
-                      selecteditem=""
-                      value=""
-                    />
-                    
-                    <div
-                      class="bx--list-box__menu-icon"
+                    <label
+                      class="bx--label"
+                      for="operator"
                     >
-                      <svg
-                        alt="Open menu"
+                      Operator
+                    </label>
+                    <div
+                      class="bx--combo-box bx--list-box"
+                      role="listbox"
+                      tabindex="-1"
+                    >
+                      <div
+                        aria-expanded="false"
+                        aria-haspopup="true"
                         aria-label="Open menu"
-                        fill-rule="evenodd"
-                        focusable="false"
-                        height="5"
-                        role="img"
-                        viewBox="0 0 10 5"
-                        width="10"
+                        class="bx--list-box__field"
+                        data-toggle="true"
+                        role="button"
+                        tabindex="-1"
+                        type="button"
                       >
-                        <title>
-                          Open menu
-                        </title>
-                        <path
-                          d="M0 0l5 4.998L10 0z"
+                        <input
+                          aria-autocomplete="list"
+                          aria-controls="operator__menu"
+                          aria-expanded="false"
+                          aria-label="Choose an item"
+                          autocomplete="off"
+                          class="bx--text-input"
+                          id="operator"
+                          placeholder="Operator"
+                          role="combobox"
+                          value=""
                         />
-                      </svg>
+                        
+                        <div
+                          class="bx--list-box__menu-icon"
+                        >
+                          <svg
+                            aria-label="Open menu"
+                            focusable="false"
+                            height="16"
+                            name="chevron--down"
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style="will-change: transform;"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
+                            />
+                            <title>
+                              Open menu
+                            </title>
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="bx--form-item"
+                  class="bx--form-item bx--text-input-wrapper"
                 >
-                  <input
-                    class="bx--text-input bx--text__input"
-                    id="value"
-                    label="Value"
-                    name="value"
-                    placeholder="Value"
-                    type="text"
-                    value="1000"
-                  />
+                  <label
+                    class="bx--label"
+                    for="value"
+                  >
+                    Value
+                  </label>
+                  <div
+                    class="bx--text-input__field-wrapper"
+                  >
+                    <input
+                      class="bx--text-input bx--text__input"
+                      id="value"
+                      placeholder="Value"
+                      type="text"
+                      value="1000"
+                    />
+                  </div>
                 </div>
                 <button
                   class="delete"
@@ -432,11 +548,28 @@ exports[`EditPolicy --- Snapshot +++ renders correctly 1`] = `
               </div>
             </div>
             <button
-              class="bx--btn bx--btn--primary"
+              class="bx--btn bx--btn--field bx--btn--primary"
               tabindex="0"
               type="button"
             >
               Add Rule
+              <svg
+                aria-hidden="true"
+                aria-label="Add Rule"
+                class="bx--btn__icon"
+                focusable="false"
+                height="16"
+                preserveAspectRatio="xMidYMid meet"
+                role="img"
+                style="will-change: transform;"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 7V3H7v4H3v2h4v4h2V9h4V7z"
+                />
+              </svg>
             </button>
           </section>
         </div>

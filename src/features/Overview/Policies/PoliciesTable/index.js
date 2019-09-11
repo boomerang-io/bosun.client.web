@@ -21,7 +21,7 @@ export class PoliciesTable extends Component {
     },
     {
       header: "Rules",
-      key: "definitions"
+      key: "rules"
     },
     {
       header: "Stage Gate Allocations",
@@ -34,7 +34,7 @@ export class PoliciesTable extends Component {
     history.push(`${location.pathname}/policy/edit/${row.id}`);
   };
 
-  renderCell = (rowIndex, cellIndex, value) => {
+  renderCell = (cells, cellIndex, value) => {
     const column = this.headers[cellIndex];
     switch (column.header) {
       case "Name":
@@ -42,10 +42,11 @@ export class PoliciesTable extends Component {
       case "Definitions":
         return <p className={styles.tableTextarea}>{Array.isArray(value) ? value.length : "---"}</p>;
       case "Rules":
+        const defValue = cells.find(cell => cell.id.includes("definitions")).value;
         return (
           <p className={styles.tableTextarea}>
-            {Array.isArray(value)
-              ? value.reduce((accum, definition) => {
+            {Array.isArray(defValue)
+              ? defValue.reduce((accum, definition) => {
                   accum += definition.rules.length;
                   return accum;
                 }, 0)
@@ -90,11 +91,11 @@ export class PoliciesTable extends Component {
     const { TableContainer, Table, TableHead, TableRow, TableBody, TableCell, TableHeader } = DataTable;
     return (
       <DataTable
-        rows={policies}
+        rows={policies}        
         headers={this.headers}
         render={({ rows, headers, getHeaderProps }) => (
           <TableContainer>
-            <Table className={styles.tableContainer} sortable={"true"} zebra={false}>
+            <Table className={styles.tableContainer} sortable={"true"} useZebraStyles={false}>
               <TableHead>
                 <TableRow className={styles.tableHeadRow}>
                   {headers.map(header => (
@@ -109,7 +110,7 @@ export class PoliciesTable extends Component {
                   <TableRow key={row.id} className={styles.tableRow} onClick={() => this.handleRowClick(row)}>
                     {row.cells.map((cell, cellIndex) => (
                       <TableCell key={`${cell.id}-${cellIndex}`} style={{ padding: "0" }}>
-                        <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
+                        <div className={styles.tableCell}>{this.renderCell(row.cells, cellIndex, cell.value)}</div>
                       </TableCell>
                     ))}
                   </TableRow>

@@ -31,21 +31,37 @@ exports[`CreatePolicy --- Snapshot +++ renders correctly 1`] = `
             class="buttons"
           >
             <button
-              class="button bx--btn bx--btn--secondary"
-              style="margin-left: 1rem;"
+              class="button bx--btn bx--btn--field bx--btn--secondary"
               tabindex="0"
               type="button"
             >
               Cancel
             </button>
             <button
-              class="button bx--btn bx--btn--primary bx--btn--disabled"
+              class="button bx--btn bx--btn--field bx--btn--primary bx--btn--disabled"
               data-testid="policy-header-affirmative-action"
               disabled=""
               tabindex="0"
               type="submit"
             >
               Create
+              <svg
+                aria-hidden="true"
+                aria-label="Create"
+                class="bx--btn__icon"
+                focusable="false"
+                height="16"
+                preserveAspectRatio="xMidYMid meet"
+                role="img"
+                style="will-change: transform;"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 7V3H7v4H3v2h4v4h2V9h4V7z"
+                />
+              </svg>
             </button>
           </section>
         </div>
@@ -57,20 +73,26 @@ exports[`CreatePolicy --- Snapshot +++ renders correctly 1`] = `
           class="content"
         >
           <div
-            class="bx--form-item"
+            class="bx--form-item bx--text-input-wrapper"
           >
             <label
               class="bx--label"
+              for="name"
             >
               Name
             </label>
-            <input
-              class="bx--text-input bx--text__input"
-              name="name"
-              placeholder="Name"
-              type="text"
-              value=""
-            />
+            <div
+              class="bx--text-input__field-wrapper"
+            >
+              <input
+                class="bx--text-input bx--text__input"
+                id="name"
+                name="name"
+                placeholder="Name"
+                type="text"
+                value=""
+              />
+            </div>
           </div>
           <section
             class="section"
@@ -83,11 +105,28 @@ exports[`CreatePolicy --- Snapshot +++ renders correctly 1`] = `
             </p>
             <div />
             <button
-              class="bx--btn bx--btn--primary"
+              class="bx--btn bx--btn--field bx--btn--primary"
               tabindex="0"
               type="button"
             >
               Add Rule
+              <svg
+                aria-hidden="true"
+                aria-label="Add Rule"
+                class="bx--btn__icon"
+                focusable="false"
+                height="16"
+                preserveAspectRatio="xMidYMid meet"
+                role="img"
+                style="will-change: transform;"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 7V3H7v4H3v2h4v4h2V9h4V7z"
+                />
+              </svg>
             </button>
           </section>
         </div>

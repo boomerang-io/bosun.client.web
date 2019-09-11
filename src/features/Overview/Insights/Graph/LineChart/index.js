@@ -6,7 +6,7 @@ import CustomTooltip from "./CustomTooltip";
 const colors = ["#047CC0", "#0cd455", "#f39200", "#f0430a", "#8206b3"];
 
 // let lastDots = [];
-export default class Example extends PureComponent {
+export default class ViolationsLineChart extends PureComponent {
   state = {
     lastDots: [],
     toggledLines: [],
@@ -56,7 +56,7 @@ export default class Example extends PureComponent {
     const { chartData, lines } = this.props;
     return (
       <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
-        <ResponsiveContainer width="100%" aspect={4 / 0.8} minHeight={100}>
+        <ResponsiveContainer minWidth={0} width="100%" height="auto" aspect={4 / 0.8} minHeight={100}>
           <LineChart
             width={500}
             height={300}

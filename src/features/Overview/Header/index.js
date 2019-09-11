@@ -30,11 +30,11 @@ export class Header extends Component {
       <div className={styles.container}>
         <h2 className={styles.title}>Team</h2>
         <ComboBox
+          id="team"
           onChange={this.props.handleChangeTeam}
           items={teamsList}
           initialSelectedItem={selectedTeam}
           placeholder="Select a team"
-          selectedItem={selectedTeam}
           title="Team"
         />
       </div>

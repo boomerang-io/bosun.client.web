@@ -17,22 +17,47 @@ exports[`Policies --- Snapshot Capturing Snapshot of Policies 1`] = `
     >
       All of your teams policies can be found here. Go forth and define rules to enforce your standards!
     </p>
-    <button
-      className="button bx--btn bx--btn--primary"
-      data-testid="add-policy-button"
-      disabled={false}
-      onClick={[Function]}
-      tabIndex={0}
-      type="button"
+    <div
+      className="button"
     >
-      Add Policy
-    </button>
+      <button
+        className="bx--btn bx--btn--field bx--btn--primary"
+        data-testid="add-policy-button"
+        disabled={false}
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        Add Policy
+        <svg
+          aria-hidden="true"
+          aria-label="Add Policy"
+          className="bx--btn__icon"
+          focusable="false"
+          height={16}
+          preserveAspectRatio="xMidYMid meet"
+          role="img"
+          style={
+            Object {
+              "willChange": "transform",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9 7V3H7v4H3v2h4v4h2V9h4V7z"
+          />
+        </svg>
+      </button>
+    </div>
   </div>
   <div
-    className="bx--data-table-v2-container"
+    className="bx--data-table-container"
   >
     <table
-      className="bx--data-table-v2 tableContainer"
+      className="bx--data-table tableContainer bx--data-table--no-border"
       sortable="true"
     >
       <thead>
@@ -40,140 +65,49 @@ exports[`Policies --- Snapshot Capturing Snapshot of Policies 1`] = `
           className="tableHeadRow"
         >
           <th
-            aria-sort="none"
             className="tableHeader"
             scope="col"
           >
-            <button
-              className="tableHeader bx--table-sort-v2"
-              onClick={[Function]}
+            <span
+              className="bx--table-header-label"
             >
-              <span
-                className="bx--table-header-label"
-              >
-                Name
-              </span>
-              <svg
-                alt="Sort rows by this header in ascending order"
-                aria-label="Sort rows by this header in ascending order"
-                className="bx--table-sort-v2__icon"
-                fillRule="evenodd"
-                height="5"
-                role="img"
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Sort rows by this header in ascending order
-                </title>
-                <path
-                  d="M0 5L5 .002 10 5z"
-                />
-              </svg>
-            </button>
+              Name
+            </span>
           </th>
           <th
-            aria-sort="none"
             className="tableHeader"
             scope="col"
           >
-            <button
-              className="tableHeader bx--table-sort-v2"
-              onClick={[Function]}
+            <span
+              className="bx--table-header-label"
             >
-              <span
-                className="bx--table-header-label"
-              >
-                Definitions
-              </span>
-              <svg
-                alt="Sort rows by this header in ascending order"
-                aria-label="Sort rows by this header in ascending order"
-                className="bx--table-sort-v2__icon"
-                fillRule="evenodd"
-                height="5"
-                role="img"
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Sort rows by this header in ascending order
-                </title>
-                <path
-                  d="M0 5L5 .002 10 5z"
-                />
-              </svg>
-            </button>
+              Definitions
+            </span>
           </th>
           <th
-            aria-sort="none"
             className="tableHeader"
             scope="col"
           >
-            <button
-              className="tableHeader bx--table-sort-v2"
-              onClick={[Function]}
+            <span
+              className="bx--table-header-label"
             >
-              <span
-                className="bx--table-header-label"
-              >
-                Rules
-              </span>
-              <svg
-                alt="Sort rows by this header in ascending order"
-                aria-label="Sort rows by this header in ascending order"
-                className="bx--table-sort-v2__icon"
-                fillRule="evenodd"
-                height="5"
-                role="img"
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Sort rows by this header in ascending order
-                </title>
-                <path
-                  d="M0 5L5 .002 10 5z"
-                />
-              </svg>
-            </button>
+              Rules
+            </span>
           </th>
           <th
-            aria-sort="none"
             className="tableHeader"
             scope="col"
           >
-            <button
-              className="tableHeader bx--table-sort-v2"
-              onClick={[Function]}
+            <span
+              className="bx--table-header-label"
             >
-              <span
-                className="bx--table-header-label"
-              >
-                Stage Gate Allocations
-              </span>
-              <svg
-                alt="Sort rows by this header in ascending order"
-                aria-label="Sort rows by this header in ascending order"
-                className="bx--table-sort-v2__icon"
-                fillRule="evenodd"
-                height="5"
-                role="img"
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Sort rows by this header in ascending order
-                </title>
-                <path
-                  d="M0 5L5 .002 10 5z"
-                />
-              </svg>
-            </button>
+              Stage Gate Allocations
+            </span>
           </th>
         </tr>
       </thead>
       <tbody
+        aria-live="polite"
         className="tableBody"
         data-testid="policies-tbody"
       >
