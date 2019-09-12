@@ -80,6 +80,9 @@
     "personalizations": {},
     "notificationSettings": {}
   },
+  "contact": {
+    "message": "asdfasdf"
+  },
   "teams": [
     {
       "id": "5a8b331e262a70306622df73",
@@ -422,9 +425,19 @@
               "version": "1.8.9"
             }
           ]
+        },
+        {
+          "ciPolicyDefinitionId": "5cdd8667f6ea74a9bbaf5022",
+          "rules": []
+        },
+        {
+          "ciPolicyDefinitionId": "5cdd8425f6ea74a9bbaf2fe6",
+          "rules": []
         }
       ],
-      "stages": ["dev"]
+      "stages": [
+        "dev"
+      ]
     },
     {
       "createdDate": "2019-06-21T00:00:00.000+0000",
@@ -452,7 +465,9 @@
           ]
         }
       ],
-      "stages": ["dev"],
+      "stages": [
+        "dev"
+      ],
       "id": "R4nuqJE"
     },
     {
@@ -539,7 +554,14 @@
           "defaultValue": "",
           "required": false,
           "description": "",
-          "options": ["equal", "not equal", "less than", "less than or equal", "greater than", "greater than or equal"]
+          "options": [
+            "equal",
+            "not equal",
+            "less than",
+            "less than or equal",
+            "greater than",
+            "greater than or equal"
+          ]
         },
         {
           "key": "value",
@@ -566,7 +588,9 @@
           "defaultValue": "",
           "required": false,
           "description": "",
-          "options": ["maven"]
+          "options": [
+            "maven"
+          ]
         },
         {
           "key": "artifact",
@@ -602,7 +626,13 @@
           "defaultValue": "",
           "required": false,
           "description": "",
-          "options": ["All", "Critical", "High", "Medium", "Low"]
+          "options": [
+            "All",
+            "Critical",
+            "High",
+            "Medium",
+            "Low"
+          ]
         },
         {
           "key": "operator",
@@ -611,7 +641,14 @@
           "defaultValue": "",
           "required": false,
           "description": "",
-          "options": ["equal", "not equal", "less than", "less than or equal", "greater than", "greater than or equal"]
+          "options": [
+            "equal",
+            "not equal",
+            "less than",
+            "less than or equal",
+            "greater than",
+            "greater than or equal"
+          ]
         },
         {
           "key": "count",
@@ -843,7 +880,9 @@
       "ciComponentVersionId": "5cee1d76dd1be20001f3d9c4",
       "ciComponentVersionName": "nextgen-2",
       "ciPolicyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
-      "ciPolicyDefinitionTypes": ["Static Code Analysis"],
+      "ciPolicyDefinitionTypes": [
+        "Static Code Analysis"
+      ],
       "violations": 1
     },
     {
@@ -857,7 +896,10 @@
       "ciComponentVersionId": "5cdb4ca3f6ea74a9bb9cf251",
       "ciComponentVersionName": "6.4.9-175",
       "ciPolicyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
-      "ciPolicyDefinitionTypes": ["Static Code Analysis", "Unit Tests"],
+      "ciPolicyDefinitionTypes": [
+        "Static Code Analysis",
+        "Unit Tests"
+      ],
       "violations": 3
     },
     {

@@ -1,7 +1,7 @@
 import React, { Suspense, Component } from "react";
 import PropTypes from "prop-types";
 import { Switch, Route, withRouter } from "react-router-dom";
-import { NotificationContainer } from "@boomerang/boomerang-components/lib/Notifications";
+import { NotificationsContainer } from "@boomerang/carbon-addons-boomerang-react";
 import LoadingAnimation from "Components/Loading";
 import CreatePolicy from "Features/CreatePolicy";
 import EditPolicy from "Features/EditPolicy";
@@ -57,7 +57,7 @@ class Main extends Component {
             </Switch>
           </Suspense>
         </main>
-        <NotificationContainer />
+        <NotificationsContainer enableMultiContainer />
       </div>
     );
   }
