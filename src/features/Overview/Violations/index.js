@@ -15,7 +15,7 @@ export class Violations extends Component {
         <div className={styles.container} data-testid="violations-container" id="violations-container">
           <div>
             <h2 className={styles.title}>{`Violations (${violations.reduce(
-              (acc, violation) => (acc += violation.violations),
+              (acc, violation) => (acc += violation.nbrViolations),
               0
             )})`}</h2>
             <p className={styles.message}>

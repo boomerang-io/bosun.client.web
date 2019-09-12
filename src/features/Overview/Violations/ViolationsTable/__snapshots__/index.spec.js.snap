@@ -13,6 +13,10 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         className="tableHeadRow"
       >
         <th
+          className="bx--table-expand"
+          scope="col"
+        />
+        <th
           className="tableHeader ciPolicyName"
           scope="col"
         >
@@ -53,7 +57,7 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
           </span>
         </th>
         <th
-          className="tableHeader violations"
+          className="tableHeader nbrViolations"
           scope="col"
         >
           <span
@@ -88,7 +92,41 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
       aria-live="polite"
       className="tableBody"
     >
-      <tr>
+      <tr
+        className="bx--parent-row"
+        data-parent-row={true}
+        disabled={false}
+      >
+        <td
+          className="bx--table-expand"
+          headers="expand"
+        >
+          <button
+            aria-label="Expand current row"
+            className="bx--table-expand__button"
+            onClick={[Function]}
+          >
+            <svg
+              aria-hidden={true}
+              className="bx--table-expand__svg"
+              focusable="false"
+              height={16}
+              preserveAspectRatio="xMidYMid meet"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11 8l-5 5-.7-.7L9.6 8 5.3 3.7 6 3z"
+              />
+            </svg>
+          </button>
+        </td>
         <td
           style={
             Object {
@@ -170,7 +208,7 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
             <p
               className="tableTextarea"
             >
-              3
+              ---
             </p>
           </div>
         </td>

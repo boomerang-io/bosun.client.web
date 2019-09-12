@@ -28,7 +28,7 @@ export class Insights extends Component {
       type: "violations",
       title: "Current Violations",
       content: "Code will set you free. Think of this as an opportunity for better code. Drive towards zero.",
-      count: violations.reduce((acc, violation) => (acc += violation.violations), 0)
+      count: violations.reduce((acc, violation) => (acc += violation.nbrViolations), 0)
     };
 
     return (

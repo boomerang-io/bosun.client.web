@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import { DataTable } from "carbon-components-react";
@@ -27,7 +27,7 @@ export class ViolationsTable extends Component {
     },
     {
       header: "Violations",
-      key: "violations"
+      key: "nbrViolations"
     },
     {
       header: "Failed Definition Types",
@@ -36,6 +36,17 @@ export class ViolationsTable extends Component {
     {
       header: "Activity Date",
       key: "ciPolicyActivityCreatedDate"
+    }
+  ];
+
+  subHeaders = [
+    {
+      header: "Metrics",
+      key: "metric"
+    },
+    {
+      header: "Message",
+      key: "message"
     }
   ];
 
@@ -51,19 +62,58 @@ export class ViolationsTable extends Component {
     }
   };
 
+  renderSubRow = row => {
+    const { violations } = this.props;
+    const currentViolation = violations.find(violation => violation.id === row.id);
+    if (currentViolation && currentViolation.violations.length > 0)
+      return(
+        currentViolation.violations.map((violation) => (
+          <div className={styles.subRow}>
+            {
+              this.subHeaders.map( cell => (
+                <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>{this.renderDetail(cell.key, violation[cell.key])}</div>
+              ))                                
+            }
+          </div>
+        ))
+      );
+    else {
+      return(
+        <div className={styles.subRow}>                        {
+            this.subHeaders.map( cell => (
+              <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>{this.renderDetail(cell.key,"---")}</div>
+            ))                                
+          }
+        </div>
+      );
+    }
+  }
+
+  renderDetail = (key, value) => {
+    switch (key) {
+      case "metric":
+        return <p className={styles.detailMetrics}>{value}</p>;
+      case "message":
+        return <p className={styles.detailMessage}>{value}</p>;
+      default:
+        return <p className={styles.tableTextarea}>{value || "---"}</p>;
+    }
+  }
+
   render() {
     const { violations } = this.props;
-    const { TableContainer, Table, TableHead, TableRow, TableBody, TableCell, TableHeader } = DataTable;
+    const { TableContainer, Table, TableHead, TableRow, TableBody, TableCell, TableHeader, TableExpandHeader , TableExpandRow, TableExpandedRow  } = DataTable;
 
     return (
       <DataTable
         rows={violations}
         headers={this.headers}
-        render={({ rows, headers, getHeaderProps }) => (
+        render={({ rows, headers, getHeaderProps, getRowProps }) => (
           <TableContainer>
             <Table className={styles.tableContainer} sortable={"true"} useZebraStyles={false}>
               <TableHead>
                 <TableRow className={styles.tableHeadRow}>
+                  <TableExpandHeader />
                   {headers.map(header => (
                     <TableHeader
                       {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
@@ -75,13 +125,27 @@ export class ViolationsTable extends Component {
               </TableHead>
               <TableBody className={styles.tableBody}>
                 {rows.map((row, rowIndex) => (
-                  <TableRow key={row.id}>
-                    {row.cells.map((cell, cellIndex) => (
-                      <TableCell key={cell.id} style={{ padding: "0" }}>
-                        <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
-                      </TableCell>
-                    ))}
-                  </TableRow>
+                  <Fragment key={row.id}>
+                    <TableExpandRow  key={row.id} {...getRowProps({ row })}>
+                      {row.cells.map((cell, cellIndex) => (
+                        <TableCell key={cell.id} style={{ padding: "0" }}>
+                          <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
+                        </TableCell>
+                      ))}
+                    </TableExpandRow>
+                    {row.isExpanded && (
+                      <TableExpandedRow colSpan={headers.length + 1}>
+                        <div className={styles.tableSubHeaders}>
+                          {this.subHeaders.map(header => (
+                            <div className={`${styles.tableSubHeader} ${styles[header.key]}`}>
+                              {header.header}
+                            </div>
+                          ))}
+                        </div>
+                          {this.renderSubRow(row)}
+                      </TableExpandedRow>
+                    )}
+                  </Fragment>
                 ))}
               </TableBody>
             </Table>

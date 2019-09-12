@@ -870,74 +870,100 @@
   ],
   "violations": [
     {
-      "id": "5cf144d17d5cc80001d190a25cedbec5dd1be20001f3d9425cee1d76dd1be20001f3d9c45cedf589dd1be20001f3d994",
-      "ciPolicyId": "5cf144d17d5cc80001d190a2",
-      "ciPolicyName": "Glens Policy",
-      "ciStageId": "5cedf589dd1be20001f3d994",
-      "ciStageName": "dev",
-      "ciComponentId": "5cedbec5dd1be20001f3d942",
-      "ciComponentName": "next-gen-docker",
-      "ciComponentVersionId": "5cee1d76dd1be20001f3d9c4",
-      "ciComponentVersionName": "nextgen-2",
-      "ciPolicyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
-      "ciPolicyDefinitionTypes": [
-        "Static Code Analysis"
-      ],
-      "violations": 1
+    "id": "5cf144d17d5cc80001d190a25cf968648a6e7e0001eca0e75cfeae64876b210001c439145cedf589dd1be20001f3d994",
+    "ciPolicyId": "5cf144d17d5cc80001d190a2",
+    "ciPolicyName": "Glens Policy",
+    "ciStageId": "5cedf589dd1be20001f3d994",
+    "ciStageName": "dev2",
+    "ciComponentId": "5cf968648a6e7e0001eca0e7",
+    "ciComponentName": "GlenTest01",
+    "ciComponentVersionId": "5cfeae64876b210001c43914",
+    "ciComponentVersionName": "0.0.5-4",
+    "ciPolicyActivityCreatedDate": "2019-06-13T20:47:41.265+0000",
+    "ciPolicyDefinitionTypes": [
+    "Static Code Analysis",
+    "Static Code Analysis"
+    ],
+    "nbrViolations": 1,
+    "violations": []
     },
     {
-      "id": "cc80001d190a25cedbec5dd1be20001f3d9425cee1d7",
-      "ciPolicyId": "5cd49adff6ea74a9bb6adef4",
-      "ciPolicyName": "Tyson's Policy",
-      "ciStageId": "5cb123bdf6ea74a9bb5425b6",
-      "ciStageName": "dev",
-      "ciComponentId": "5cdb4c15f6ea74a9bb9cfdba",
-      "ciComponentName": "boomerang.service.ci",
-      "ciComponentVersionId": "5cdb4ca3f6ea74a9bb9cf251",
-      "ciComponentVersionName": "6.4.9-175",
-      "ciPolicyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
-      "ciPolicyDefinitionTypes": [
-        "Static Code Analysis",
-        "Unit Tests"
-      ],
-      "violations": 3
+    "id": "5cf144d17d5cc80001d190a25d07d9385aad240001ebcd345d07da2f5aad240001ebcf115cedf589dd1be20001f3d994",
+    "ciPolicyId": "5cf144d17d5cc80001d190a2",
+    "ciPolicyName": "Glens Policy",
+    "ciStageId": "5cedf589dd1be20001f3d994",
+    "ciStageName": "dev2",
+    "ciComponentId": "5d07d9385aad240001ebcd34",
+    "ciComponentName": "next-gen-node",
+    "ciComponentVersionId": "5d07da2f5aad240001ebcf11",
+    "ciComponentVersionName": "0.0.1-0",
+    "ciPolicyActivityCreatedDate": "2019-06-21T01:07:29.904+0000",
+    "ciPolicyDefinitionTypes": [
+    "Static Code Analysis",
+    "Unit Tests",
+    "Static Code Analysis",
+    "Unit Tests"
+    ],
+    "nbrViolations": 2,
+    "violations": []
     },
     {
-      "id": "001f3d9425cee1d76dd1be20001f3d9c45cedf5",
-      "ciPolicyId": "5cd49adff6ea74a9bb6adef3",
-      "ciPolicyName": "Tim's Policy",
-      "ciStageId": "5cb123bdf6ea74a9bb5425b6",
-      "ciStageName": "dev",
-      "ciComponentId": "5cdb4c15f6ea74a9bb9cedda",
-      "ciComponentName": "boomerang.service.ci",
-      "ciComponentVersionId": "5cdb4ca3f6ea74a9bb9cf251",
-      "ciComponentVersionName": "6.1.9-175",
-      "ciPolicyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
-      "ciPolicyDefinitionTypes": [],
-      "violations": 3
+    "id": "5cf77086a814cf00017816355cedbec5dd1be20001f3d9425d404db031d6570001e8f0c35cedf589dd1be20001f3d994",
+    "ciPolicyId": "5cf77086a814cf0001781635",
+    "ciPolicyName": "Sorin Policy Def",
+    "ciStageId": "5cedf589dd1be20001f3d994",
+    "ciStageName": "dev2",
+    "ciComponentId": "5cedbec5dd1be20001f3d942",
+    "ciComponentName": "next-gen-docker",
+    "ciComponentVersionId": "5d404db031d6570001e8f0c3",
+    "ciComponentVersionName": "next-gen-docker-4",
+    "ciPolicyActivityCreatedDate": "2019-09-11T00:00:00.000+0000",
+    "ciPolicyDefinitionTypes": [
+    "Security Issue Analysis",
+    "Package Safe List",
+    "Security Issue Analysis",
+    "Package Safe List"
+    ],
+    "nbrViolations": 2,
+    "violations": [
+    {
+      "metric": "^.*:commons-io:1.0$",
+      "message": "Package rule not met. Artifact: commons-io, and Version: 1.0",
+      "valid": false
     },
     {
-      "id": "5cf95aefa814cf00017816365cf6892e411b910001eaa1d25cf68979411b910001eaa2185cedf589dd1be20001f3d994",
-      "ciPolicyId": "5cf95aefa814cf0001781636",
-      "ciPolicyName": "AdriennePolicy",
-      "ciStageId": "5cedf589dd1be20001f3d994",
-      "ciStageName": "dev",
-      "ciComponentId": "5cf6892e411b910001eaa1d2",
-      "ciComponentName": "demo.lib.jar",
-      "ciComponentVersionId": "5cf68979411b910001eaa218",
-      "ciComponentVersionName": "1.0.0-0",
-      "ciPolicyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
-      "ciPolicyDefinitionTypes": [
-        "Static Code Analysis",
-        "Tool Automation",
-        "Unit Tests",
-        "Users",
-        "Boomerang",
-        "Code Coverage",
-        "Watson Cloud",
-        "Some random type"
-      ],
-      "violations": 1
+      "metric": "^.*:commons-io:2.0$",
+      "message": "Package rule not met. Artifact: commons-io, and Version: 2.0",
+      "valid": false
+      },
+    {
+      "metric": "^.*:commons-io:3.0$",
+      "message": "Package rule not met. Artifact: commons-io, and Version: 3.0",
+      "valid": false
     }
-  ]
+    ]
+    },
+    {
+    "id": "5cf144d17d5cc80001d190a25cf6892e411b910001eaa1d25d15ae53bc820b000115f1cf5cedf589dd1be20001f3d994",
+    "ciPolicyId": "5cf144d17d5cc80001d190a2",
+    "ciPolicyName": "Glens Policy",
+    "ciStageId": "5cedf589dd1be20001f3d994",
+    "ciStageName": "dev2",
+    "ciComponentId": "5cf6892e411b910001eaa1d2",
+    "ciComponentName": "demo.lib.jar",
+    "ciComponentVersionId": "5d15ae53bc820b000115f1cf",
+    "ciComponentVersionName": "master-1",
+    "ciPolicyActivityCreatedDate": "2019-07-19T19:40:17.706+0000",
+    "ciPolicyDefinitionTypes": [
+    "Static Code Analysis",
+    "Unit Tests",
+    "Security Issue Analysis",
+    "Static Code Analysis",
+    "Unit Tests",
+    "Security Issue Analysis"
+    ],
+    "nbrViolations": 3,
+    "violations": []
+    }
+    ]
 }

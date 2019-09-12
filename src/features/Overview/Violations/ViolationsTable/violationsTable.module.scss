@@ -44,12 +44,33 @@
   &.ciPolicyActivityCreatedDate {
     width: 12%;
   }
+  
+}
+.tableSubHeader{
+  color: $cerulean-50;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  height: 3rem;
+  margin-left: 3.5rem;
+
+  &.metric {
+    width: 30%;
+  }
+  &.message {
+    width: 70%;
+  }
 }
 
 .tableBody {
   background-color: #f2f2f2;
   color: $gray-90;
   font-weight: 400;
+  :global .bx--expandable-row{
+    td{
+      padding: 1rem 0rem !important;
+    }
+  }
 }
 
 .tableCell {
@@ -60,6 +81,12 @@
   padding-left: 0.75rem;
   width: 100%;
   overflow-y: auto;
+  &.metric {
+    width: 30%;
+  }
+  &.message {
+    width: 70%;
+  }
 }
 .tableTextarea {
   background: inherit;
@@ -72,4 +99,28 @@
   width: 90%;
   margin-left: 0.25rem;
   word-break: break-all;
+}
+.tableSubHeaders{
+  display: flex;
+  width: 100%;
+}
+.detailMetrics{
+  color: $gray-90;
+  margin-left: 3rem;
+  width:100%;
+}
+.detailMessage{
+  color: $gray-50;
+  margin-left: 4.25rem;
+  width:100%;
+}
+.subRow{
+  display: flex;
+  width: 100%;
+  &:hover{
+    background-color: $gray-1
+  }
+}
+.noDetail{
+  margin-left: 3.25rem;
 }
