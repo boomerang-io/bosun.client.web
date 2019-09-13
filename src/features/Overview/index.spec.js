@@ -1,9 +1,8 @@
 import React from "react";
-import { render as rtlRender, fireEvent, waitForElement } from "react-testing-library";
+import { render as rtlRender, fireEvent, waitForElement } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { Overview } from "./index";
-import "react-testing-library/cleanup-after-each";
 
 function render(ui, { route = "/", history = createMemoryHistory({ initialEntries: [route] }) } = {}) {
   return {
