@@ -6,7 +6,7 @@ import { createMemoryHistory } from "history";
 import configureStore from "./store/configureStore";
 import { Provider } from "react-redux";
 import { render as rtlRender } from "@testing-library/react";
-import "jest-dom/extend-expect";
+import "@testing-library/jest-dom/extend-expect";
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });
