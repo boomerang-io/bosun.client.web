@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { ComboBox } from "carbon-components-react";
-//import { shouldFilterItem } from "Utils";
+import { ComboBox } from "@boomerang/carbon-addons-boomerang-react";
 import styles from "./header.module.scss";
 
 export class Header extends Component {
@@ -31,12 +30,11 @@ export class Header extends Component {
       <div className={styles.container}>
         <h2 className={styles.title}>Team</h2>
         <ComboBox
+          id="team"
           onChange={this.props.handleChangeTeam}
           items={teamsList}
           initialSelectedItem={selectedTeam}
           placeholder="Select a team"
-          selectedItem={selectedTeam}
-          //shouldFilterItem={shouldFilterItem}
           title="Team"
         />
       </div>

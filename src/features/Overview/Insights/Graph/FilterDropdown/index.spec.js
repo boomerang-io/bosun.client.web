@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import FilterDropdown from "./index";
+import FilterDropdown from ".";
 
 const mockfn = jest.fn();
 

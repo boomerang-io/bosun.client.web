@@ -1,7 +1,7 @@
 import React, { Suspense, Component } from "react";
 import PropTypes from "prop-types";
 import { Switch, Route, withRouter } from "react-router-dom";
-import { NotificationContainer } from "@boomerang/boomerang-components/lib/Notifications";
+import { NotificationsContainer } from "@boomerang/carbon-addons-boomerang-react";
 import LoadingAnimation from "Components/Loading";
 import CreatePolicy from "Features/CreatePolicy";
 import EditPolicy from "Features/EditPolicy";
@@ -11,16 +11,9 @@ import NotificationBanner from "Components/NotificationBanner";
 class Main extends Component {
   static propTypes = {
     globalMatch: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
     setActiveTeam: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
   };
-
-  setNewRelicCustomAttribute() {
-    if (window.newrelic) {
-      window.newrelic.setCustomAttribute("userId", this.props.user.data.id);
-    }
-  }
 
   componentDidMount() {
     const { globalMatch, setActiveTeam } = this.props;
@@ -28,6 +21,8 @@ class Main extends Component {
     if (teamName) {
       setActiveTeam(teamName);
     }
+
+    this.setNewRelicCustomAttribute();
   }
 
   componentDidUpdate(prevProps) {
@@ -42,26 +37,28 @@ class Main extends Component {
     this.setState({ bannerClosed: true });
   };
 
-  render() {
-    this.setNewRelicCustomAttribute();
+  setNewRelicCustomAttribute() {
+    if (window.newrelic && this.props.user.data.id) {
+      window.newrelic.setCustomAttribute("userId", this.props.user.data.id);
+    }
+  }
 
+  render() {
     return (
-      <>
-        <div className="c-app-content">
-          <NotificationBanner />
-          <main className="c-app-main">
-            <Suspense fallback={<LoadingAnimation theme="bmrg-white" />}>
-              <Switch>
-                <Route path="/:teamName/policy/edit/:policyId" component={EditPolicy} />
-                <Route path="/:teamName/policy/create" component={CreatePolicy} />
-                <Route path="/:teamName" component={Overview} />
-                <Route path="/" component={Overview} />
-              </Switch>
-            </Suspense>
-          </main>
-          <NotificationContainer />
-        </div>
-      </>
+      <div className="c-app-content">
+        <NotificationBanner />
+        <main className="c-app-main">
+          <Suspense fallback={<LoadingAnimation theme="bmrg-white" />}>
+            <Switch>
+              <Route path="/:teamName/policy/edit/:policyId" component={EditPolicy} />
+              <Route path="/:teamName/policy/create" component={CreatePolicy} />
+              <Route path="/:teamName" component={Overview} />
+              <Route path="/" component={Overview} />
+            </Switch>
+          </Suspense>
+        </main>
+        <NotificationsContainer enableMultiContainer />
+      </div>
     );
   }
 }

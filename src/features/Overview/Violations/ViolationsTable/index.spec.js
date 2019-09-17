@@ -5,6 +5,7 @@ import ViolationsTable from "./index";
 
 const violations = [
   {
+    "id":"1",
     "ciPolicyId": "5cd49adff6ea74a9bb6adef4",
     "ciPolicyName": "Tyson's Policy",
     "ciStageId": "5cb123bdf6ea74a9bb5425b6",

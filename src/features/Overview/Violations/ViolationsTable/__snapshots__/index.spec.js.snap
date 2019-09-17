@@ -2,253 +2,131 @@
 
 exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] = `
 <div
-  className="bx--data-table-v2-container"
+  className="bx--data-table-container"
 >
   <table
-    className="bx--data-table-v2 tableContainer"
-    sortable={true}
+    className="bx--data-table tableContainer bx--data-table--no-border"
+    sortable="true"
   >
     <thead>
       <tr
         className="tableHeadRow"
       >
         <th
-          aria-sort="none"
+          className="bx--table-expand"
+          scope="col"
+        />
+        <th
           className="tableHeader ciPolicyName"
           scope="col"
         >
-          <button
-            className="tableHeader ciPolicyName bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Policy
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Policy
+          </span>
         </th>
         <th
-          aria-sort="none"
           className="tableHeader ciStageName"
           scope="col"
         >
-          <button
-            className="tableHeader ciStageName bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Stage
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Stage
+          </span>
         </th>
         <th
-          aria-sort="none"
           className="tableHeader ciComponentName"
           scope="col"
         >
-          <button
-            className="tableHeader ciComponentName bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Component
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Component
+          </span>
         </th>
         <th
-          aria-sort="none"
           className="tableHeader ciComponentVersionName"
           scope="col"
         >
-          <button
-            className="tableHeader ciComponentVersionName bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Version
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Version
+          </span>
         </th>
         <th
-          aria-sort="none"
-          className="tableHeader violations"
+          className="tableHeader nbrViolations"
           scope="col"
         >
-          <button
-            className="tableHeader violations bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Violations
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Violations
+          </span>
         </th>
         <th
-          aria-sort="none"
           className="tableHeader ciPolicyDefinitionTypes"
           scope="col"
         >
-          <button
-            className="tableHeader ciPolicyDefinitionTypes bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Failed Definition Types
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Failed Definition Types
+          </span>
         </th>
         <th
-          aria-sort="none"
           className="tableHeader ciPolicyActivityCreatedDate"
           scope="col"
         >
-          <button
-            className="tableHeader ciPolicyActivityCreatedDate bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Activity Date
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Activity Date
+          </span>
         </th>
       </tr>
     </thead>
     <tbody
+      aria-live="polite"
       className="tableBody"
     >
-      <tr>
+      <tr
+        className="bx--parent-row"
+        data-parent-row={true}
+        disabled={false}
+      >
+        <td
+          className="bx--table-expand"
+          headers="expand"
+        >
+          <button
+            aria-label="Expand current row"
+            className="bx--table-expand__button"
+            onClick={[Function]}
+          >
+            <svg
+              aria-hidden={true}
+              className="bx--table-expand__svg"
+              focusable="false"
+              height={16}
+              preserveAspectRatio="xMidYMid meet"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11 8l-5 5-.7-.7L9.6 8 5.3 3.7 6 3z"
+              />
+            </svg>
+          </button>
+        </td>
         <td
           style={
             Object {
@@ -330,7 +208,7 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
             <p
               className="tableTextarea"
             >
-              3
+              ---
             </p>
           </div>
         </td>

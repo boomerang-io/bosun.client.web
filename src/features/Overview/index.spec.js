@@ -1,9 +1,6 @@
 import React from "react";
-import { shallow } from "enzyme";
-import renderer from "react-test-renderer";
-import { render as rtlRender, fireEvent, waitForElement } from "react-testing-library";
+import { render as rtlRender, fireEvent, waitForElement } from "@testing-library/react";
 import { Router } from "react-router-dom";
-import { MemoryRouter } from "react-router";
 import { createMemoryHistory } from "history";
 import { Overview } from "./index";
 
@@ -33,6 +30,22 @@ const teams = [
     ],
     boomerangTeamName: "AT&T MIL Mobile@Scale",
     boomerangTeamShortname: "ms-att-mil"
+  },
+  {
+    id: "5a8b331f262a70306622df75",
+    name: "Demo",
+    higherLevelGroupId: "5a399185fe6c5c000a26663f",
+    ucdApplicationId: "b89224cb-4f45-46e5-8721-0b09205e9bc6",
+    isActive: true,
+    audits: [
+      {
+        auditerId: null,
+        date: 1519072031004,
+        note: "CI-Team created"
+      }
+    ],
+    boomerangTeamName: "Boomerang Demo",
+    boomerangTeamShortname: "boomerang-demo"
   }
 ];
 const reducerState = {
@@ -83,6 +96,22 @@ const policiesReducerState = {
     }
   ]
 };
+const team = {
+  id: "5a8b331f262a70306622df75",
+  name: "Demo",
+  higherLevelGroupId: "5a399185fe6c5c000a26663f",
+  ucdApplicationId: "b89224cb-4f45-46e5-8721-0b09205e9bc6",
+  isActive: true,
+  audits: [
+    {
+      auditerId: null,
+      date: 1519072031004,
+      note: "CI-Team created"
+    }
+  ],
+  boomerangTeamName: "Boomerang Demo",
+  boomerangTeamShortname: "boomerang-demo"
+};
 const props = {
   activeTeam: null,
   insightsActions,
@@ -95,31 +124,10 @@ const props = {
 };
 
 describe("Overview --- Snapshot", () => {
-  it("Capturing Snapshot of Overview", () => {
-    const renderedValue = renderer
-      .create(
-        <MemoryRouter>
-          <Overview {...props} />
-        </MemoryRouter>
-      )
-      .toJSON();
-    expect(renderedValue).toMatchSnapshot();
-  });
-});
-
-describe("Overview --- Shallow render", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = shallow(
-      <MemoryRouter>
-        <Overview {...props} />
-      </MemoryRouter>
-    );
-  });
-
-  it("Render the DUMB component", () => {
-    expect(wrapper.length).toEqual(1);
+  it("Capturing Snapshot of Overview", async () => {
+    const { baseElement, findByText } = render(<Overview {...props} activeTeam={team} />);
+    await findByText(/Violations Trend/);
+    expect(baseElement).toMatchSnapshot();
   });
 });
 
@@ -143,10 +151,9 @@ describe("Overview --- RTL", () => {
   });
 
   it("Render Overview Content", async () => {
-    const { getByText, getAllByText, getAllByTestId, getByTestId, debug } = render(
+    const { getByText, getAllByText, getAllByTestId, getByTestId } = render(
       <Overview {...props} activeTeam={teams[0]} policies={policiesReducerState} />
     );
-    debug();
     expect(getByText(/Insights/i)).toBeInTheDocument();
     expect(getAllByText(/Policies/i).length).toBeGreaterThan(1);
     expect(getAllByText(/Violations/i).length).toBeGreaterThan(1);
@@ -160,15 +167,17 @@ describe("Overview --- RTL", () => {
     expect(getByTestId("violations-container")).toBeInTheDocument();
   });
   it("Redirect to Create Policy", async () => {
-    const { getByTestId, history } = render(<Overview {...props} activeTeam={teams[0]} />);
-    const addPolicyButton = getByTestId("add-policy-button");
+    const { history, findByText, getByText } = render(<Overview {...props} activeTeam={teams[0]} />);
+    await findByText("Violations Trend");
+    const addPolicyButton = getByText("Add Policy");
     fireEvent.click(addPolicyButton);
     expect(history.location.pathname).toEqual("//policy/create");
   });
   it("Redirect to Edit Policy", async () => {
-    const { getByTestId, history } = render(
+    const { getByTestId, history, findByText } = render(
       <Overview {...props} activeTeam={teams[0]} policies={policiesReducerState} />
     );
+    await findByText("Violations Trend");
     const policyTbody = getByTestId("policies-tbody");
     fireEvent.click(policyTbody.firstChild);
     expect(history.location.pathname).toEqual(`//policy/edit/${policiesReducerState.data[0].id}`);

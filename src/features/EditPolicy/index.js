@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import uuid from "uuid";
-import { notify, Notification } from "@boomerang/boomerang-components/lib/Notifications";
-import LoadingAnimation from "Components/Loading";
-import ErrorDragon from "Components/ErrorDragon";
+import { notify, ToastNotification } from "@boomerang/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
+import ErrorDragon from "Components/ErrorDragon";
+import LoadingAnimation from "Components/Loading";
 import {
   SERVICE_PRODUCT_DEFINITIONS_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
@@ -37,8 +37,6 @@ class EditPolicy extends React.Component {
     this.fetchPolicyData();
   }
 
-  // Network requests
-
   async fetchPolicyData() {
     this.setState({
       isFetching: true
@@ -55,7 +53,6 @@ class EditPolicy extends React.Component {
         status: SERVICE_REQUEST_STATUSES.SUCCESS
       });
     } catch (e) {
-      console.log(e);
       this.setState({
         error: e,
         isFetching: false,
@@ -94,13 +91,12 @@ class EditPolicy extends React.Component {
       this.setState({
         isUpdating: false
       });
-      notify(<Notification type="success" title="Policy Updated" message="Policy successfully updated" />);
+      notify(<ToastNotification kind="success" title="Policy Updated" subtitle="Policy successfully updated" />);
     } catch (e) {
-      console.log(e);
       this.setState({
         isUpdating: false
       });
-      notify(<Notification type="error" title="Something's Wrong" message="Request to update policy failed" />);
+      notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to update policy failed" />);
     }
   };
 
@@ -116,7 +112,11 @@ class EditPolicy extends React.Component {
         isDeleting: false
       });
       notify(
-        <Notification type="success" title="Policy deleted" message={`Policy ${policy.name} successfully deleted`} />
+        <ToastNotification
+          kind="success"
+          title="Policy deleted"
+          subtitle={`Policy ${policy.name} successfully deleted`}
+        />
       );
       this.navigateBack();
     } catch (err) {
@@ -124,14 +124,13 @@ class EditPolicy extends React.Component {
         isDeleting: false
       });
       const { data } = err && err.response;
-      notify(<Notification type="error" title={`${data.status} - ${data.error}`} message={data.message} />, {
+      notify(<ToastNotification kind="error" title={`${data.status} - ${data.error}`} subtitle={data.message} />, {
         autoClose: 5000
       });
     }
   };
 
   // State updates
-
   setError = error => {
     this.setState(prevState => ({ errors: { ...prevState.errors, ...error } }));
   };
@@ -195,7 +194,6 @@ class EditPolicy extends React.Component {
   };
 
   // Local methods
-
   /**
    * Transform the policy object into shape that can be read by the child form
    * @param {object} policy - policy to read in and create input state from

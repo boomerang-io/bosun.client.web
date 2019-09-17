@@ -2,151 +2,60 @@
 
 exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
 <div
-  className="bx--data-table-v2-container"
+  className="bx--data-table-container"
 >
   <table
-    className="bx--data-table-v2 tableContainer"
-    sortable={true}
+    className="bx--data-table tableContainer bx--data-table--no-border"
+    sortable="true"
   >
     <thead>
       <tr
         className="tableHeadRow"
       >
         <th
-          aria-sort="none"
           className="tableHeader"
           scope="col"
         >
-          <button
-            className="tableHeader bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Name
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Name
+          </span>
         </th>
         <th
-          aria-sort="none"
           className="tableHeader"
           scope="col"
         >
-          <button
-            className="tableHeader bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Definitions
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Definitions
+          </span>
         </th>
         <th
-          aria-sort="none"
           className="tableHeader"
           scope="col"
         >
-          <button
-            className="tableHeader bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Rules
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Rules
+          </span>
         </th>
         <th
-          aria-sort="none"
           className="tableHeader"
           scope="col"
         >
-          <button
-            className="tableHeader bx--table-sort-v2"
-            onClick={[Function]}
+          <span
+            className="bx--table-header-label"
           >
-            <span
-              className="bx--table-header-label"
-            >
-              Stage Gate Allocations
-            </span>
-            <svg
-              alt="Sort rows by this header in ascending order"
-              aria-label="Sort rows by this header in ascending order"
-              className="bx--table-sort-v2__icon"
-              fillRule="evenodd"
-              height="5"
-              role="img"
-              viewBox="0 0 10 5"
-              width="10"
-            >
-              <title>
-                Sort rows by this header in ascending order
-              </title>
-              <path
-                d="M0 5L5 .002 10 5z"
-              />
-            </svg>
-          </button>
+            Stage Gate Allocations
+          </span>
         </th>
       </tr>
     </thead>
     <tbody
+      aria-live="polite"
       className="tableBody"
       data-testid="policies-tbody"
     >

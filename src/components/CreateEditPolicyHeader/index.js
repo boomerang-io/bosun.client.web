@@ -4,13 +4,15 @@ import ConfirmModal from "@boomerang/boomerang-components/lib/ConfirmModal";
 import AlertModalWrapper from "@boomerang/boomerang-components/lib/AlertModal";
 import FullPageHeader from "Components/FullPageHeader";
 import { formatDateTimestamp } from "Utils";
+import { Add16, Delete16, Save16 } from "@carbon/icons-react";
 import styles from "./createEditPolicyHeader.module.scss";
 
 const ACTION_TYPE_CONFIG = {
   create: {
     title: "Create",
     affirmativeActionVerb: "Create",
-    isPerformingActionVerb: "Creating..."
+    isPerformingActionVerb: "Creating...",
+    icon: Add16
   },
   edit: {
     title: "Edit",
@@ -18,6 +20,7 @@ const ACTION_TYPE_CONFIG = {
     isPerformingActionVerb: "Saving...",
     deleteActionVerb: "Delete",
     isDeletingActionVerb: "Deleting...",
+    icon: Save16
   }
 };
 
@@ -46,25 +49,31 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
           )}
         </div>
         <section className={styles.buttons}>
-        {(type === "edit" && policy.id) && (
+          {type === "edit" && policy.id && (
             <Button
               disabled={isPerformingAffirmativeAction || isDeleting}
               className={styles.button}
               onClick={() => setDeleteModalIsOpen(true)}
-              kind="danger--primary"
+              kind="danger"
+              renderIcon={Delete16}
+              iconDescription="Delete"
+              size="field"
             >
               {isDeleting ? config.isDeletingActionVerb : config.deleteActionVerb}
             </Button>
           )}
-          <Button className={styles.button} kind="secondary" onClick={navigateBack} style={{ marginLeft: "1rem" }}  >
+          <Button className={styles.button} kind="secondary" onClick={navigateBack} size="field">
             Cancel
           </Button>
           <Button
-            disabled={isPerformingAffirmativeAction || isDeleting || !name || hasErrors}
-            className={styles.button}
-            onClick={form.affirmativeAction}
-            type="submit"
             data-testid="policy-header-affirmative-action"
+            disabled={isPerformingAffirmativeAction || isDeleting || !name || !!hasErrors}
+            className={styles.button}
+            iconDescription={config.title}
+            onClick={form.affirmativeAction}
+            renderIcon={config.icon}
+            type="submit"
+            size="field"
           >
             {isPerformingAffirmativeAction ? config.isPerformingActionVerb : config.affirmativeActionVerb}
           </Button>
@@ -73,6 +82,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
       {deleteModalIsOpen && (
         <AlertModalWrapper
           isOpen
+          modalProps={{ariaHideApp:false}}
           modalContent={(closeModal, rest) => (
             <ConfirmModal
               closeModal={() => setDeleteModalIsOpen(false)}

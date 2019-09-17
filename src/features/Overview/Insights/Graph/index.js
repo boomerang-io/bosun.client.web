@@ -20,14 +20,7 @@ export class Graph extends Component {
 
   render() {
     const { formatedData } = this.props;
-    // const initialDate = moment("jan, 01 2018");
-    // const finalDate = moment();
-    // const mockFilterData = [
-    //   {value:"all", label:"All"},
-    //   {value:"standard", label:"Standard"},
-    //   {value:"option1", label:"Option1"},
-    //   {value:"option2", label:"Option2"}
-    // ];
+
     return (
       <Tile
         style={{

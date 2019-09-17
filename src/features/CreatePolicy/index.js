@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { notify, Notification } from "@boomerang/boomerang-components/lib/Notifications";
+import { notify, ToastNotification } from "@boomerang/carbon-addons-boomerang-react";
 import LoadingAnimation from "Components/Loading";
 import ErrorDragon from "Components/ErrorDragon";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
@@ -44,7 +44,6 @@ class CreatePolicy extends React.Component {
         status: SERVICE_REQUEST_STATUSES.SUCCESS
       });
     } catch (e) {
-      console.log(e);
       this.setState({
         error: e,
         isFetching: false,
@@ -82,13 +81,12 @@ class CreatePolicy extends React.Component {
       this.setState({
         isCreating: false
       });
-      notify(<Notification type="success" title="Policy Created" message="Policy was successfully created" />);
+      notify(<ToastNotification kind="success" title="Policy Created" subtitle="Policy was successfully created" />);
     } catch (e) {
-      console.log(e);
       this.setState({
         isCreating: false
       });
-      notify(<Notification type="error" title="Something's Wrong" message="Request to create policy failed" />);
+      notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to create policy failed" />);
     }
   };
 

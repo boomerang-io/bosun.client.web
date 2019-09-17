@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button, ComboBox, TextInput, TextArea } from "carbon-components-react";
+import { Button, TextInput, TextArea } from "carbon-components-react";
+import { ComboBox } from "@boomerang/carbon-addons-boomerang-react";
 import styles from "./policyFormDefinitionSection.module.scss";
 import uuid from "uuid";
-import DeleteIcon from "@carbon/icons-react/lib/delete/16";
-//import { shouldFilterItem } from "Utils";
+import { Add16, Delete16 } from "@carbon/icons-react";
 
 const INPUT_TYPES = {
   text: { type: "text" },
@@ -21,18 +21,15 @@ const SELECT_TYPES = {
   select: { type: "select", isMultiselect: false, valueProperty: "value" },
   multiselect: { type: "multiselect", isMultiselect: true, valueProperty: "values" }
 };
-
 function determineInput({ onChange, inputs, inputData, uuid }) {
   const { type, label, key, required, options } = inputData;
-
   if (Object.keys(INPUT_TYPES).includes(type)) {
     const config = INPUT_TYPES[type];
     return (
       <TextInput
         id={key}
         key={key}
-        label={label}
-        name={key}
+        labelText={label}
         onChange={e => onChange(e, uuid)}
         placeholder={label}
         required={required}
@@ -45,9 +42,9 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
   if (Object.keys(TEXT_AREA_TYPES).includes(type)) {
     return (
       <TextArea
-        name={key}
+        id={key}
         key={key}
-        label={label}
+        labelText={label}
         onChange={e => onChange(e, uuid)}
         placeholder={label}
         required={required}
@@ -59,15 +56,14 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
   if (Object.keys(SELECT_TYPES).includes(type)) {
     return (
       <ComboBox
+        id={key}
         key={key}
-        label={label}
+        titleText={label}
         initialSelectedItem={inputs[key]}
         items={options}
         onChange={({ selectedItem }) => onChange({ target: { name: `${key}`, value: selectedItem } }, uuid)}
         placeholder={label}
         required={required}
-        selectedItem={inputs[key]}
-        //shouldFilterItem={shouldFilterItem}
       />
     );
   }
@@ -94,10 +90,10 @@ function PolicyFormDefinitionSection({ definition, form }) {
     form.validateRow(definition.key);
   }
 
-  function removeRow(idx) {
-    const rowToRemove = rows[idx];
+  function removeRow(index) {
+    const rowToRemove = rows[index];
     const newRows = [...rows];
-    newRows.splice(idx, 1);
+    newRows.splice(index, 1);
     setRows(newRows);
     form.removeRow({ definitionKey: definition.key, uuid: rowToRemove.uuid });
   }
@@ -124,13 +120,15 @@ function PolicyFormDefinitionSection({ definition, form }) {
                 })
               )}
               <button className={styles.delete} onClick={() => removeRow(index)}>
-                <DeleteIcon />
+                <Delete16 />
               </button>
             </div>
           );
         })}
       </div>
-      <Button onClick={addRow}>Add Rule</Button>
+      <Button iconDescription={"Add Rule"} onClick={addRow} renderIcon={Add16} size="field">
+        Add Rule
+      </Button>
     </section>
   );
 }

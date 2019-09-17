@@ -10,9 +10,9 @@ import { BASE_APPS_ENV_URL, BASE_LAUNCH_ENV_URL } from "Config/platformUrlConfig
 import { BASE_SERVICE_ENV_URL, SERVICE_REQUEST_STATUSES } from "Config/servicesConfig";
 
 const defaultUIShellProps = {
+  baseLaunchEnvUrl: BASE_LAUNCH_ENV_URL,
   baseServiceUrl: BASE_SERVICE_ENV_URL,
-  renderLogo: true,
-  baseLaunchEnvUrl: BASE_LAUNCH_ENV_URL
+  renderLogo: true
 };
 
 const baseLaunchUrl = new URL(BASE_LAUNCH_ENV_URL);
@@ -42,20 +42,14 @@ Navbar.propTypes = {
 function Navbar(props) {
   const { handleOnTutorialClick, navigation, user } = props;
 
-  if (navigation.status === SERVICE_REQUEST_STATUSES.SUCCESS) {
-    const navbarLinks = navigation.data.navigation.map(link => {
-      // eslint-disable-next-line
-      if (link.url) return { ...link, url: link.url.replace("${BASE_LAUNCH_ENV_URL}", BASE_LAUNCH_ENV_URL) };
-      else return link;
-    });
-    const headerConfig = { ...navigation.data, navigation: navbarLinks };
+  if (navigation.status === SERVICE_REQUEST_STATUSES.SUCCESS && user.status === SERVICE_REQUEST_STATUSES.SUCCESS) {
     return (
       <UIShell
         {...defaultUIShellProps}
-        headerConfig={headerConfig}
-        onTutorialClick={handleOnTutorialClick}
-        user={user}
+        headerConfig={navigation.data}
         onMenuClick={onMenuClick}
+        onTutorialClick={handleOnTutorialClick}
+        user={user.data}
       />
     );
   }
