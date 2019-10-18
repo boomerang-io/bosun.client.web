@@ -1,45 +1,41 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { ComboBox } from "carbon-components-react";
 import styles from "./TeamSelector.module.scss";
 
-export class Header extends Component {
-  static propTypes = {
-    handleChangeTeam: PropTypes.func.isRequired,
-    teams: PropTypes.array
-  };
+TeamSelector.propTypes = {
+  activeTeam: PropTypes.object,
+  handleChangeTeam: PropTypes.func.isRequired,
+  teams: PropTypes.array
+};
 
-  render() {
-    const { teams } = this.props;
-    const { activeTeam } = this.props;
+export function TeamSelector({ activeTeam, handleChangeTeam, teams }) {
+  const selectedTeam = activeTeam
+    ? {
+        id: activeTeam.id,
+        label: activeTeam.boomerangTeamName,
+        name: activeTeam.boomerangTeamShortname
+      }
+    : null;
+  const teamsList = teams.map(team => ({
+    id: team.id,
+    label: team.boomerangTeamName,
+    name: team.boomerangTeamShortname
+  }));
 
-    const selectedTeam = activeTeam
-      ? {
-          id: activeTeam.id,
-          label: activeTeam.boomerangTeamName,
-          name: activeTeam.boomerangTeamShortname
-        }
-      : null;
-    const teamsList = teams.map(team => ({
-      id: team.id,
-      label: team.boomerangTeamName,
-      name: team.boomerangTeamShortname
-    }));
-
-    return (
-      <section className={styles.container}>
-        <h2 className={styles.title}>Team</h2>
-        <ComboBox
-          id="team"
-          onChange={this.props.handleChangeTeam}
-          items={teamsList}
-          initialSelectedItem={selectedTeam}
-          placeholder="Select a team"
-          title="Team"
-        />
-      </section>
-    );
-  }
+  return (
+    <section className={styles.container}>
+      <h2 className={styles.title}>Team</h2>
+      <ComboBox
+        id="team"
+        onChange={handleChangeTeam}
+        items={teamsList}
+        initialSelectedItem={selectedTeam}
+        placeholder="Select a team"
+        title="Team"
+      />
+    </section>
+  );
 }
 
-export default Header;
+export default TeamSelector;

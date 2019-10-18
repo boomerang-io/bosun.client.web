@@ -54,3 +54,9 @@
 .button {
   width: 9rem;
 }
+
+.deleteConfirmModal {
+  :global .bx--modal-container {
+    width: 32rem;
+  }
+}

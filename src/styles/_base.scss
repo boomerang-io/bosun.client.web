@@ -2,3 +2,12 @@ body {
   font-family: "IBM Plex Sans", "Helvetica Neue", Arial, Helvetica, sans-serif !important;
   background-color: $ui-background;
 }
+
+//Override
+
+.Toastify__toast {
+  box-shadow: none;
+}
+.Toastify__toast--default {
+  background: transparent;
+}

@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import uuid from "uuid";
-import { notify, ToastNotification } from "@boomerang/carbon-addons-boomerang-react";
+import { ToastNotification } from "carbon-components-react";
+import { notify } from "@boomerang/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
 import ErrorDragon from "Components/ErrorDragon";
@@ -91,12 +92,21 @@ class EditPolicy extends React.Component {
       this.setState({
         isUpdating: false
       });
-      notify(<ToastNotification kind="success" title="Policy Updated" subtitle="Policy successfully updated" />);
+      notify(
+        <ToastNotification kind="success" title="Policy Updated" subtitle="Policy successfully updated" caption="" />
+      );
     } catch (e) {
       this.setState({
         isUpdating: false
       });
-      notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to update policy failed" />);
+      notify(
+        <ToastNotification
+          kind="error"
+          title="Something's Wrong"
+          subtitle="Request to update policy failed"
+          caption=""
+        />
+      );
     }
   };
 
@@ -116,6 +126,7 @@ class EditPolicy extends React.Component {
           kind="success"
           title="Policy deleted"
           subtitle={`Policy ${policy.name} successfully deleted`}
+          caption=""
         />
       );
       this.navigateBack();
@@ -124,9 +135,12 @@ class EditPolicy extends React.Component {
         isDeleting: false
       });
       const { data } = err && err.response;
-      notify(<ToastNotification kind="error" title={`${data.status} - ${data.error}`} subtitle={data.message} />, {
-        autoClose: 5000
-      });
+      notify(
+        <ToastNotification kind="error" title={`${data.status} - ${data.error}`} subtitle={data.message} caption="" />,
+        {
+          autoClose: 5000
+        }
+      );
     }
   };
 

@@ -76,9 +76,10 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
       </div>
       {deleteModalIsOpen && (
         <Modal
-          open
           danger
+          open
           shouldSubmitOnEnter
+          className={styles.deleteConfirmModal}
           modalHeading={`Delete ${policy.name}?`}
           primaryButtonText="Yes"
           secondaryButtonText="No"
