@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { ComboBox } from "@boomerang/carbon-addons-boomerang-react";
-import styles from "./header.module.scss";
+import { ComboBox } from "carbon-components-react";
+import styles from "./TeamSelector.module.scss";
 
 export class Header extends Component {
   static propTypes = {
@@ -27,7 +27,7 @@ export class Header extends Component {
     }));
 
     return (
-      <div className={styles.container}>
+      <section className={styles.container}>
         <h2 className={styles.title}>Team</h2>
         <ComboBox
           id="team"
@@ -37,7 +37,7 @@ export class Header extends Component {
           placeholder="Select a team"
           title="Team"
         />
-      </div>
+      </section>
     );
   }
 }

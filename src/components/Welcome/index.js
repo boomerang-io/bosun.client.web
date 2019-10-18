@@ -9,7 +9,7 @@ class Welcome extends Component {
         <div className="b-welcome">
           <img className="b-welcome__img" src={CastleDrawbridgeGraphic} alt="Castle Drawbridge" />
           <h1 className="b-welcome__title">
-            Welcome to <span style={{ fontStyle: "italic" }}>Boomerang Citadel</span>
+            Welcome to <span style={{ fontStyle: "italic" }}>Boomerang Bosun</span>
           </h1>
           <p className="b-welcome__text">Select a team to get started</p>
         </div>

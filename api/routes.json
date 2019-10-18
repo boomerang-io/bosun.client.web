@@ -1,10 +1,10 @@
 {
-  "/citadel/policies/definitions": "/definitions",
-  "/citadel/policies/operators": "/operators",
-  "/citadel/policies/insights?ciTeamId=:ciTeamId": "/insights",
-  "/citadel/policies/violations?ciTeamId=:ciTeamId": "/violations",
-  "/citadel/policies/:id": "/policies/:id?singular=1",
-  "/citadel/*": "/$1",
+  "/bosun/policies/definitions": "/definitions",
+  "/bosun/policies/operators": "/operators",
+  "/bosun/policies/insights?ciTeamId=:ciTeamId": "/insights",
+  "/bosun/policies/violations?ciTeamId=:ciTeamId": "/violations",
+  "/bosun/policies/:id": "/policies/:id?singular=1",
+  "/bosun/*": "/$1",
   "/users/*": "/$1",
   "/support/*": "/$1"
 }

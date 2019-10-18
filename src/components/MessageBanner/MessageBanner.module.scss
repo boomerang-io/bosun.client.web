@@ -1,6 +1,6 @@
 @import "~@boomerang/boomerang-styles/lib/colors";
 
-.b-notification-banner {
+.container {
   align-items: center;
   background-color: $cerulean-50;
   display: flex;
@@ -12,14 +12,14 @@
   width: 100%;
   z-index: 2;
 
-  &.--hidden {
+  &.hidden {
     transform: translateY(-100%);
     position: fixed;
     opacity: 0;
   }
 }
 
-.b-notification-banner__text {
+.text {
   color: $white;
   font-size: 1rem;
   font-weight: 300;
@@ -33,15 +33,14 @@
   }
 }
 
-.b-notification-banner__button {
-  background-color: inherit;
+.button {
+  background-color: transparent;
   border: none;
   cursor: pointer;
   height: 1.5rem;
   width: 1.5rem;
 }
 
-.b-notification-banner__close-icon {
-  height: 1rem;
-  width: 1rem;
+.closeIcon {
+  fill: $white;
 }

@@ -66,28 +66,28 @@ export class ViolationsTable extends Component {
     const { violations } = this.props;
     const currentViolation = violations.find(violation => violation.id === row.id);
     if (currentViolation && currentViolation.violations.length > 0)
-      return(
-        currentViolation.violations.map((violation) => (
-          <div className={styles.subRow}>
-            {
-              this.subHeaders.map( cell => (
-                <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>{this.renderDetail(cell.key, violation[cell.key])}</div>
-              ))                                
-            }
-          </div>
-        ))
-      );
+      return currentViolation.violations.map(violation => (
+        <div className={styles.subRow}>
+          {this.subHeaders.map(cell => (
+            <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>
+              {this.renderDetail(cell.key, violation[cell.key])}
+            </div>
+          ))}
+        </div>
+      ));
     else {
-      return(
-        <div className={styles.subRow}>                        {
-            this.subHeaders.map( cell => (
-              <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>{this.renderDetail(cell.key,"---")}</div>
-            ))                                
-          }
+      return (
+        <div className={styles.subRow}>
+          {" "}
+          {this.subHeaders.map(cell => (
+            <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>
+              {this.renderDetail(cell.key, "---")}
+            </div>
+          ))}
         </div>
       );
     }
-  }
+  };
 
   renderDetail = (key, value) => {
     switch (key) {
@@ -98,16 +98,28 @@ export class ViolationsTable extends Component {
       default:
         return <p className={styles.tableTextarea}>{value || "---"}</p>;
     }
-  }
+  };
 
   render() {
     const { violations } = this.props;
-    const { TableContainer, Table, TableHead, TableRow, TableBody, TableCell, TableHeader, TableExpandHeader , TableExpandRow, TableExpandedRow  } = DataTable;
+    const {
+      TableContainer,
+      Table,
+      TableHead,
+      TableRow,
+      TableBody,
+      TableCell,
+      TableHeader,
+      TableExpandHeader,
+      TableExpandRow,
+      TableExpandedRow
+    } = DataTable;
 
     return (
       <DataTable
         rows={violations}
         headers={this.headers}
+        isSortable={true}
         render={({ rows, headers, getHeaderProps, getRowProps }) => (
           <TableContainer>
             <Table className={styles.tableContainer} sortable={"true"} useZebraStyles={false}>
@@ -126,7 +138,7 @@ export class ViolationsTable extends Component {
               <TableBody className={styles.tableBody}>
                 {rows.map((row, rowIndex) => (
                   <Fragment key={row.id}>
-                    <TableExpandRow  key={row.id} {...getRowProps({ row })}>
+                    <TableExpandRow key={row.id} {...getRowProps({ row })}>
                       {row.cells.map((cell, cellIndex) => (
                         <TableCell key={cell.id} style={{ padding: "0" }}>
                           <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
@@ -137,12 +149,10 @@ export class ViolationsTable extends Component {
                       <TableExpandedRow colSpan={headers.length + 1}>
                         <div className={styles.tableSubHeaders}>
                           {this.subHeaders.map(header => (
-                            <div className={`${styles.tableSubHeader} ${styles[header.key]}`}>
-                              {header.header}
-                            </div>
+                            <div className={`${styles.tableSubHeader} ${styles[header.key]}`}>{header.header}</div>
                           ))}
                         </div>
-                          {this.renderSubRow(row)}
+                        {this.renderSubRow(row)}
                       </TableExpandedRow>
                     )}
                   </Fragment>

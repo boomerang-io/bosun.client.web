@@ -4,7 +4,7 @@ import requestFactory from "@boomerang/boomerang-utilities/lib/requestFactory";
 
 //action types
 export const types = {
-  RESET_TEAMS: "RESET_TEAMS",
+  RESET_UPDATE_POLICY: "RESET_UPDATE_POLICY",
   UPDATE_POLICY_REQUEST: "UPDATE_POLICY_REQUEST",
   UPDATE_POLICY_SUCCESS: "UPDATE_POLICY_SUCCESS",
   UPDATE_POLICY_FAILURE: "UPDATE_POLICY_FAILURE"
@@ -20,7 +20,7 @@ export const initialState = {
 
 //action handlers
 const actionHandlers = {
-  [types.RESET_TEAMS]: () => {
+  [types.RESET_UPDATE_POLICY]: () => {
     return { ...initialState };
   },
   [types.UPDATE_POLICY_REQUEST]: state => {
@@ -40,7 +40,7 @@ export default createReducer(initialState, actionHandlers);
 /*
  action creators declared to be passed into the policy factory boilerplate
 */
-const reset = () => ({ type: types.RESET_TEAMS });
+const reset = () => ({ type: types.RESET_UPDATE_POLICY });
 const patchPolicyRequest = () => ({ type: types.UPDATE_POLICY_REQUEST });
 const patchPolicySuccess = data => ({ type: types.UPDATE_POLICY_SUCCESS, data });
 const patchPolicyFailure = error => ({ type: types.UPDATE_POLICY_FAILURE, error });

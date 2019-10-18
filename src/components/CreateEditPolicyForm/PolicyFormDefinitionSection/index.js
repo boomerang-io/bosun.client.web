@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Button, TextInput, TextArea } from "carbon-components-react";
-import { ComboBox } from "@boomerang/carbon-addons-boomerang-react";
+import { Button, ComboBox, TextInput, TextArea } from "carbon-components-react";
 import styles from "./policyFormDefinitionSection.module.scss";
 import uuid from "uuid";
 import { Add16, Delete16 } from "@carbon/icons-react";

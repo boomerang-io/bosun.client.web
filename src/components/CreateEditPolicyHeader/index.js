@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "carbon-components-react";
-import ConfirmModal from "@boomerang/boomerang-components/lib/ConfirmModal";
-import AlertModalWrapper from "@boomerang/boomerang-components/lib/AlertModal";
+import { Button, Modal } from "carbon-components-react";
 import FullPageHeader from "Components/FullPageHeader";
 import { formatDateTimestamp } from "Utils";
 import { Add16, Delete16, Save16 } from "@carbon/icons-react";
@@ -33,9 +31,6 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
 
   return (
     <FullPageHeader>
-      <button role="link" className={styles.back} onClick={navigateBack}>
-        &#x2190; Back to Policies
-      </button>
       <div className={styles.content}>
         <div className={styles.info}>
           <h1 className={styles.title}>{`${config.title} Policy Definitions`}</h1>
@@ -80,24 +75,19 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
         </section>
       </div>
       {deleteModalIsOpen && (
-        <AlertModalWrapper
-          isOpen
-          modalProps={{ariaHideApp:false}}
-          modalContent={(closeModal, rest) => (
-            <ConfirmModal
-              closeModal={() => setDeleteModalIsOpen(false)}
-              affirmativeAction={() => {
-                form.deletePolicy();
-                setDeleteModalIsOpen(false);
-              }}
-              title={`DELETE ${policy.name.toUpperCase()}?`}
-              subTitleTop="It will be gone. Forever."
-              cancelText="NO"
-              affirmativeText="YES"
-              theme="bmrg-white"
-              {...rest}
-            />
-          )}
+        <Modal
+          open
+          danger
+          shouldSubmitOnEnter
+          modalHeading={`Delete ${policy.name}?`}
+          primaryButtonText="Yes"
+          secondaryButtonText="No"
+          onRequestClose={() => setDeleteModalIsOpen(false)}
+          onSecondarySubmit={() => setDeleteModalIsOpen(false)}
+          onRequestSubmit={() => {
+            form.deletePolicy();
+            setDeleteModalIsOpen(false);
+          }}
         />
       )}
     </FullPageHeader>

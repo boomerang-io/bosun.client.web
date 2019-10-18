@@ -18,7 +18,7 @@ import {
   SERVICE_USERS_PROFILE_PATH,
   SERVICE_REQUEST_STATUSES
 } from "Config/servicesConfig";
-import "./styles.scss";
+import styles from "./App.module.scss";
 
 export class AppContainer extends Component {
   static propTypes = {
@@ -75,11 +75,7 @@ export class AppContainer extends Component {
     const { globalMatch, navigationState, teamsState, userState } = this.props;
 
     if (userState.isFetching || navigationState.isFetching || teamsState.isFetching) {
-      return (
-        <div className="c-app-content c-app-content--not-loaded">
-          <Loading />
-        </div>
-      );
+      return <Loading centered />;
     }
     if (
       userState.status === SERVICE_REQUEST_STATUSES.SUCCESS &&
@@ -103,7 +99,7 @@ export class AppContainer extends Component {
       teamsState.status === SERVICE_REQUEST_STATUSES.FAILURE
     ) {
       return (
-        <div className="c-app-content c-app-content--not-loaded">
+        <div className={styles.content}>
           <ErrorDragon style={{ margin: "3.5rem 0" }} />
         </div>
       );
@@ -114,7 +110,7 @@ export class AppContainer extends Component {
   render() {
     return (
       <ErrorBoundary errorComponent={ErrorDragon}>
-        <div className="c-app">
+        <div className={styles.container}>
           <Navbar
             navigation={this.props.navigationState}
             handleOnTutorialClick={this.handleOnQuestionClick}

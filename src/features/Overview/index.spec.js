@@ -135,9 +135,9 @@ describe("Overview --- RTL", () => {
   it("Render the Welcome page", async () => {
     const { getByText } = render(<Overview {...props} />);
 
-    const welcomeText = await waitForElement(() => getByText(/Welcome to/i), { timeout: 5000 });
-    const appText = await waitForElement(() => getByText(/Boomerang Citadel/i), { timeout: 5000 });
-    const selectText = await waitForElement(() => getByText(/Select a team to get started/i), { timeout: 5000 });
+    const welcomeText = await waitForElement(() => getByText(/welcome to/i), { timeout: 5000 });
+    const appText = await waitForElement(() => getByText(/boomerang bosun/i), { timeout: 5000 });
+    const selectText = await waitForElement(() => getByText(/select a team to get started/i), { timeout: 5000 });
 
     expect(welcomeText).toBeInTheDocument();
     expect(appText).toBeInTheDocument();
@@ -154,9 +154,9 @@ describe("Overview --- RTL", () => {
     const { getByText, getAllByText, getAllByTestId, getByTestId } = render(
       <Overview {...props} activeTeam={teams[0]} policies={policiesReducerState} />
     );
-    expect(getByText(/Insights/i)).toBeInTheDocument();
-    expect(getAllByText(/Policies/i).length).toBeGreaterThan(1);
-    expect(getAllByText(/Violations/i).length).toBeGreaterThan(1);
+    expect(getByText(/insights/i)).toBeInTheDocument();
+    expect(getAllByText(/policies/i).length).toBeGreaterThan(1);
+    expect(getAllByText(/violations/i).length).toBeGreaterThan(1);
 
     const tiles = getAllByTestId("tile-info");
 

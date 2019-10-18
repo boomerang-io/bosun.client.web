@@ -7,7 +7,7 @@ import { actions as getPoliciesActions } from "State/policies/getPolicies";
 import { actions as violationsActions } from "State/violations";
 import LoadingAnimation from "Components/Loading";
 import ErrorDragon from "Components/ErrorDragon";
-import Header from "./Header";
+import Header from "./TeamSelector";
 import Welcome from "Components/Welcome";
 import Insights from "./Insights";
 import Policies from "./Policies";
@@ -61,10 +61,8 @@ export class Overview extends Component {
   };
 
   handleChangeTeam = ({ selectedItem }) => {
-    if (selectedItem && selectedItem.name) {
+    if (selectedItem?.name) {
       this.props.history.push(`/${selectedItem.name}`);
-    } else {
-      this.props.history.push(`/`);
     }
   };
 

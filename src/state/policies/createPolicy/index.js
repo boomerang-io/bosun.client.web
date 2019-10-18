@@ -4,7 +4,7 @@ import requestFactory from "@boomerang/boomerang-utilities/lib/requestFactory";
 
 //action types
 export const types = {
-  RESET_TEAMS: "RESET_TEAMS",
+  RESET_CREATE_POLICY: "RESET_CREATE_POLICY",
   CREATE_POLICY_REQUEST: "CREATE_POLICY_REQUEST",
   CREATE_POLICY_SUCCESS: "CREATE_POLICY_SUCCESS",
   CREATE_POLICY_FAILURE: "CREATE_POLICY_FAILURE"
@@ -20,7 +20,7 @@ export const initialState = {
 
 //action handlers
 const actionHandlers = {
-  [types.RESET_TEAMS]: () => {
+  [types.RESET_CREATE_POLICY]: () => {
     return { ...initialState };
   },
   [types.CREATE_POLICY_REQUEST]: state => {
@@ -40,7 +40,7 @@ export default createReducer(initialState, actionHandlers);
 /*
  action creators declared to be passed into the teams factory boilerplate
 */
-const reset = () => ({ type: types.RESET_TEAMS });
+const reset = () => ({ type: types.RESET_CREATE_POLICY });
 const postPolicyRequest = () => ({ type: types.CREATE_POLICY_REQUEST });
 const postPolicySuccess = data => ({ type: types.CREATE_POLICY_SUCCESS, data });
 const postPolicyFailure = error => ({ type: types.CREATE_POLICY_FAILURE, error });

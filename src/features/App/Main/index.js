@@ -1,4 +1,4 @@
-import React, { Suspense, Component } from "react";
+import React, { Suspense } from "react";
 import PropTypes from "prop-types";
 import { Switch, Route, withRouter } from "react-router-dom";
 import { NotificationsContainer } from "@boomerang/carbon-addons-boomerang-react";
@@ -6,61 +6,46 @@ import LoadingAnimation from "Components/Loading";
 import CreatePolicy from "Features/CreatePolicy";
 import EditPolicy from "Features/EditPolicy";
 import Overview from "Features/Overview";
-import NotificationBanner from "Components/NotificationBanner";
+import MessageBanner from "Components/MessageBanner";
+import styles from "./Main.module.scss";
 
-class Main extends Component {
-  static propTypes = {
-    globalMatch: PropTypes.object.isRequired,
-    setActiveTeam: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired
-  };
+Main.propTypes = {
+  globalMatch: PropTypes.object,
+  location: PropTypes.object.isRequired,
+  setActiveTeam: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
+};
 
-  componentDidMount() {
-    const { globalMatch, setActiveTeam } = this.props;
-    const teamName = globalMatch && globalMatch.params && globalMatch.params.teamName;
+function Main({ globalMatch, location, setActiveTeam, user }) {
+  const teamName = globalMatch?.params?.teamName;
+  React.useEffect(() => {
     if (teamName) {
       setActiveTeam(teamName);
     }
+  }, [teamName, setActiveTeam]);
 
-    this.setNewRelicCustomAttribute();
-  }
-
-  componentDidUpdate(prevProps) {
-    const { globalMatch, setActiveTeam } = this.props;
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      const teamName = globalMatch && globalMatch.params && globalMatch.params.teamName;
-      setActiveTeam(teamName);
+  React.useEffect(() => {
+    if (window.newrelic && user.data.id) {
+      window.newrelic.setCustomAttribute("userId", user.data.id);
     }
-  }
+  }, [user]);
 
-  closeBanner = () => {
-    this.setState({ bannerClosed: true });
-  };
-
-  setNewRelicCustomAttribute() {
-    if (window.newrelic && this.props.user.data.id) {
-      window.newrelic.setCustomAttribute("userId", this.props.user.data.id);
-    }
-  }
-
-  render() {
-    return (
-      <div className="c-app-content">
-        <NotificationBanner />
-        <main className="c-app-main">
-          <Suspense fallback={<LoadingAnimation theme="bmrg-white" />}>
-            <Switch>
-              <Route path="/:teamName/policy/edit/:policyId" component={EditPolicy} />
-              <Route path="/:teamName/policy/create" component={CreatePolicy} />
-              <Route path="/:teamName" component={Overview} />
-              <Route path="/" component={Overview} />
-            </Switch>
-          </Suspense>
-        </main>
-        <NotificationsContainer enableMultiContainer />
-      </div>
-    );
-  }
+  return (
+    <>
+      <MessageBanner />
+      <main className={styles.container}>
+        <Suspense fallback={<LoadingAnimation centered />}>
+          <Switch>
+            <Route path="/:teamName/policy/edit/:policyId" component={EditPolicy} />
+            <Route path="/:teamName/policy/create" component={CreatePolicy} />
+            <Route path="/:teamName" component={Overview} />
+            <Route path="/" component={Overview} />
+          </Switch>
+        </Suspense>
+      </main>
+      <NotificationsContainer enableMultiContainer />
+    </>
+  );
 }
 
 export default withRouter(Main);
