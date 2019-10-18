@@ -1,8 +1,8 @@
-@import "~@boomerang/boomerang-styles/lib/colors";
+@import "~Styles/variables";
 
 .container {
   align-items: center;
-  background-color: $cerulean-50;
+  background-color: $interactive-01;
   display: flex;
   justify-content: space-between;
   padding: 1rem 1rem 1rem;
@@ -20,7 +20,7 @@
 }
 
 .text {
-  color: $white;
+  color: $ui-01;
   font-size: 1rem;
   font-weight: 300;
   letter-spacing: 0.03125rem;
@@ -29,7 +29,8 @@
   width: calc(100% - 2rem);
 
   a {
-    color: $teal-10;
+    color: $ui-01;
+    font-weight: 400;
   }
 }
 
@@ -42,5 +43,5 @@
 }
 
 .closeIcon {
-  fill: $white;
+  fill: $ui-01;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import CastleDrawbridgeGraphic from "Assets/svg/castle_drawbridge.svg";
+import CastleDrawbridgeGraphic from "Assets/svg/undraw_yacht.svg";
 
 function Welcome() {
   return (
@@ -8,7 +8,7 @@ function Welcome() {
       <div className="b-welcome">
         <img className="b-welcome__img" src={CastleDrawbridgeGraphic} alt="Castle Drawbridge" />
         <h1 className="b-welcome__title">
-          Welcome to <i>Boomerang Bosun</i>
+          Welcome to <span style={{ fontStyle: "italic" }}>Boomerang Bosun</span>
         </h1>
         <p className="b-welcome__text">Select a team to get started</p>
       </div>

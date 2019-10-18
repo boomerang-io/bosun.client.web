@@ -1,7 +1,7 @@
 @import "~@boomerang/boomerang-styles/lib/colors";
 .c-welcome {
   flex: 1 1 auto;
-  margin: 6rem 1rem;
+  margin: 2rem 1rem;
 }
 
 .b-welcome {
@@ -23,5 +23,5 @@
 
 .b-welcome__img {
   width: calc(100vw * 0.5);
-  max-width: 55rem;
+  max-width: 45rem;
 }
