@@ -89,3 +89,90 @@ exports[`Header --- Snapshot Capturing Snapshot of Header 1`] = `
   </div>
 </div>
 `;
+
+exports[`TeamSelector --- Snapshot Capturing Snapshot of TeamSelector 1`] = `
+<section
+  className="container"
+>
+  <h2
+    className="title"
+  >
+    Team
+  </h2>
+  <div
+    className="bx--list-box__wrapper"
+  >
+    <div
+      className="bx--combo-box bx--list-box"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="listbox"
+      tabIndex="-1"
+    >
+      <div
+        aria-controls={null}
+        aria-expanded={false}
+        aria-haspopup={true}
+        aria-label="Open menu"
+        aria-owns={null}
+        className="bx--list-box__field"
+        data-toggle={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={-1}
+        type="button"
+      >
+        <input
+          aria-activedescendant={null}
+          aria-autocomplete="list"
+          aria-controls="team__menu"
+          aria-disabled={false}
+          aria-expanded={false}
+          aria-label="Choose an item"
+          autoComplete="off"
+          className="bx--text-input"
+          disabled={false}
+          id="team"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="Select a team"
+          role="combobox"
+          title="Team"
+          value=""
+        />
+        
+        <div
+          className="bx--list-box__menu-icon"
+        >
+          <svg
+            aria-label="Open menu"
+            focusable="false"
+            height={16}
+            name="chevron--down"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            style={
+              Object {
+                "willChange": "transform",
+              }
+            }
+            viewBox="0 0 16 16"
+            width={16}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
+            />
+            <title>
+              Open menu
+            </title>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;

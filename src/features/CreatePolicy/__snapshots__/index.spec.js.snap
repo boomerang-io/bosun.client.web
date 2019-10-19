@@ -9,12 +9,6 @@ exports[`CreatePolicy --- Snapshot +++ renders correctly 1`] = `
       <div
         class="container"
       >
-        <button
-          class="back"
-          role="link"
-        >
-          ← Back to Policies
-        </button>
         <div
           class="content"
         >
