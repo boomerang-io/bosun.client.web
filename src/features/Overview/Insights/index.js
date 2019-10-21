@@ -14,7 +14,7 @@ Insights.propTypes = {
 function Insights({ insights, violations, policies }) {
   const formatedData = getLineChartData(insights);
   let gatesCount = 0;
-  policies.forEach(policy => (gatesCount += policy.stages.length));
+  policies.forEach(policy => (gatesCount += policy.stages?.length ?? 0));
 
   const gatesData = {
     type: "gates",

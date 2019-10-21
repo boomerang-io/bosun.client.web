@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import uuid from "uuid";
 import { ToastNotification } from "carbon-components-react";
-import { notify } from "@boomerang/carbon-addons-boomerang-react";
-import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
-import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
-import ErrorDragon from "Components/ErrorDragon";
-import LoadingAnimation from "Components/Loading";
+import { toast } from "react-toastify";
+import CreateEditPolicyForm from "components/CreateEditPolicyForm";
+import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
+import ErrorDragon from "components/ErrorDragon";
+import LoadingAnimation from "components/Loading";
 import {
   SERVICE_PRODUCT_DEFINITIONS_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
   SERVICE_REQUEST_STATUSES
-} from "Config/servicesConfig";
+} from "config/servicesConfig";
 import styles from "./editPolicy.module.scss";
 
 class EditPolicy extends React.Component {
@@ -92,14 +92,14 @@ class EditPolicy extends React.Component {
       this.setState({
         isUpdating: false
       });
-      notify(
+      toast(
         <ToastNotification kind="success" title="Policy Updated" subtitle="Policy successfully updated" caption="" />
       );
     } catch (e) {
       this.setState({
         isUpdating: false
       });
-      notify(
+      toast(
         <ToastNotification
           kind="error"
           title="Something's Wrong"
@@ -121,7 +121,7 @@ class EditPolicy extends React.Component {
       this.setState({
         isDeleting: false
       });
-      notify(
+      toast(
         <ToastNotification
           kind="success"
           title="Policy deleted"
@@ -135,7 +135,7 @@ class EditPolicy extends React.Component {
         isDeleting: false
       });
       const { data } = err && err.response;
-      notify(
+      toast(
         <ToastNotification kind="error" title={`${data.status} - ${data.error}`} subtitle={data.message} caption="" />,
         {
           autoClose: 5000
@@ -252,7 +252,7 @@ class EditPolicy extends React.Component {
     };
 
     if (isFetching) {
-      return <LoadingAnimation theme="bmrg-white" />;
+      return <LoadingAnimation />;
     }
 
     if (error) {

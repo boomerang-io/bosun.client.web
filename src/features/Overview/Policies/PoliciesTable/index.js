@@ -57,7 +57,7 @@ export default function PoliciesTable(props) {
         );
 
       case "Stage Gate Allocations":
-        return <p className={styles.tableTextarea}>{!!value.length ? value.join(", ") : "---"}</p>;
+        return <p className={styles.tableTextarea}>{value?.length ? value.join(", ") : "---"}</p>;
       case "":
         return (
           <div className={styles.tableIcons}>

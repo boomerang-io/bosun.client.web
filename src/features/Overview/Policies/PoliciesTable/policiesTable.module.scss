@@ -1,4 +1,3 @@
-@import "~@boomerang/boomerang-styles/lib/colors";
 @import "~Styles/variables";
 
 .tableContainer {
@@ -6,11 +5,11 @@
 }
 
 .tableHeadRow {
-  background-color: $cool-white-1;
+  //background-color: $cool-white-1;
 }
 
 .tableHeadRow > .tableHeader {
-  color: $cerulean-40;
+  color: $interactive-01;
   font-size: inherit;
   font-family: inherit;
   font-weight: 600;
@@ -18,7 +17,7 @@
 }
 .tableBody {
   background-color: #f2f2f2;
-  color: $gray-90;
+  color: gray;
   font-weight: 400;
 }
 .tableRow {
@@ -46,7 +45,7 @@
 
 .tableTextarea {
   background: inherit;
-  color: $black;
+  color: $text-01;
   max-width: 100%;
   resize: none;
   text-align: left;

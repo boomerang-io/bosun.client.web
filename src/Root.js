@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import ErrorBoundary from "@boomerang/boomerang-components/lib/ErrorBoundary";
-import ErrorDragon from "Components/ErrorDragon";
-import App from "Features/App";
-import { APP_ROOT } from "Config/appConfig";
+import ErrorDragon from "components/ErrorDragon";
+import App from "features/App";
+import { APP_ROOT } from "config/appConfig";
 
 Root.propTypes = {
   store: PropTypes.object.isRequired
@@ -14,11 +13,9 @@ Root.propTypes = {
 export default function Root({ store }) {
   return (
     <ErrorBoundary errorComponent={ErrorDragon}>
-      <Provider store={store}>
-        <BrowserRouter basename={APP_ROOT}>
-          <App />
-        </BrowserRouter>
-      </Provider>
+      <BrowserRouter basename={APP_ROOT}>
+        <App />
+      </BrowserRouter>
     </ErrorBoundary>
   );
 }

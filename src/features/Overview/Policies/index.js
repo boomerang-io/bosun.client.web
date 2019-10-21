@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import NoDisplay from "Components/NoDisplay";
+import NoDisplay from "components/NoDisplay";
 import { Button } from "carbon-components-react";
 import { useHistory, useLocation } from "react-router-dom";
 import PoliciesTable from "./PoliciesTable";

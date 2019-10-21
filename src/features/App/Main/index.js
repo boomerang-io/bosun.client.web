@@ -1,35 +1,14 @@
 import React, { Suspense } from "react";
-import PropTypes from "prop-types";
-import { Switch, Route, withRouter } from "react-router-dom";
-import { NotificationsContainer } from "@boomerang/carbon-addons-boomerang-react";
-import LoadingAnimation from "Components/Loading";
-import CreatePolicy from "Features/CreatePolicy";
-import EditPolicy from "Features/EditPolicy";
-import Overview from "Features/Overview";
-import MessageBanner from "Components/MessageBanner";
+import { Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import LoadingAnimation from "components/Loading";
+import CreatePolicy from "features/CreatePolicy";
+import EditPolicy from "features/EditPolicy";
+import Overview from "features/Overview";
+import MessageBanner from "components/MessageBanner";
 import styles from "./Main.module.scss";
 
-Main.propTypes = {
-  globalMatch: PropTypes.object,
-  location: PropTypes.object.isRequired,
-  setActiveTeam: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
-};
-
-function Main({ globalMatch, location, setActiveTeam, user }) {
-  const teamName = globalMatch?.params?.teamName;
-  React.useEffect(() => {
-    if (teamName) {
-      setActiveTeam(teamName);
-    }
-  }, [teamName, setActiveTeam]);
-
-  React.useEffect(() => {
-    if (window.newrelic && user.data.id) {
-      window.newrelic.setCustomAttribute("userId", user.data.id);
-    }
-  }, [user]);
-
+function Main() {
   return (
     <>
       <MessageBanner />
@@ -43,9 +22,9 @@ function Main({ globalMatch, location, setActiveTeam, user }) {
           </Switch>
         </Suspense>
       </main>
-      <NotificationsContainer enableMultiContainer />
+      <ToastContainer position="top-right" />
     </>
   );
 }
 
-export default withRouter(Main);
+export default Main;

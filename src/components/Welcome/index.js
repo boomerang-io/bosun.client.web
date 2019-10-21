@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import CastleDrawbridgeGraphic from "Assets/svg/undraw_yacht.svg";
+import CastleDrawbridgeGraphic from "assets/svg/undraw_yacht.svg";
 
 function Welcome() {
   return (

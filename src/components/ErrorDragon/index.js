@@ -1,6 +1,6 @@
 import React from "react";
 import ErrorDragonComponent from "@boomerang/boomerang-components/lib/ErrorDragon";
-import { BASE_LAUNCH_ENV_URL } from "Config/platformUrlConfig";
+import { BASE_LAUNCH_ENV_URL } from "config/platformUrlConfig";
 
 function ErrorDragon(props) {
   return (

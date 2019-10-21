@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "carbon-components-react";
-import FullPageHeader from "Components/FullPageHeader";
-import { formatDateTimestamp } from "Utils";
+import FullPageHeader from "components/FullPageHeader";
+import { formatDateTimestamp } from "utils";
 import { Add16, Delete16, Save16 } from "@carbon/icons-react";
 import styles from "./createEditPolicyHeader.module.scss";
 

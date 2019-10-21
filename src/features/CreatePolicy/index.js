@@ -1,20 +1,27 @@
 import React from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
-import { connect } from "react-redux";
 import { ToastNotification } from "carbon-components-react";
-import { notify } from "@boomerang/carbon-addons-boomerang-react";
-import LoadingAnimation from "Components/Loading";
-import ErrorDragon from "Components/ErrorDragon";
-import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
-import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
+import { toast } from "react-toastify";
+import LoadingAnimation from "components/Loading";
+import ErrorDragon from "components/ErrorDragon";
+import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
+import CreateEditPolicyForm from "components/CreateEditPolicyForm";
 import {
   SERVICE_PRODUCT_DEFINITIONS_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
   SERVICE_REQUEST_STATUSES
-} from "Config/servicesConfig";
+} from "config/servicesConfig";
+import AppContext from "utils/context/appContext";
 import styles from "./createPolicy.module.scss";
 
 class CreatePolicy extends React.Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  };
+
+  static contextType = AppContext;
+
   state = {
     error: null,
     isFetching: false,
@@ -60,7 +67,7 @@ class CreatePolicy extends React.Component {
     const { name, inputs, definitions } = this.state;
     let policyObject = {
       name: name,
-      teamId: this.props.appState.activeTeam.id,
+      teamId: this.context?.activeTeam.id,
       definitions: []
     };
 
@@ -82,7 +89,7 @@ class CreatePolicy extends React.Component {
       this.setState({
         isCreating: false
       });
-      notify(
+      toast(
         <ToastNotification
           kind="success"
           title="Policy Created"
@@ -94,7 +101,7 @@ class CreatePolicy extends React.Component {
       this.setState({
         isCreating: false
       });
-      notify(
+      toast(
         <ToastNotification
           kind="error"
           title="Something's Wrong"
@@ -187,7 +194,7 @@ class CreatePolicy extends React.Component {
     };
 
     if (isFetching) {
-      return <LoadingAnimation theme="bmrg-white" />;
+      return <LoadingAnimation />;
     }
 
     if (error) {
@@ -207,11 +214,4 @@ class CreatePolicy extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  appState: state.app
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(CreatePolicy);
+export default CreatePolicy;
