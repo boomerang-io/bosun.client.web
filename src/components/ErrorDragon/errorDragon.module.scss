@@ -1,0 +1,33 @@
+@import "~Styles/variables";
+
+.container {
+  color: $text-01;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.graphic {
+  max-width: 77.75rem;
+  width: 100%;
+}
+
+.title {
+  color: inherit;
+  font-size: 3.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1875rem;
+  line-height: 4.8125rem;
+  text-align: center;
+  margin-top: 2.1875rem;
+  margin-bottom: 1.875rem;
+}
+
+.text {
+  color: inherit;
+  font-size: 1.625rem;
+  font-weight: 300;
+  letter-spacing: 0.0625rem;
+  line-height: 2.125rem;
+  text-align: center;
+}

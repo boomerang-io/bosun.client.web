@@ -1,6 +1,6 @@
 import React from "react";
 import { matchPath, useLocation } from "react-router-dom";
-import ErrorBoundary from "@boomerang/boomerang-components/lib/ErrorBoundary";
+import ErrorBoundary from "components/ErrorBoundary";
 import ErrorDragon from "components/ErrorDragon";
 import Loading from "components/Loading";
 import Main from "./Main";

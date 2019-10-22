@@ -1,3 +1,15 @@
+@import "~@carbon/themes/scss/themes";
+
+$carbon--theme: $carbon--theme--g10;
+@include carbon--theme();
+$input-border: 1px solid transparent;
+$accordion-flex-direction: row;
+$accordion-justify-content: flex-start;
+$accordion-arrow-margin: 0 0 0 0.25rem;
+$accordion-title-margin: 0 0 0 1rem;
+$accordion-content-padding: 0 1rem 0 1.75rem;
+$button-border-radius: 0.25rem;
+
 $dark-blue: #1d364d;
 $dark-gray: #4a4a4a;
 $white: #fff;

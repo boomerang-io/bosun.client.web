@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { BrowserRouter } from "react-router-dom";
-import ErrorBoundary from "@boomerang/boomerang-components/lib/ErrorBoundary";
+import ErrorBoundary from "components/ErrorBoundary";
 import ErrorDragon from "components/ErrorDragon";
 import App from "features/App";
 import { APP_ROOT } from "config/appConfig";
