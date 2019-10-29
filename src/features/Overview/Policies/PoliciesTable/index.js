@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useHistory, useParams } from "react-router-dom";
+import moment from "moment";
 import { DataTable } from "carbon-components-react";
+
 import styles from "./policiesTable.module.scss";
 
 const headers = [
@@ -19,8 +21,8 @@ const headers = [
     key: "rules"
   },
   {
-    header: "Stage Gate Allocations",
-    key: "stages"
+    header: "Created",
+    key: "createdDate"
   }
 ];
 
@@ -43,6 +45,8 @@ export default function PoliciesTable(props) {
         return <p className={styles.tableTextarea}>{value}</p>;
       case "Definitions":
         return <p className={styles.tableTextarea}>{Array.isArray(value) ? value.length : "---"}</p>;
+      case "Created":
+        return <p className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
       case "Rules":
         const defValue = cells.find(cell => cell.id.includes("definitions")).value;
         return (
@@ -56,33 +60,6 @@ export default function PoliciesTable(props) {
           </p>
         );
 
-      case "Stage Gate Allocations":
-        return <p className={styles.tableTextarea}>{value?.length ? value.join(", ") : "---"}</p>;
-      case "":
-        return (
-          <div className={styles.tableIcons}>
-            {/* <div>
-              <Icon
-                data-tip
-                data-for={`policies-table-${value}-${cellIndex}-edit`}
-                className={styles.tableIcon}
-                name="icon--edit"
-                alt="Edit Policy"
-              />
-              <Tooltip id={`policies-table-${value}-${cellIndex}-edit`}>Edit</Tooltip>
-            </div>
-            <div>
-              <Icon
-                data-tip
-                data-for={`policies-table-${value}-${cellIndex}-delete`}
-                className={styles.tableIcon}
-                name="icon--delete"
-                alt="Delete Policy"
-              />
-              <Tooltip id={`policies-table-${value}-${cellIndex}-delete`}>Delete</Tooltip>
-            </div> */}
-          </div>
-        );
       default:
         return value || "---";
     }
@@ -101,7 +78,9 @@ export default function PoliciesTable(props) {
             <TableHead>
               <TableRow className={styles.tableHeadRow}>
                 {headers.map(header => (
-                  <TableHeader {...getHeaderProps({ header, className: `${styles.tableHeader}` })}>
+                  <TableHeader
+                    {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
+                  >
                     {header.header}
                   </TableHeader>
                 ))}

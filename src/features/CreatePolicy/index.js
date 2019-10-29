@@ -77,6 +77,7 @@ class CreatePolicy extends React.Component {
       };
       let rules = [];
       const definitionRows = inputs[definition.key];
+      console.log(definitionRows);
       for (let row in definitionRows) {
         rules.push(definitionRows[row]);
       }

@@ -119,15 +119,13 @@ export class ViolationsTable extends Component {
                 : "---"}
             </p>
             <h2 className={styles.modalSectionTitle}>Labels</h2>
-            <p>
-              <ul>
-                {Object.entries(selectedViolation?.labels ?? {})?.map(entry => (
-                  <li>
-                    <span>{entry[0]}</span> : <span>{entry[1]}</span>
-                  </li>
-                ))}
-              </ul>
-            </p>
+            <ul>
+              {Object.entries(selectedViolation?.labels ?? {})?.map(entry => (
+                <li key={entry[0]}>
+                  <span>{entry[0]}</span> : <span>{entry[1]}</span>
+                </li>
+              ))}
+            </ul>
           </ModalBody>
           <ModalFooter>
             <Button onClick={() => this.setState({ isModalOpen: false })}>Close</Button>
