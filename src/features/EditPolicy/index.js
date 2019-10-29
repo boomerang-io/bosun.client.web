@@ -76,7 +76,7 @@ class EditPolicy extends React.Component {
 
     definitions.forEach(definition => {
       let newDefinition = {
-        ciPolicyDefinitionId: definition.id
+        policyDefinitionId: definition.id
       };
       let rules = [];
       const definitionRows = inputs[definition.key];
@@ -218,7 +218,7 @@ class EditPolicy extends React.Component {
     const newInputsState = {};
     policy.definitions.forEach(definition => {
       const policyDefinition = definitions.find(
-        policyDefinition => policyDefinition.id === definition.ciPolicyDefinitionId
+        policyDefinition => policyDefinition.id === definition.policyDefinitionId
       );
       newInputsState[policyDefinition.key] = {};
       const definitionRows = newInputsState[policyDefinition.key];

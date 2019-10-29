@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Slide } from "react-toastify";
 import LoadingAnimation from "components/Loading";
 import CreatePolicy from "features/CreatePolicy";
 import EditPolicy from "features/EditPolicy";
@@ -22,7 +22,15 @@ function Main() {
           </Switch>
         </Suspense>
       </main>
-      <ToastContainer position="top-right" />
+      <ToastContainer
+        autoClose={3000}
+        closeOnClick={true}
+        draggablePercent={60}
+        hideProgressBar={true}
+        pauseOnHover={true}
+        position="top-right"
+        transition={Slide}
+      />
     </>
   );
 }

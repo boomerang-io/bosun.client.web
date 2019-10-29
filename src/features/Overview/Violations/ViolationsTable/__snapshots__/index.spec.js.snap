@@ -18,11 +18,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         />
         <th
           aria-sort="none"
-          className="tableHeader ciPolicyName"
+          className="tableHeader policyName"
           scope="col"
         >
           <button
-            className="tableHeader ciPolicyName bx--table-sort"
+            className="tableHeader policyName bx--table-sort"
             onClick={[Function]}
           >
             <span
@@ -298,11 +298,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="tableHeader ciPolicyDefinitionTypes"
+          className="tableHeader policyDefinitionTypes"
           scope="col"
         >
           <button
-            className="tableHeader ciPolicyDefinitionTypes bx--table-sort"
+            className="tableHeader policyDefinitionTypes bx--table-sort"
             onClick={[Function]}
           >
             <span
@@ -354,11 +354,11 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
         </th>
         <th
           aria-sort="none"
-          className="tableHeader ciPolicyActivityCreatedDate"
+          className="tableHeader policyActivityCreatedDate"
           scope="col"
         >
           <button
-            className="tableHeader ciPolicyActivityCreatedDate bx--table-sort"
+            className="tableHeader policyActivityCreatedDate bx--table-sort"
             onClick={[Function]}
           >
             <span

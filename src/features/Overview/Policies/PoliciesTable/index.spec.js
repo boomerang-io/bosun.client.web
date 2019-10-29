@@ -6,35 +6,33 @@ import PoliciesTable from "./index";
 
 const policies = [
   {
-    "createdDate": 1558051200000,
-    "name": "Timss",
-    "teamId": "5a8b331e262a70306622df73",
-    "definitions": [
+    createdDate: 1558051200000,
+    name: "Timss",
+    teamId: "5a8b331e262a70306622df73",
+    definitions: [
       {
-        "ciPolicyDefinitionId": "5cd49777f6ea74a9bb6ac629",
-        "rules": [
+        policyDefinitionId: "5cd49777f6ea74a9bb6ac629",
+        rules: [
           {
-            "value": "sdfgsdfg",
-            "operator": "less than",
-            "metric": "complexity"
+            value: "sdfgsdfg",
+            operator: "less than",
+            metric: "complexity"
           }
         ]
       },
       {
-        "ciPolicyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
-        "rules": [
+        policyDefinitionId: "5cd498f3f6ea74a9bb6ad0f3",
+        rules: [
           {
-            "version": " asdfasdf",
-            "artifact": "asdasdf`",
-            "type": "maven"
+            version: " asdfasdf",
+            artifact: "asdasdf`",
+            type: "maven"
           }
         ]
       }
     ],
-    "stages":[
-      "dev"
-   ],
-    "id": "R4nuqJE"
+    stages: ["dev"],
+    id: "R4nuqJE"
   }
 ];
 
@@ -43,9 +41,7 @@ describe("PoliciesTable --- Snapshot", () => {
     const renderedValue = renderer
       .create(
         <MemoryRouter>
-          <PoliciesTable
-            policies={policies}
-          />
+          <PoliciesTable policies={policies} />
         </MemoryRouter>
       )
       .toJSON();
@@ -59,9 +55,7 @@ describe("PoliciesTable --- Shallow render", () => {
   beforeEach(() => {
     wrapper = shallow(
       <MemoryRouter>
-        <PoliciesTable
-          policies={policies}
-        />
+        <PoliciesTable policies={policies} />
       </MemoryRouter>
     );
   });

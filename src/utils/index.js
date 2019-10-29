@@ -1,11 +1,12 @@
 import moment from "moment";
 
 /**
- * @param {string} timestamp
+ * @param {string} dateTimeString
+ * @param {string} format - Moment date format
  * @returns formatted date string
  */
-export function formatDateTimestamp(timestamp) {
-  return moment(timestamp).format("MMMM Do, YYYY");
+export function formatDateTimeString(dateTimeString, format = "MMMM Do, YYYY") {
+  return moment(dateTimeString).format("MMMM Do, YYYY");
 }
 
 /**
@@ -35,7 +36,7 @@ export function formatDateTimestamp(timestamp) {
  *
  */
 
-function isAccessibleEvent(
+export function isAccessibleEvent(
   event,
   { types = ["click", "keydown"], codes = ["Enter", "Space"], keys = ["Enter", " ", "Spacebar"] } = {}
 ) {

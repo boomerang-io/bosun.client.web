@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "carbon-components-react";
 import FullPageHeader from "components/FullPageHeader";
-import { formatDateTimestamp } from "utils";
+import { formatDateTimeString } from "utils";
 import { Add16, Delete16, Save16 } from "@carbon/icons-react";
 import styles from "./createEditPolicyHeader.module.scss";
 
@@ -38,7 +38,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
             <div>
               <p className={styles.metaData}>
                 <span className={styles.metaDataLabel}>Created: </span>
-                {formatDateTimestamp(policy.createdDate)}
+                {formatDateTimeString(policy.createdDate)}
               </p>
             </div>
           )}

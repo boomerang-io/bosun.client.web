@@ -1,29 +1,20 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { DataTable } from "carbon-components-react";
+import { Button, ComposedModal, DataTable, ModalHeader, ModalFooter, ModalBody } from "carbon-components-react";
+import { isAccessibleEvent } from "utils";
 import styles from "./violationsTable.module.scss";
 
 export class ViolationsTable extends Component {
   static propTypes = {
     violations: PropTypes.array
   };
+
+  state = { isModalOpen: false, selectedPolicyIndex: null };
   headers = [
     {
       header: "Policy",
-      key: "ciPolicyName"
-    },
-    {
-      header: "Stage",
-      key: "ciStageName"
-    },
-    {
-      header: "Component",
-      key: "ciComponentName"
-    },
-    {
-      header: "Version",
-      key: "ciComponentVersionName"
+      key: "policyName"
     },
     {
       header: "Violations",
@@ -31,11 +22,11 @@ export class ViolationsTable extends Component {
     },
     {
       header: "Failed Definition Types",
-      key: "ciPolicyDefinitionTypes"
+      key: "policyDefinitionTypes"
     },
     {
       header: "Activity Date",
-      key: "ciPolicyActivityCreatedDate"
+      key: "policyActivityCreatedDate"
     }
   ];
 
@@ -100,68 +91,89 @@ export class ViolationsTable extends Component {
     }
   };
 
+  handleRowClick = row => {
+    this.setState({
+      isModalOpen: true,
+      selectedPolicyIndex: row
+    });
+  };
+
   render() {
     const { violations } = this.props;
-    const {
-      TableContainer,
-      Table,
-      TableHead,
-      TableRow,
-      TableBody,
-      TableCell,
-      TableHeader,
-      TableExpandHeader,
-      TableExpandRow,
-      TableExpandedRow
-    } = DataTable;
-
+    const { TableContainer, Table, TableHead, TableRow, TableBody, TableCell, TableHeader } = DataTable;
+    const selectedViolation = violations[this.state.selectedPolicyIndex];
     return (
-      <DataTable
-        rows={violations}
-        headers={this.headers}
-        isSortable={true}
-        render={({ rows, headers, getHeaderProps, getRowProps }) => (
-          <TableContainer>
-            <Table className={styles.tableContainer} sortable={"true"} useZebraStyles={false}>
-              <TableHead>
-                <TableRow className={styles.tableHeadRow}>
-                  <TableExpandHeader />
-                  {headers.map(header => (
-                    <TableHeader
-                      {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
-                    >
-                      {header.header}
-                    </TableHeader>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody className={styles.tableBody}>
-                {rows.map((row, rowIndex) => (
-                  <Fragment key={row.id}>
-                    <TableExpandRow key={row.id} {...getRowProps({ row })}>
-                      {row.cells.map((cell, cellIndex) => (
-                        <TableCell key={cell.id} style={{ padding: "0" }}>
-                          <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
-                        </TableCell>
-                      ))}
-                    </TableExpandRow>
-                    {row.isExpanded && (
-                      <TableExpandedRow colSpan={headers.length + 1}>
-                        <div className={styles.tableSubHeaders}>
-                          {this.subHeaders.map(header => (
-                            <div className={`${styles.tableSubHeader} ${styles[header.key]}`}>{header.header}</div>
-                          ))}
-                        </div>
-                        {this.renderSubRow(row)}
-                      </TableExpandedRow>
-                    )}
-                  </Fragment>
+      <>
+        <ComposedModal open={this.state.isModalOpen} onClose={() => this.setState({ isModalOpen: false })}>
+          <ModalHeader
+            title={selectedViolation?.policyName}
+            buttonOnClick={() => this.setState({ isModalOpen: false })}
+          />
+          <ModalBody>
+            <h2 className={styles.modalSectionTitle}>Failed Definition Types</h2>
+            <p>
+              {selectedViolation?.policyDefinitionTypes && selectedViolation?.policyDefinitionTypes.length
+                ? selectedViolation?.policyDefinitionTypes.join(", ")
+                : "---"}
+            </p>
+            <h2 className={styles.modalSectionTitle}>Labels</h2>
+            <p>
+              <ul>
+                {Object.entries(selectedViolation?.labels ?? {})?.map(entry => (
+                  <li>
+                    <span>{entry[0]}</span> : <span>{entry[1]}</span>
+                  </li>
                 ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        )}
-      />
+              </ul>
+            </p>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={() => this.setState({ isModalOpen: false })}>Close</Button>
+          </ModalFooter>
+        </ComposedModal>
+        <DataTable
+          rows={violations}
+          headers={this.headers}
+          isSortable={true}
+          render={({ rows, headers, getHeaderProps, getRowProps }) => (
+            <TableContainer>
+              <Table className={styles.tableContainer} sortable={"true"} useZebraStyles={false}>
+                <TableHead>
+                  <TableRow className={styles.tableHeadRow}>
+                    {headers.map(header => (
+                      <TableHeader
+                        {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
+                      >
+                        {header.header}
+                      </TableHeader>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody className={styles.tableBody}>
+                  {rows.map((row, rowIndex) => (
+                    <Fragment key={row.id}>
+                      <TableRow
+                        className={styles.tableBodyRow}
+                        key={row.id}
+                        {...getRowProps({ row })}
+                        onClick={() => this.handleRowClick(rowIndex)}
+                        onKeyDown={e => isAccessibleEvent(e) && this.handleRowClick(rowIndex)}
+                        tabIndex={0}
+                      >
+                        {row.cells.map((cell, cellIndex) => (
+                          <TableCell key={cell.id} style={{ padding: "0" }}>
+                            <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    </Fragment>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        />
+      </>
     );
   }
 }

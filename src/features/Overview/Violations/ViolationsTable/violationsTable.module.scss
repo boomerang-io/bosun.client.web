@@ -15,33 +15,21 @@
   font-weight: 600;
   height: 3rem;
 
-  &.ciPolicyName {
-    width: 10%;
-  }
-
-  &.ciStageName {
-    width: 7.5%;
-  }
-
-  &.ciComponentName {
-    width: 15%;
-  }
-
-  &.ciComponentVersionName {
-    width: 10%;
+  &.policyName {
+    width: 20%;
   }
 
   &.violations {
-    width: 5%;
+    width: 10%;
   }
 
-  &.ciPolicyDefinitionTypes {
-    width: 25%;
+  &.policyDefinitionTypes {
+    width: 50%;
     overflow-y: auto;
   }
 
-  &.ciPolicyActivityCreatedDate {
-    width: 12%;
+  &.policyActivityCreatedDate {
+    width: 10%;
   }
 }
 .tableSubHeader {
@@ -68,6 +56,14 @@
     td {
       padding: 1rem 0rem !important;
     }
+  }
+}
+
+.tableBodyRow {
+  cursor: pointer;
+  &:focus {
+    outline: 2px solid $interactive-01;
+    outline-offset: -2px;
   }
 }
 
@@ -121,4 +117,10 @@
 }
 .noDetail {
   margin-left: 3.25rem;
+}
+
+.modalSectionTitle {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  margin: 0.75rem 0;
 }

@@ -1,7 +1,9 @@
 @import "~@carbon/themes/scss/themes";
+@import "theme";
 
 $carbon--theme: $carbon--theme--g10;
 @include carbon--theme();
+@include bmrg-theme();
 $input-border: 1px solid transparent;
 $accordion-flex-direction: row;
 $accordion-justify-content: flex-start;

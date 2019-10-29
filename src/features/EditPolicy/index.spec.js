@@ -67,7 +67,7 @@ const policy = {
   teamId: "5a8b331e262a70306622df73",
   definitions: [
     {
-      ciPolicyDefinitionId: "5cd49777f6ea74a9bb6ac629",
+      policyDefinitionId: "5cd49777f6ea74a9bb6ac629",
       rules: [
         {
           metric: "lines",
