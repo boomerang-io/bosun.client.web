@@ -97,6 +97,7 @@ class CreatePolicy extends React.Component {
           caption=""
         />
       );
+      this.navigateBack();
     } catch (e) {
       this.setState({
         isCreating: false
