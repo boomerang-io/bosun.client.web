@@ -21,7 +21,7 @@ export function App() {
   const activeTeamName = globalMatch?.params?.teamName;
   React.useEffect(() => {
     if (activeTeamName) {
-      const activeTeam = teamsState.data?.find(team => team.boomerangTeamShortname === activeTeamName);
+      const activeTeam = teamsState.data?.find(team => team.name === activeTeamName);
       setActiveTeam(activeTeam);
     }
   }, [activeTeamName, setActiveTeam, teamsState.data]);
