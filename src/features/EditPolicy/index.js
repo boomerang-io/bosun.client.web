@@ -95,6 +95,7 @@ class EditPolicy extends React.Component {
       toast(
         <ToastNotification kind="success" title="Policy Updated" subtitle="Policy successfully updated" caption="" />
       );
+      this.navigateBack();
     } catch (e) {
       this.setState({
         isUpdating: false

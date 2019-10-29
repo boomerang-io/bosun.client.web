@@ -21,7 +21,7 @@ const headers = [
     key: "rules"
   },
   {
-    header: "Created",
+    header: "Created Date",
     key: "createdDate"
   }
 ];
@@ -45,7 +45,7 @@ export default function PoliciesTable(props) {
         return <p className={styles.tableTextarea}>{value}</p>;
       case "Definitions":
         return <p className={styles.tableTextarea}>{Array.isArray(value) ? value.length : "---"}</p>;
-      case "Created":
+      case "Created Date":
         return <p className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
       case "Rules":
         const defValue = cells.find(cell => cell.id.includes("definitions")).value;
