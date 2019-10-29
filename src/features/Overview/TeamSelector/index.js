@@ -29,17 +29,17 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }) {
   const selectedTeam = activeTeam
     ? {
         id: activeTeam.id,
-        label: activeTeam.boomerangTeamName,
-        name: activeTeam.boomerangTeamShortname
+        label: activeTeam.name,
+        name: activeTeam.name
       }
     : null;
   const teamsList = teams.map(team => ({
     id: team.id,
-    label: team.boomerangTeamName,
-    name: team.boomerangTeamShortname
+    label: team.name,
+    name: team.name
   }));
 
-  const teamNames = teams.map(team => team.boomerangTeamName);
+  const teamNames = teams.map(team => team.name);
 
   async function createTeam(body) {
     try {

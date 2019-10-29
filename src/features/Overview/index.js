@@ -22,9 +22,9 @@ export function Overview() {
   const { activeTeam, teams } = React.useContext(AppContext);
   const activeTeamId = activeTeam?.id;
 
-  const policiesState = useAxiosFetch(`${SERVICE_PRODUCT_POLICIES_PATH}?ciTeamId=${activeTeamId}`);
-  const insightsState = useAxiosFetch(`${SERVICE_PRODUCT_INSIGHTS_PATH}?ciTeamId=${activeTeamId}`);
-  const violationsState = useAxiosFetch(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?ciTeamId=${activeTeamId}`);
+  const policiesState = useAxiosFetch(`${SERVICE_PRODUCT_POLICIES_PATH}?teamId=${activeTeamId}`);
+  const insightsState = useAxiosFetch(`${SERVICE_PRODUCT_INSIGHTS_PATH}?teamId=${activeTeamId}`);
+  const violationsState = useAxiosFetch(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?teamId=${activeTeamId}`);
 
   const handleChangeTeam = ({ selectedItem }) => {
     if (selectedItem?.name) {
