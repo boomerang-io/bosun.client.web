@@ -28,7 +28,7 @@
     "analyze": "source-map-explorer server/build/static/js/main.*",
     "apiServer": "json-server -c api/json-server.json --watch api/db.json api/routes.json",
     "build": "react-app-rewired build",
-    "postbuild": "mv ./build/**/* ./server/build",
+    "postbuild": "mv ./build ./server",
     "cm": "git cz",
     "cypress": "cypress open",
     "cypress:run": "$(npm bin)/cypress run --config video=false",

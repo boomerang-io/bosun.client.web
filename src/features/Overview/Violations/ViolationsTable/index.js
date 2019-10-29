@@ -110,6 +110,8 @@ export class ViolationsTable extends Component {
             buttonOnClick={() => this.setState({ isModalOpen: false })}
           />
           <ModalBody>
+            <h2 className={styles.modalSectionTitle}>Violations</h2>
+            <p>{selectedViolation?.nbrViolations}</p>
             <h2 className={styles.modalSectionTitle}>Failed Definition Types</h2>
             <p>
               {selectedViolation?.policyDefinitionTypes && selectedViolation?.policyDefinitionTypes.length
