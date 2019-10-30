@@ -25,6 +25,10 @@ export class ViolationsTable extends Component {
       key: "policyDefinitionTypes"
     },
     {
+      header: "Reference ID",
+      key: "referenceId"
+    },
+    {
       header: "Activity Date",
       key: "policyActivityCreatedDate"
     }
@@ -126,6 +130,10 @@ export class ViolationsTable extends Component {
                 </li>
               ))}
             </ul>
+            <h2 className={styles.modalSectionTitle}>Reference Link</h2>
+            <a href={selectedViolation?.referenceLink} alt="Reference link">
+              {selectedViolation?.referenceLink}
+            </a>
           </ModalBody>
           <ModalFooter>
             <Button onClick={() => this.setState({ isModalOpen: false })}>Close</Button>

@@ -20,11 +20,15 @@
   }
 
   &.violations {
-    width: 10%;
+    width: 5%;
+  }
+
+  &.referenceId {
+    width: 15%;
   }
 
   &.policyDefinitionTypes {
-    width: 50%;
+    width: 40%;
     overflow-y: auto;
   }
 
