@@ -22,6 +22,7 @@ export default function CreateEditPolicyForm({ definitions, form }) {
           onChange={form.setName}
           placeholder="Name"
           value={form.name}
+          type="text"
         />
         {definitions.map(definition => (
           <PolicyFormDefinitionSection key={definition.id + definition.key} definition={definition} form={form} />

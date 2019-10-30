@@ -69,6 +69,7 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
         onChange={({ selectedItem }) => onChange({ target: { name: key, value: selectedItem } }, uuid)}
         placeholder={label}
         required={required}
+        type="text"
       />
     );
   }

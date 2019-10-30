@@ -1,18 +1,20 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Button, Modal } from "carbon-components-react";
 import FullPageHeader from "components/FullPageHeader";
 import { formatDateTimeString } from "utils";
 import { Add16, Delete16, Save16 } from "@carbon/icons-react";
+import { POLICY_INTERACTION_TYPES } from "../../constants";
 import styles from "./createEditPolicyHeader.module.scss";
 
 const ACTION_TYPE_CONFIG = {
-  create: {
+  [POLICY_INTERACTION_TYPES.CREATE]: {
     title: "Create",
     affirmativeActionVerb: "Create",
     isPerformingActionVerb: "Creating...",
     icon: Add16
   },
-  edit: {
+  [POLICY_INTERACTION_TYPES.EDIT]: {
     title: "Edit",
     affirmativeActionVerb: "Save",
     isPerformingActionVerb: "Saving...",
@@ -20,6 +22,13 @@ const ACTION_TYPE_CONFIG = {
     isDeletingActionVerb: "Deleting...",
     icon: Save16
   }
+};
+
+CreateEditPolicyHeader.propTypes = {
+  form: PropTypes.object.isRequired,
+  policy: PropTypes.object,
+  navigateBack: PropTypes.func.isRequired,
+  type: PropTypes.oneOf(Object.values(POLICY_INTERACTION_TYPES))
 };
 
 function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
@@ -44,7 +53,10 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
           )}
         </div>
         <section className={styles.buttons}>
-          {type === "edit" && policy.id && (
+          <Button className={styles.button} kind="secondary" onClick={navigateBack} size="field">
+            Cancel
+          </Button>
+          {type === POLICY_INTERACTION_TYPES.EDIT && policy.id && (
             <Button
               disabled={isPerformingAffirmativeAction || isDeleting}
               className={styles.button}
@@ -57,9 +69,6 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
               {isDeleting ? config.isDeletingActionVerb : config.deleteActionVerb}
             </Button>
           )}
-          <Button className={styles.button} kind="secondary" onClick={navigateBack} size="field">
-            Cancel
-          </Button>
           <Button
             data-testid="policy-header-affirmative-action"
             disabled={isPerformingAffirmativeAction || isDeleting || !name || !!hasErrors}

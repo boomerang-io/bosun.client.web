@@ -31,6 +31,9 @@
   .#{$prefix}--text-input {
     border: none !important;
     border-radius: rem(4px) !important;
+    &::placeholder {
+      color: $text-02;
+    }
   }
 
   .#{$prefix}--checkbox-label::after {

@@ -13,6 +13,7 @@ import {
   SERVICE_PRODUCT_POLICIES_PATH,
   SERVICE_REQUEST_STATUSES
 } from "config/servicesConfig";
+import { POLICY_INTERACTION_TYPES } from "../../constants";
 import styles from "./editPolicy.module.scss";
 
 class EditPolicy extends React.Component {
@@ -263,7 +264,12 @@ class EditPolicy extends React.Component {
     if (status === SERVICE_REQUEST_STATUSES.SUCCESS) {
       return (
         <div className={styles.container}>
-          <CreateEditPolicyHeader form={form} navigateBack={this.navigateBack} policy={this.state.policy} type="edit" />
+          <CreateEditPolicyHeader
+            form={form}
+            navigateBack={this.navigateBack}
+            policy={this.state.policy}
+            type={POLICY_INTERACTION_TYPES.EDIT}
+          />
           <CreateEditPolicyForm form={form} definitions={definitions} />
         </div>
       );

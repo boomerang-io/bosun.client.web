@@ -13,6 +13,7 @@ import {
   SERVICE_REQUEST_STATUSES
 } from "config/servicesConfig";
 import AppContext from "utils/context/appContext";
+import { POLICY_INTERACTION_TYPES } from "../../constants";
 import styles from "./createPolicy.module.scss";
 
 class CreatePolicy extends React.Component {
@@ -205,7 +206,7 @@ class CreatePolicy extends React.Component {
     if (status === SERVICE_REQUEST_STATUSES.SUCCESS) {
       return (
         <div className={styles.container}>
-          <CreateEditPolicyHeader form={form} navigateBack={this.navigateBack} type="create" />
+          <CreateEditPolicyHeader form={form} navigateBack={this.navigateBack} type={POLICY_INTERACTION_TYPES.CREATE} />
           <CreateEditPolicyForm form={form} definitions={definitions} />
         </div>
       );
