@@ -4,10 +4,6 @@
   margin-top: 1rem;
 }
 
-.tableHeadRow {
-  //background-color: $cool-white-1;
-}
-
 .tableHeadRow > .tableHeader {
   color: $interactive-01;
   font-size: inherit;
@@ -53,9 +49,6 @@
 }
 
 .tableBody {
-  background-color: #f2f2f2;
-  //color: $gray-90;
-  font-weight: 400;
   :global .bx--expandable-row {
     td {
       padding: 1rem 0rem !important;
@@ -103,28 +96,28 @@
   width: 100%;
 }
 .detailMetrics {
-  //color: $gray-90;
   margin-left: 3rem;
   width: 100%;
 }
 .detailMessage {
-  // color: $gray-50;
   margin-left: 4.25rem;
   width: 100%;
 }
 .subRow {
   display: flex;
   width: 100%;
-  &:hover {
-    //background-color: $gray-1;
-  }
 }
 .noDetail {
   margin-left: 3.25rem;
 }
 
 .modalSectionTitle {
-  font-size: 1rem !important;
-  font-weight: 500 !important;
-  margin: 0.75rem 0;
+  color: $ui-04;
+  font-size: 0.75rem !important;
+  margin: 1rem 0 0rem;
+}
+
+.modalLabels {
+  display: flex;
+  flex-flow: wrap;
 }

@@ -1,7 +1,17 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { Button, ComposedModal, DataTable, ModalHeader, ModalFooter, ModalBody } from "carbon-components-react";
+import {
+  Button,
+  CodeSnippet,
+  ComposedModal,
+  DataTable,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  Tag
+} from "carbon-components-react";
+import copy from "copy-to-clipboard";
 import { isAccessibleEvent } from "utils";
 import styles from "./violationsTable.module.scss";
 
@@ -9,6 +19,8 @@ export class ViolationsTable extends Component {
   static propTypes = {
     violations: PropTypes.array
   };
+
+  annotationsRef = React.createRef();
 
   state = { isModalOpen: false, selectedPolicyIndex: null };
   headers = [
@@ -73,7 +85,6 @@ export class ViolationsTable extends Component {
     else {
       return (
         <div className={styles.subRow}>
-          {" "}
           {this.subHeaders.map(cell => (
             <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>
               {this.renderDetail(cell.key, "---")}
@@ -123,17 +134,42 @@ export class ViolationsTable extends Component {
                 : "---"}
             </p>
             <h2 className={styles.modalSectionTitle}>Labels</h2>
-            <ul>
+            <ul className={styles.modalLabels}>
               {Object.entries(selectedViolation?.labels ?? {})?.map(entry => (
                 <li key={entry[0]}>
-                  <span>{entry[0]}</span> : <span>{entry[1]}</span>
+                  <Tag type="purple">
+                    {entry[0]}
+                    <span>:</span>
+                    {entry[1]}
+                  </Tag>
                 </li>
               ))}
             </ul>
             <h2 className={styles.modalSectionTitle}>Reference Link</h2>
-            <a href={selectedViolation?.referenceLink} alt="Reference link">
-              {selectedViolation?.referenceLink}
-            </a>
+            {selectedViolation?.referenceLink ? (
+              <a href={selectedViolation?.referenceLink} alt="Reference link">
+                {selectedViolation.referenceLink}
+              </a>
+            ) : (
+              <p>No reference link provided</p>
+            )}
+
+            <h2 className={styles.modalSectionTitle}>Reference ID</h2>
+            <p>{selectedViolation?.referenceId ?? "---"}</p>
+            <h2 className={styles.modalSectionTitle}>Created Date</h2>
+            <p>{moment(selectedViolation?.createdDate).format("MMM DD, YYYY - hh:mm a")}</p>
+            <h2 className={styles.modalSectionTitle}>Annotations</h2>
+            {selectedViolation?.annotations ? (
+              <CodeSnippet
+                copyButtonDescription="Copy annotations to clipboard"
+                onClick={() => copy(JSON.stringify([selectedViolation?.annotations]))}
+                type="multi"
+              >
+                {JSON.stringify([selectedViolation?.annotations], null, 1)}
+              </CodeSnippet>
+            ) : (
+              "---"
+            )}
           </ModalBody>
           <ModalFooter>
             <Button onClick={() => this.setState({ isModalOpen: false })}>Close</Button>

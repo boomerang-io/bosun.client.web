@@ -14,7 +14,7 @@ function NotificationBanner() {
   return (
     <section className={classnames(styles.container, { [styles.hidden]: !isOpen })} role="alert">
       <p className={styles.text}>
-        Welcome to Boomerang Bosun! We're excited to have a open source release and hope you enjoy using it. You may
+        Welcome to Boomerang Bosun! We're excited to have an open source release and hope you enjoy using it. You may
         notice a bug or two. Please don't hesitate to reach out to us on GitHub in the{" "}
         <Link href={`https://github.com/boomerang-io`}>boomerang-io</Link> org. Thanks!
       </p>
