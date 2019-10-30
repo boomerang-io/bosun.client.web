@@ -24,9 +24,6 @@
   max-height: 12rem;
 }
 
-.bx--table-header-label {
-  color: $brand-01;
-  font-size: 0.9rem;
-  font-weight: bolder;
-  padding-right: 0.5rem;
+.bx--list-box input[role="combobox"] {
+  min-width: 15rem;
 }
