@@ -11,12 +11,6 @@ exports[`EditPolicy --- Snapshot +++ renders correctly 1`] = `
       <div
         class="container"
       >
-        <button
-          class="back"
-          role="link"
-        >
-          ← Back to Policies
-        </button>
         <div
           class="content"
         >
@@ -148,156 +142,150 @@ exports[`EditPolicy --- Snapshot +++ renders correctly 1`] = `
                 class="row"
               >
                 <div
-                  class="bx--bmrg-select"
+                  class="bx--list-box__wrapper"
                 >
-                  <div
-                    class="bx--list-box__wrapper"
+                  <label
+                    class="bx--label"
+                    for="metric"
                   >
-                    <label
-                      class="bx--label"
-                      for="metric"
-                    >
-                      Metric
-                    </label>
+                    Metric
+                  </label>
+                  <div
+                    class="bx--combo-box bx--list-box"
+                    role="listbox"
+                    tabindex="-1"
+                  >
                     <div
-                      class="bx--combo-box bx--list-box"
-                      role="listbox"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      aria-label="Open menu"
+                      class="bx--list-box__field"
+                      data-toggle="true"
+                      role="button"
                       tabindex="-1"
+                      type="button"
                     >
-                      <div
+                      <input
+                        aria-autocomplete="list"
+                        aria-controls="metric__menu"
+                        aria-disabled="false"
                         aria-expanded="false"
-                        aria-haspopup="true"
-                        aria-label="Open menu"
-                        class="bx--list-box__field"
-                        data-toggle="true"
+                        aria-label="Choose an item"
+                        autocomplete="off"
+                        class="bx--text-input"
+                        id="metric"
+                        placeholder="Metric"
+                        role="combobox"
+                        value="lines"
+                      />
+                      <div
+                        class="bx--list-box__selection"
                         role="button"
-                        tabindex="-1"
-                        type="button"
+                        tabindex="0"
+                        title="Clear selected item"
                       >
-                        <input
-                          aria-autocomplete="list"
-                          aria-controls="metric__menu"
-                          aria-expanded="false"
-                          aria-label="Choose an item"
-                          autocomplete="off"
-                          class="bx--text-input"
-                          id="metric"
-                          placeholder="Metric"
-                          role="combobox"
-                          value="lines"
-                        />
-                        <div
-                          class="bx--list-box__selection"
-                          role="button"
-                          tabindex="0"
-                          title="Clear selected item"
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          height="16"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          style="will-change: transform;"
+                          viewBox="0 0 16 16"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            aria-hidden="true"
-                            focusable="false"
-                            height="16"
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style="will-change: transform;"
-                            viewBox="0 0 16 16"
-                            width="16"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"
-                            />
-                          </svg>
-                        </div>
-                        <div
-                          class="bx--list-box__menu-icon"
+                          <path
+                            d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"
+                          />
+                        </svg>
+                      </div>
+                      <div
+                        class="bx--list-box__menu-icon"
+                      >
+                        <svg
+                          aria-label="Open menu"
+                          focusable="false"
+                          height="16"
+                          name="chevron--down"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          style="will-change: transform;"
+                          viewBox="0 0 16 16"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            aria-label="Open menu"
-                            focusable="false"
-                            height="16"
-                            name="chevron--down"
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style="will-change: transform;"
-                            viewBox="0 0 16 16"
-                            width="16"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
-                            />
-                            <title>
-                              Open menu
-                            </title>
-                          </svg>
-                        </div>
+                          <path
+                            d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
+                          />
+                          <title>
+                            Open menu
+                          </title>
+                        </svg>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="bx--bmrg-select"
+                  class="bx--list-box__wrapper"
                 >
-                  <div
-                    class="bx--list-box__wrapper"
+                  <label
+                    class="bx--label"
+                    for="operator"
                   >
-                    <label
-                      class="bx--label"
-                      for="operator"
-                    >
-                      Operator
-                    </label>
+                    Operator
+                  </label>
+                  <div
+                    class="bx--combo-box bx--list-box"
+                    role="listbox"
+                    tabindex="-1"
+                  >
                     <div
-                      class="bx--combo-box bx--list-box"
-                      role="listbox"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      aria-label="Open menu"
+                      class="bx--list-box__field"
+                      data-toggle="true"
+                      role="button"
                       tabindex="-1"
+                      type="button"
                     >
-                      <div
+                      <input
+                        aria-autocomplete="list"
+                        aria-controls="operator__menu"
+                        aria-disabled="false"
                         aria-expanded="false"
-                        aria-haspopup="true"
-                        aria-label="Open menu"
-                        class="bx--list-box__field"
-                        data-toggle="true"
-                        role="button"
-                        tabindex="-1"
-                        type="button"
+                        aria-label="Choose an item"
+                        autocomplete="off"
+                        class="bx--text-input"
+                        id="operator"
+                        placeholder="Operator"
+                        role="combobox"
+                        value=""
+                      />
+                      
+                      <div
+                        class="bx--list-box__menu-icon"
                       >
-                        <input
-                          aria-autocomplete="list"
-                          aria-controls="operator__menu"
-                          aria-expanded="false"
-                          aria-label="Choose an item"
-                          autocomplete="off"
-                          class="bx--text-input"
-                          id="operator"
-                          placeholder="Operator"
-                          role="combobox"
-                          value=""
-                        />
-                        
-                        <div
-                          class="bx--list-box__menu-icon"
+                        <svg
+                          aria-label="Open menu"
+                          focusable="false"
+                          height="16"
+                          name="chevron--down"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          style="will-change: transform;"
+                          viewBox="0 0 16 16"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            aria-label="Open menu"
-                            focusable="false"
-                            height="16"
-                            name="chevron--down"
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style="will-change: transform;"
-                            viewBox="0 0 16 16"
-                            width="16"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
-                            />
-                            <title>
-                              Open menu
-                            </title>
-                          </svg>
-                        </div>
+                          <path
+                            d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
+                          />
+                          <title>
+                            Open menu
+                          </title>
+                        </svg>
                       </div>
                     </div>
                   </div>
@@ -349,156 +337,150 @@ exports[`EditPolicy --- Snapshot +++ renders correctly 1`] = `
                 class="row"
               >
                 <div
-                  class="bx--bmrg-select"
+                  class="bx--list-box__wrapper"
                 >
-                  <div
-                    class="bx--list-box__wrapper"
+                  <label
+                    class="bx--label"
+                    for="metric"
                   >
-                    <label
-                      class="bx--label"
-                      for="metric"
-                    >
-                      Metric
-                    </label>
+                    Metric
+                  </label>
+                  <div
+                    class="bx--combo-box bx--list-box"
+                    role="listbox"
+                    tabindex="-1"
+                  >
                     <div
-                      class="bx--combo-box bx--list-box"
-                      role="listbox"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      aria-label="Open menu"
+                      class="bx--list-box__field"
+                      data-toggle="true"
+                      role="button"
                       tabindex="-1"
+                      type="button"
                     >
-                      <div
+                      <input
+                        aria-autocomplete="list"
+                        aria-controls="metric__menu"
+                        aria-disabled="false"
                         aria-expanded="false"
-                        aria-haspopup="true"
-                        aria-label="Open menu"
-                        class="bx--list-box__field"
-                        data-toggle="true"
+                        aria-label="Choose an item"
+                        autocomplete="off"
+                        class="bx--text-input"
+                        id="metric"
+                        placeholder="Metric"
+                        role="combobox"
+                        value="complexity"
+                      />
+                      <div
+                        class="bx--list-box__selection"
                         role="button"
-                        tabindex="-1"
-                        type="button"
+                        tabindex="0"
+                        title="Clear selected item"
                       >
-                        <input
-                          aria-autocomplete="list"
-                          aria-controls="metric__menu"
-                          aria-expanded="false"
-                          aria-label="Choose an item"
-                          autocomplete="off"
-                          class="bx--text-input"
-                          id="metric"
-                          placeholder="Metric"
-                          role="combobox"
-                          value="complexity"
-                        />
-                        <div
-                          class="bx--list-box__selection"
-                          role="button"
-                          tabindex="0"
-                          title="Clear selected item"
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          height="16"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          style="will-change: transform;"
+                          viewBox="0 0 16 16"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            aria-hidden="true"
-                            focusable="false"
-                            height="16"
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style="will-change: transform;"
-                            viewBox="0 0 16 16"
-                            width="16"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"
-                            />
-                          </svg>
-                        </div>
-                        <div
-                          class="bx--list-box__menu-icon"
+                          <path
+                            d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"
+                          />
+                        </svg>
+                      </div>
+                      <div
+                        class="bx--list-box__menu-icon"
+                      >
+                        <svg
+                          aria-label="Open menu"
+                          focusable="false"
+                          height="16"
+                          name="chevron--down"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          style="will-change: transform;"
+                          viewBox="0 0 16 16"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            aria-label="Open menu"
-                            focusable="false"
-                            height="16"
-                            name="chevron--down"
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style="will-change: transform;"
-                            viewBox="0 0 16 16"
-                            width="16"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
-                            />
-                            <title>
-                              Open menu
-                            </title>
-                          </svg>
-                        </div>
+                          <path
+                            d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
+                          />
+                          <title>
+                            Open menu
+                          </title>
+                        </svg>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="bx--bmrg-select"
+                  class="bx--list-box__wrapper"
                 >
-                  <div
-                    class="bx--list-box__wrapper"
+                  <label
+                    class="bx--label"
+                    for="operator"
                   >
-                    <label
-                      class="bx--label"
-                      for="operator"
-                    >
-                      Operator
-                    </label>
+                    Operator
+                  </label>
+                  <div
+                    class="bx--combo-box bx--list-box"
+                    role="listbox"
+                    tabindex="-1"
+                  >
                     <div
-                      class="bx--combo-box bx--list-box"
-                      role="listbox"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      aria-label="Open menu"
+                      class="bx--list-box__field"
+                      data-toggle="true"
+                      role="button"
                       tabindex="-1"
+                      type="button"
                     >
-                      <div
+                      <input
+                        aria-autocomplete="list"
+                        aria-controls="operator__menu"
+                        aria-disabled="false"
                         aria-expanded="false"
-                        aria-haspopup="true"
-                        aria-label="Open menu"
-                        class="bx--list-box__field"
-                        data-toggle="true"
-                        role="button"
-                        tabindex="-1"
-                        type="button"
+                        aria-label="Choose an item"
+                        autocomplete="off"
+                        class="bx--text-input"
+                        id="operator"
+                        placeholder="Operator"
+                        role="combobox"
+                        value=""
+                      />
+                      
+                      <div
+                        class="bx--list-box__menu-icon"
                       >
-                        <input
-                          aria-autocomplete="list"
-                          aria-controls="operator__menu"
-                          aria-expanded="false"
-                          aria-label="Choose an item"
-                          autocomplete="off"
-                          class="bx--text-input"
-                          id="operator"
-                          placeholder="Operator"
-                          role="combobox"
-                          value=""
-                        />
-                        
-                        <div
-                          class="bx--list-box__menu-icon"
+                        <svg
+                          aria-label="Open menu"
+                          focusable="false"
+                          height="16"
+                          name="chevron--down"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          style="will-change: transform;"
+                          viewBox="0 0 16 16"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            aria-label="Open menu"
-                            focusable="false"
-                            height="16"
-                            name="chevron--down"
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style="will-change: transform;"
-                            viewBox="0 0 16 16"
-                            width="16"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
-                            />
-                            <title>
-                              Open menu
-                            </title>
-                          </svg>
-                        </div>
+                          <path
+                            d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
+                          />
+                          <title>
+                            Open menu
+                          </title>
+                        </svg>
                       </div>
                     </div>
                   </div>

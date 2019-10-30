@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Button, TextInput, TextArea } from "carbon-components-react";
-import { ComboBox } from "@boomerang/carbon-addons-boomerang-react";
+import { Button, ComboBox, TextInput, TextArea } from "carbon-components-react";
 import styles from "./policyFormDefinitionSection.module.scss";
 import uuid from "uuid";
 import { Add16, Delete16 } from "@carbon/icons-react";
@@ -21,15 +20,18 @@ const SELECT_TYPES = {
   select: { type: "select", isMultiselect: false, valueProperty: "value" },
   multiselect: { type: "multiselect", isMultiselect: true, valueProperty: "values" }
 };
+
 function determineInput({ onChange, inputs, inputData, uuid }) {
   const { type, label, key, required, options } = inputData;
   if (Object.keys(INPUT_TYPES).includes(type)) {
     const config = INPUT_TYPES[type];
     return (
       <TextInput
+        autoComplete="off"
         id={key}
         key={key}
         labelText={label}
+        name={key}
         onChange={e => onChange(e, uuid)}
         placeholder={label}
         required={required}
@@ -42,9 +44,11 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
   if (Object.keys(TEXT_AREA_TYPES).includes(type)) {
     return (
       <TextArea
+        autoComplete="off"
         id={key}
         key={key}
         labelText={label}
+        name={key}
         onChange={e => onChange(e, uuid)}
         placeholder={label}
         required={required}
@@ -56,14 +60,16 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
   if (Object.keys(SELECT_TYPES).includes(type)) {
     return (
       <ComboBox
+        autoComplete="off"
         id={key}
         key={key}
         titleText={label}
         initialSelectedItem={inputs[key]}
         items={options}
-        onChange={({ selectedItem }) => onChange({ target: { name: `${key}`, value: selectedItem } }, uuid)}
+        onChange={({ selectedItem }) => onChange({ target: { name: key, value: selectedItem } }, uuid)}
         placeholder={label}
         required={required}
+        type="text"
       />
     );
   }

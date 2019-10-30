@@ -1,8 +1,23 @@
+@import "~react-toastify/dist/ReactToastify.min.css";
+
 body {
   font-family: "IBM Plex Sans", "Helvetica Neue", Arial, Helvetica, sans-serif !important;
-  background-color: $gray-1;
+  background-color: $ui-background;
+}
+
+//Override
+
+.bx--list-box input[role="combobox"] {
+  min-width: 15rem;
 }
 
 h2 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
+}
+
+.Toastify__toast {
+  box-shadow: none;
+}
+.Toastify__toast--default {
+  background: transparent;
 }

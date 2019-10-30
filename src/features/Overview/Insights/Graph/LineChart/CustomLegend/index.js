@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import isAccessibleEvent from "@boomerang/boomerang-utilities/lib/isAccessibleEvent";
+import isAccessibleEvent from "utils/isAccessibleEvent";
 import LegendIcon from "./LegendIcon";
 import "./styles.scss";
 

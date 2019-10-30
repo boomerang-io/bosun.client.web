@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, waitForElement } from "@testing-library/react";
 import CreatePolicy from ".";
-import mockAxios from "Utils/mocks/axios";
+import mockAxios from "utils/mocks/axios";
 import { SERVICE_PRODUCT_DEFINITIONS_PATH } from "Config/servicesConfig";
 
 const route = "/111/policy/create";

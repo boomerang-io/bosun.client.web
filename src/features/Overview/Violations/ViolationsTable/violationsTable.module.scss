@@ -1,53 +1,39 @@
-@import "~@boomerang/boomerang-styles/lib/colors";
-@import "~Styles/variables";
+@import "~styles/variables";
 
 .tableContainer {
   margin-top: 1rem;
 }
 
-.tableHeadRow {
-  background-color: $cool-white-1;
-}
-
 .tableHeadRow > .tableHeader {
-  color: $cerulean-40;
+  color: $interactive-01;
   font-size: inherit;
   font-family: inherit;
   font-weight: 600;
   height: 3rem;
 
-  &.ciPolicyName {
-    width: 10%;
-  }
-
-  &.ciStageName {
-    width: 7.5%;
-  }
-
-  &.ciComponentName {
-    width: 15%;
-  }
-
-  &.ciComponentVersionName {
-    width: 10%;
+  &.policyName {
+    width: 20%;
   }
 
   &.violations {
     width: 5%;
   }
 
-  &.ciPolicyDefinitionTypes {
-    width: 25%;
+  &.referenceId {
+    width: 15%;
+  }
+
+  &.policyDefinitionTypes {
+    width: 40%;
     overflow-y: auto;
   }
 
-  &.ciPolicyActivityCreatedDate {
-    width: 12%;
+  &.policyActivityCreatedDate {
+    width: 20%;
   }
-  
 }
-.tableSubHeader{
-  color: $cerulean-50;
+.tableSubHeader {
+  color: $interactive-01;
   font-size: inherit;
   font-family: inherit;
   font-weight: 600;
@@ -63,13 +49,18 @@
 }
 
 .tableBody {
-  background-color: #f2f2f2;
-  color: $gray-90;
-  font-weight: 400;
-  :global .bx--expandable-row{
-    td{
+  :global .bx--expandable-row {
+    td {
       padding: 1rem 0rem !important;
     }
+  }
+}
+
+.tableBodyRow {
+  cursor: pointer;
+  &:focus {
+    outline: 2px solid $interactive-01;
+    outline-offset: -2px;
   }
 }
 
@@ -90,7 +81,7 @@
 }
 .tableTextarea {
   background: inherit;
-  color: $black;
+  color: $text-01;
   max-width: 100%;
   max-height: 100%;
   resize: none;
@@ -100,27 +91,33 @@
   margin-left: 0.25rem;
   word-break: break-all;
 }
-.tableSubHeaders{
+.tableSubHeaders {
   display: flex;
   width: 100%;
 }
-.detailMetrics{
-  color: $gray-90;
+.detailMetrics {
   margin-left: 3rem;
-  width:100%;
+  width: 100%;
 }
-.detailMessage{
-  color: $gray-50;
+.detailMessage {
   margin-left: 4.25rem;
-  width:100%;
+  width: 100%;
 }
-.subRow{
+.subRow {
   display: flex;
   width: 100%;
-  &:hover{
-    background-color: $gray-1
-  }
 }
-.noDetail{
+.noDetail {
   margin-left: 3.25rem;
+}
+
+.modalSectionTitle {
+  color: $ui-04;
+  font-size: 0.75rem !important;
+  margin: 1rem 0 0rem;
+}
+
+.modalLabels {
+  display: flex;
+  flex-flow: wrap;
 }

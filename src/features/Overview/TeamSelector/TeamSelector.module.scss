@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.title {
+  padding: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.inputs {
+  display: flex;
+  justify-content: space-between;
+  width: 30rem;
+}
+
+.modalForm {
+  height: 10rem;
+}

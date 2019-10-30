@@ -2,16 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import uuid from "uuid";
-import { notify, ToastNotification } from "@boomerang/carbon-addons-boomerang-react";
-import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
-import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
-import ErrorDragon from "Components/ErrorDragon";
-import LoadingAnimation from "Components/Loading";
+import { ToastNotification } from "carbon-components-react";
+import { toast } from "react-toastify";
+import CreateEditPolicyForm from "components/CreateEditPolicyForm";
+import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
+import ErrorDragon from "components/ErrorDragon";
+import LoadingAnimation from "components/Loading";
 import {
   SERVICE_PRODUCT_DEFINITIONS_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
   SERVICE_REQUEST_STATUSES
-} from "Config/servicesConfig";
+} from "config/servicesConfig";
+import { POLICY_INTERACTION_TYPES } from "../../constants";
 import styles from "./editPolicy.module.scss";
 
 class EditPolicy extends React.Component {
@@ -75,7 +77,7 @@ class EditPolicy extends React.Component {
 
     definitions.forEach(definition => {
       let newDefinition = {
-        ciPolicyDefinitionId: definition.id
+        policyDefinitionId: definition.id
       };
       let rules = [];
       const definitionRows = inputs[definition.key];
@@ -91,12 +93,22 @@ class EditPolicy extends React.Component {
       this.setState({
         isUpdating: false
       });
-      notify(<ToastNotification kind="success" title="Policy Updated" subtitle="Policy successfully updated" />);
+      toast(
+        <ToastNotification kind="success" title="Policy Updated" subtitle="Policy successfully updated" caption="" />
+      );
+      this.navigateBack();
     } catch (e) {
       this.setState({
         isUpdating: false
       });
-      notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to update policy failed" />);
+      toast(
+        <ToastNotification
+          kind="error"
+          title="Something's Wrong"
+          subtitle="Request to update policy failed"
+          caption=""
+        />
+      );
     }
   };
 
@@ -111,11 +123,12 @@ class EditPolicy extends React.Component {
       this.setState({
         isDeleting: false
       });
-      notify(
+      toast(
         <ToastNotification
           kind="success"
           title="Policy deleted"
           subtitle={`Policy ${policy.name} successfully deleted`}
+          caption=""
         />
       );
       this.navigateBack();
@@ -124,9 +137,12 @@ class EditPolicy extends React.Component {
         isDeleting: false
       });
       const { data } = err && err.response;
-      notify(<ToastNotification kind="error" title={`${data.status} - ${data.error}`} subtitle={data.message} />, {
-        autoClose: 5000
-      });
+      toast(
+        <ToastNotification kind="error" title={`${data.status} - ${data.error}`} subtitle={data.message} caption="" />,
+        {
+          autoClose: 5000
+        }
+      );
     }
   };
 
@@ -204,7 +220,7 @@ class EditPolicy extends React.Component {
     const newInputsState = {};
     policy.definitions.forEach(definition => {
       const policyDefinition = definitions.find(
-        policyDefinition => policyDefinition.id === definition.ciPolicyDefinitionId
+        policyDefinition => policyDefinition.id === definition.policyDefinitionId
       );
       newInputsState[policyDefinition.key] = {};
       const definitionRows = newInputsState[policyDefinition.key];
@@ -238,7 +254,7 @@ class EditPolicy extends React.Component {
     };
 
     if (isFetching) {
-      return <LoadingAnimation theme="bmrg-white" />;
+      return <LoadingAnimation />;
     }
 
     if (error) {
@@ -248,7 +264,12 @@ class EditPolicy extends React.Component {
     if (status === SERVICE_REQUEST_STATUSES.SUCCESS) {
       return (
         <div className={styles.container}>
-          <CreateEditPolicyHeader form={form} navigateBack={this.navigateBack} policy={this.state.policy} type="edit" />
+          <CreateEditPolicyHeader
+            form={form}
+            navigateBack={this.navigateBack}
+            policy={this.state.policy}
+            type={POLICY_INTERACTION_TYPES.EDIT}
+          />
           <CreateEditPolicyForm form={form} definitions={definitions} />
         </div>
       );

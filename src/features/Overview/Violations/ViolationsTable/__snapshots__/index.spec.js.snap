@@ -17,74 +17,396 @@ exports[`ViolationsTable --- Snapshot Capturing Snapshot of ViolationsTable 1`] 
           scope="col"
         />
         <th
-          className="tableHeader ciPolicyName"
+          aria-sort="none"
+          className="tableHeader policyName"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader policyName bx--table-sort"
+            onClick={[Function]}
           >
-            Policy
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Policy
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
         <th
+          aria-sort="none"
           className="tableHeader ciStageName"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader ciStageName bx--table-sort"
+            onClick={[Function]}
           >
-            Stage
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Stage
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
         <th
+          aria-sort="none"
           className="tableHeader ciComponentName"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader ciComponentName bx--table-sort"
+            onClick={[Function]}
           >
-            Component
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Component
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
         <th
+          aria-sort="none"
           className="tableHeader ciComponentVersionName"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader ciComponentVersionName bx--table-sort"
+            onClick={[Function]}
           >
-            Version
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Version
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
         <th
+          aria-sort="none"
           className="tableHeader nbrViolations"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader nbrViolations bx--table-sort"
+            onClick={[Function]}
           >
-            Violations
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Violations
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
         <th
-          className="tableHeader ciPolicyDefinitionTypes"
+          aria-sort="none"
+          className="tableHeader policyDefinitionTypes"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader policyDefinitionTypes bx--table-sort"
+            onClick={[Function]}
           >
-            Failed Definition Types
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Failed Definition Types
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
         <th
-          className="tableHeader ciPolicyActivityCreatedDate"
+          aria-sort="none"
+          className="tableHeader policyActivityCreatedDate"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader policyActivityCreatedDate bx--table-sort"
+            onClick={[Function]}
           >
-            Activity Date
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Activity Date
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
       </tr>
     </thead>

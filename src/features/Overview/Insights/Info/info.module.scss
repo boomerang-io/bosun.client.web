@@ -1,4 +1,4 @@
-@import "~@boomerang/boomerang-styles/lib/colors";
+@import "~styles/variables";
 
 .counter {
   align-items: center;
@@ -10,7 +10,7 @@
   width: 30%;
 }
 .divider {
-  border: $gray-1 0.01rem solid;
+  border: $ui-03 0.01rem solid;
   width: 0.15rem;
   height: 4.25rem;
 }
@@ -30,5 +30,5 @@
 .content {
   font-size: 1rem;
   margin-top: 1rem;
-  font-weight: 400;
+  line-height: 1.1;
 }

@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import { Button } from "carbon-components-react";
-import ConfirmModal from "@boomerang/boomerang-components/lib/ConfirmModal";
-import AlertModalWrapper from "@boomerang/boomerang-components/lib/AlertModal";
-import FullPageHeader from "Components/FullPageHeader";
-import { formatDateTimestamp } from "Utils";
+import PropTypes from "prop-types";
+import { Button, Modal } from "carbon-components-react";
+import FullPageHeader from "components/FullPageHeader";
+import { formatDateTimeString } from "utils";
 import { Add16, Delete16, Save16 } from "@carbon/icons-react";
+import { POLICY_INTERACTION_TYPES } from "../../constants";
 import styles from "./createEditPolicyHeader.module.scss";
 
 const ACTION_TYPE_CONFIG = {
-  create: {
+  [POLICY_INTERACTION_TYPES.CREATE]: {
     title: "Create",
     affirmativeActionVerb: "Create",
     isPerformingActionVerb: "Creating...",
     icon: Add16
   },
-  edit: {
+  [POLICY_INTERACTION_TYPES.EDIT]: {
     title: "Edit",
     affirmativeActionVerb: "Save",
     isPerformingActionVerb: "Saving...",
@@ -22,6 +22,13 @@ const ACTION_TYPE_CONFIG = {
     isDeletingActionVerb: "Deleting...",
     icon: Save16
   }
+};
+
+CreateEditPolicyHeader.propTypes = {
+  form: PropTypes.object.isRequired,
+  policy: PropTypes.object,
+  navigateBack: PropTypes.func.isRequired,
+  type: PropTypes.oneOf(Object.values(POLICY_INTERACTION_TYPES))
 };
 
 function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
@@ -33,9 +40,6 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
 
   return (
     <FullPageHeader>
-      <button role="link" className={styles.back} onClick={navigateBack}>
-        &#x2190; Back to Policies
-      </button>
       <div className={styles.content}>
         <div className={styles.info}>
           <h1 className={styles.title}>{`${config.title} Policy Definitions`}</h1>
@@ -43,13 +47,16 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
             <div>
               <p className={styles.metaData}>
                 <span className={styles.metaDataLabel}>Created: </span>
-                {formatDateTimestamp(policy.createdDate)}
+                {formatDateTimeString(policy.createdDate)}
               </p>
             </div>
           )}
         </div>
         <section className={styles.buttons}>
-          {type === "edit" && policy.id && (
+          <Button className={styles.button} kind="secondary" onClick={navigateBack} size="field">
+            Cancel
+          </Button>
+          {type === POLICY_INTERACTION_TYPES.EDIT && policy.id && (
             <Button
               disabled={isPerformingAffirmativeAction || isDeleting}
               className={styles.button}
@@ -62,9 +69,6 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
               {isDeleting ? config.isDeletingActionVerb : config.deleteActionVerb}
             </Button>
           )}
-          <Button className={styles.button} kind="secondary" onClick={navigateBack} size="field">
-            Cancel
-          </Button>
           <Button
             data-testid="policy-header-affirmative-action"
             disabled={isPerformingAffirmativeAction || isDeleting || !name || !!hasErrors}
@@ -80,24 +84,20 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
         </section>
       </div>
       {deleteModalIsOpen && (
-        <AlertModalWrapper
-          isOpen
-          modalProps={{ariaHideApp:false}}
-          modalContent={(closeModal, rest) => (
-            <ConfirmModal
-              closeModal={() => setDeleteModalIsOpen(false)}
-              affirmativeAction={() => {
-                form.deletePolicy();
-                setDeleteModalIsOpen(false);
-              }}
-              title={`DELETE ${policy.name.toUpperCase()}?`}
-              subTitleTop="It will be gone. Forever."
-              cancelText="NO"
-              affirmativeText="YES"
-              theme="bmrg-white"
-              {...rest}
-            />
-          )}
+        <Modal
+          danger
+          open
+          shouldSubmitOnEnter
+          className={styles.deleteConfirmModal}
+          modalHeading={`Delete ${policy.name}?`}
+          primaryButtonText="Yes"
+          secondaryButtonText="No"
+          onRequestClose={() => setDeleteModalIsOpen(false)}
+          onSecondarySubmit={() => setDeleteModalIsOpen(false)}
+          onRequestSubmit={() => {
+            form.deletePolicy();
+            setDeleteModalIsOpen(false);
+          }}
         />
       )}
     </FullPageHeader>

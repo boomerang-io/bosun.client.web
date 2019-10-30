@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { TextInput } from "carbon-components-react";
 import PolicyFormDefinitionSection from "./PolicyFormDefinitionSection";
-import KingJellyGraphic from "Components/KingJellyGraphic";
-//import ThanksRoosGraphic from "Components/ThanksRoosGraphic";
+import KingJellyGraphic from "components/KingJellyGraphic";
+//import ThanksRoosGraphic from "components/ThanksRoosGraphic";
 import styles from "./createEditPolicyForm.module.scss";
 
 CreateEditPolicyForm.propTypes = {
@@ -15,7 +15,15 @@ export default function CreateEditPolicyForm({ definitions, form }) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <TextInput labelText="Name" name="name" id="name" onChange={form.setName} placeholder="Name" value={form.name} />
+        <TextInput
+          labelText="Name"
+          name="name"
+          id="name"
+          onChange={form.setName}
+          placeholder="Name"
+          value={form.name}
+          type="text"
+        />
         {definitions.map(definition => (
           <PolicyFormDefinitionSection key={definition.id + definition.key} definition={definition} form={form} />
         ))}
