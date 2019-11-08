@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TextInput } from "carbon-components-react";
+import { TextInput } from "@boomerang-io/carbon-addons-boomerang-react";
 import PolicyFormDefinitionSection from "./PolicyFormDefinitionSection";
 import KingJellyGraphic from "components/KingJellyGraphic";
 //import ThanksRoosGraphic from "components/ThanksRoosGraphic";

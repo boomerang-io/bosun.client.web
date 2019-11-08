@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
 import LoadingAnimation from "components/Loading";
 import CreatePolicy from "features/CreatePolicy";
+import CreatePolicyDefinition from "features/CreatePolicyDefinition";
 import EditPolicy from "features/EditPolicy";
 import Overview from "features/Overview";
 import MessageBanner from "components/MessageBanner";
@@ -17,6 +18,7 @@ function Main() {
           <Switch>
             <Route path="/:teamName/policy/edit/:policyId" component={EditPolicy} />
             <Route path="/:teamName/policy/create" component={CreatePolicy} />
+            <Route path="/:teamName/policyDefintion/create" component={CreatePolicyDefinition} />
             <Route path="/:teamName" component={Overview} />
             <Route path="/" component={Overview} />
           </Switch>
