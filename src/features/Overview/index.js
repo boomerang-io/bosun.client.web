@@ -14,7 +14,7 @@ import {
 } from "config/servicesConfig";
 
 import useAxiosFetch from "utils/hooks/useAxios";
-import AppContext from "utils/context/appContext";
+import AppContext from "state/context/appContext";
 import styles from "./overview.module.scss";
 
 export function Overview() {

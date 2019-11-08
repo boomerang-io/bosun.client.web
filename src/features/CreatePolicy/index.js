@@ -12,7 +12,7 @@ import {
   SERVICE_PRODUCT_POLICIES_PATH,
   SERVICE_REQUEST_STATUSES
 } from "config/servicesConfig";
-import AppContext from "utils/context/appContext";
+import AppContext from "state/context/appContext";
 import { POLICY_INTERACTION_TYPES } from "../../constants";
 import styles from "./createPolicy.module.scss";
 

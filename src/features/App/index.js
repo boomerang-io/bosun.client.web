@@ -7,7 +7,7 @@ import Main from "./Main";
 import Navbar from "./Navbar";
 import { SERVICE_PRODUCT_TEAM_PATH } from "config/servicesConfig";
 import useAxiosFetch from "utils/hooks/useAxios";
-import AppContext from "utils/context/appContext";
+import AppContext from "state/context/appContext";
 import styles from "./App.module.scss";
 
 export function App() {
