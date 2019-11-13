@@ -9,7 +9,7 @@ import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
 import ErrorDragon from "components/ErrorDragon";
 import LoadingAnimation from "components/Loading";
 import {
-  SERVICE_PRODUCT_DEFINITIONS_PATH,
+  SERVICE_PRODUCT_TEMPLATES_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
   SERVICE_REQUEST_STATUSES
 } from "config/servicesConfig";
@@ -44,7 +44,7 @@ class EditPolicy extends React.Component {
       isFetching: true
     });
     try {
-      const definitionsResponse = await axios.get(SERVICE_PRODUCT_DEFINITIONS_PATH);
+      const definitionsResponse = await axios.get(SERVICE_PRODUCT_TEMPLATES_PATH);
       const policyResponse = await axios.get(`${SERVICE_PRODUCT_POLICIES_PATH}/${this.props.match.params.policyId}`);
       this.setState({
         definitions: definitionsResponse.data,
@@ -77,7 +77,7 @@ class EditPolicy extends React.Component {
 
     definitions.forEach(definition => {
       let newDefinition = {
-        policyDefinitionId: definition.id
+        policyTemplateId: definition.id
       };
       let rules = [];
       const definitionRows = inputs[definition.key];
@@ -220,7 +220,7 @@ class EditPolicy extends React.Component {
     const newInputsState = {};
     policy.definitions.forEach(definition => {
       const policyDefinition = definitions.find(
-        policyDefinition => policyDefinition.id === definition.policyDefinitionId
+        policyDefinition => policyDefinition.id === definition.policyTemplateId
       );
       newInputsState[policyDefinition.key] = {};
       const definitionRows = newInputsState[policyDefinition.key];

@@ -15,8 +15,9 @@
 
 .createPropertyCard {
   align-items: center;
+  background: none;
   border: 0.0625rem solid #373d42;
-  color: $brand-02;
+  color: $text-02;
   cursor: pointer;
   display: flex;
   height: 22.625rem;
@@ -31,7 +32,7 @@
 }
 
 .createText {
-  color: $brand-02;
+  color: $text-02;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.25rem;
@@ -41,6 +42,6 @@
 .createIcon {
   cursor: pointer;
   height: 1.5rem;
-  fill: $brand-02;
+  fill: $text-02;
   width: 1.5rem;
 }

@@ -23,12 +23,12 @@ export function Policies({ policies }) {
       <div className={styles.button}>
         <Button
           data-testid="add-policy-button"
-          iconDescription="Add Policy"
+          iconDescription="Create Policy"
           onClick={() => history.push(`${location.pathname}/policy/create`)}
           renderIcon={Add16}
           size="field"
         >
-          Add Policy
+          Create Policy
         </Button>
       </div>
       {policies.length > 0 ? (

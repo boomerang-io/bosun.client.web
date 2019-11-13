@@ -11,8 +11,10 @@
 
 .inputs {
   display: flex;
-  justify-content: space-between;
-  width: 30rem;
+  width: 32rem;
+  button {
+    margin-left: 1rem;
+  }
 }
 
 .modalForm {

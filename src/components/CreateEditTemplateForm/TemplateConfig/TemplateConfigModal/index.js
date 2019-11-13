@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ModalFlow } from "@boomerang-io/carbon-addons-boomerang-react";
-import WorkflowPropertiesModalContent from "./WorkflowPropertiesModalContent";
+import WorkflowPropertiesModalContent from "./ConfigTemplateModalContent";
 import EditButton from "components/EditButton";
 import { Add32 } from "@carbon/icons-react";
-import styles from "./WorkflowPropertiesModal.module.scss";
+import styles from "./configTemplateModal.module.scss";
 
 class WorkflowProperties extends Component {
   static propTypes = {
     input: PropTypes.object,
     inputsKeys: PropTypes.array,
     isEdit: PropTypes.bool.isRequired,
-    loading: PropTypes.bool.isRequired,
     updateWorkflowProperties: PropTypes.func.isRequired
   };
 
@@ -27,7 +26,7 @@ class WorkflowProperties extends Component {
           >
             <div className={styles.createContainer}>
               <Add32 className={styles.createIcon} aria-label="Add" />
-              <p className={styles.createText}>Create a new property</p>
+              <p className={styles.createText}>Create a new config</p>
             </div>
           </button>
         ));
@@ -35,24 +34,23 @@ class WorkflowProperties extends Component {
   };
 
   render() {
-    const { isEdit, input, loading } = this.props;
+    const { isEdit } = this.props;
 
     return (
       <ModalFlow
-        composedModalProps={{ containerClassName: "c-inputs-modal" }}
         confirmModalProps={{
           title: "Are you sure?",
-          children: "Your property will not be saved"
+          children: "Your config will not be saved"
         }}
         modalHeaderProps={{
-          title: isEdit && input ? input.label : "Create Property",
+          title: isEdit ? "Update Config" : "Create Config",
           subtitle: isEdit ? "Let's update it" : "Let's create a new one"
         }}
         modalTrigger={this.editTrigger}
       >
         <WorkflowPropertiesModalContent
-          loading={loading}
-          updateWorkflowProperties={this.props.updateWorkflowProperties}
+          createConfig={this.props.createConfig}
+          updateConfig={this.props.updateConfig}
           {...this.props}
         />
       </ModalFlow>

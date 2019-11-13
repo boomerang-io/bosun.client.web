@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, waitForElement } from "@testing-library/react";
 import CreatePolicy from ".";
 import mockAxios from "utils/mocks/axios";
-import { SERVICE_PRODUCT_DEFINITIONS_PATH } from "Config/servicesConfig";
+import { SERVICE_PRODUCT_TEMPLATES_PATH } from "Config/servicesConfig";
 
 const route = "/111/policy/create";
 const initialState = {
@@ -68,10 +68,10 @@ beforeEach(() => {
 });
 
 describe("CreatePolicy --- Snapshot", () => {
-  mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
+  mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
   it("+++ renders correctly", async () => {
     const { baseElement, getByText } = renderWithProviderAndRouter(<CreatePolicy />, { initialState, route });
-    await waitForElement(() => getByText(/Create Policy Definitions/i));
+    await waitForElement(() => getByText(/Create Policy/i));
     expect(baseElement).toMatchSnapshot();
   });
 });
@@ -79,7 +79,7 @@ describe("CreatePolicy --- Snapshot", () => {
 describe("CreatePolicy --- RTL", () => {
   test("renders error message when fetching definitions failed", async () => {
     mockAxios
-      .onGet(SERVICE_PRODUCT_DEFINITIONS_PATH)
+      .onGet(SERVICE_PRODUCT_TEMPLATES_PATH)
       .reply(404, { response: { data: { status: "error", message: "something went wrong" } } });
 
     const { getByText } = renderWithProviderAndRouter(<CreatePolicy />, { route });
@@ -88,7 +88,7 @@ describe("CreatePolicy --- RTL", () => {
   });
 
   test("it is able to create policy only after adding a name", async () => {
-    mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
+    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
 
     const { getByPlaceholderText, getByTestId } = renderWithProviderAndRouter(<CreatePolicy />, {
       initialState,
@@ -106,7 +106,7 @@ describe("CreatePolicy --- RTL", () => {
   });
 
   test("create button is disabled while creating", async () => {
-    mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
+    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
 
     const { getByPlaceholderText, getByTestId } = renderWithProviderAndRouter(<CreatePolicy />, {
       initialState,

@@ -4,17 +4,17 @@ import { Button, Modal } from "carbon-components-react";
 import FullPageHeader from "components/FullPageHeader";
 import { formatDateTimeString } from "utils";
 import { Add16, Delete16, Save16 } from "@carbon/icons-react";
-import { POLICY_INTERACTION_TYPES } from "../../constants";
+import { TEMPLATE_INTERACTION_TYPES } from "../../constants";
 import styles from "./createEditPolicyHeader.module.scss";
 
 const ACTION_TYPE_CONFIG = {
-  [POLICY_INTERACTION_TYPES.CREATE]: {
+  [TEMPLATE_INTERACTION_TYPES.CREATE]: {
     title: "Create",
     affirmativeActionVerb: "Create",
     isPerformingActionVerb: "Creating...",
     icon: Add16
   },
-  [POLICY_INTERACTION_TYPES.EDIT]: {
+  [TEMPLATE_INTERACTION_TYPES.EDIT]: {
     title: "Edit",
     affirmativeActionVerb: "Save",
     isPerformingActionVerb: "Saving...",
@@ -28,13 +28,12 @@ CreateEditPolicyHeader.propTypes = {
   form: PropTypes.object.isRequired,
   policy: PropTypes.object,
   navigateBack: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(Object.values(POLICY_INTERACTION_TYPES))
+  type: PropTypes.oneOf(Object.values(TEMPLATE_INTERACTION_TYPES))
 };
 
 function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
   const config = ACTION_TYPE_CONFIG[type];
-  const { name, errors, isPerformingAffirmativeAction, isDeleting } = form;
-  const hasErrors = Object.values(errors).filter(Boolean).length;
+  const { isSubmitting, isValid } = form;
 
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
@@ -42,7 +41,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
     <FullPageHeader>
       <div className={styles.content}>
         <div className={styles.info}>
-          <h1 className={styles.title}>{`${config.title} Policy`}</h1>
+          <h1 className={styles.title}>{`${config.title} Template`}</h1>
           {policy.createdDate && (
             <div>
               <p className={styles.metaData}>
@@ -56,9 +55,9 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
           <Button className={styles.button} kind="secondary" onClick={navigateBack} size="field">
             Cancel
           </Button>
-          {type === POLICY_INTERACTION_TYPES.EDIT && policy.id && (
+          {type === TEMPLATE_INTERACTION_TYPES.EDIT && policy.id && (
             <Button
-              disabled={isPerformingAffirmativeAction || isDeleting}
+              disabled={isSubmitting}
               className={styles.button}
               onClick={() => setDeleteModalIsOpen(true)}
               kind="danger"
@@ -66,12 +65,12 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
               iconDescription="Delete"
               size="field"
             >
-              {isDeleting ? config.isDeletingActionVerb : config.deleteActionVerb}
+              {isSubmitting ? config.isDeletingActionVerb : config.deleteActionVerb}
             </Button>
           )}
           <Button
             data-testid="policy-header-affirmative-action"
-            disabled={isPerformingAffirmativeAction || isDeleting || !name || !!hasErrors}
+            disabled={isSubmitting || !isValid}
             className={styles.button}
             iconDescription={config.title}
             onClick={form.affirmativeAction}
@@ -79,7 +78,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
             type="submit"
             size="field"
           >
-            {isPerformingAffirmativeAction ? config.isPerformingActionVerb : config.affirmativeActionVerb}
+            {isSubmitting ? config.isPerformingActionVerb : config.affirmativeActionVerb}
           </Button>
         </section>
       </div>

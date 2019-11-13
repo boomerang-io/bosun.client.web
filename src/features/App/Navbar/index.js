@@ -7,7 +7,7 @@ function Navbar() {
       render={({ isSideNavExpanded, onClickSideNavExpand }) => (
         <Header aria-label="Boomerang">
           <SkipToContent />
-          <HeaderName href="/" prefix="Boomerang">
+          <HeaderName href="" prefix="Boomerang">
             Bosun
           </HeaderName>
         </Header>

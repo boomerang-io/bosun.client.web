@@ -3,8 +3,20 @@
 
 .container {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: column;
   padding: 2rem;
+  padding-top: 9rem;
+
+  :global(.bx--text-input) {
+    max-width: 31rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.propertyList {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 2rem;
 }
 
 .property {
