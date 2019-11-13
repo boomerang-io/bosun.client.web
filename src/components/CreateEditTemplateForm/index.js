@@ -19,7 +19,6 @@ function CreateTemplate({ navigateBack, onSubmit, template, type }) {
     <Formik
       onSubmit={onSubmit}
       initialValues={{
-        id: template?.id ?? "",
         description: template?.description ?? "",
         key: template?.key ?? "",
         name: template?.name ?? "",

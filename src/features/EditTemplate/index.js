@@ -19,12 +19,12 @@ function EditTemplate(props) {
   const { templateId } = useParams();
   //const [status, setStatus] = React.useState();
 
-  const templatesState = useAxiosFetch(SERVICE_PRODUCT_TEMPLATES_PATH);
+  const templateState = useAxiosFetch(`${SERVICE_PRODUCT_TEMPLATES_PATH}/${templateId}`);
 
   async function updateTemplate(values) {
     //setStatus("pending");
     try {
-      await axios.patch(SERVICE_PRODUCT_TEMPLATES_PATH, values);
+      await axios.patch(`${SERVICE_PRODUCT_TEMPLATES_PATH}/${templateId}`, { ...values, id: templateId });
       //setStatus("resolved");
       toast(
         <ToastNotification
@@ -49,33 +49,31 @@ function EditTemplate(props) {
 
     return false;
   }
-  if (templatesState.isLoading) {
+  if (templateState.isLoading) {
     return <Loading centered />;
   }
 
-  if (templatesState.data) {
-    const template = templatesState.data.find(template => template.id === templateId);
-    if (template) {
-      console.log(template);
-      return (
-        <CreateEditTemplateForm
-          onSubmit={updateTemplate}
-          navigateBack={navigateBack}
-          template={template}
-          type={TEMPLATE_INTERACTION_TYPES.EDIT}
+  if (templateState.error) {
+    return (
+      <div style={{ textAlign: "center" }}>
+        <NoDisplay
+          text="No matching template found. Are you sure you have the right link?"
+          style={{ width: "30rem", marginTop: "10rem" }}
         />
-      );
-    } else {
-      return (
-        <div style={{ textAlign: "center" }}>
-          <NoDisplay
-            text="No matching template found. Are you sure you have the right link?"
-            style={{ width: "30rem", marginTop: "10rem" }}
-          />
-          <Link to="/templates">Go to Templates</Link>
-        </div>
-      );
-    }
+        <Link to="/templates">Go to Templates</Link>
+      </div>
+    );
+  }
+
+  if (templateState.data) {
+    return (
+      <CreateEditTemplateForm
+        navigateBack={navigateBack}
+        onSubmit={updateTemplate}
+        template={templateState.data}
+        type={TEMPLATE_INTERACTION_TYPES.EDIT}
+      />
+    );
   }
   return null;
 }
