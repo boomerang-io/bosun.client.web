@@ -12,7 +12,7 @@ import { Button, ModalBody, ModalFooter } from "carbon-components-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import clonedeep from "lodash/cloneDeep";
-import styles from "./configTemplateModalContent.module.scss";
+import styles from "./templateRulesModalContent.module.scss";
 
 const INPUT_TYPES = {
   //BOOLEAN: "boolean",

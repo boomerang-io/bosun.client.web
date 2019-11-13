@@ -81,7 +81,7 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
 function determineInitialState(definition, inputs) {
   let initialRowsState = [];
   for (let row in inputs) {
-    initialRowsState.push({ config: definition.config, uuid: row });
+    initialRowsState.push({ rules: definition.rules, uuid: row });
   }
 
   return initialRowsState;
@@ -92,7 +92,7 @@ function PolicyFormDefinitionSection({ definition, form }) {
   const [rows, setRows] = useState(determineInitialState(definition, inputs));
 
   function addRow() {
-    const newRows = [...rows, { config: definition.config, uuid: uuid.v4() }];
+    const newRows = [...rows, { rules: definition.rules, uuid: uuid.v4() }];
     setRows(newRows);
     form.validateRow(definition.key);
   }
@@ -117,7 +117,7 @@ function PolicyFormDefinitionSection({ definition, form }) {
         {rows.map((row, index) => {
           return (
             <div className={styles.row} key={row.uuid}>
-              {row.config.map(input =>
+              {row.rules.map(input =>
                 determineInput({
                   onChange,
                   inputs: inputs[row.uuid] || {},

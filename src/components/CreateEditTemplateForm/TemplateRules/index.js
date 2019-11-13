@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ConfirmModal } from "@boomerang/carbon-addons-boomerang-react";
-import TemplateConfigModal from "./TemplateConfigModal";
+import TemplateRulesModal from "./TemplateRulesModal";
 import CloseButton from "components/CloseButton";
-import styles from "./templateConfig.module.scss";
+import styles from "./templateRules.module.scss";
 
-TemplateConfig.propTypes = {
+TemplateRules.propTypes = {
   inputs: PropTypes.array.isRequired,
   updateWorkflowProperties: PropTypes.func.isRequired,
   workflowActions: PropTypes.object.isRequired
 };
 
-function WorkflowPropertyRow({ title, value }) {
+function RulePropertyRow({ title, value }) {
   return (
     <dl className={styles.fieldContainer}>
       <dt className={styles.fieldKey}>{title}</dt>
@@ -20,7 +20,7 @@ function WorkflowPropertyRow({ title, value }) {
   );
 }
 
-function WorkflowPropertyHeader({ label, description }) {
+function RulePropertyHeader({ label, description }) {
   return (
     <div className={styles.headerContainer}>
       <h1 className={styles.label}>{label}</h1>
@@ -36,23 +36,18 @@ function formatDefaultValue(value) {
   return value;
 }
 
-export default function TemplateConfig({ arrayHelpers, config, inputsKeys = [] }) {
+export default function TemplateRules({ arrayHelpers, config, inputsKeys = [] }) {
   return (
     <div className={styles.propertyList}>
       {config.length > 0 &&
         config.map((input, index) => (
           <section key={`${input.id}-${index}`} className={styles.property}>
-            <WorkflowPropertyHeader label={input.label} description={input.description} />
-            <WorkflowPropertyRow title="Key" value={input.key} />
-            <WorkflowPropertyRow title="Type" value={input.type} />
-            <WorkflowPropertyRow title="Default value" value={formatDefaultValue(input.defaultValue)} />
-            <WorkflowPropertyRow title="Options" value={formatDefaultValue(input.options?.join(", "))} />
-            {input.required ? (
-              <p className={styles.required}>Required</p>
-            ) : (
-              <p className={styles.notRequired}>Not required</p>
-            )}
-            <TemplateConfigModal
+            <RulePropertyHeader label={input.label} description={input.description} />
+            <RulePropertyRow title="Key" value={input.key} />
+            <RulePropertyRow title="Type" value={input.type} />
+            <RulePropertyRow title="Default value" value={formatDefaultValue(input.defaultValue)} />
+            <RulePropertyRow title="Options" value={formatDefaultValue(input.options?.join(", "))} />
+            <TemplateRulesModal
               isEdit
               inputsKeys={inputsKeys.filter(inputName => inputName !== input.key)}
               input={input}
@@ -68,7 +63,7 @@ export default function TemplateConfig({ arrayHelpers, config, inputsKeys = [] }
             />
           </section>
         ))}
-      <TemplateConfigModal isEdit={false} inputsKeys={inputsKeys} createConfig={arrayHelpers.push} />
+      <TemplateRulesModal isEdit={false} inputsKeys={inputsKeys} createConfig={arrayHelpers.push} />
     </div>
   );
 }

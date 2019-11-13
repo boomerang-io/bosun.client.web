@@ -23,8 +23,8 @@ export function TemplatesContainer() {
       <>
         <FullPageHeader>
           <div>
-            <p className={styles.supertitle}>These are your</p>
-            <h1 className={styles.title}>Templates</h1>
+            <p className={styles.supertitle}>These are the</p>
+            <h1 className={styles.title}>Policy Templates</h1>
           </div>
         </FullPageHeader>
         <TemplatesTable data={templatesState.data} />

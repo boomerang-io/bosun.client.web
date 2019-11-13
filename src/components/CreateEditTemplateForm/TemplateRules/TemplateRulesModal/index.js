@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ModalFlow } from "@boomerang/carbon-addons-boomerang-react";
-import WorkflowPropertiesModalContent from "./ConfigTemplateModalContent";
+import WorkflowPropertiesModalContent from "./TemplateRulesModalContent";
 import EditButton from "components/EditButton";
 import { Add32 } from "@carbon/icons-react";
-import styles from "./configTemplateModal.module.scss";
+import styles from "./templateRulesModal.module.scss";
 
 class WorkflowProperties extends Component {
   static propTypes = {
@@ -26,7 +26,7 @@ class WorkflowProperties extends Component {
           >
             <div className={styles.createContainer}>
               <Add32 className={styles.createIcon} aria-label="Add" />
-              <p className={styles.createText}>Create a new config</p>
+              <p className={styles.createText}>Create a new rule</p>
             </div>
           </button>
         ));
@@ -40,10 +40,10 @@ class WorkflowProperties extends Component {
       <ModalFlow
         confirmModalProps={{
           title: "Are you sure?",
-          children: "Your config will not be saved"
+          children: "Your rule will not be saved"
         }}
         modalHeaderProps={{
-          title: isEdit ? "Update Config" : "Create Config",
+          title: isEdit ? "Update Rule" : "Create Rule",
           subtitle: isEdit ? "Let's update it" : "Let's create a new one"
         }}
         modalTrigger={this.editTrigger}

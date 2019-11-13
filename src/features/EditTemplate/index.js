@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Error } from "@boomerang/carbon-addons-boomerang-react";
 import { ToastNotification } from "carbon-components-react";
 import useAxiosFetch from "utils/hooks/useAxios";
 import CreateEditTemplateForm from "components/CreateEditTemplateForm";
@@ -16,18 +17,27 @@ function EditTemplate(props) {
     history.push("/templates");
   }
 
-  const { templateId } = useParams();
-  //const [status, setStatus] = React.useState();
+  function getTakenNamesAndKeys() {
+    const templateNames = [];
+    const templateKeys = [];
+    templatesState.data.forEach(template => {
+      if (template.id !== templateId) {
+        templateNames.push(template.name);
+        templateKeys.push(template.key);
+      }
+    });
 
-  const templateState = useAxiosFetch(`${SERVICE_PRODUCT_TEMPLATES_PATH}/${templateId}`);
+    return { templateNames, templateKeys };
+  }
+
+  const { templateId } = useParams();
+
+  const templatesState = useAxiosFetch(SERVICE_PRODUCT_TEMPLATES_PATH);
 
   async function updateTemplate(values) {
-    //setStatus("pending");
-
     const valuesToSave = { ...values, rego: btoa(values.rego), id: templateId };
     try {
       await axios.patch(`${SERVICE_PRODUCT_TEMPLATES_PATH}/${templateId}`, valuesToSave);
-      //setStatus("resolved");
       toast(
         <ToastNotification
           kind="success"
@@ -38,7 +48,6 @@ function EditTemplate(props) {
       );
       navigateBack();
     } catch (e) {
-      //setStatus("rejected");
       toast(
         <ToastNotification
           kind="error"
@@ -51,31 +60,45 @@ function EditTemplate(props) {
 
     return false;
   }
-  if (templateState.isLoading) {
+  if (templatesState.isLoading) {
     return <Loading centered />;
   }
 
-  if (templateState.error) {
+  if (templatesState.error) {
     return (
-      <div style={{ textAlign: "center" }}>
-        <NoDisplay
-          text="No matching template found. Are you sure you have the right link?"
-          style={{ width: "30rem", marginTop: "10rem" }}
-        />
+      <>
+        <Error />
         <Link to="/templates">Go to Templates</Link>
-      </div>
+      </>
     );
   }
 
-  if (templateState.data) {
-    return (
-      <CreateEditTemplateForm
-        navigateBack={navigateBack}
-        onSubmit={updateTemplate}
-        template={templateState.data}
-        type={TEMPLATE_INTERACTION_TYPES.EDIT}
-      />
-    );
+  if (templatesState.data) {
+    const template = templatesState.data.find(template => template.id === templateId);
+
+    if (template) {
+      const validationData = getTakenNamesAndKeys(templatesState.data);
+
+      return (
+        <CreateEditTemplateForm
+          onSubmit={updateTemplate}
+          navigateBack={navigateBack}
+          template={template}
+          validationData={validationData}
+          type={TEMPLATE_INTERACTION_TYPES.EDIT}
+        />
+      );
+    } else {
+      return (
+        <div style={{ textAlign: "center" }}>
+          <NoDisplay
+            text="No matching template found. Are you sure you have the right link?"
+            style={{ width: "30rem", marginTop: "10rem" }}
+          />
+          <Link to="/templates">Go to Templates</Link>
+        </div>
+      );
+    }
   }
   return null;
 }
