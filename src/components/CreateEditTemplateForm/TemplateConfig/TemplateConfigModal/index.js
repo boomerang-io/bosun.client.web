@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { ModalFlow } from "@boomerang-io/carbon-addons-boomerang-react";
+import { ModalFlow } from "@boomerang/carbon-addons-boomerang-react";
 import WorkflowPropertiesModalContent from "./ConfigTemplateModalContent";
 import EditButton from "components/EditButton";
 import { Add32 } from "@carbon/icons-react";

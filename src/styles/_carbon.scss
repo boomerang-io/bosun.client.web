@@ -1,8 +1,8 @@
-@import "~@boomerang-io/carbon-addons-boomerang/scss/themes/boomerang";
+@import "~@boomerang/carbon-addons-boomerang/scss/themes/boomerang";
 $carbon--theme: $carbon--theme--boomerang;
 $carbon-addons-bmrg--theme: boomerang;
 
-@import "~@boomerang-io/carbon-addons-boomerang";
+@import "~@boomerang/carbon-addons-boomerang";
 @import "~carbon-components/scss/components/code-snippet/code-snippet";
 @import "~carbon-components/scss/components/data-table-v2/data-table-v2";
 @import "~carbon-components/scss/components/data-table-v2/data-table-v2-core";
