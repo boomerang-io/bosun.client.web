@@ -666,7 +666,7 @@
       "createDate": "2019-06-21T00:00:00.000+0000",
       "description": "The Common Vulnerabilities & Exposures (CVE) are validated against JFrog Xray Security Issues. Artifact and Version are validated through regular expression.",
       "order": 3,
-      "rego": "",
+      "rego": "YXNkZmFzZGZhc2Rm",
       "config": [
         {
           "key": "cve",

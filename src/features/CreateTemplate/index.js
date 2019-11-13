@@ -15,9 +15,9 @@ function CreateTemplate(props) {
 
   async function createTemplate(values) {
     //setStatus("pending");
-
+    const valuesToSave = { ...values, rego: btoa(values.rego) };
     try {
-      await axios.post(SERVICE_PRODUCT_TEMPLATES_PATH, values);
+      await axios.post(SERVICE_PRODUCT_TEMPLATES_PATH, valuesToSave);
       //setStatus("resolved");
       toast(
         <ToastNotification

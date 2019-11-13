@@ -23,8 +23,10 @@ function EditTemplate(props) {
 
   async function updateTemplate(values) {
     //setStatus("pending");
+
+    const valuesToSave = { ...values, rego: btoa(values.rego), id: templateId };
     try {
-      await axios.patch(`${SERVICE_PRODUCT_TEMPLATES_PATH}/${templateId}`, { ...values, id: templateId });
+      await axios.patch(`${SERVICE_PRODUCT_TEMPLATES_PATH}/${templateId}`, valuesToSave);
       //setStatus("resolved");
       toast(
         <ToastNotification

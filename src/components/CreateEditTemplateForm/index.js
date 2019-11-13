@@ -23,7 +23,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type }) {
         key: template?.key ?? "",
         name: template?.name ?? "",
         order: template?.order ?? 0,
-        rego: template?.rego ?? "",
+        rego: template?.rego ? atob(template.rego) : "",
         config: template?.config ?? []
       }}
       validationSchema={Yup.object().shape({

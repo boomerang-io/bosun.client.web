@@ -19,21 +19,18 @@ import "codemirror/addon/fold/comment-fold.js";
 import "codemirror/addon/comment/comment.js";
 import "codemirror-rego/mode";
 import { Undo20, Redo20, Copy20, Cut20, Paste20, ArrowUp16, ArrowDown16 } from "@carbon/icons-react";
-import { Toolbar, ToolbarItem, Search, Dropdown, Button } from "carbon-components-react";
+import { Toolbar, ToolbarItem, Search, Button } from "carbon-components-react";
 import "./styles.scss";
+
+const languageParams = { mode: "rego" };
 
 const TextEditorView = props => {
   const { value } = props;
-  const languages = [
-    { id: "rego", text: "Rego", params: { mode: "rego" } },
-    { id: "text", text: "Text", params: { mode: "text/plain" } }
-  ];
 
   const editor = useRef(null);
   const [doc, setDoc] = useState();
   const [searchText, setSearchText] = useState("");
   const [clipboard, setClipboard] = useState("");
-  const [languageParams, setLanguageParams] = useState(languages[0].params);
 
   const undo = () => {
     doc.undo();
@@ -85,11 +82,11 @@ const TextEditorView = props => {
     editor.current.focus();
   };
 
-  const languageOptions = languages.map(language => ({ id: language.id, text: language.text }));
+  // const languageOptions = languages.map(language => ({ id: language.id, text: language.text }));
 
-  const onChangeLanguage = language => {
-    setLanguageParams(languages.find(value => value.id === language.selectedItem.id).params);
-  };
+  // const onChangeLanguage = language => {
+  //   setLanguageParams(languages.find(value => value.id === language.selectedItem.id).params);
+  // };
 
   const foldCode = cm => {
     cm.foldCode(cm.getCursor());
@@ -227,7 +224,7 @@ const TextEditorView = props => {
           />
         </ToolbarItem>
 
-        <ToolbarItem>
+        {/* <ToolbarItem>
           <div className="b-task-text-area__language-dropdown">
             <Dropdown
               id="dropdown-language"
@@ -245,7 +242,7 @@ const TextEditorView = props => {
               onChange={onChangeLanguage}
             />
           </div>
-        </ToolbarItem>
+        </ToolbarItem> */}
       </Toolbar>
 
       <CodeMirrorReact
