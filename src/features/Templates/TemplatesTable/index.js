@@ -51,7 +51,7 @@ export default function TemplatesTable(props) {
       case "Key":
         return <p className={styles.tableTextarea}>{value}</p>;
       case "Created Date":
-        return <p className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
+        return <time className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</time>;
       default:
         return value || "---";
     }

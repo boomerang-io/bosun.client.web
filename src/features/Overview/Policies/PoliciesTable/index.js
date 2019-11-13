@@ -46,7 +46,7 @@ export default function PoliciesTable(props) {
       case "Definitions":
         return <p className={styles.tableTextarea}>{Array.isArray(value) ? value.length : "---"}</p>;
       case "Created Date":
-        return <p className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
+        return <time className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</time>;
       case "Rules":
         const defValue = cells.find(cell => cell.id.includes("definitions")).value;
         return (

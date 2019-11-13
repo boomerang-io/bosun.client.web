@@ -11,7 +11,8 @@ import LoadingAnimation from "components/Loading";
 import {
   SERVICE_PRODUCT_TEMPLATES_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
-  SERVICE_REQUEST_STATUSES
+  SERVICE_REQUEST_STATUSES,
+  SERVICE_PRODUCT_VALIDATION_INFO_PATH
 } from "config/servicesConfig";
 import { POLICY_INTERACTION_TYPES } from "../../constants";
 import styles from "./editPolicy.module.scss";
@@ -46,7 +47,11 @@ class EditPolicy extends React.Component {
     try {
       const definitionsResponse = await axios.get(SERVICE_PRODUCT_TEMPLATES_PATH);
       const policyResponse = await axios.get(`${SERVICE_PRODUCT_POLICIES_PATH}/${this.props.match.params.policyId}`);
+      const validateInfoResponse = await axios.get(
+        `${SERVICE_PRODUCT_VALIDATION_INFO_PATH}/${this.props.match.params.policyId}`
+      );
       this.setState({
+        validateInfo: validateInfoResponse.data,
         definitions: definitionsResponse.data,
         policy: policyResponse.data,
         name: policyResponse.data.name,
@@ -269,6 +274,7 @@ class EditPolicy extends React.Component {
             navigateBack={this.navigateBack}
             policy={this.state.policy}
             type={POLICY_INTERACTION_TYPES.EDIT}
+            validateInfo={this.state.validateInfo}
           />
           <CreateEditPolicyForm form={form} definitions={definitions} />
         </div>

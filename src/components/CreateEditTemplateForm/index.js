@@ -124,7 +124,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
                         name="labels"
                         label="Labels"
                         onChange={values => setFieldValue("labels", values)}
-                        value={values.labels}
+                        values={values.labels}
                         placeholder="Create labels"
                         type="text"
                       />

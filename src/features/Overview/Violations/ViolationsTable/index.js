@@ -61,7 +61,7 @@ export class ViolationsTable extends Component {
     const column = this.headers[cellIndex];
     switch (column.header) {
       case "Activity Date":
-        return <p className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
+        return <time className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</time>;
       case "Failed Definition Types":
         return <p className={styles.tableTextarea}>{value && value.length ? value.join(", ") : "---"}</p>;
       default:
@@ -125,8 +125,15 @@ export class ViolationsTable extends Component {
             buttonOnClick={() => this.setState({ isModalOpen: false })}
           />
           <ModalBody>
-            <h2 className={styles.modalSectionTitle}>Violations</h2>
-            <p>{selectedViolation?.nbrViolations}</p>
+            <h2 className={styles.modalSectionTitle}>{`Violations (${selectedViolation?.violations?.length ?? 0})`}</h2>
+            <ul className={styles.modalLabels}>
+              {(selectedViolation?.violations ?? [])?.map(({ metric, message }, index) => (
+                <li key={index}>
+                  <span>{metric} : </span>
+                  <span style={{ fontStyle: "italic" }}>{message}</span>
+                </li>
+              ))}
+            </ul>
             <h2 className={styles.modalSectionTitle}>Failed Definition Types</h2>
             <p>
               {selectedViolation?.policyDefinitionTypes && selectedViolation?.policyDefinitionTypes.length
@@ -157,7 +164,7 @@ export class ViolationsTable extends Component {
             <h2 className={styles.modalSectionTitle}>Reference ID</h2>
             <p>{selectedViolation?.referenceId ?? "---"}</p>
             <h2 className={styles.modalSectionTitle}>Created Date</h2>
-            <p>{moment(selectedViolation?.createdDate).format("MMM DD, YYYY - hh:mm a")}</p>
+            <time>{moment(selectedViolation?.createdDate).format("MMM DD, YYYY - hh:mm a")}</time>
             <h2 className={styles.modalSectionTitle}>Annotations</h2>
             {selectedViolation?.annotations ? (
               <CodeSnippet
