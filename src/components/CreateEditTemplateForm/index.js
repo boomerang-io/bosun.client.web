@@ -132,6 +132,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
                         values={values.labels}
                         placeholder="Create labels"
                         type="text"
+                        textInputProps={{ maxLength: 64 }}
                       />
                     </section>
                   </div>

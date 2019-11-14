@@ -24,16 +24,17 @@
 .row {
   align-items: center;
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
   margin-top: 1rem;
   > div:not(:last-child) {
     margin-right: 1rem;
   }
   :global .bx--bmrg-select,
-  :global .bx--form-item,
-  :global .bx--text-input {
+  :global .bx--bmrg-text-input {
     max-width: 15rem;
     min-width: 15rem;
+    margin-bottom: 1rem;
   }
 
   &:hover,
