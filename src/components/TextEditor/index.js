@@ -275,11 +275,8 @@ const TextEditorView = props => {
 };
 
 TextEditorView.propTypes = {
-  item: PropTypes.shape({
-    name: PropTypes.string.isRequired
-  }).isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.func.isRequired
+  value: PropTypes.string.isRequired
 };
 
 export default TextEditorView;

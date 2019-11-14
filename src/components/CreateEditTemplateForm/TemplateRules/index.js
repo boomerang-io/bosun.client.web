@@ -6,9 +6,9 @@ import CloseButton from "components/CloseButton";
 import styles from "./templateRules.module.scss";
 
 TemplateRules.propTypes = {
-  inputs: PropTypes.array.isRequired,
-  updateWorkflowProperties: PropTypes.func.isRequired,
-  workflowActions: PropTypes.object.isRequired
+  arrayHelpers: PropTypes.object.isRequired,
+  inputs: PropTypes.array,
+  rules: PropTypes.array
 };
 
 function RulePropertyRow({ title, value }) {
@@ -36,11 +36,11 @@ function formatDefaultValue(value) {
   return value;
 }
 
-export default function TemplateRules({ arrayHelpers, config, inputsKeys = [] }) {
+export default function TemplateRules({ arrayHelpers, rules = [], inputsKeys = [] }) {
   return (
     <div className={styles.propertyList}>
-      {config.length > 0 &&
-        config.map((input, index) => (
+      {rules.length > 0 &&
+        rules.map((input, index) => (
           <section key={`${input.id}-${index}`} className={styles.property}>
             <RulePropertyHeader label={input.label} description={input.description} />
             <RulePropertyRow title="Key" value={input.key} />

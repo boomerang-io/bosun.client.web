@@ -25,7 +25,8 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
         order: template?.order ?? 0,
         rego: template?.rego ? atob(template.rego) : "",
         rules: template?.rules ?? [],
-        integration: template?.integration ?? "integrated"
+        integration: template?.integration ?? "integrated",
+        labels: template?.labels ?? []
       }}
       validationSchema={Yup.object().shape({
         key: Yup.string()
@@ -38,7 +39,8 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
           .notOneOf(validationData?.templateNames ?? [], "Enter a unique name"),
         order: Yup.number(),
         rego: Yup.string().required("Enter a Rego OPA policy"),
-        rules: Yup.array().min(1, "Create at leaset one rule")
+        rules: Yup.array().min(1, "Create at leaset one rule"),
+        labels: Yup.array()
       })}
     >
       {formikProps => {
@@ -52,6 +54,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
           setFieldValue,
           validateForm
         } = formikProps;
+        console.log(values);
         return (
           <Form onSubmit={handleSubmit}>
             <CreateEditTemplateHeader form={formikProps} navigateBack={navigateBack} type={type} />
@@ -114,7 +117,9 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
                     <section className={styles.generalSection}>
                       <h1 className={styles.sectionTitle}>Validation</h1>
                       <Dropdown
+                        id="integration"
                         titleText="Integration"
+                        label="integration"
                         items={["integration", "custom"]}
                         onChange={({ selectedItem }) => setFieldValue("integration", selectedItem)}
                         selectedItem={values.integration}
@@ -134,7 +139,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
                 <Tab label="Rules">
                   <FieldArray
                     name="rules"
-                    render={arrayHelpers => <TemplateRules arrayHelpers={arrayHelpers} config={values.rules} />}
+                    render={arrayHelpers => <TemplateRules arrayHelpers={arrayHelpers} rules={values.rules} />}
                   />
                 </Tab>
                 <Tab label="OPA Rego">

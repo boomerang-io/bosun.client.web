@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ModalFlow } from "@boomerang/carbon-addons-boomerang-react";
-import WorkflowPropertiesModalContent from "./TemplateRulesModalContent";
+import TemplateRulesModalContent from "./TemplateRulesModalContent";
 import EditButton from "components/EditButton";
 import { Add32 } from "@carbon/icons-react";
 import styles from "./templateRulesModal.module.scss";
@@ -10,8 +10,7 @@ class WorkflowProperties extends Component {
   static propTypes = {
     input: PropTypes.object,
     inputsKeys: PropTypes.array,
-    isEdit: PropTypes.bool.isRequired,
-    updateWorkflowProperties: PropTypes.func.isRequired
+    isEdit: PropTypes.bool.isRequired
   };
 
   editTrigger = ({ openModal }) => {
@@ -48,7 +47,7 @@ class WorkflowProperties extends Component {
         }}
         modalTrigger={this.editTrigger}
       >
-        <WorkflowPropertiesModalContent
+        <TemplateRulesModalContent
           createConfig={this.props.createConfig}
           updateConfig={this.props.updateConfig}
           {...this.props}

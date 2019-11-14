@@ -40,17 +40,14 @@ const INPUT_TYPES_LABELS = [
   { label: "Text Area", value: "textarea" }
 ];
 
-export default class WorkflowPropertiesModalContent extends Component {
+export default class TemplateRulesModalContent extends Component {
   static propTypes = {
-    closeModal: PropTypes.func.isRequired,
+    closeModal: PropTypes.func,
     input: PropTypes.object,
     inputsKeys: PropTypes.array,
     isEdit: PropTypes.bool,
-    loading: PropTypes.bool.isRequired,
-    updateWorkflowProperties: PropTypes.func.isRequired,
-    workflowActions: PropTypes.object.isRequired,
-    createConfig: PropTypes.func.isRequired,
-    updateConfig: PropTypes.func.isRequired
+    createConfig: PropTypes.func,
+    updateConfig: PropTypes.func
   };
 
   handleOnChange = (e, formikChange) => {

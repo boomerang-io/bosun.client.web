@@ -546,6 +546,7 @@
       "description": "The following policy metrics are validated from SonarQube data collected in your CI pipeline.",
       "order": 0,
       "rego": "",
+      "labels": ["test", "this"],
       "rules": [
         {
           "key": "metric",

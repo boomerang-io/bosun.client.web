@@ -22,7 +22,7 @@ function Navbar() {
           <HeaderName element={Link} to="/" prefix="Boomerang">
             Bosun
           </HeaderName>
-          <HeaderNavigation>
+          <HeaderNavigation aria-label="navigation">
             <HeaderMenuItem element={Link} to="/">
               Overview
             </HeaderMenuItem>
