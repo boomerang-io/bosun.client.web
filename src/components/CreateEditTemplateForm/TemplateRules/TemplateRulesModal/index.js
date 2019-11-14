@@ -22,6 +22,7 @@ class WorkflowProperties extends Component {
             className={styles.createPropertyCard}
             onClick={openModal}
             data-testid="create-new-workflow-input-button"
+            type="button"
           >
             <div className={styles.createContainer}>
               <Add32 className={styles.createIcon} aria-label="Add" />
