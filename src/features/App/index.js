@@ -5,7 +5,11 @@ import ErrorDragon from "components/ErrorDragon";
 import Loading from "components/Loading";
 import Main from "./Main";
 import Navbar from "./Navbar";
-import { SERVICE_PRODUCT_TEAM_PATH } from "config/servicesConfig";
+import {
+  SERVICE_PRODUCT_TEAM_PATH,
+  SERVICE_PLATFORM_PROFILE_PATH,
+  SERVICE_PLATFORM_NAVIGATION_PATH
+} from "config/servicesConfig";
 import useAxiosFetch from "utils/hooks/useAxios";
 import AppContext from "state/context/appContext";
 import styles from "./App.module.scss";
@@ -14,6 +18,8 @@ export function App() {
   const location = useLocation();
   const globalMatch = matchPath(location.pathname, { path: "/:teamName" });
 
+  const userState = useAxiosFetch(SERVICE_PLATFORM_PROFILE_PATH);
+  const navigationState = useAxiosFetch(SERVICE_PLATFORM_NAVIGATION_PATH);
   const teamsState = useAxiosFetch(SERVICE_PRODUCT_TEAM_PATH);
 
   const [activeTeam, setActiveTeam] = React.useState();
@@ -49,7 +55,7 @@ export function App() {
   return (
     <ErrorBoundary errorComponent={ErrorDragon}>
       <div className={styles.container}>
-        <Navbar />
+        <Navbar navigationState={navigationState} userState={userState} />
         {renderMain()}
       </div>
     </ErrorBoundary>
