@@ -11,7 +11,7 @@ const policies = [
     teamId: "5a8b331e262a70306622df73",
     definitions: [
       {
-        policyDefinitionId: "5cd49777f6ea74a9bb6ac629",
+        policyTemplateId: "5cd49777f6ea74a9bb6ac629",
         rules: [
           {
             value: "sdfgsdfg",
@@ -21,7 +21,7 @@ const policies = [
         ]
       },
       {
-        policyDefinitionId: "5cd498f3f6ea74a9bb6ad0f3",
+        policyTemplateId: "5cd498f3f6ea74a9bb6ad0f3",
         rules: [
           {
             version: " asdfasdf",

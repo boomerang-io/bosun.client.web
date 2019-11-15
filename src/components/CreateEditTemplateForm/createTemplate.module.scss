@@ -1,0 +1,56 @@
+@import "~styles/variables";
+@import "~styles/mixins";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  padding-top: 2rem;
+}
+
+.generalContainer {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 2rem;
+
+  :global(.bx--bmrg-text-input),
+  :global(.bx--bmrg-text-area),
+  :global(.bx--bmrg-creatable),
+  :global(.bx--dropdown__wrapper) {
+    margin-bottom: 1rem;
+  }
+}
+
+.generalSection {
+  max-width: 36rem;
+  min-width: 30rem;
+  border-right: 1px solid #8c9696;
+  padding: 0 2rem;
+  &:first-of-type {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 60rem) {
+  .generalSection {
+    border-right: none;
+    padding-left: 0rem;
+  }
+}
+
+.opaPolicyContainer {
+  margin-top: 2rem;
+}
+
+.propertyList {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 2rem;
+}
+
+.sectionTitle {
+  color: #272727;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}

@@ -9,9 +9,10 @@ import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
 import ErrorDragon from "components/ErrorDragon";
 import LoadingAnimation from "components/Loading";
 import {
-  SERVICE_PRODUCT_DEFINITIONS_PATH,
+  SERVICE_PRODUCT_TEMPLATES_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
-  SERVICE_REQUEST_STATUSES
+  SERVICE_REQUEST_STATUSES,
+  SERVICE_PRODUCT_VALIDATION_INFO_PATH
 } from "config/servicesConfig";
 import { POLICY_INTERACTION_TYPES } from "../../constants";
 import styles from "./editPolicy.module.scss";
@@ -44,9 +45,13 @@ class EditPolicy extends React.Component {
       isFetching: true
     });
     try {
-      const definitionsResponse = await axios.get(SERVICE_PRODUCT_DEFINITIONS_PATH);
+      const definitionsResponse = await axios.get(SERVICE_PRODUCT_TEMPLATES_PATH);
       const policyResponse = await axios.get(`${SERVICE_PRODUCT_POLICIES_PATH}/${this.props.match.params.policyId}`);
+      const validateInfoResponse = await axios.get(
+        `${SERVICE_PRODUCT_VALIDATION_INFO_PATH}/${this.props.match.params.policyId}`
+      );
       this.setState({
+        validateInfo: validateInfoResponse.data,
         definitions: definitionsResponse.data,
         policy: policyResponse.data,
         name: policyResponse.data.name,
@@ -77,7 +82,7 @@ class EditPolicy extends React.Component {
 
     definitions.forEach(definition => {
       let newDefinition = {
-        policyDefinitionId: definition.id
+        policyTemplateId: definition.id
       };
       let rules = [];
       const definitionRows = inputs[definition.key];
@@ -203,9 +208,9 @@ class EditPolicy extends React.Component {
       return accum;
     }, 0);
 
-    // Each row should have the same number of inputs as the number of inputs in the policy definition config
+    // Each row should have the same number of inputs as the number of inputs in the policy definition rules
     const matchingDefintion = definitions.find(definition => definition.key === definitionKey);
-    const isInvalid = Object.keys(definitionRows).length * matchingDefintion.config.length !== definitionRowsInputCount;
+    const isInvalid = Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
     this.setState(prevState => ({ errors: { ...prevState.errors, [definitionKey]: isInvalid } }));
   };
 
@@ -220,7 +225,7 @@ class EditPolicy extends React.Component {
     const newInputsState = {};
     policy.definitions.forEach(definition => {
       const policyDefinition = definitions.find(
-        policyDefinition => policyDefinition.id === definition.policyDefinitionId
+        policyDefinition => policyDefinition.id === definition.policyTemplateId
       );
       newInputsState[policyDefinition.key] = {};
       const definitionRows = newInputsState[policyDefinition.key];
@@ -269,6 +274,7 @@ class EditPolicy extends React.Component {
             navigateBack={this.navigateBack}
             policy={this.state.policy}
             type={POLICY_INTERACTION_TYPES.EDIT}
+            validateInfo={this.state.validateInfo}
           />
           <CreateEditPolicyForm form={form} definitions={definitions} />
         </div>

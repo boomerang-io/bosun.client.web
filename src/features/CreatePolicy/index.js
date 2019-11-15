@@ -8,7 +8,7 @@ import ErrorDragon from "components/ErrorDragon";
 import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
 import CreateEditPolicyForm from "components/CreateEditPolicyForm";
 import {
-  SERVICE_PRODUCT_DEFINITIONS_PATH,
+  SERVICE_PRODUCT_TEMPLATES_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
   SERVICE_REQUEST_STATUSES
 } from "config/servicesConfig";
@@ -46,7 +46,7 @@ class CreatePolicy extends React.Component {
       isFetching: true
     });
     try {
-      const response = await axios.get(SERVICE_PRODUCT_DEFINITIONS_PATH);
+      const response = await axios.get(SERVICE_PRODUCT_TEMPLATES_PATH);
       this.setState({
         definitions: response.data,
         isFetching: false,
@@ -74,7 +74,7 @@ class CreatePolicy extends React.Component {
 
     definitions.forEach(definition => {
       let newDefinition = {
-        policyDefinitionId: definition.id
+        policyTemplateId: definition.id
       };
       let rules = [];
       const definitionRows = inputs[definition.key];

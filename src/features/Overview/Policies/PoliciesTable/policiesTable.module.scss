@@ -32,10 +32,11 @@
   }
 }
 .tableBody {
-  background-color: #f2f2f2;
-  color: gray;
-  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
 }
+
 .tableRow {
   cursor: pointer;
 }
@@ -45,6 +46,9 @@
   height: 3.5rem;
   padding-left: 0.75rem;
   width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
 }
 .tableIcons {
   display: flex;
@@ -61,11 +65,13 @@
 
 .tableTextarea {
   background: inherit;
-  color: $text-01;
   max-width: 100%;
   resize: none;
   text-align: left;
   white-space: normal;
   width: 90%;
   margin-left: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
 }

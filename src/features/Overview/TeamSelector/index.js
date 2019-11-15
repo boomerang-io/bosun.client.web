@@ -1,18 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import {
-  Button,
-  ComboBox,
-  ComposedModal,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  TextInput
-} from "carbon-components-react";
+import { ComboBox, TextInput } from "@boomerang/carbon-addons-boomerang-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { ToastNotification } from "carbon-components-react";
+import { Button, ComposedModal, ModalHeader, ModalFooter, ModalBody, ToastNotification } from "carbon-components-react";
 import { toast } from "react-toastify";
 import { Add16 } from "@carbon/icons-react";
 import styles from "./TeamSelector.module.scss";

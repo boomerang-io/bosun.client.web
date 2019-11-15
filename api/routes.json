@@ -4,6 +4,7 @@
   "/bosun/policies/insights?teamId=:teamId": "/insights",
   "/bosun/policies/violations?teamId=:teamId": "/violations",
   "/bosun/policies/:id": "/policies/:id?singular=1",
+  "/bosun/validate/info/:id": "/validateInfo",
   "/bosun/*": "/$1",
   "/users/*": "/$1",
   "/support/*": "/$1"

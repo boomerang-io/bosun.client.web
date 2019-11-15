@@ -363,7 +363,7 @@
       "teamId": "5a8b331e262a70306622df73",
       "definitions": [
         {
-          "policyDefinitionId": "5cd49777f6ea74a9bb6ac629",
+          "policyTemplateId": "5cd49777f6ea74a9bb6ac629",
           "rules": [
             {
               "metric": "lines",
@@ -378,7 +378,7 @@
           ]
         },
         {
-          "policyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
+          "policyTemplateId": "5cd498f3f6ea74a9bb6ad0f3",
           "rules": [
             {
               "type": "maven",
@@ -393,11 +393,15 @@
           ]
         },
         {
-          "policyDefinitionId": "5cdd8667f6ea74a9bbaf5022",
+          "policyTemplateId": "5cdd8667f6ea74a9bbaf5022",
           "rules": []
         },
         {
-          "policyDefinitionId": "5cdd8425f6ea74a9bbaf2fe6",
+          "policyTemplateId": "5cdd8425f6ea74a9bbaf2fe6",
+          "rules": []
+        },
+        {
+          "policyTemplateId": "7J-RGvV",
           "rules": []
         }
       ],
@@ -409,7 +413,7 @@
       "teamId": "5a8b331e262a70306622df73",
       "definitions": [
         {
-          "policyDefinitionId": "5cd49777f6ea74a9bb6ac629",
+          "policyTemplateId": "5cd49777f6ea74a9bb6ac629",
           "rules": [
             {
               "value": "sdfgsdfg",
@@ -419,7 +423,7 @@
           ]
         },
         {
-          "policyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
+          "policyTemplateId": "5cd498f3f6ea74a9bb6ad0f3",
           "rules": [
             {
               "version": " asdfasdf",
@@ -438,11 +442,11 @@
       "teamId": "5a8b331e262a70306622df73",
       "definitions": [
         {
-          "policyDefinitionId": "5cd49777f6ea74a9bb6ac629",
+          "policyTemplateId": "5cd49777f6ea74a9bb6ac629",
           "rules": []
         },
         {
-          "policyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
+          "policyTemplateId": "5cd498f3f6ea74a9bb6ad0f3",
           "rules": []
         }
       ],
@@ -455,7 +459,7 @@
       "teamId": "5a8b331e262a70306622df74",
       "definitions": [
         {
-          "policyDefinitionId": "5cd49777f6ea74a9bb6ac629",
+          "policyTemplateId": "5cd49777f6ea74a9bb6ac629",
           "rules": [
             {
               "metric": "issues-blocker",
@@ -465,15 +469,15 @@
           ]
         },
         {
-          "policyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
+          "policyTemplateId": "5cd498f3f6ea74a9bb6ad0f3",
           "rules": []
         },
         {
-          "policyDefinitionId": "5cdd8667f6ea74a9bbaf5022",
+          "policyTemplateId": "5cdd8667f6ea74a9bbaf5022",
           "rules": []
         },
         {
-          "policyDefinitionId": "5cdd8425f6ea74a9bbaf2fe6",
+          "policyTemplateId": "5cdd8425f6ea74a9bbaf2fe6",
           "rules": []
         }
       ],
@@ -485,19 +489,19 @@
       "teamId": "5a8b331e262a70306622df74",
       "definitions": [
         {
-          "policyDefinitionId": "5cd49777f6ea74a9bb6ac629",
+          "policyTemplateId": "5cd49777f6ea74a9bb6ac629",
           "rules": []
         },
         {
-          "policyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
+          "policyTemplateId": "5cd498f3f6ea74a9bb6ad0f3",
           "rules": []
         },
         {
-          "policyDefinitionId": "5cdd8667f6ea74a9bbaf5022",
+          "policyTemplateId": "5cdd8667f6ea74a9bbaf5022",
           "rules": []
         },
         {
-          "policyDefinitionId": "5cdd8425f6ea74a9bbaf2fe6",
+          "policyTemplateId": "5cdd8425f6ea74a9bbaf2fe6",
           "rules": []
         }
       ],
@@ -508,7 +512,7 @@
       "teamId": "5a8b331f262a70306622df7d",
       "definitions": [
         {
-          "policyDefinitionId": "5cd49777f6ea74a9bb6ac629",
+          "policyTemplateId": "5cd49777f6ea74a9bb6ac629",
           "rules": [
             {
               "metric": "issues-total",
@@ -518,29 +522,32 @@
           ]
         },
         {
-          "policyDefinitionId": "5cd498f3f6ea74a9bb6ad0f3",
+          "policyTemplateId": "5cd498f3f6ea74a9bb6ad0f3",
           "rules": []
         },
         {
-          "policyDefinitionId": "5cdd8667f6ea74a9bbaf5022",
+          "policyTemplateId": "5cdd8667f6ea74a9bbaf5022",
           "rules": []
         },
         {
-          "policyDefinitionId": "5cdd8425f6ea74a9bbaf2fe6",
+          "policyTemplateId": "5cdd8425f6ea74a9bbaf2fe6",
           "rules": []
         }
       ],
       "id": "5q_9KNG"
     }
   ],
-  "definitions": [
+  "templates": [
     {
       "id": "5cd49777f6ea74a9bb6ac629",
       "key": "static_code_analysis",
+      "createDate": "2019-06-21T00:00:00.000+0000",
       "name": "Static Code Analysis",
       "description": "The following policy metrics are validated from SonarQube data collected in your CI pipeline.",
       "order": 0,
-      "config": [
+      "rego": "",
+      "labels": ["test", "this"],
+      "rules": [
         {
           "key": "metric",
           "label": "Metric",
@@ -585,9 +592,11 @@
       "id": "5cd498f3f6ea74a9bb6ad0f3",
       "key": "package_safelist",
       "name": "Package Safe List",
+      "createDate": "2019-06-21T00:00:00.000+0000",
       "description": "The following package and artifact validation is validated against scans by JFrog Xray. Artifact and Version are validated through regular expression.",
       "order": 1,
-      "config": [
+      "rego": "",
+      "rules": [
         {
           "key": "type",
           "label": "Type",
@@ -621,9 +630,11 @@
       "id": "5cdd8667f6ea74a9bbaf5022",
       "key": "security_issue_analysis",
       "name": "Security Issue Analysis",
+      "createDate": "2019-06-21T00:00:00.000+0000",
       "description": "Create rules to guide the general health of your repositories with respect to security and other vulnerabilities.",
       "order": 2,
-      "config": [
+      "rego": "",
+      "rules": [
         {
           "key": "severity",
           "label": "Severity",
@@ -657,9 +668,11 @@
       "id": "5cdd8425f6ea74a9bbaf2fe6",
       "key": "cve_safelist",
       "name": "CVE Safe List",
+      "createDate": "2019-06-21T00:00:00.000+0000",
       "description": "The Common Vulnerabilities & Exposures (CVE) are validated against JFrog Xray Security Issues. Artifact and Version are validated through regular expression.",
       "order": 3,
-      "config": [
+      "rego": "YXNkZmFzZGZhc2Rm",
+      "rules": [
         {
           "key": "cve",
           "label": "CVE",
@@ -670,36 +683,53 @@
           "options": null
         }
       ]
+    },
+    {
+      "description": "asdsdaf",
+      "key": "asdsadf",
+      "name": "asdadsf",
+      "order": 0,
+      "rego": "asdfasdfasdf",
+      "rules": [
+        {
+          "key": "asdasdf",
+          "label": "asdsf",
+          "description": "asdasdf",
+          "type": "text",
+          "defaultValue": "asddsf"
+        }
+      ],
+      "id": "7J-RGvV"
     }
   ],
   "insights": [
     {
       "policyId": "5cddc15ff6ea74a9bbb2291b",
       "policyName": "Marcus's Policy",
-      "ciPolicyCreatedDate": "2019-06-21T00:00:00.000+0000",
+      "policyCreatedDate": "2019-06-21T00:00:00.000+0000",
       "insights": [
         {
-          "ciPolicyActivityId": "5cddc13fbc6f9400013360a9",
+          "policyActivityId": "5cddc13fbc6f9400013360a9",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 1
         },
         {
-          "ciPolicyActivityId": "5cddc177bc6f9400013360aa",
+          "policyActivityId": "5cddc177bc6f9400013360aa",
           "policyActivityCreatedDate": "2019-06-22T00:00:00.000+0000",
           "violations": 1
         },
         {
-          "ciPolicyActivityId": "5cddc430bc6f9400013360b2",
+          "policyActivityId": "5cddc430bc6f9400013360b2",
           "policyActivityCreatedDate": "2019-06-23T00:00:00.000+0000",
           "violations": 1
         },
         {
-          "ciPolicyActivityId": "5cddc44fbc6f9400013360b4",
+          "policyActivityId": "5cddc44fbc6f9400013360b4",
           "policyActivityCreatedDate": "2019-06-24T00:00:00.000+0000",
           "violations": 1
         },
         {
-          "ciPolicyActivityId": "5ce1d56d76a4e100013eaab4",
+          "policyActivityId": "5ce1d56d76a4e100013eaab4",
           "policyActivityCreatedDate": "2019-06-25T00:00:00.000+0000",
           "violations": 1
         }
@@ -708,130 +738,130 @@
     {
       "policyId": "5cd49adff6ea74a9bb6adef3",
       "policyName": "Tyson's Policy",
-      "ciPolicyCreatedDate": "2019-06-21T00:00:00.000+0000",
+      "policyCreatedDate": "2019-06-21T00:00:00.000+0000",
       "insights": [
         {
-          "ciPolicyActivityId": "5cdda90fc9351100013e13f5",
+          "policyActivityId": "5cdda90fc9351100013e13f5",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddbd0cbc6f9400013360a5",
+          "policyActivityId": "5cddbd0cbc6f9400013360a5",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddbe96bc6f9400013360a6",
+          "policyActivityId": "5cddbe96bc6f9400013360a6",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 3
         },
         {
-          "ciPolicyActivityId": "5cddbec2bc6f9400013360a7",
+          "policyActivityId": "5cddbec2bc6f9400013360a7",
           "policyActivityCreatedDate": "2019-06-22T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddc006bc6f9400013360a8",
+          "policyActivityId": "5cddc006bc6f9400013360a8",
           "policyActivityCreatedDate": "2019-06-23T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddc304bc6f9400013360ab",
+          "policyActivityId": "5cddc304bc6f9400013360ab",
           "policyActivityCreatedDate": "2019-06-23T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddc307bc6f9400013360ac",
+          "policyActivityId": "5cddc307bc6f9400013360ac",
           "policyActivityCreatedDate": "2019-06-23T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddc34ebc6f9400013360ad",
+          "policyActivityId": "5cddc34ebc6f9400013360ad",
           "policyActivityCreatedDate": "2019-06-24T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddc3b1bc6f9400013360ae",
+          "policyActivityId": "5cddc3b1bc6f9400013360ae",
           "policyActivityCreatedDate": "2019-06-25T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddc3b2bc6f9400013360af",
+          "policyActivityId": "5cddc3b2bc6f9400013360af",
           "policyActivityCreatedDate": "2019-06-25T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddc3b7bc6f9400013360b0",
+          "policyActivityId": "5cddc3b7bc6f9400013360b0",
           "policyActivityCreatedDate": "2019-06-26T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddc58ebc6f9400013360b6",
+          "policyActivityId": "5cddc58ebc6f9400013360b6",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddc6d1bc6f9400013360b7",
+          "policyActivityId": "5cddc6d1bc6f9400013360b7",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cddd15e5cbb5d00010705e2",
+          "policyActivityId": "5cddd15e5cbb5d00010705e2",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cdddafbadd878000146a7ab",
+          "policyActivityId": "5cdddafbadd878000146a7ab",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 3
         },
         {
-          "ciPolicyActivityId": "5cdeeb9780b7a70001ec9b8e",
+          "policyActivityId": "5cdeeb9780b7a70001ec9b8e",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 3
         },
         {
-          "ciPolicyActivityId": "5cdf394076a4e100013eaab2",
+          "policyActivityId": "5cdf394076a4e100013eaab2",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 3
         },
         {
-          "ciPolicyActivityId": "5ce2f70a9cda7100010dad8a",
+          "policyActivityId": "5ce2f70a9cda7100010dad8a",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 4
         },
         {
-          "ciPolicyActivityId": "5ce2f78a9cda7100010dad8b",
+          "policyActivityId": "5ce2f78a9cda7100010dad8b",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 4
         },
         {
-          "ciPolicyActivityId": "5ce2f86d9cda7100010dad8c",
+          "policyActivityId": "5ce2f86d9cda7100010dad8c",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 4
         },
         {
-          "ciPolicyActivityId": "5ce2f92d9cda7100010dad8d",
+          "policyActivityId": "5ce2f92d9cda7100010dad8d",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 4
         },
         {
-          "ciPolicyActivityId": "5ce2f9399cda7100010dad8e",
+          "policyActivityId": "5ce2f9399cda7100010dad8e",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 4
         },
         {
-          "ciPolicyActivityId": "5ce2ffc7ad2fa40001a300cd",
+          "policyActivityId": "5ce2ffc7ad2fa40001a300cd",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 4
         },
         {
-          "ciPolicyActivityId": "5ce3020aad2fa40001a300ce",
+          "policyActivityId": "5ce3020aad2fa40001a300ce",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 3
         },
         {
-          "ciPolicyActivityId": "5ce30210ad2fa40001a300cf",
+          "policyActivityId": "5ce30210ad2fa40001a300cf",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 3
         }
@@ -840,20 +870,20 @@
     {
       "policyId": "5cddd25eadd878000146a7aa",
       "policyName": "Tim's Policy",
-      "ciPolicyCreatedDate": "2019-06-21T00:00:00.000+0000",
+      "policyCreatedDate": "2019-06-21T00:00:00.000+0000",
       "insights": [
         {
-          "ciPolicyActivityId": "5cdddafcadd878000146a7ac",
+          "policyActivityId": "5cdddafcadd878000146a7ac",
           "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cdeeb9880b7a70001ec9b8f",
+          "policyActivityId": "5cdeeb9880b7a70001ec9b8f",
           "policyActivityCreatedDate": "2019-06-22T00:00:00.000+0000",
           "violations": 2
         },
         {
-          "ciPolicyActivityId": "5cdf394176a4e100013eaab3",
+          "policyActivityId": "5cdf394176a4e100013eaab3",
           "policyActivityCreatedDate": "2019-06-23T00:00:00.000+0000",
           "violations": 2
         }
@@ -950,5 +980,19 @@
         "additionalProp3": "string"
       }
     }
-  ]
+  ],
+  "validateInfo": {
+    "policyId": "5db9a8c7b01c530001b838d1",
+    "referenceId": null,
+    "referenceLink": null,
+    "labels": {
+      "artifact-path": "",
+      "artifact-name": "",
+      "artifact-version": "",
+      "sonarqube-id": "",
+      "sonarqube-version": ""
+    },
+    "annotations": null,
+    "data": null
+  }
 }
