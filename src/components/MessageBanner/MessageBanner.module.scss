@@ -1,0 +1,47 @@
+@import "~styles/variables";
+
+.container {
+  align-items: center;
+  background-color: $interactive-01;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem 1rem;
+  position: sticky;
+  transition: all 0.15s cubic-bezier(0.4, 0.14, 1, 1);
+  top: 3rem;
+  width: 100%;
+  z-index: 2;
+
+  &.hidden {
+    transform: translateY(-100%);
+    position: fixed;
+    opacity: 0;
+  }
+}
+
+.text {
+  color: $ui-01;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.03125rem;
+  line-height: 1.75rem;
+  text-align: center;
+  width: calc(100% - 2rem);
+
+  a {
+    color: $ui-01;
+    font-weight: 400;
+  }
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.closeIcon {
+  fill: $ui-01;
+}

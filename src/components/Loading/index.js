@@ -1,22 +1,40 @@
-import React from "react";
-import ReactDom from "react-dom";
-import cx from "classnames";
-import LoadingAnimation from "@boomerang/boomerang-components/lib/LoadingAnimation";
-import "./loading.scss";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { Loading } from "carbon-components-react";
 
-const Loading = ({ centered = true }) => {
-  return centered ? (
-    ReactDom.createPortal(
-      <div className={cx("c-loading", { "--centered": centered })} data-testid="loading-centered">
-        <LoadingAnimation theme="bmrg-white" />
-      </div>,
-      document.body
-    )
-  ) : (
-    <div className="c-loading" data-testid="loading">
-      <LoadingAnimation theme="bmrg-white" />
-    </div>
-  );
+/** Loading animation with integrated loading svg, and messages to be randomly selected by default and
+ * configurable time to wait to render to prevent flickering on quickly resolved requests */
+const LoadingAnimation = ({ centered, className, loading, wait, ...rest }) => {
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldRender(true);
+    }, wait);
+
+    return () => clearTimeout(timer);
+  });
+
+  if (shouldRender && loading) {
+    return <Loading {...rest} />;
+  }
+
+  return null;
 };
 
-export default Loading;
+LoadingAnimation.defaultProps = {
+  centered: false,
+  loading: true,
+  wait: 200
+};
+
+LoadingAnimation.propTypes = {
+  centered: PropTypes.bool,
+  /** Message to display when loading */
+  message: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  loading: PropTypes.bool,
+  /** Time to wait in milliseconds before rendering the component */
+  wait: PropTypes.number
+};
+
+export default LoadingAnimation;

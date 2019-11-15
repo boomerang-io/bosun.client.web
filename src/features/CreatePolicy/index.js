@@ -1,19 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
-import { connect } from "react-redux";
-import { notify, ToastNotification } from "@boomerang/carbon-addons-boomerang-react";
-import LoadingAnimation from "Components/Loading";
-import ErrorDragon from "Components/ErrorDragon";
-import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
-import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
+import { ToastNotification } from "carbon-components-react";
+import { toast } from "react-toastify";
+import LoadingAnimation from "components/Loading";
+import ErrorDragon from "components/ErrorDragon";
+import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
+import CreateEditPolicyForm from "components/CreateEditPolicyForm";
 import {
-  SERVICE_PRODUCT_DEFINITIONS_PATH,
+  SERVICE_PRODUCT_TEMPLATES_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
   SERVICE_REQUEST_STATUSES
-} from "Config/servicesConfig";
+} from "config/servicesConfig";
+import AppContext from "state/context/appContext";
+import { POLICY_INTERACTION_TYPES } from "../../constants";
 import styles from "./createPolicy.module.scss";
 
 class CreatePolicy extends React.Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  };
+
+  static contextType = AppContext;
+
   state = {
     error: null,
     isFetching: false,
@@ -37,7 +46,7 @@ class CreatePolicy extends React.Component {
       isFetching: true
     });
     try {
-      const response = await axios.get(SERVICE_PRODUCT_DEFINITIONS_PATH);
+      const response = await axios.get(SERVICE_PRODUCT_TEMPLATES_PATH);
       this.setState({
         definitions: response.data,
         isFetching: false,
@@ -59,13 +68,13 @@ class CreatePolicy extends React.Component {
     const { name, inputs, definitions } = this.state;
     let policyObject = {
       name: name,
-      teamId: this.props.appState.activeTeam.id,
+      teamId: this.context?.activeTeam.id,
       definitions: []
     };
 
     definitions.forEach(definition => {
       let newDefinition = {
-        ciPolicyDefinitionId: definition.id
+        policyTemplateId: definition.id
       };
       let rules = [];
       const definitionRows = inputs[definition.key];
@@ -81,12 +90,27 @@ class CreatePolicy extends React.Component {
       this.setState({
         isCreating: false
       });
-      notify(<ToastNotification kind="success" title="Policy Created" subtitle="Policy was successfully created" />);
+      toast(
+        <ToastNotification
+          kind="success"
+          title="Policy Created"
+          subtitle="Policy was successfully created"
+          caption=""
+        />
+      );
+      this.navigateBack();
     } catch (e) {
       this.setState({
         isCreating: false
       });
-      notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to create policy failed" />);
+      toast(
+        <ToastNotification
+          kind="error"
+          title="Something's Wrong"
+          subtitle="Request to create policy failed"
+          caption=""
+        />
+      );
     }
   };
 
@@ -172,7 +196,7 @@ class CreatePolicy extends React.Component {
     };
 
     if (isFetching) {
-      return <LoadingAnimation theme="bmrg-white" />;
+      return <LoadingAnimation />;
     }
 
     if (error) {
@@ -182,7 +206,7 @@ class CreatePolicy extends React.Component {
     if (status === SERVICE_REQUEST_STATUSES.SUCCESS) {
       return (
         <div className={styles.container}>
-          <CreateEditPolicyHeader form={form} navigateBack={this.navigateBack} type="create" />
+          <CreateEditPolicyHeader form={form} navigateBack={this.navigateBack} type={POLICY_INTERACTION_TYPES.CREATE} />
           <CreateEditPolicyForm form={form} definitions={definitions} />
         </div>
       );
@@ -192,11 +216,4 @@ class CreatePolicy extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  appState: state.app
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(CreatePolicy);
+export default CreatePolicy;

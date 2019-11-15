@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import moment from "moment";
-// import getHumanizedDuration from "@boomerang/boomerang-utilities/lib/getHumanizedDuration";
 import "./styles.scss";
 
 class CustomTooltip extends Component {
@@ -22,9 +20,7 @@ class CustomTooltip extends Component {
     const tooltipFields = this.props.payload.length > 0 ? Object.keys(this.props.payload[0].payload) : null;
     return (
       <div className="c-tooltip">
-        {this.props.payload.length > 0 ? (
-          <div>{this.renderTooltip(tooltipFields)}</div>
-        ) : null}
+        {this.props.payload.length > 0 ? <div>{this.renderTooltip(tooltipFields)}</div> : null}
       </div>
     );
   }

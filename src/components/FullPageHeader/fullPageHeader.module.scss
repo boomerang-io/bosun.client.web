@@ -3,8 +3,9 @@
   background: white;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  position: fixed;
+  padding: 1.5rem;
+  position: sticky;
+  top: 3rem;
   width: 100%;
   z-index: 1;
 }

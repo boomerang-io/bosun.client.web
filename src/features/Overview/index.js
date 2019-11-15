@@ -1,139 +1,68 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { actions as insightsActions } from "State/insights";
-import { actions as getPoliciesActions } from "State/policies/getPolicies";
-import { actions as violationsActions } from "State/violations";
-import LoadingAnimation from "Components/Loading";
-import ErrorDragon from "Components/ErrorDragon";
-import Header from "./Header";
-import Welcome from "Components/Welcome";
+import React from "react";
+import { useHistory } from "react-router-dom";
+import ErrorDragon from "components/ErrorDragon";
+import LoadingAnimation from "components/Loading";
+import Welcome from "components/Welcome";
 import Insights from "./Insights";
 import Policies from "./Policies";
+import TeamSelector from "./TeamSelector";
 import Violations from "./Violations";
 import {
   SERVICE_PRODUCT_INSIGHTS_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
-  SERVICE_REQUEST_STATUSES,
   SERVICE_PRODUCT_VIOLATIONS_PATH
-} from "Config/servicesConfig";
-import sortBy from "lodash/sortBy";
+} from "config/servicesConfig";
+
+import useAxiosFetch from "utils/hooks/useAxios";
+import AppContext from "state/context/appContext";
 import styles from "./overview.module.scss";
 
-export class Overview extends Component {
-  static propTypes = {
-    activeTeam: PropTypes.object,
-    insightsActions: PropTypes.object.isRequired,
-    insights: PropTypes.object.isRequired,
-    getPoliciesActions: PropTypes.object.isRequired,
-    policies: PropTypes.object.isRequired,
-    teams: PropTypes.array,
-    violationsActions: PropTypes.object.isRequired,
-    violations: PropTypes.object.isRequired
-  };
+export function Overview() {
+  const history = useHistory();
+  const { activeTeam, teams } = React.useContext(AppContext);
+  const activeTeamId = activeTeam?.id;
 
-  componentDidMount() {
-    if (this.props.activeTeam) {
-      this.fetchData();
-    }
-  }
+  const policiesState = useAxiosFetch(`${SERVICE_PRODUCT_POLICIES_PATH}?teamId=${activeTeamId}`);
+  const insightsState = useAxiosFetch(`${SERVICE_PRODUCT_INSIGHTS_PATH}?teamId=${activeTeamId}`);
+  const violationsState = useAxiosFetch(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?teamId=${activeTeamId}`);
 
-  componentDidUpdate(prevProps) {
-    if (this.props.activeTeam) {
-      if (!prevProps.activeTeam || this.props.activeTeam.id !== prevProps.activeTeam.id) {
-        this.fetchData();
-      }
-    }
-  }
-
-  fetchData = async () => {
-    const { id } = this.props.activeTeam;
-    try {
-      await Promise.all([
-        this.props.getPoliciesActions.fetch(`${SERVICE_PRODUCT_POLICIES_PATH}?ciTeamId=${id}`),
-        this.props.insightsActions.fetch(`${SERVICE_PRODUCT_INSIGHTS_PATH}?ciTeamId=${id}`),
-        this.props.violationsActions.fetch(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?ciTeamId=${id}`)
-      ]);
-    } catch (err) {
-      //noop
+  const handleChangeTeam = ({ selectedItem }) => {
+    if (selectedItem?.name) {
+      history.push(`/${selectedItem.name}`);
     }
   };
 
-  handleChangeTeam = ({ selectedItem }) => {
-    if (selectedItem && selectedItem.name) {
-      this.props.history.push(`/${selectedItem.name}`);
-    } else {
-      this.props.history.push(`/`);
-    }
-  };
-
-  renderContent() {
-    const { activeTeam, policies, violations, insights } = this.props;
+  function renderContent() {
     if (!activeTeam) {
       return <Welcome />;
     }
 
-    if (policies.isFetching || insights.isFetching || violations.isFetching)
-      return <LoadingAnimation theme="bmrg-white" message="Just a moment, por favor" delay={500} />;
+    if (policiesState.isLoading || insightsState.isLoading || violationsState.isLoading)
+      return <LoadingAnimation message="Just a moment, por favor" delay={0} />;
 
-    if (
-      policies.status === SERVICE_REQUEST_STATUSES.SUCCESS ||
-      insights.status === SERVICE_REQUEST_STATUSES.SUCCESS ||
-      violations.status === SERVICE_REQUEST_STATUSES.SUCCESS
-    ) {
-      return (
-        <>
-          {insights.status === SERVICE_REQUEST_STATUSES.SUCCESS && (
-            <Insights insights={insights.data} violations={violations.data} policies={policies.data} />
-          )}
-          {policies.status === SERVICE_REQUEST_STATUSES.SUCCESS && <Policies policies={policies.data} />}
-          {violations.status === SERVICE_REQUEST_STATUSES.SUCCESS && (
-            <Violations hasPolicies={policies.data.length} violations={violations.data} />
-          )}
-        </>
-      );
-    }
-
-    if (
-      policies.status === SERVICE_REQUEST_STATUSES.FAILURE &&
-      insights.status === SERVICE_REQUEST_STATUSES.FAILURE &&
-      violations.status === SERVICE_REQUEST_STATUSES.FAILURE
-    ) {
+    if (policiesState.error && insightsState.error && violationsState.error) {
       return <ErrorDragon />;
     }
-  }
 
-  render() {
-    const { activeTeam, teams } = this.props;
     return (
-      <div className={styles.container}>
-        <Header activeTeam={activeTeam} handleChangeTeam={this.handleChangeTeam} teams={teams} />
-        {this.renderContent()}
-      </div>
+      <>
+        {insightsState.data && (
+          <Insights insights={insightsState.data} policies={policiesState.data} violations={violationsState.data} />
+        )}
+        {policiesState.data && <Policies policies={policiesState.data} />}
+        {violationsState.data && (
+          <Violations hasPolicies={policiesState?.data.length} violations={violationsState.data} />
+        )}
+      </>
     );
   }
+
+  return (
+    <div className={styles.container}>
+      <TeamSelector activeTeam={activeTeam} handleChangeTeam={handleChangeTeam} teams={teams} />
+      {renderContent()}
+    </div>
+  );
 }
 
-const mapStateToProps = state => {
-  return {
-    activeTeam: state.app.activeTeam,
-    insights: state.insights,
-    policies: state.policies.getPolicies,
-    teams: sortBy(state.teams.data, team => team.boomerangTeamName.toLowerCase()),
-    violations: state.violations
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getPoliciesActions: bindActionCreators(getPoliciesActions, dispatch),
-    insightsActions: bindActionCreators(insightsActions, dispatch),
-    violationsActions: bindActionCreators(violationsActions, dispatch)
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Overview);
+export default Overview;

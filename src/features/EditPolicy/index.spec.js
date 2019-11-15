@@ -3,7 +3,7 @@ import axios from "axios";
 import { fireEvent, waitForElement } from "@testing-library/react";
 import EditPolicy from ".";
 import MockAdapter from "axios-mock-adapter";
-import { SERVICE_PRODUCT_DEFINITIONS_PATH, SERVICE_PRODUCT_POLICIES_PATH } from "Config/servicesConfig";
+import { SERVICE_PRODUCT_TEMPLATES_PATH, SERVICE_PRODUCT_POLICIES_PATH } from "Config/servicesConfig";
 
 const route = "/111/policy/edit/222";
 const props = {
@@ -67,7 +67,7 @@ const policy = {
   teamId: "5a8b331e262a70306622df73",
   definitions: [
     {
-      ciPolicyDefinitionId: "5cd49777f6ea74a9bb6ac629",
+      policyTemplateId: "5cd49777f6ea74a9bb6ac629",
       rules: [
         {
           metric: "lines",
@@ -91,11 +91,11 @@ describe("EditPolicy --- Snapshot", () => {
   });
 
   const mockAxios = new MockAdapter(axios);
-  mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
+  mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
   mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
   it("+++ renders correctly", async () => {
     const { baseElement, getByText } = renderWithRouter(<EditPolicy {...props} />, { route });
-    await waitForElement(() => getByText(/Edit Policy Definitions/i));
+    await waitForElement(() => getByText(/Edit Policy/i));
     expect(baseElement).toMatchSnapshot();
   });
 });
@@ -107,7 +107,7 @@ describe("EditPolicy --- RTL", () => {
 
   test("renders error message when fetching definitions failed", async () => {
     const mockAxios = new MockAdapter(axios);
-    mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(404);
+    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(404);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
 
     const { getByText } = renderWithRouter(<EditPolicy {...props} />, { route });
@@ -117,7 +117,7 @@ describe("EditPolicy --- RTL", () => {
 
   test("renders error message when fetching policy failed", async () => {
     const mockAxios = new MockAdapter(axios);
-    mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
+    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(404);
 
     const { getByText } = renderWithRouter(<EditPolicy {...props} />, { route });
@@ -127,7 +127,7 @@ describe("EditPolicy --- RTL", () => {
 
   test("it is able to update policy only if it has a name", async () => {
     const mockAxios = new MockAdapter(axios);
-    mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
+    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
 
     const { getByPlaceholderText, getByTestId } = renderWithRouter(<EditPolicy {...props} />, { route });
@@ -146,7 +146,7 @@ describe("EditPolicy --- RTL", () => {
 
   test("save button is disabled while saving", async () => {
     const mockAxios = new MockAdapter(axios);
-    mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
+    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
 
     const { getByPlaceholderText, getByTestId } = renderWithRouter(<EditPolicy {...props} />, { route });
@@ -163,7 +163,7 @@ describe("EditPolicy --- RTL", () => {
 
   // test("delete modals appears and delete button is disabled while deleting", async () => {
   //   const mockAxios = new MockAdapter(axios);
-  //   mockAxios.onGet(SERVICE_PRODUCT_DEFINITIONS_PATH).reply(200, definitions);
+  //   mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
   //   mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
   //   mockAxios.onDelete(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200);
 

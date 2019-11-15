@@ -1,29 +1,32 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { DataTable } from "carbon-components-react";
+import {
+  Button,
+  CodeSnippet,
+  ComposedModal,
+  DataTable,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  Tag
+} from "carbon-components-react";
+import copy from "copy-to-clipboard";
+import { isAccessibleEvent } from "utils";
 import styles from "./violationsTable.module.scss";
 
 export class ViolationsTable extends Component {
   static propTypes = {
     violations: PropTypes.array
   };
+
+  annotationsRef = React.createRef();
+
+  state = { isModalOpen: false, selectedPolicyIndex: null };
   headers = [
     {
       header: "Policy",
-      key: "ciPolicyName"
-    },
-    {
-      header: "Stage",
-      key: "ciStageName"
-    },
-    {
-      header: "Component",
-      key: "ciComponentName"
-    },
-    {
-      header: "Version",
-      key: "ciComponentVersionName"
+      key: "policyName"
     },
     {
       header: "Violations",
@@ -31,11 +34,15 @@ export class ViolationsTable extends Component {
     },
     {
       header: "Failed Definition Types",
-      key: "ciPolicyDefinitionTypes"
+      key: "policyDefinitionTypes"
+    },
+    {
+      header: "Reference ID",
+      key: "referenceId"
     },
     {
       header: "Activity Date",
-      key: "ciPolicyActivityCreatedDate"
+      key: "policyActivityCreatedDate"
     }
   ];
 
@@ -54,7 +61,7 @@ export class ViolationsTable extends Component {
     const column = this.headers[cellIndex];
     switch (column.header) {
       case "Activity Date":
-        return <p className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</p>;
+        return <time className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</time>;
       case "Failed Definition Types":
         return <p className={styles.tableTextarea}>{value && value.length ? value.join(", ") : "---"}</p>;
       default:
@@ -66,28 +73,27 @@ export class ViolationsTable extends Component {
     const { violations } = this.props;
     const currentViolation = violations.find(violation => violation.id === row.id);
     if (currentViolation && currentViolation.violations.length > 0)
-      return(
-        currentViolation.violations.map((violation) => (
-          <div className={styles.subRow}>
-            {
-              this.subHeaders.map( cell => (
-                <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>{this.renderDetail(cell.key, violation[cell.key])}</div>
-              ))                                
-            }
-          </div>
-        ))
-      );
+      return currentViolation.violations.map(violation => (
+        <div className={styles.subRow}>
+          {this.subHeaders.map(cell => (
+            <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>
+              {this.renderDetail(cell.key, violation[cell.key])}
+            </div>
+          ))}
+        </div>
+      ));
     else {
-      return(
-        <div className={styles.subRow}>                        {
-            this.subHeaders.map( cell => (
-              <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>{this.renderDetail(cell.key,"---")}</div>
-            ))                                
-          }
+      return (
+        <div className={styles.subRow}>
+          {this.subHeaders.map(cell => (
+            <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>
+              {this.renderDetail(cell.key, "---")}
+            </div>
+          ))}
         </div>
       );
     }
-  }
+  };
 
   renderDetail = (key, value) => {
     switch (key) {
@@ -98,60 +104,127 @@ export class ViolationsTable extends Component {
       default:
         return <p className={styles.tableTextarea}>{value || "---"}</p>;
     }
-  }
+  };
+
+  handleRowClick = row => {
+    this.setState({
+      isModalOpen: true,
+      selectedPolicyIndex: row
+    });
+  };
 
   render() {
     const { violations } = this.props;
-    const { TableContainer, Table, TableHead, TableRow, TableBody, TableCell, TableHeader, TableExpandHeader , TableExpandRow, TableExpandedRow  } = DataTable;
-
+    const { TableContainer, Table, TableHead, TableRow, TableBody, TableCell, TableHeader } = DataTable;
+    const selectedViolation = violations[this.state.selectedPolicyIndex];
     return (
-      <DataTable
-        rows={violations}
-        headers={this.headers}
-        render={({ rows, headers, getHeaderProps, getRowProps }) => (
-          <TableContainer>
-            <Table className={styles.tableContainer} sortable={"true"} useZebraStyles={false}>
-              <TableHead>
-                <TableRow className={styles.tableHeadRow}>
-                  <TableExpandHeader />
-                  {headers.map(header => (
-                    <TableHeader
-                      {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
-                    >
-                      {header.header}
-                    </TableHeader>
+      <>
+        <ComposedModal open={this.state.isModalOpen} onClose={() => this.setState({ isModalOpen: false })}>
+          <ModalHeader
+            title={selectedViolation?.policyName}
+            buttonOnClick={() => this.setState({ isModalOpen: false })}
+          />
+          <ModalBody>
+            <h2 className={styles.modalSectionTitle}>{`Violations (${selectedViolation?.violations?.length ?? 0})`}</h2>
+            <ul className={styles.modalLabels}>
+              {(selectedViolation?.violations ?? [])?.map(({ metric, message }, index) => (
+                <li key={index}>
+                  <span>{metric} : </span>
+                  <span style={{ fontStyle: "italic" }}>{message}</span>
+                </li>
+              ))}
+            </ul>
+            <h2 className={styles.modalSectionTitle}>Failed Definition Types</h2>
+            <p>
+              {selectedViolation?.policyDefinitionTypes && selectedViolation?.policyDefinitionTypes.length
+                ? selectedViolation?.policyDefinitionTypes.join(", ")
+                : "---"}
+            </p>
+            <h2 className={styles.modalSectionTitle}>Labels</h2>
+            <ul className={styles.modalLabels}>
+              {Object.entries(selectedViolation?.labels ?? {})?.map(entry => (
+                <li key={entry[0]}>
+                  <Tag type="purple">
+                    {entry[0]}
+                    <span>:</span>
+                    {entry[1]}
+                  </Tag>
+                </li>
+              ))}
+            </ul>
+            <h2 className={styles.modalSectionTitle}>Reference Link</h2>
+            {selectedViolation?.referenceLink ? (
+              <a href={selectedViolation?.referenceLink} alt="Reference link">
+                {selectedViolation.referenceLink}
+              </a>
+            ) : (
+              <p>No reference link provided</p>
+            )}
+
+            <h2 className={styles.modalSectionTitle}>Reference ID</h2>
+            <p>{selectedViolation?.referenceId ?? "---"}</p>
+            <h2 className={styles.modalSectionTitle}>Created Date</h2>
+            <time>{moment(selectedViolation?.createdDate).format("MMM DD, YYYY - hh:mm a")}</time>
+            <h2 className={styles.modalSectionTitle}>Annotations</h2>
+            {selectedViolation?.annotations ? (
+              <CodeSnippet
+                copyButtonDescription="Copy annotations to clipboard"
+                onClick={() => copy(JSON.stringify([selectedViolation?.annotations]))}
+                type="multi"
+              >
+                {JSON.stringify([selectedViolation?.annotations], null, 1)}
+              </CodeSnippet>
+            ) : (
+              "---"
+            )}
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={() => this.setState({ isModalOpen: false })}>Close</Button>
+          </ModalFooter>
+        </ComposedModal>
+        <DataTable
+          rows={violations}
+          headers={this.headers}
+          isSortable={true}
+          render={({ rows, headers, getHeaderProps, getRowProps }) => (
+            <TableContainer>
+              <Table className={styles.tableContainer} sortable={"true"} useZebraStyles={false}>
+                <TableHead>
+                  <TableRow className={styles.tableHeadRow}>
+                    {headers.map(header => (
+                      <TableHeader
+                        {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
+                      >
+                        {header.header}
+                      </TableHeader>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody className={styles.tableBody}>
+                  {rows.map((row, rowIndex) => (
+                    <Fragment key={row.id}>
+                      <TableRow
+                        className={styles.tableBodyRow}
+                        key={row.id}
+                        {...getRowProps({ row })}
+                        onClick={() => this.handleRowClick(rowIndex)}
+                        onKeyDown={e => isAccessibleEvent(e) && this.handleRowClick(rowIndex)}
+                        tabIndex={0}
+                      >
+                        {row.cells.map((cell, cellIndex) => (
+                          <TableCell key={cell.id} style={{ padding: "0" }}>
+                            <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    </Fragment>
                   ))}
-                </TableRow>
-              </TableHead>
-              <TableBody className={styles.tableBody}>
-                {rows.map((row, rowIndex) => (
-                  <Fragment key={row.id}>
-                    <TableExpandRow  key={row.id} {...getRowProps({ row })}>
-                      {row.cells.map((cell, cellIndex) => (
-                        <TableCell key={cell.id} style={{ padding: "0" }}>
-                          <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
-                        </TableCell>
-                      ))}
-                    </TableExpandRow>
-                    {row.isExpanded && (
-                      <TableExpandedRow colSpan={headers.length + 1}>
-                        <div className={styles.tableSubHeaders}>
-                          {this.subHeaders.map(header => (
-                            <div className={`${styles.tableSubHeader} ${styles[header.key]}`}>
-                              {header.header}
-                            </div>
-                          ))}
-                        </div>
-                          {this.renderSubRow(row)}
-                      </TableExpandedRow>
-                    )}
-                  </Fragment>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        )}
-      />
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        />
+      </>
     );
   }
 }

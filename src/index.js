@@ -1,27 +1,12 @@
 import React from "react";
 import { render } from "react-dom";
-import configureStore from "./store/configureStore";
 import Root from "./Root";
-import "Config/axiosGlobalConfig";
+import "config/axiosGlobalConfig";
 import "typeface-ibm-plex-sans";
-import "Styles/index.scss";
-
-const store = configureStore();
+import "styles/index.scss";
 
 // Setup hot module reloading to improve dev experience
-render(<Root store={store} />, document.getElementById("app"));
-
-// if (module.hot) {
-//   module.hot.accept("./Root", () => {
-//     const NewRoot = require("./Root").default;
-//     render(
-//       <AppContainer>
-//         <NewRoot store={store} history={history} />
-//       </AppContainer>,
-//       document.getElementById("app")
-//     );
-//   });
-// }
+render(<Root />, document.getElementById("app"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

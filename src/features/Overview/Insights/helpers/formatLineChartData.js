@@ -7,14 +7,19 @@ export const getLineChartData = data => {
   let lines = [];
   let totalViolations = 0;
   data.forEach(policy => {
-    lines.push(policy.ciPolicyName);
+    lines.push(policy.policyName);
     policy.insights.forEach(insight => {
-      if (dateName.find(date => moment(date).format("MMM DD - YYYY") === moment(insight.ciPolicyActivityCreatedDate).format("MMM DD - YYYY"))) {} 
-      else {
-        dateName.push(insight.ciPolicyActivityCreatedDate);
+      if (
+        dateName.find(
+          date =>
+            moment(date).format("MMM DD - YYYY") === moment(insight.policyActivityCreatedDate).format("MMM DD - YYYY")
+        )
+      ) {
+      } else {
+        dateName.push(insight.policyActivityCreatedDate);
       }
-      totalViolations = totalViolations + insight.violations; 
-    });   
+      totalViolations = totalViolations + insight.violations;
+    });
   });
 
   const sortedDate = sortBy(sortBy(dateName));
@@ -23,20 +28,22 @@ export const getLineChartData = data => {
     let violationsData = data.map(policy => {
       let violationCount = 0;
       policy.insights.forEach(insight => {
-        if (moment(date).format("MMM DD - YYYY") === moment(insight.ciPolicyActivityCreatedDate).format("MMM DD - YYYY")) {
+        if (
+          moment(date).format("MMM DD - YYYY") === moment(insight.policyActivityCreatedDate).format("MMM DD - YYYY")
+        ) {
           violationCount += insight.violations;
         } else {
           return null;
         }
       });
-      higherValue = higherValue > violationCount ? higherValue:violationCount;
-      return({count:violationCount,name:policy.ciPolicyName});
-    })
+      higherValue = higherValue > violationCount ? higherValue : violationCount;
+      return { count: violationCount, name: policy.policyName };
+    });
     let policiesData = {};
     violationsData.forEach(violation => {
       policiesData[violation.name] = violation.count;
     });
-    finalData.push({date:moment(date).format("MMMM DD, YYYY"),...policiesData});
+    finalData.push({ date: moment(date).format("MMMM DD, YYYY"), ...policiesData });
   });
-  return {chartData:finalData, lines, totalViolations, higherValue};
-}
+  return { chartData: finalData, lines, totalViolations, higherValue };
+};

@@ -71,7 +71,7 @@ const policiesReducerState = {
       teamId: "5a8b331e262a70306622df73",
       definitions: [
         {
-          ciPolicyDefinitionId: "5cd49777f6ea74a9bb6ac629",
+          policyTemplateId: "5cd49777f6ea74a9bb6ac629",
           rules: [
             {
               value: "sdfgsdfg",
@@ -81,7 +81,7 @@ const policiesReducerState = {
           ]
         },
         {
-          ciPolicyDefinitionId: "5cd498f3f6ea74a9bb6ad0f3",
+          policyTemplateId: "5cd498f3f6ea74a9bb6ad0f3",
           rules: [
             {
               version: " asdfasdf",
@@ -135,9 +135,9 @@ describe("Overview --- RTL", () => {
   it("Render the Welcome page", async () => {
     const { getByText } = render(<Overview {...props} />);
 
-    const welcomeText = await waitForElement(() => getByText(/Welcome to/i), { timeout: 5000 });
-    const appText = await waitForElement(() => getByText(/Boomerang Citadel/i), { timeout: 5000 });
-    const selectText = await waitForElement(() => getByText(/Select a team to get started/i), { timeout: 5000 });
+    const welcomeText = await waitForElement(() => getByText(/welcome to/i), { timeout: 5000 });
+    const appText = await waitForElement(() => getByText(/boomerang bosun/i), { timeout: 5000 });
+    const selectText = await waitForElement(() => getByText(/select a team to get started/i), { timeout: 5000 });
 
     expect(welcomeText).toBeInTheDocument();
     expect(appText).toBeInTheDocument();
@@ -154,9 +154,9 @@ describe("Overview --- RTL", () => {
     const { getByText, getAllByText, getAllByTestId, getByTestId } = render(
       <Overview {...props} activeTeam={teams[0]} policies={policiesReducerState} />
     );
-    expect(getByText(/Insights/i)).toBeInTheDocument();
-    expect(getAllByText(/Policies/i).length).toBeGreaterThan(1);
-    expect(getAllByText(/Violations/i).length).toBeGreaterThan(1);
+    expect(getByText(/insights/i)).toBeInTheDocument();
+    expect(getAllByText(/policies/i).length).toBeGreaterThan(1);
+    expect(getAllByText(/violations/i).length).toBeGreaterThan(1);
 
     const tiles = getAllByTestId("tile-info");
 
@@ -169,7 +169,7 @@ describe("Overview --- RTL", () => {
   it("Redirect to Create Policy", async () => {
     const { history, findByText, getByText } = render(<Overview {...props} activeTeam={teams[0]} />);
     await findByText("Violations Trend");
-    const addPolicyButton = getByText("Add Policy");
+    const addPolicyButton = getByText("Create Policy");
     fireEvent.click(addPolicyButton);
     expect(history.location.pathname).toEqual("//policy/create");
   });

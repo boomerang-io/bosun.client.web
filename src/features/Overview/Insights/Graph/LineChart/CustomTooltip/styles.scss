@@ -1,14 +1,13 @@
-@import "~@boomerang/boomerang-styles/lib/colors";
-@import "~Styles/variables";
+@import "~styles/variables";
 
 .c-tooltip {
   display: flex;
   flex-direction: column;
-  background-color: $dark-gray;
+  background-color: $text-02;
   width: auto;
   height: auto;
-  color: $white;
-  border: solid $white 1px;
+  color: $ui-01;
+  border: solid $ui-01 1px;
   border-radius: 0.325rem;
 }
 .b-tooltip--data {

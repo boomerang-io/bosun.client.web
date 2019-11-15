@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import moment from "moment";
 import { Tile } from "carbon-components-react";
 import LineChart from "./LineChart";
-// import VisLineChart from "./VisLineChart";
-// import FilterDropdown from "./FilterDropdown";
 import styles from "./graph.module.scss";
 
 export class Graph extends Component {
@@ -33,11 +30,7 @@ export class Graph extends Component {
       >
         <div className={styles.header}>
           <h3 className={styles.title}>Violations Trend</h3>
-          <div className={styles.filters}>
-            {/* <FilterDropdown options={mockFilterData} onChange={()=>console.log("selected")} label="Standards" selectedItem={{}} />
-            <FilterDropdown options={mockFilterData} onChange={()=>console.log("selected")} label="From" selectedItem={{}} />
-            <FilterDropdown options={mockFilterData} onChange={()=>console.log("selected")} label="To" selectedItem={{}} /> */}
-          </div>
+          <div className={styles.filters}></div>
         </div>
         <div className={styles.container} data-testid="insights-graph">
           {formatedData.chartData.length > 0 ? (
@@ -47,9 +40,8 @@ export class Graph extends Component {
               higherValue={formatedData.higherValue}
             />
           ) : (
-            <p>No violations data to de displayed.</p>
+            <p>No violations data to be found</p>
           )}
-          {/* <VisLineChart /> */}
         </div>
       </Tile>
     );

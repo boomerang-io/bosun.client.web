@@ -1,66 +1,44 @@
-import React, { Suspense, Component } from "react";
-import PropTypes from "prop-types";
-import { Switch, Route, withRouter } from "react-router-dom";
-import { NotificationsContainer } from "@boomerang/carbon-addons-boomerang-react";
-import LoadingAnimation from "Components/Loading";
-import CreatePolicy from "Features/CreatePolicy";
-import EditPolicy from "Features/EditPolicy";
-import Overview from "Features/Overview";
-import NotificationBanner from "Components/NotificationBanner";
+import React, { Suspense } from "react";
+import { Switch, Route } from "react-router-dom";
+import { ToastContainer, Slide } from "react-toastify";
+import LoadingAnimation from "components/Loading";
+import CreatePolicy from "features/CreatePolicy";
+import CreateTemplate from "features/CreateTemplate";
+import EditPolicy from "features/EditPolicy";
+import EditTemplate from "features/EditTemplate";
+import Overview from "features/Overview";
+import Templates from "features/Templates";
+import MessageBanner from "components/MessageBanner";
+import styles from "./Main.module.scss";
 
-class Main extends Component {
-  static propTypes = {
-    globalMatch: PropTypes.object.isRequired,
-    setActiveTeam: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired
-  };
-
-  componentDidMount() {
-    const { globalMatch, setActiveTeam } = this.props;
-    const teamName = globalMatch && globalMatch.params && globalMatch.params.teamName;
-    if (teamName) {
-      setActiveTeam(teamName);
-    }
-
-    this.setNewRelicCustomAttribute();
-  }
-
-  componentDidUpdate(prevProps) {
-    const { globalMatch, setActiveTeam } = this.props;
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      const teamName = globalMatch && globalMatch.params && globalMatch.params.teamName;
-      setActiveTeam(teamName);
-    }
-  }
-
-  closeBanner = () => {
-    this.setState({ bannerClosed: true });
-  };
-
-  setNewRelicCustomAttribute() {
-    if (window.newrelic && this.props.user.data.id) {
-      window.newrelic.setCustomAttribute("userId", this.props.user.data.id);
-    }
-  }
-
-  render() {
-    return (
-      <div className="c-app-content">
-        <NotificationBanner />
-        <main className="c-app-main">
-          <Suspense fallback={<LoadingAnimation theme="bmrg-white" />}>
-            <Switch>
-              <Route path="/:teamName/policy/edit/:policyId" component={EditPolicy} />
-              <Route path="/:teamName/policy/create" component={CreatePolicy} />
-              <Route path="/:teamName" component={Overview} />
-              <Route path="/" component={Overview} />
-            </Switch>
-          </Suspense>
-        </main>
-        <NotificationsContainer enableMultiContainer />
-      </div>
-    );
-  }
+function Main() {
+  return (
+    <>
+      <MessageBanner />
+      <main className={styles.container}>
+        <Suspense fallback={<LoadingAnimation centered />}>
+          <Switch>
+            <Route path="/templates/create" component={CreateTemplate} />
+            <Route path="/templates/edit/:templateId" component={EditTemplate} />
+            <Route exact path="/templates" component={Templates} />
+            <Route path="/:teamName/policy/edit/:policyId" component={EditPolicy} />
+            <Route path="/:teamName/policy/create" component={CreatePolicy} />
+            <Route path="/:teamName" component={Overview} />
+            <Route path="/" component={Overview} />
+          </Switch>
+        </Suspense>
+      </main>
+      <ToastContainer
+        autoClose={3000}
+        closeOnClick={true}
+        draggablePercent={60}
+        hideProgressBar={true}
+        pauseOnHover={true}
+        position="top-right"
+        transition={Slide}
+      />
+    </>
+  );
 }
 
-export default withRouter(Main);
+export default Main;

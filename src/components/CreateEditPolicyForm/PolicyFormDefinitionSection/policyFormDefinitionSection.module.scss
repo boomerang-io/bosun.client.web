@@ -7,30 +7,34 @@
     margin-top: 1rem;
   }
   h2 {
-    padding: 1rem 0;
+    padding: 0;
   }
 
   p {
-    max-width: 60rem;
-    line-height: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
+    color: #242a2e;
+    font-size: 0.75rem;
+    letter-spacing: 0.0625rem;
+    line-height: 0.92rem;
+    text-align: left;
+    text-overflow: ellipsis;
+    word-break: break-word;
   }
 }
 
 .row {
   align-items: center;
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
   margin-top: 1rem;
   > div:not(:last-child) {
     margin-right: 1rem;
   }
   :global .bx--bmrg-select,
-  :global .bx--form-item,
-  :global .bx--text-input {
+  :global .bx--bmrg-text-input {
     max-width: 15rem;
     min-width: 15rem;
+    margin-bottom: 1rem;
   }
 
   &:hover,

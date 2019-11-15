@@ -1,12 +1,12 @@
 .container {
   padding: 2rem;
   display: flex;
-  padding-top: 13rem;
+  padding-top: 2rem;
 }
 
 .content {
-  & > :global(.bx--form-item) > :global(.bx--text-input) {
-    max-width: 31rem;
+  & > :global(.bx--bmrg-text-input) {
+    max-width: 24rem;
   }
 }
 
@@ -26,9 +26,6 @@
 }
 
 @media (max-width: 50rem) {
-  .container {
-    padding-top: 16rem;
-  }
   .containerGraphics {
     display: none;
   }

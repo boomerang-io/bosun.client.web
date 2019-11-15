@@ -72,7 +72,7 @@ export default class ViolationsLineChart extends PureComponent {
               <filter id="drop-shadow">
                 <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
                 <feOffset dx="5" dy="5" result="offsetblur" />
-                <feFlood flood-color="grey" />
+                <feFlood floodColor="grey" />
                 <feComposite in2="offsetblur" operator="in" />
                 <feMerge>
                   <feMergeNode />

@@ -1,3 +1,15 @@
-export const POLICY_DEFINITIONS = {
+const POLICY_DEFINITIONS = {
   STATIC_CODE_ANALYSIS: "static_code_analysis"
 };
+
+const POLICY_INTERACTION_TYPES = {
+  CREATE: "create",
+  EDIT: "edit"
+};
+
+const TEMPLATE_INTERACTION_TYPES = {
+  CREATE: "create",
+  EDIT: "edit"
+};
+
+export { POLICY_INTERACTION_TYPES, POLICY_DEFINITIONS, TEMPLATE_INTERACTION_TYPES };
