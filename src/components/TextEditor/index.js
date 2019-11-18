@@ -18,6 +18,7 @@ import "codemirror/addon/fold/indent-fold.js";
 import "codemirror/addon/fold/comment-fold.js";
 import "codemirror/addon/comment/comment.js";
 import "codemirror-rego/mode";
+import "./autorefresh.ext.js";
 import { Undo20, Redo20, Copy20, Cut20, Paste20, ArrowUp16, ArrowDown16 } from "@carbon/icons-react";
 import { Toolbar, ToolbarItem, Search, Button } from "carbon-components-react";
 import "./styles.scss";
@@ -25,7 +26,7 @@ import "./styles.scss";
 const languageParams = { mode: "rego" };
 
 const TextEditorView = props => {
-  const { value } = props;
+  const { setCodeMirroEditor, value } = props;
 
   const editor = useRef(null);
   const [doc, setDoc] = useState();
@@ -113,7 +114,7 @@ const TextEditorView = props => {
         height: "100%",
         width: "100%",
         margin: "auto",
-        overflowY: "auto",
+        overflowX: "visible",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start"
@@ -223,36 +224,20 @@ const TextEditorView = props => {
             className="b-task-text-area__button"
           />
         </ToolbarItem>
-
-        {/* <ToolbarItem>
-          <div className="b-task-text-area__language-dropdown">
-            <Dropdown
-              id="dropdown-language"
-              type="default"
-              label="Language selection"
-              ariaLabel="Dropdown"
-              light={false}
-              initialSelectedItem={
-                props.language
-                  ? languageOptions.find(languageOption => languageOption.id === props.language)
-                  : languageOptions[0]
-              }
-              items={languageOptions}
-              itemToString={item => (item ? item.text : "")}
-              onChange={onChangeLanguage}
-            />
-          </div>
-        </ToolbarItem> */}
       </Toolbar>
 
       <CodeMirrorReact
         editorDidMount={cmeditor => {
           editor.current = cmeditor;
           setDoc(cmeditor.getDoc());
+          if (setCodeMirroEditor instanceof Function) {
+            setCodeMirroEditor(cmeditor);
+          }
         }}
         value={value}
+        focus={true}
         options={{
-          theme: "material",
+          autoRefresh: { force: true },
           extraKeys: {
             "Ctrl-Space": "autocomplete",
             "Ctrl-Q": foldCode,
@@ -260,10 +245,11 @@ const TextEditorView = props => {
             "Shift-Alt-A": blockComment,
             "Shift-Opt-A": blockComment
           },
-          lineWrapping: true,
           foldGutter: true,
-          lineNumbers: true,
           gutters: ["CodeMirrorReact-linenumbers", "CodeMirror-foldgutter"],
+          lineNumbers: true,
+          lineWrapping: true,
+          theme: "material",
           ...languageParams
         }}
         onBeforeChange={(editor, data, value) => {
