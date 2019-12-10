@@ -38,26 +38,16 @@ function Navbar({ navigationState, userState }) {
         <LeftSideNav isOpen={isOpen}>
           <SideNav expanded={isOpen} isChildOfHeader={true}>
             <SideNavItems>
-              <SideNavLink large onClick={onMenuClose} href={`${BASE_APPS_ENV_URL}/ci/`} renderIcon={Integration16}>
+              <SideNavLink large href={`${BASE_APPS_ENV_URL}/ci/`} renderIcon={Integration16}>
                 Components
               </SideNavLink>
-              <SideNavLink
-                large
-                onClick={onMenuClose}
-                href={`${BASE_APPS_ENV_URL}/scorecard/`}
-                renderIcon={ReportData16}
-              >
+              <SideNavLink large href={`${BASE_APPS_ENV_URL}/scorecard/`} renderIcon={ReportData16}>
                 Scorecard
               </SideNavLink>
-              <SideNavLink
-                large
-                onClick={onMenuClose}
-                href={`${BASE_APPS_ENV_URL}/insights/`}
-                renderIcon={ChartScatter16}
-              >
+              <SideNavLink large href={`${BASE_APPS_ENV_URL}/insights/`} renderIcon={ChartScatter16}>
                 Insights
               </SideNavLink>
-              <SideNavLink large onClick={onMenuClose} href={`${BASE_APPS_ENV_URL}/lib/`} renderIcon={Package16}>
+              <SideNavLink large href={`${BASE_APPS_ENV_URL}/lib/`} renderIcon={Package16}>
                 Lib
               </SideNavLink>
               <SideNavLink
@@ -73,16 +63,19 @@ function Navbar({ navigationState, userState }) {
                 Policies
               </SideNavLink>
               <SideNavMenu large title="Manage" renderIcon={SettingsAdjust16}>
-                <SideNavMenuItem large onClick={onMenuClose} href={`${BASE_APPS_ENV_URL}/ci/properties`}>
+                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/properties`}>
                   Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large onClick={onMenuClose} href={`${BASE_APPS_ENV_URL}/ci/team-properties`}>
+                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/team-properties`}>
                   Team Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large onClick={onMenuClose} href={`${BASE_APPS_ENV_URL}/ci/repositories`}>
+                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/team-configuration`}>
+                  Team Configuration
+                </SideNavMenuItem>
+                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/repositories`}>
                   Repositories
                 </SideNavMenuItem>
-                <SideNavMenuItem large onClick={onMenuClose} href={`${BASE_APPS_ENV_URL}/ci/component-modes`}>
+                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/component-modes`}>
                   Modes
                 </SideNavMenuItem>
                 <SideNavMenuItem
