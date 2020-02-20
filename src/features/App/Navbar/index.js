@@ -4,14 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { LeftSideNav, UIShell } from "@boomerang/carbon-addons-boomerang-react";
 import { BASE_APPS_ENV_URL, BASE_LAUNCH_ENV_URL } from "config/platformUrlConfig";
 import { BASE_SERVICE_ENV_URL } from "config/servicesConfig";
-import {
-  ChartScatter16,
-  IbmSecurity16,
-  Integration16,
-  Package16,
-  ReportData16,
-  SettingsAdjust16
-} from "@carbon/icons-react";
+import { Apps16, Analytics16, Locked16, Rocket16, Document16, ReportData16, Settings16 } from "@carbon/icons-react";
 import { SideNav, SideNavLink, SideNavItems, SideNavMenu, SideNavMenuItem } from "carbon-components-react";
 
 const ACTIVE_CLASS_NAME = "bx--side-nav__link--current";
@@ -29,7 +22,6 @@ Navbar.propTypes = {
 
 function Navbar({ navigationState, userState }) {
   const location = useLocation();
-  console.log(location);
   return (
     <UIShell
       {...defaultUIShellProps}
@@ -38,16 +30,19 @@ function Navbar({ navigationState, userState }) {
         <LeftSideNav isOpen={isOpen}>
           <SideNav expanded={isOpen} isChildOfHeader={true}>
             <SideNavItems>
-              <SideNavLink large href={`${BASE_APPS_ENV_URL}/ci/`} renderIcon={Integration16}>
+              <SideNavLink large href={`${BASE_APPS_ENV_URL}/ci/`} renderIcon={Apps16}>
                 Components
+              </SideNavLink>
+              <SideNavLink large href={`${BASE_APPS_ENV_URL}/ci/pipelines`} renderIcon={Rocket16}>
+                Pipelines
               </SideNavLink>
               <SideNavLink large href={`${BASE_APPS_ENV_URL}/scorecard/`} renderIcon={ReportData16}>
                 Scorecard
               </SideNavLink>
-              <SideNavLink large href={`${BASE_APPS_ENV_URL}/insights/`} renderIcon={ChartScatter16}>
+              <SideNavLink large href={`${BASE_APPS_ENV_URL}/insights/`} renderIcon={Analytics16}>
                 Insights
               </SideNavLink>
-              <SideNavLink large href={`${BASE_APPS_ENV_URL}/lib/`} renderIcon={Package16}>
+              <SideNavLink large href={`${BASE_APPS_ENV_URL}/lib/`} renderIcon={Document16}>
                 Lib
               </SideNavLink>
               <SideNavLink
@@ -57,12 +52,12 @@ function Navbar({ navigationState, userState }) {
                 element={NavLink}
                 isActive={!location.pathname.startsWith("/templates")}
                 onClick={onMenuClose}
-                renderIcon={IbmSecurity16}
+                renderIcon={Locked16}
                 to="/"
               >
                 Policies
               </SideNavLink>
-              <SideNavMenu large title="Manage" renderIcon={SettingsAdjust16}>
+              <SideNavMenu large title="Manage" renderIcon={Settings16}>
                 <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/properties`}>
                   Properties
                 </SideNavMenuItem>
