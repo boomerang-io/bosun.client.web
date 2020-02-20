@@ -12,7 +12,7 @@ module.exports = {
     rtlRender: true,
     renderWithProvider: true,
     renderWithRouter: true,
-    renderWithProviderAndRouter: true,
+    renderWithRouter: true,
     cy: true
   }
 };

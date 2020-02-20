@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
-<body
-  id="app"
->
+<body>
   <div>
     <form
       class="bx--bmrg-modal-flow-form"
@@ -21,7 +19,13 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               class="bx--label"
               for="label"
             >
-              Name
+              <div
+                style="display: flex;"
+              >
+                <div>
+                  Name
+                </div>
+              </div>
             </label>
             <div
               class="bx--text-input__field-wrapper"
@@ -46,7 +50,13 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               class="bx--label"
               for="description"
             >
-              Description
+              <div
+                style="display: flex;"
+              >
+                <div>
+                  Description
+                </div>
+              </div>
             </label>
             <div
               class="bx--text-input__field-wrapper"
@@ -59,50 +69,6 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
                 value="Tim property"
               />
             </div>
-          </div>
-        </div>
-        <div
-          class="bx--bmrg-toggle --vertical"
-        >
-          <div>
-            <div
-              class="bx--bmrg-toggle__title"
-            >
-              <div
-                class="bx--label"
-                id="required-label"
-                style="margin-bottom: 0px;"
-              >
-                Required
-              </div>
-            </div>
-          </div>
-          <div
-            class="bx--form-item"
-          >
-            <input
-              class="bx--toggle-input"
-              id="required"
-              type="checkbox"
-            />
-            <label
-              aria-label="Toggle"
-              class="bx--toggle-input__label"
-              for="required"
-            >
-              <span
-                class="bx--toggle__switch"
-              >
-                <span
-                  aria-hidden="true"
-                  class="bx--toggle__text--off"
-                />
-                <span
-                  aria-hidden="true"
-                  class="bx--toggle__text--on"
-                />
-              </span>
-            </label>
           </div>
         </div>
         <div
@@ -145,6 +111,7 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
                   value="Text"
                 />
                 <div
+                  aria-label="Clear Selection"
                   class="bx--list-box__selection"
                   role="button"
                   tabindex="0"
@@ -155,7 +122,6 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
                     focusable="false"
                     height="16"
                     preserveAspectRatio="xMidYMid meet"
-                    role="img"
                     style="will-change: transform;"
                     viewBox="0 0 16 16"
                     width="16"
@@ -203,7 +169,13 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               class="bx--label"
               for="defaultValue"
             >
-              Default Value
+              <div
+                style="display: flex;"
+              >
+                <div>
+                  Default Value
+                </div>
+              </div>
             </label>
             <div
               class="bx--text-input__field-wrapper"
@@ -231,9 +203,8 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
           Cancel
         </button>
         <button
-          class="bx--btn bx--btn--primary bx--btn--disabled"
+          class="bx--btn bx--btn--primary"
           data-testid="inputs-modal-confirm-button"
-          disabled=""
           tabindex="0"
           type="submit"
         >

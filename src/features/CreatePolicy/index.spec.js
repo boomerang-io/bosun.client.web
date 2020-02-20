@@ -70,7 +70,7 @@ beforeEach(() => {
 describe("CreatePolicy --- Snapshot", () => {
   mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
   it("+++ renders correctly", async () => {
-    const { baseElement, getByText } = renderWithProviderAndRouter(<CreatePolicy />, { initialState, route });
+    const { baseElement, getByText } = renderWithRouter(<CreatePolicy />, { initialState, route });
     await waitForElement(() => getByText(/Create Policy/i));
     expect(baseElement).toMatchSnapshot();
   });
@@ -82,7 +82,7 @@ describe("CreatePolicy --- RTL", () => {
       .onGet(SERVICE_PRODUCT_TEMPLATES_PATH)
       .reply(404, { response: { data: { status: "error", message: "something went wrong" } } });
 
-    const { getByText } = renderWithProviderAndRouter(<CreatePolicy />, { route });
+    const { getByText } = renderWithRouter(<CreatePolicy />, { route });
     const errorMessage = await waitForElement(() => getByText("Don’t lose your daks"));
     expect(errorMessage).toBeInTheDocument();
   });
@@ -90,7 +90,7 @@ describe("CreatePolicy --- RTL", () => {
   test("it is able to create policy only after adding a name", async () => {
     mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
 
-    const { getByPlaceholderText, getByTestId } = renderWithProviderAndRouter(<CreatePolicy />, {
+    const { getByPlaceholderText, getByTestId } = renderWithRouter(<CreatePolicy />, {
       initialState,
       route
     });
@@ -108,7 +108,7 @@ describe("CreatePolicy --- RTL", () => {
   test("create button is disabled while creating", async () => {
     mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
 
-    const { getByPlaceholderText, getByTestId } = renderWithProviderAndRouter(<CreatePolicy />, {
+    const { getByPlaceholderText, getByTestId } = renderWithRouter(<CreatePolicy />, {
       initialState,
       route
     });

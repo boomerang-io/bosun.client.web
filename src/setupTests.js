@@ -3,8 +3,6 @@ import Enzyme, { shallow, render, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import configureStore from "./store/configureStore";
-import { Provider } from "react-redux";
 import { render as rtlRender } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
@@ -41,10 +39,7 @@ jest.doMock("moment", () => {
   return moment;
 });
 
-// Custom render function with Provider for redux-connected components
-global.renderWithProvider = (ui, { initialState = {}, store = configureStore(initialState), ...options } = {}) => {
-  return rtlRender(<Provider store={store}>{ui}</Provider>, options);
-};
+global.rtlRender = rtlRender;
 
 // Custom render function with Router for components that needs Router
 global.renderWithRouter = (
@@ -54,26 +49,5 @@ global.renderWithRouter = (
   return {
     ...rtlRender(<Router history={memoryHistory}>{ui}</Router>, options),
     memoryHistory
-  };
-};
-
-global.renderWithProviderAndRouter = (
-  ui,
-  { initialState = {}, route = "/", memoryHistory = createMemoryHistory({ initialEntries: [route] }), ...options } = {}
-) => {
-  let { store } = options;
-  if (!store) {
-    store = configureStore(initialState);
-  }
-
-  return {
-    ...rtlRender(
-      <Provider store={store}>
-        <Router history={memoryHistory}>{ui}</Router>
-      </Provider>,
-      options
-    ),
-    memoryHistory,
-    store
   };
 };
