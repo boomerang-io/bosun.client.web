@@ -28,7 +28,7 @@ export function Overview() {
 
   const handleChangeTeam = ({ selectedItem }) => {
     if (selectedItem?.name) {
-      history.push(`/${selectedItem.name}`);
+      history.push(`/teams/${selectedItem.name}`);
     }
   };
 

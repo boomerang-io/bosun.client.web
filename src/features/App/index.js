@@ -1,5 +1,5 @@
 import React from "react";
-import { matchPath, useLocation } from "react-router-dom";
+import { matchPath, useLocation, useHistory } from "react-router-dom";
 import ErrorBoundary from "components/ErrorBoundary";
 import ErrorDragon from "components/ErrorDragon";
 import Loading from "components/Loading";
@@ -15,8 +15,9 @@ import AppContext from "state/context/appContext";
 import styles from "./App.module.scss";
 
 export function App() {
+  const history = useHistory();
   const location = useLocation();
-  const globalMatch = matchPath(location.pathname, { path: "/:teamName" });
+  const globalMatch = matchPath(location.pathname, { path: "/teams/:teamName" });
 
   const userState = useAxiosFetch(SERVICE_PLATFORM_PROFILE_PATH);
   const navigationState = useAxiosFetch(SERVICE_PLATFORM_NAVIGATION_PATH);
@@ -26,11 +27,19 @@ export function App() {
 
   const activeTeamName = globalMatch?.params?.teamName;
   React.useEffect(() => {
+    if (!teamsState?.data) {
+      return;
+    }
+
     if (activeTeamName) {
       const activeTeam = teamsState.data?.find(team => team.name === activeTeamName);
       setActiveTeam(activeTeam);
+    } else {
+      const firstTeam = teamsState.data[0];
+      history.push(`/teams/${firstTeam.name}`);
+      setActiveTeam(firstTeam);
     }
-  }, [activeTeamName, setActiveTeam, teamsState.data]);
+  }, [activeTeam, activeTeamName, history, setActiveTeam, teamsState]);
 
   function renderMain() {
     if (teamsState.isLoading) {
@@ -55,7 +64,7 @@ export function App() {
   return (
     <ErrorBoundary errorComponent={ErrorDragon}>
       <div className={styles.container}>
-        <Navbar navigationState={navigationState} userState={userState} />
+        <Navbar activeTeam={activeTeam} navigationState={navigationState} userState={userState} />
         {renderMain()}
       </div>
     </ErrorBoundary>

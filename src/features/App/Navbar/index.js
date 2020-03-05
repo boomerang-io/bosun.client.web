@@ -20,8 +20,9 @@ Navbar.propTypes = {
   userState: PropTypes.object.isRequired
 };
 
-function Navbar({ navigationState, userState }) {
+function Navbar({ activeTeam, navigationState, userState }) {
   const location = useLocation();
+  const activeTeamName = activeTeam?.name;
   return (
     <UIShell
       {...defaultUIShellProps}
@@ -30,16 +31,32 @@ function Navbar({ navigationState, userState }) {
         <LeftSideNav isOpen={isOpen}>
           <SideNav expanded={isOpen} isChildOfHeader={true}>
             <SideNavItems>
-              <SideNavLink large href={`${BASE_APPS_ENV_URL}/ci/`} renderIcon={Apps16}>
+              <SideNavLink
+                large
+                href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/components`}
+                renderIcon={Apps16}
+              >
                 Components
               </SideNavLink>
-              <SideNavLink large href={`${BASE_APPS_ENV_URL}/ci/pipelines`} renderIcon={Rocket16}>
+              <SideNavLink
+                large
+                href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/pipelines`}
+                renderIcon={Rocket16}
+              >
                 Pipelines
               </SideNavLink>
-              <SideNavLink large href={`${BASE_APPS_ENV_URL}/scorecard/`} renderIcon={ReportData16}>
+              <SideNavLink
+                large
+                href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/scorecard`}
+                renderIcon={ReportData16}
+              >
                 Scorecard
               </SideNavLink>
-              <SideNavLink large href={`${BASE_APPS_ENV_URL}/insights/`} renderIcon={Analytics16}>
+              <SideNavLink
+                large
+                href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/insights`}
+                renderIcon={Analytics16}
+              >
                 Insights
               </SideNavLink>
               <SideNavLink large href={`${BASE_APPS_ENV_URL}/lib/`} renderIcon={Document16}>
@@ -61,10 +78,10 @@ function Navbar({ navigationState, userState }) {
                 <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/properties`}>
                   Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/team-properties`}>
+                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/team-properties`}>
                   Team Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/team-configuration`}>
+                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/team-configuration`}>
                   Team Configuration
                 </SideNavMenuItem>
                 <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/repositories`}>
