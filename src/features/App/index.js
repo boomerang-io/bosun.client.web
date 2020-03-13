@@ -17,15 +17,15 @@ import styles from "./App.module.scss";
 export function App() {
   const history = useHistory();
   const location = useLocation();
-  const globalMatch = matchPath(location.pathname, { path: "/:feature/:teamId" });
+  const teamsMatch = matchPath(location.pathname, { path: "/teams/:teamId" });
+  const templatesMatch = matchPath(location.pathname, { path: "/templates" });
 
   const userState = useAxiosFetch(SERVICE_PLATFORM_PROFILE_PATH);
   const navigationState = useAxiosFetch(SERVICE_PLATFORM_NAVIGATION_PATH);
   const teamsState = useAxiosFetch(SERVICE_PRODUCT_TEAM_PATH);
 
   const [activeTeam, setActiveTeam] = React.useState();
-  const activeTeamId = globalMatch?.params?.teamId;
-  const activeFeature = globalMatch?.params?.feature;
+  const activeTeamId = teamsMatch?.params?.teamId;
   React.useEffect(() => {
     if (!teamsState?.data) {
       return;
@@ -37,11 +37,11 @@ export function App() {
     } else {
       const firstTeam = teamsState.data[0];
       setActiveTeam(firstTeam);
-      if (activeFeature === "teams") {
+      if (!templatesMatch) {
         history.push(`/teams/${firstTeam.id}`);
       }
     }
-  }, [activeFeature, activeTeam, activeTeamId, history, setActiveTeam, teamsState]);
+  }, [activeTeam, activeTeamId, history, setActiveTeam, teamsState, templatesMatch]);
 
   function renderMain() {
     if (teamsState.isLoading) {

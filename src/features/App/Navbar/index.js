@@ -52,7 +52,7 @@ function Navbar({ activeTeam, navigationState, userState }) {
               >
                 Home
               </SideNavLink>
-              <div className={styles.divider} />,
+              <div className={styles.divider} />
               <SideNavLink
                 large
                 href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/components`}
