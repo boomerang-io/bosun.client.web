@@ -27,8 +27,8 @@ export function Overview() {
   const violationsState = useAxiosFetch(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?teamId=${activeTeamId}`);
 
   const handleChangeTeam = ({ selectedItem }) => {
-    if (selectedItem?.name) {
-      history.push(`/teams/${selectedItem.name}`);
+    if (selectedItem?.id) {
+      history.push(`/teams/${selectedItem.id}`);
     }
   };
 

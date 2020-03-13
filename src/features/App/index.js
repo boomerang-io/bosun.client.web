@@ -17,29 +17,31 @@ import styles from "./App.module.scss";
 export function App() {
   const history = useHistory();
   const location = useLocation();
-  const globalMatch = matchPath(location.pathname, { path: "/teams/:teamName" });
+  const globalMatch = matchPath(location.pathname, { path: "/:feature/:teamId" });
 
   const userState = useAxiosFetch(SERVICE_PLATFORM_PROFILE_PATH);
   const navigationState = useAxiosFetch(SERVICE_PLATFORM_NAVIGATION_PATH);
   const teamsState = useAxiosFetch(SERVICE_PRODUCT_TEAM_PATH);
 
   const [activeTeam, setActiveTeam] = React.useState();
-
-  const activeTeamName = globalMatch?.params?.teamName;
+  const activeTeamId = globalMatch?.params?.teamId;
+  const activeFeature = globalMatch?.params?.feature;
   React.useEffect(() => {
     if (!teamsState?.data) {
       return;
     }
 
-    if (activeTeamName) {
-      const activeTeam = teamsState.data?.find(team => team.name === activeTeamName);
+    if (activeTeamId) {
+      const activeTeam = teamsState.data?.find(team => team.id === activeTeamId);
       setActiveTeam(activeTeam);
     } else {
       const firstTeam = teamsState.data[0];
-      history.push(`/teams/${firstTeam.name}`);
       setActiveTeam(firstTeam);
+      if (activeFeature === "teams") {
+        history.push(`/teams/${firstTeam.id}`);
+      }
     }
-  }, [activeTeam, activeTeamName, history, setActiveTeam, teamsState]);
+  }, [activeFeature, activeTeam, activeTeamId, history, setActiveTeam, teamsState]);
 
   function renderMain() {
     if (teamsState.isLoading) {

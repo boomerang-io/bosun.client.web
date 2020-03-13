@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { NavLink, useLocation } from "react-router-dom";
 import { LeftSideNav, UIShell } from "@boomerang/carbon-addons-boomerang-react";
-import { BASE_APPS_ENV_URL, BASE_LAUNCH_ENV_URL } from "config/platformUrlConfig";
+import { CICD_PRODUCT_APP_ENV_URL, BASE_LAUNCH_ENV_URL } from "config/platformUrlConfig";
 import { BASE_SERVICE_ENV_URL } from "config/servicesConfig";
 import { Apps16, Analytics16, Locked16, Rocket16, Document16, ReportData16, Settings16 } from "@carbon/icons-react";
 import { SideNav, SideNavLink, SideNavItems, SideNavMenu, SideNavMenuItem } from "carbon-components-react";
@@ -22,7 +22,7 @@ Navbar.propTypes = {
 
 function Navbar({ activeTeam, navigationState, userState }) {
   const location = useLocation();
-  const activeTeamName = activeTeam?.name;
+  const activeTeamId = activeTeam?.id;
   return (
     <UIShell
       {...defaultUIShellProps}
@@ -33,33 +33,33 @@ function Navbar({ activeTeam, navigationState, userState }) {
             <SideNavItems>
               <SideNavLink
                 large
-                href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/components`}
+                href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/components`}
                 renderIcon={Apps16}
               >
                 Components
               </SideNavLink>
               <SideNavLink
                 large
-                href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/pipelines`}
+                href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/pipelines`}
                 renderIcon={Rocket16}
               >
                 Pipelines
               </SideNavLink>
               <SideNavLink
                 large
-                href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/scorecard`}
+                href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/scorecard`}
                 renderIcon={ReportData16}
               >
                 Scorecard
               </SideNavLink>
               <SideNavLink
                 large
-                href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/insights`}
+                href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/insights`}
                 renderIcon={Analytics16}
               >
                 Insights
               </SideNavLink>
-              <SideNavLink large href={`${BASE_APPS_ENV_URL}/lib/`} renderIcon={Document16}>
+              <SideNavLink large href={`${CICD_PRODUCT_APP_ENV_URL}/lib/`} renderIcon={Document16}>
                 Lib
               </SideNavLink>
               <SideNavLink
@@ -75,19 +75,19 @@ function Navbar({ activeTeam, navigationState, userState }) {
                 Policies
               </SideNavLink>
               <SideNavMenu large title="Manage" renderIcon={Settings16}>
-                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/properties`}>
+                <SideNavMenuItem large href={`${CICD_PRODUCT_APP_ENV_URL}/properties`}>
                   Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/team-properties`}>
+                <SideNavMenuItem large href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/team-properties`}>
                   Team Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/teams/${activeTeamName}/team-configuration`}>
+                <SideNavMenuItem large href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/team-configuration`}>
                   Team Configuration
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/repositories`}>
+                <SideNavMenuItem large href={`${CICD_PRODUCT_APP_ENV_URL}/repositories`}>
                   Repositories
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_APPS_ENV_URL}/ci/component-modes`}>
+                <SideNavMenuItem large href={`${CICD_PRODUCT_APP_ENV_URL}/component-modes`}>
                   Modes
                 </SideNavMenuItem>
                 <SideNavMenuItem
