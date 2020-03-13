@@ -177,7 +177,7 @@ class CreatePolicy extends React.Component {
   // Local methods
 
   navigateBack = () => {
-    this.props.history.push(`/teams/${this.props.match.params.teamName}`);
+    this.props.history.push(`/teams/${this.props.match.params.teamId}`);
   };
 
   render() {

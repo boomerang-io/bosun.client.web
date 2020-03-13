@@ -52,7 +52,6 @@ function Navbar({ activeTeam, navigationState, userState }) {
               >
                 Home
               </SideNavLink>
-              ,
               <div className={styles.divider} />,
               <SideNavLink
                 large
