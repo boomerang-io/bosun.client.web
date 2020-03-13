@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { NavLink, useLocation } from "react-router-dom";
 import { LeftSideNav, UIShell } from "@boomerang/carbon-addons-boomerang-react";
-import { CICD_PRODUCT_APP_ENV_URL, BASE_LAUNCH_ENV_URL } from "config/platformUrlConfig";
+import { BASE_LAUNCH_ENV_URL } from "config/platformUrlConfig";
 import { BASE_SERVICE_ENV_URL } from "config/servicesConfig";
 import { Apps16, Analytics16, Locked16, Rocket16, Document16, ReportData16, Settings16 } from "@carbon/icons-react";
 import { SideNav, SideNavLink, SideNavItems, SideNavMenu, SideNavMenuItem } from "carbon-components-react";
@@ -33,33 +33,33 @@ function Navbar({ activeTeam, navigationState, userState }) {
             <SideNavItems>
               <SideNavLink
                 large
-                href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/components`}
+                href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/components`}
                 renderIcon={Apps16}
               >
                 Components
               </SideNavLink>
               <SideNavLink
                 large
-                href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/pipelines`}
+                href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/pipelines`}
                 renderIcon={Rocket16}
               >
                 Pipelines
               </SideNavLink>
               <SideNavLink
                 large
-                href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/scorecard`}
+                href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/scorecard`}
                 renderIcon={ReportData16}
               >
                 Scorecard
               </SideNavLink>
               <SideNavLink
                 large
-                href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/insights`}
+                href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/insights`}
                 renderIcon={Analytics16}
               >
                 Insights
               </SideNavLink>
-              <SideNavLink large href={`${CICD_PRODUCT_APP_ENV_URL}/lib/`} renderIcon={Document16}>
+              <SideNavLink large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/lib`} renderIcon={Document16}>
                 Lib
               </SideNavLink>
               <SideNavLink
@@ -75,19 +75,22 @@ function Navbar({ activeTeam, navigationState, userState }) {
                 Policies
               </SideNavLink>
               <SideNavMenu large title="Manage" renderIcon={Settings16}>
-                <SideNavMenuItem large href={`${CICD_PRODUCT_APP_ENV_URL}/properties`}>
+                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/properties`}>
                   Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/team-properties`}>
+                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/team-properties`}>
                   Team Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${CICD_PRODUCT_APP_ENV_URL}/teams/${activeTeamId}/team-configuration`}>
+                <SideNavMenuItem
+                  large
+                  href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/team-configuration`}
+                >
                   Team Configuration
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${CICD_PRODUCT_APP_ENV_URL}/repositories`}>
+                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/repositories`}>
                   Repositories
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${CICD_PRODUCT_APP_ENV_URL}/component-modes`}>
+                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/component-modes`}>
                   Modes
                 </SideNavMenuItem>
                 <SideNavMenuItem
