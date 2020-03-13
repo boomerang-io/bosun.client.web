@@ -89,23 +89,20 @@ function Navbar({ activeTeam, navigationState, userState }) {
                 Policies
               </SideNavLink>
               <SideNavMenu large title="Manage" renderIcon={Settings16}>
-                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/properties`}>
+                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/properties`}>
                   Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/team-properties`}>
+                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/properties`}>
                   Team Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem
-                  large
-                  href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/team-configuration`}
-                >
+                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/configuration`}>
                   Team Configuration
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/repositories`}>
-                  Repositories
+                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/repositories`}>
+                  SCM Repositories
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/component-modes`}>
-                  Modes
+                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/component-modes`}>
+                  Component Modes
                 </SideNavMenuItem>
                 <SideNavMenuItem
                   large
