@@ -41,15 +41,7 @@ function Navbar({ activeTeam, navigationState, userState }) {
         <LeftSideNav isOpen={isOpen}>
           <SideNav expanded={isOpen} isChildOfHeader={true}>
             <SideNavItems>
-              <SideNavLink
-                exact
-                large
-                activeClassName={ACTIVE_CLASS_NAME}
-                element={NavLink}
-                onClick={onMenuClose}
-                renderIcon={Home16}
-                to={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/components`}
-              >
+              <SideNavLink large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}`} renderIcon={Home16}>
                 Home
               </SideNavLink>
               <div className={styles.divider} />
