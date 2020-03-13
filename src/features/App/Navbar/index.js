@@ -4,8 +4,18 @@ import { NavLink, useLocation } from "react-router-dom";
 import { LeftSideNav, UIShell } from "@boomerang/carbon-addons-boomerang-react";
 import { BASE_LAUNCH_ENV_URL } from "config/platformUrlConfig";
 import { BASE_SERVICE_ENV_URL } from "config/servicesConfig";
-import { Apps16, Analytics16, Locked16, Rocket16, Document16, ReportData16, Settings16 } from "@carbon/icons-react";
+import {
+  Apps16,
+  Analytics16,
+  Home16,
+  Locked16,
+  Rocket16,
+  Document16,
+  ReportData16,
+  Settings16
+} from "@carbon/icons-react";
 import { SideNav, SideNavLink, SideNavItems, SideNavMenu, SideNavMenuItem } from "carbon-components-react";
+import styles from "./navbar.module.scss";
 
 const ACTIVE_CLASS_NAME = "bx--side-nav__link--current";
 
@@ -31,6 +41,19 @@ function Navbar({ activeTeam, navigationState, userState }) {
         <LeftSideNav isOpen={isOpen}>
           <SideNav expanded={isOpen} isChildOfHeader={true}>
             <SideNavItems>
+              <SideNavLink
+                exact
+                large
+                activeClassName={ACTIVE_CLASS_NAME}
+                element={NavLink}
+                onClick={onMenuClose}
+                renderIcon={Home16}
+                to={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/components`}
+              >
+                Home
+              </SideNavLink>
+              ,
+              <div className={styles.divider} />,
               <SideNavLink
                 large
                 href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/components`}
