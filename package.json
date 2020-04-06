@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@boomerang/carbon-addons-boomerang": "2.4.0",
-    "@boomerang/carbon-addons-boomerang-react": "2.4.0",
+    "@boomerang/carbon-addons-boomerang-react": "3.0.18",
     "@testing-library/jest-dom": "^5.1.1",
     "axios": "0.18.1",
     "carbon-components": "10.7.3",
