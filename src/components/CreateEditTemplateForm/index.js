@@ -67,7 +67,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
         return (
           <Form onSubmit={handleSubmit}>
             <CreateEditTemplateHeader form={formikProps} navigateBack={navigateBack} type={type} />
-            <main className={styles.container}>
+            <section className={styles.container}>
               <Tabs>
                 <Tab label="About">
                   <div className={styles.generalContainer}>
@@ -165,7 +165,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
                   </section>
                 </Tab>
               </Tabs>
-            </main>
+            </section>
             <ValidateFormikOnRender validateForm={validateForm} />
           </Form>
         );
