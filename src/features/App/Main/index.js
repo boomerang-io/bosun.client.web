@@ -18,7 +18,7 @@ function Main() {
       {
         //<MessageBanner />
       }
-      <main className={styles.container}>
+      <main id="content" className={styles.container}>
         <Suspense fallback={<LoadingAnimation centered />}>
           <Switch>
             <Route path="/templates/create" component={CreateTemplate} />

@@ -25,6 +25,10 @@ const defaultUIShellProps = {
   renderLogo: true
 };
 
+const skipToContentProps = {
+  href: "#content"
+};
+
 Navbar.propTypes = {
   navigationState: PropTypes.object.isRequired,
   userState: PropTypes.object.isRequired
@@ -119,6 +123,7 @@ function Navbar({ activeTeam, navigationState, userState }) {
         </LeftSideNav>
       )}
       user={userState?.data ?? {}}
+      skipToContentProps={skipToContentProps}
     />
   );
 }
