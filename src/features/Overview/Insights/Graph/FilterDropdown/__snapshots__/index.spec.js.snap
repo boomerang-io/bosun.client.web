@@ -14,13 +14,13 @@ exports[`FilterDropdown --- Snapshot Capturing Snapshot of FilterDropdown 1`] = 
   >
     <label
       className="bx--label"
-      htmlFor="filter-dropdown"
+      htmlFor="dropdown-1"
     >
       testLabel
     </label>
     <div
       className="bx--dropdown bx--list-box"
-      id="filter-dropdown"
+      id="dropdown-1"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="listbox"

@@ -63,7 +63,6 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
           setFieldValue,
           validateForm
         } = formikProps;
-        console.log(values);
         return (
           <Form onSubmit={handleSubmit}>
             <CreateEditTemplateHeader form={formikProps} navigateBack={navigateBack} type={type} />

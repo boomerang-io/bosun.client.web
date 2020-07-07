@@ -1,6 +1,7 @@
 import React from "react";
 import Inputs from ".";
 import { fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 const mockfn = jest.fn();
 
@@ -24,23 +25,17 @@ const props = {
 
 describe("Inputs --- Snapshot Test", () => {
   it("Capturing Snapshot of Inputs", () => {
-    const { baseElement } = renderWithProvider(<Inputs {...props} />);
+    const { baseElement } = rtlReduxRender(<Inputs {...props} />);
     expect(baseElement).toMatchSnapshot();
   });
 });
 
 describe("Inputs --- RTL", () => {
   it("Change default value by type correctly", () => {
-    const { getByText, getByLabelText, queryByTestId } = renderWithProvider(<Inputs {...props} />);
+    const { getByText, getByLabelText, queryByTestId } = rtlReduxRender(<Inputs {...props} />);
     expect(queryByTestId("text-input")).toBeInTheDocument();
 
     const typeSelect = getByLabelText(/type/i);
-
-    fireEvent.click(typeSelect);
-    fireEvent.click(getByText(/boolean/i));
-
-    expect(queryByTestId("text-input")).not.toBeInTheDocument();
-    expect(queryByTestId("toggle")).toBeInTheDocument();
 
     fireEvent.click(typeSelect);
     fireEvent.click(getByText(/text area/i));
@@ -55,10 +50,12 @@ describe("Inputs --- RTL", () => {
     expect(queryByTestId("select")).toBeInTheDocument();
   });
 
-  it("Shouldn't save property without key, label and type defined", async () => {
-    const { getByText, getByPlaceholderText, getByLabelText } = renderWithProvider(
+  it("Shouldn't save property without key and label", async () => {
+    const { getByText, getByPlaceholderText, getByLabelText } = rtlReduxRender(
       <Inputs {...props} isEdit={false} input={undefined} />
     );
+    userEvent.click(getByText(/create/i));
+
     expect(getByText(/create/i)).toBeDisabled();
 
     const keyInput = getByPlaceholderText("key.value");
@@ -67,8 +64,6 @@ describe("Inputs --- RTL", () => {
 
     fireEvent.change(keyInput, { target: { value: "test" } });
     fireEvent.change(labelInput, { target: { value: "test" } });
-    fireEvent.click(typeSelect);
-    fireEvent.click(getByText(/boolean/i));
 
     expect(getByText(/create/i)).toBeEnabled();
   });

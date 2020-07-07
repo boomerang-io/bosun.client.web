@@ -34,19 +34,19 @@ beforeEach(() => {
 
 describe("Inputs --- Snapshot Test", () => {
   it("Capturing Snapshot of Inputs", () => {
-    const { baseElement } = renderWithProvider(<Inputs {...props} />, { initialState });
+    const { baseElement } = rtlReduxRender(<Inputs {...props} />, { initialState });
     expect(baseElement).toMatchSnapshot();
   });
 });
 
 describe("Inputs --- RTL", () => {
   it("Render inputs correctly", () => {
-    const { queryByText } = renderWithProvider(<Inputs {...props} />, { initialState });
+    const { queryByText } = rtlReduxRender(<Inputs {...props} />, { initialState });
     expect(queryByText("tim.property")).toBeInTheDocument();
   });
 
   it("Opens create new property modal", () => {
-    const { queryByText, getByTestId } = renderWithProvider(<Inputs {...props} />, { initialState });
+    const { queryByText, getByTestId } = rtlReduxRender(<Inputs {...props} />, { initialState });
 
     //expect(queryByText(/Create a new property/i)).not.toBeInTheDocument();
 
@@ -58,7 +58,7 @@ describe("Inputs --- RTL", () => {
   });
 
   it("Opens edit property modal", () => {
-    const { getByLabelText, queryByText } = renderWithProvider(<Inputs {...props} />, { initialState });
+    const { getByLabelText, queryByText } = rtlReduxRender(<Inputs {...props} />, { initialState });
 
     //expect(queryByText(/Let's update it/i)).not.toBeInTheDocument();
 
