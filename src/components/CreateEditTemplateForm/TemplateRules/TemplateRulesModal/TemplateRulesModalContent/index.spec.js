@@ -1,6 +1,6 @@
 import React from "react";
 import Inputs from ".";
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, wait } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 const mockfn = jest.fn();
@@ -51,12 +51,11 @@ describe("Inputs --- RTL", () => {
   });
 
   it("Shouldn't save property without key and label", async () => {
-    const { getByText, getByPlaceholderText, getByLabelText } = rtlReduxRender(
+    const { getByText, getByPlaceholderText, getByLabelText, getByTestId } = rtlReduxRender(
       <Inputs {...props} isEdit={false} input={undefined} />
     );
-    userEvent.click(getByText(/create/i));
-
-    expect(getByText(/create/i)).toBeDisabled();
+    fireEvent.click(getByText(/create/i));
+    await wait(() => expect(getByTestId("inputs-modal-confirm-button")).toBeDisabled());
 
     const keyInput = getByPlaceholderText("key.value");
     const labelInput = getByPlaceholderText(/name/i);
@@ -65,6 +64,6 @@ describe("Inputs --- RTL", () => {
     fireEvent.change(keyInput, { target: { value: "test" } });
     fireEvent.change(labelInput, { target: { value: "test" } });
 
-    expect(getByText(/create/i)).toBeEnabled();
+    await wait(() => expect(getByTestId("inputs-modal-confirm-button")).toBeEnabled());
   });
 });

@@ -12,6 +12,7 @@ CreateEditPolicyForm.propTypes = {
 };
 
 export default function CreateEditPolicyForm({ definitions, form }) {
+  console.log(definitions, form, "WHAAT" );
   return (
     <div className={styles.container}>
       <div className={styles.content}>

@@ -261,7 +261,6 @@ class EditPolicy extends React.Component {
     if (isFetching) {
       return <LoadingAnimation />;
     }
-
     if (error) {
       return <ErrorDragon />;
     }

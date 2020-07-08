@@ -95,6 +95,14 @@ global.rtlContextRouterRender = rtlContextRouterRender;
 
 // Make renderer global
 global.renderer = renderer;
+// mock document text range
+global.document.createRange = () => {
+  return {
+    setEnd: () => {},
+    setStart: () => {},
+    getBoundingClientRect: () => {}
+  }
+}
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });

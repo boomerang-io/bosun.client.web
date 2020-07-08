@@ -195,6 +195,7 @@ export default class TemplateRulesModalContent extends Component {
           [FIELD.TYPE]: Yup.object({ label: Yup.string().required(), value: Yup.string().required() }),
           [FIELD.OPTIONS]: Yup.array()
         })}
+        validateOnMount
       >
         {formikProps => {
           const {
@@ -207,7 +208,6 @@ export default class TemplateRulesModalContent extends Component {
             isValid,
             handleSubmit
           } = formikProps;
-
           return (
             <ModalFlowForm onSubmit={handleSubmit}>
               <ModalBody className={styles.container}>

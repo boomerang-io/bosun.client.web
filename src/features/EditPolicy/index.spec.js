@@ -3,7 +3,7 @@ import axios from "axios";
 import { fireEvent, waitForElement } from "@testing-library/react";
 import EditPolicy from ".";
 import MockAdapter from "axios-mock-adapter";
-import { SERVICE_PRODUCT_TEMPLATES_PATH, SERVICE_PRODUCT_POLICIES_PATH } from "Config/servicesConfig";
+import { SERVICE_PRODUCT_TEMPLATES_PATH, SERVICE_PRODUCT_POLICIES_PATH, SERVICE_PRODUCT_VALIDATION_INFO_PATH } from "Config/servicesConfig";
 
 const route = "/111/policy/edit/222";
 const props = {
@@ -84,6 +84,20 @@ const policy = {
   ],
   stages: ["dev"]
 };
+const validateInfo = {
+  "policyId": "5db9a8c7b01c530001b838d1",
+  "referenceId": null,
+  "referenceLink": null,
+  "labels": {
+    "artifact-path": "",
+    "artifact-name": "",
+    "artifact-version": "",
+    "sonarqube-id": "",
+    "sonarqube-version": ""
+  },
+  "annotations": null,
+  "data": null
+};
 
 describe("EditPolicy --- Snapshot", () => {
   beforeEach(() => {
@@ -93,6 +107,7 @@ describe("EditPolicy --- Snapshot", () => {
   const mockAxios = new MockAdapter(axios);
   mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
   mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
+  mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
   it("+++ renders correctly", async () => {
     const { baseElement, getByText } = rtlRouterRender(<EditPolicy {...props} />, { route });
     await waitForElement(() => getByText(/Edit Policy/i));
