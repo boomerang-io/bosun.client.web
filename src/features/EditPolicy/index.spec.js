@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { fireEvent, waitForElement } from "@testing-library/react";
+import { fireEvent, wait, screen } from "@testing-library/react";
 import EditPolicy from ".";
 import MockAdapter from "axios-mock-adapter";
 import { SERVICE_PRODUCT_TEMPLATES_PATH, SERVICE_PRODUCT_POLICIES_PATH, SERVICE_PRODUCT_VALIDATION_INFO_PATH } from "Config/servicesConfig";
@@ -82,8 +82,8 @@ describe("EditPolicy --- Snapshot", () => {
   mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
   mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
   it("+++ renders correctly", async () => {
-    const { baseElement, getByText } = rtlRouterRender(<EditPolicy {...props} />, { route });
-    await waitForElement(() => getByText(/Edit Policy/i));
+    const { baseElement } = rtlRouterRender(<EditPolicy {...props} />, { route });
+    await wait(() => screen.findByText(/Edit Policy/i));
     expect(baseElement).toMatchSnapshot();
   });
 });
@@ -98,8 +98,8 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(404);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
 
-    const { getByText } = rtlRouterRender(<EditPolicy {...props} />, { route });
-    const errorMessage = await waitForElement(() => getByText("Don’t lose your daks"));
+    rtlRouterRender(<EditPolicy {...props} />, { route });
+    const errorMessage = await wait(() => screen.findByText("Don’t lose your daks"));
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -108,8 +108,8 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(404);
 
-    const { getByText } = rtlRouterRender(<EditPolicy {...props} />, { route });
-    const errorMessage = await waitForElement(() => getByText("Don’t lose your daks"));
+    rtlRouterRender(<EditPolicy {...props} />, { route });
+    const errorMessage = await wait(() => screen.findByText("Don’t lose your daks"));
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -119,14 +119,14 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
     mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
 
-    const { getByPlaceholderText, getByTestId, findByText } = rtlRouterRender(<EditPolicy {...props} />, { route });
-    await waitForElement(() => findByText(/Edit Policy/i));
+    rtlRouterRender(<EditPolicy {...props} />, { route });
+    await wait(() => screen.findByText(/Edit Policy/i));
 
-    const saveButton = await waitForElement(() => getByTestId("policy-header-affirmative-action"));
+    const saveButton = await wait(() => screen.findByTestId("policy-header-affirmative-action"));
 
     expect(saveButton).toBeEnabled();
 
-    const nameInput = getByPlaceholderText(/name/i);
+    const nameInput = screen.getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "" } });
     expect(saveButton).toBeDisabled();
 
@@ -140,33 +140,15 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
     mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
 
-    const { getByPlaceholderText, getByTestId } = rtlRouterRender(<EditPolicy {...props} />, { route });
+    rtlRouterRender(<EditPolicy {...props} />, { route });
 
-    const saveButton = await waitForElement(() => getByTestId("policy-header-affirmative-action"));
+    const saveButton = await wait(() => screen.findByTestId("policy-header-affirmative-action"));
 
-    const nameInput = getByPlaceholderText(/name/i);
+    const nameInput = screen.getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "test" } });
     expect(saveButton).toBeEnabled();
 
     fireEvent.click(saveButton);
     expect(saveButton).toBeDisabled();
   });
-
-  // test("delete modals appears and delete button is disabled while deleting", async () => {
-  //   const mockAxios = new MockAdapter(axios);
-  //   mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
-  //   mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
-  //   mockAxios.onDelete(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200);
-
-  //   const { getByText } = rtlRouterRender(<EditPolicy {...props} />, { route });
-
-  //   const deleteButton = await waitForElement(() => getByText(/delete/i));
-  //   expect(deleteButton).toBeEnabled();
-
-  //   fireEvent.click(deleteButton);
-  //   getByText(/it will be gone/i);
-
-  //   fireEvent.click(getByText(/yes/i));
-  //   expect(deleteButton).toBeDisabled();
-  // });
 });
