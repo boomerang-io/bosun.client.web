@@ -83,7 +83,7 @@ describe("EditPolicy --- Snapshot", () => {
   mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
   it("+++ renders correctly", async () => {
     const { baseElement } = rtlRouterRender(<EditPolicy {...props} />, { route });
-    await wait(() => screen.findByText(/Edit Policy/i));
+    await screen.findByText(/Edit Policy/i);
     expect(baseElement).toMatchSnapshot();
   });
 });
@@ -99,7 +99,7 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
 
     rtlRouterRender(<EditPolicy {...props} />, { route });
-    const errorMessage = await wait(() => screen.findByText("Don’t lose your daks"));
+    const errorMessage = await screen.findByText("Don’t lose your daks");
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -109,7 +109,7 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(404);
 
     rtlRouterRender(<EditPolicy {...props} />, { route });
-    const errorMessage = await wait(() => screen.findByText("Don’t lose your daks"));
+    const errorMessage = await screen.findByText("Don’t lose your daks");
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -120,9 +120,9 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
 
     rtlRouterRender(<EditPolicy {...props} />, { route });
-    await wait(() => screen.findByText(/Edit Policy/i));
+    await screen.findByText(/Edit Policy/i);
 
-    const saveButton = await wait(() => screen.findByTestId("policy-header-affirmative-action"));
+    const saveButton = await screen.findByTestId("policy-header-affirmative-action");
 
     expect(saveButton).toBeEnabled();
 
@@ -142,7 +142,7 @@ describe("EditPolicy --- RTL", () => {
 
     rtlRouterRender(<EditPolicy {...props} />, { route });
 
-    const saveButton = await wait(() => screen.findByTestId("policy-header-affirmative-action"));
+    const saveButton = await screen.findByTestId("policy-header-affirmative-action");
 
     const nameInput = screen.getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "test" } });
