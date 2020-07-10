@@ -27,16 +27,6 @@ const colorRanges = {
   typeB: ['#EFC1E3', '#B52F93']
 };
 
-const nextType = {
-  typeA: 'typeB',
-  typeB: 'typeA'
-};
-
-const nextModeContent = {
-  canvas: 'SWITCH TO SVG',
-  svg: 'SWITCH TO CANVAS'
-};
-
 const drawModes = ['canvas', 'svg'];
 
 export default class Example extends React.Component {
