@@ -2,6 +2,8 @@ import React from "react";
 import Inputs from ".";
 import { fireEvent } from "@testing-library/react";
 
+global.body = {createTextRange: jest.fn()}
+
 const mockfn = jest.fn();
 
 const initialState = {
@@ -25,7 +27,24 @@ const initialState = {
 const props = {
   loading: false,
   updateInputs: mockfn,
-  workflowActions: { deleteWorkflowInput: mockfn }
+  workflowActions: { deleteWorkflowInput: mockfn },
+  navigateBack: mockfn,
+  onSubmit: mockfn, 
+  template: {
+    rules: [
+      {
+        "key": "value",
+        "label": "Testing",
+        "type": "text",
+        "defaultValue": "",
+        "required": false,
+        "description": "",
+        "options": null
+      }
+    ]
+  }, 
+  type: "create", 
+  validationData: {}
 };
 
 beforeEach(() => {
@@ -34,19 +53,19 @@ beforeEach(() => {
 
 describe("Inputs --- Snapshot Test", () => {
   it("Capturing Snapshot of Inputs", () => {
-    const { baseElement } = renderWithProvider(<Inputs {...props} />, { initialState });
+    const { baseElement } = rtlReduxRender(<Inputs {...props} />, { initialState });
     expect(baseElement).toMatchSnapshot();
   });
 });
 
 describe("Inputs --- RTL", () => {
   it("Render inputs correctly", () => {
-    const { queryByText } = renderWithProvider(<Inputs {...props} />, { initialState });
-    expect(queryByText("tim.property")).toBeInTheDocument();
+    const { queryByText } = rtlReduxRender(<Inputs {...props} />, { initialState });
+    expect(queryByText("Testing")).toBeInTheDocument();
   });
 
   it("Opens create new property modal", () => {
-    const { queryByText, getByTestId } = renderWithProvider(<Inputs {...props} />, { initialState });
+    const { queryByText, getByTestId } = rtlReduxRender(<Inputs {...props} />, { initialState });
 
     //expect(queryByText(/Create a new property/i)).not.toBeInTheDocument();
 
@@ -54,15 +73,15 @@ describe("Inputs --- RTL", () => {
     const modalTrigger = getByTestId("create-new-workflow-input-button");
     fireEvent.click(modalTrigger);
 
-    expect(queryByText(/Create a new property/i)).toBeInTheDocument();
+    expect(queryByText(/Create a new rule/i)).toBeInTheDocument();
   });
 
   it("Opens edit property modal", () => {
-    const { getByLabelText, queryByText } = renderWithProvider(<Inputs {...props} />, { initialState });
+    const { getByTestId, queryByText } = rtlReduxRender(<Inputs {...props} />, { initialState });
 
     //expect(queryByText(/Let's update it/i)).not.toBeInTheDocument();
 
-    const modalTrigger = getByLabelText(/Edit/i);
+    const modalTrigger = getByTestId("edit-property-trigger");
     fireEvent.click(modalTrigger);
 
     expect(queryByText(/Let's update it/i)).toBeInTheDocument();

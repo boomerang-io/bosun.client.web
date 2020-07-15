@@ -1,15 +1,14 @@
 import React from "react";
 import { render as rtlRender, fireEvent, waitForElement } from "@testing-library/react";
-import { Router } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import { createMemoryHistory } from "history";
+import mockAxios from "utils/mocks/axios"
+import {
+  SERVICE_PRODUCT_INSIGHTS_PATH,
+  SERVICE_PRODUCT_POLICIES_PATH,
+  SERVICE_PRODUCT_VIOLATIONS_PATH
+} from "config/servicesConfig";
 import { Overview } from "./index";
-
-function render(ui, { route = "/", history = createMemoryHistory({ initialEntries: [route] }) } = {}) {
-  return {
-    ...rtlRender(<Router history={history}>{ui}</Router>),
-    history
-  };
-}
 
 const insightsActions = { fetch: () => new Promise(() => {}) };
 const getPoliciesActions = { fetch: () => new Promise(() => {}) };
@@ -112,6 +111,118 @@ const team = {
   boomerangTeamName: "Boomerang Demo",
   boomerangTeamShortname: "boomerang-demo"
 };
+const insights = [{
+  "policyId": "5cddc15ff6ea74a9bbb2291b",
+  "policyName": "Marcus's Policy",
+  "policyCreatedDate": "2019-06-21T00:00:00.000+0000",
+  "insights": [
+    {
+      "policyActivityId": "5cddc13fbc6f9400013360a9",
+      "policyActivityCreatedDate": "2019-06-21T00:00:00.000+0000",
+      "violations": 1
+    },
+    {
+      "policyActivityId": "5cddc177bc6f9400013360aa",
+      "policyActivityCreatedDate": "2019-06-22T00:00:00.000+0000",
+      "violations": 1
+    },
+    {
+      "policyActivityId": "5cddc430bc6f9400013360b2",
+      "policyActivityCreatedDate": "2019-06-23T00:00:00.000+0000",
+      "violations": 1
+    },
+    {
+      "policyActivityId": "5cddc44fbc6f9400013360b4",
+      "policyActivityCreatedDate": "2019-06-24T00:00:00.000+0000",
+      "violations": 1
+    },
+    {
+      "policyActivityId": "5ce1d56d76a4e100013eaab4",
+      "policyActivityCreatedDate": "2019-06-25T00:00:00.000+0000",
+      "violations": 1
+    }
+  ]
+}];
+
+const violations = [
+  {
+    "id": "5cf144d17d5cc80001d190a25cf968648a6e7e0001eca0e75cfeae64876b210001c439145cedf589dd1be20001f3d994",
+    "policyId": "5cf144d17d5cc80001d190a2",
+    "policyName": "Glens Policy",
+    "policyActivityCreatedDate": "2019-06-13T20:47:41.265+0000",
+    "policyDefinitionTypes": [
+      "Static Code Analysis",
+      "Static Code Analysis"
+    ],
+    "nbrViolations": 1,
+    "violations": [],
+    "labels": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    },
+    "annotations": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    }
+  }
+];
+const policies = [
+  {
+    "id": "5cd49adff6ea74a9bb6adef3",
+    "createdDate": "2019-06-21T00:00:00.000+0000",
+    "name": "Tyson's Policy",
+    "teamId": "5a8b331e262a70306622df73",
+    "definitions": [
+      {
+        "policyTemplateId": "5cd49777f6ea74a9bb6ac629",
+        "rules": [
+          {
+            "metric": "lines",
+            "operator": "",
+            "value": "10"
+          },
+          {
+            "metric": "complexity",
+            "operator": "",
+            "value": "1000"
+          }
+        ]
+      },
+      {
+        "policyTemplateId": "5cd498f3f6ea74a9bb6ad0f3",
+        "rules": [
+          {
+            "type": "maven",
+            "artifact": "commons-.*",
+            "version": ".*"
+          },
+          {
+            "type": "maven",
+            "artifact": "jackson-annotator",
+            "version": "1.8.9"
+          }
+        ]
+      },
+      {
+        "policyTemplateId": "5cdd8667f6ea74a9bbaf5022",
+        "rules": []
+      },
+      {
+        "policyTemplateId": "5cdd8425f6ea74a9bbaf2fe6",
+        "rules": []
+      },
+      {
+        "policyTemplateId": "7J-RGvV",
+        "rules": []
+      }
+    ],
+    "stages": [
+      "dev"
+    ]
+  }
+];
 const props = {
   activeTeam: null,
   insightsActions,
@@ -124,36 +235,40 @@ const props = {
 };
 
 describe("Overview --- Snapshot", () => {
+  mockAxios.onGet(`${SERVICE_PRODUCT_INSIGHTS_PATH}?teamId=1`).reply(200, insights);
+  mockAxios.onGet(`${SERVICE_PRODUCT_POLICIES_PATH}?teamId=1`).reply(200, policies);
+  mockAxios.onGet(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?teamId=1`).reply(200, violations);
+
   it("Capturing Snapshot of Overview", async () => {
-    const { baseElement, findByText } = render(<Overview {...props} activeTeam={team} />);
+    const { baseElement, findByText } = rtlContextRouterRender(
+    <Route path="/teams/:id">
+      <Overview {...props} activeTeam={team} /> 
+    </Route>,
+    {
+      route: "/teams/1",
+    }
+    );
     await findByText(/Violations Trend/);
     expect(baseElement).toMatchSnapshot();
   });
 });
 
 describe("Overview --- RTL", () => {
-  it("Render the Welcome page", async () => {
-    const { getByText } = render(<Overview {...props} />);
-
-    const welcomeText = await waitForElement(() => getByText(/welcome to/i), { timeout: 5000 });
-    const appText = await waitForElement(() => getByText(/boomerang bosun/i), { timeout: 5000 });
-    const selectText = await waitForElement(() => getByText(/select a team to get started/i), { timeout: 5000 });
-
-    expect(welcomeText).toBeInTheDocument();
-    expect(appText).toBeInTheDocument();
-    expect(selectText).toBeInTheDocument();
-  });
-
-  it("Render Loading", () => {
-    const { queryByTestId } = render(<Overview {...props} insights={fetchingReducerState} activeTeam={teams[0]} />);
-    const loadingComponent = queryByTestId("loading-centered");
-    expect(loadingComponent).toBeInTheDocument();
-  });
+  mockAxios.onGet(`${SERVICE_PRODUCT_INSIGHTS_PATH}?teamId=1`).reply(200, insights);
+  mockAxios.onGet(`${SERVICE_PRODUCT_POLICIES_PATH}?teamId=1`).reply(200, policies);
+  mockAxios.onGet(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?teamId=1`).reply(200, violations);
 
   it("Render Overview Content", async () => {
-    const { getByText, getAllByText, getAllByTestId, getByTestId } = render(
-      <Overview {...props} activeTeam={teams[0]} policies={policiesReducerState} />
+    
+    const { getByText, getAllByText, getAllByTestId, getByTestId, findByText } = rtlContextRouterRender(
+      <Route path="/teams/:id">
+        <Overview {...props} activeTeam={teams[0]} policies={policiesReducerState}/> 
+      </Route>,
+      {
+        route: "/teams/1",
+      }
     );
+    await findByText(/Violations Trend/);
     expect(getByText(/insights/i)).toBeInTheDocument();
     expect(getAllByText(/policies/i).length).toBeGreaterThan(1);
     expect(getAllByText(/violations/i).length).toBeGreaterThan(1);
@@ -167,19 +282,31 @@ describe("Overview --- RTL", () => {
     expect(getByTestId("violations-container")).toBeInTheDocument();
   });
   it("Redirect to Create Policy", async () => {
-    const { history, findByText, getByText } = render(<Overview {...props} activeTeam={teams[0]} />);
+    const { history, findByText, getByText } = rtlContextRouterRender(
+      <Route path="/teams/:id">
+        <Overview {...props} activeTeam={team} /> 
+      </Route>,
+      {
+        route: "/teams/1"
+      }
+    );
     await findByText("Violations Trend");
     const addPolicyButton = getByText("Create Policy");
     fireEvent.click(addPolicyButton);
-    expect(history.location.pathname).toEqual("//policy/create");
+    expect(history.location.pathname).toEqual("/teams/1/policy/create");
   });
   it("Redirect to Edit Policy", async () => {
-    const { getByTestId, history, findByText } = render(
-      <Overview {...props} activeTeam={teams[0]} policies={policiesReducerState} />
+    const { getByTestId, history, findByText } = rtlContextRouterRender(
+      <Route path="/teams/:teamId">
+        <Overview {...props} activeTeam={team} /> 
+      </Route>,
+      {
+        route: "/teams/5a8b331f262a70306622df75"
+      }
     );
     await findByText("Violations Trend");
     const policyTbody = getByTestId("policies-tbody");
     fireEvent.click(policyTbody.firstChild);
-    expect(history.location.pathname).toEqual(`//policy/edit/${policiesReducerState.data[0].id}`);
+    expect(history.location.pathname).toEqual(`/teams/${team.id}/policy/edit/${policies[0].id}`);
   });
 });
