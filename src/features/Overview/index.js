@@ -21,14 +21,14 @@ export function Overview() {
   const history = useHistory();
   const { activeTeam, teams } = React.useContext(AppContext);
   const activeTeamId = activeTeam?.id;
-
+  
   const policiesState = useAxiosFetch(`${SERVICE_PRODUCT_POLICIES_PATH}?teamId=${activeTeamId}`);
   const insightsState = useAxiosFetch(`${SERVICE_PRODUCT_INSIGHTS_PATH}?teamId=${activeTeamId}`);
   const violationsState = useAxiosFetch(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?teamId=${activeTeamId}`);
 
   const handleChangeTeam = ({ selectedItem }) => {
-    if (selectedItem?.name) {
-      history.push(`/${selectedItem.name}`);
+    if (selectedItem?.id) {
+      history.push(`/teams/${selectedItem.id}`);
     }
   };
 
@@ -43,7 +43,6 @@ export function Overview() {
     if (policiesState.error && insightsState.error && violationsState.error) {
       return <ErrorDragon />;
     }
-
     return (
       <>
         {insightsState.data && (

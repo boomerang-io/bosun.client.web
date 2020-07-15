@@ -168,16 +168,16 @@ class CreatePolicy extends React.Component {
       return accum;
     }, 0);
 
-    // Each row should have the same number of inputs as the number of inputs in the policy definition config
+    // Each row should have the same number of inputs as the number of inputs in the policy definition rules
     const matchingDefintion = definitions.find(definition => definition.key === definitionKey);
-    const isInvalid = Object.keys(definitionRows).length * matchingDefintion.config.length !== definitionRowsInputCount;
+    const isInvalid = Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
     this.setState(prevState => ({ errors: { ...prevState.errors, [definitionKey]: isInvalid } }));
   };
 
   // Local methods
 
   navigateBack = () => {
-    this.props.history.push(`/${this.props.match.params.teamName}`);
+    this.props.history.push(`/teams/${this.props.match.params.teamId}`);
   };
 
   render() {

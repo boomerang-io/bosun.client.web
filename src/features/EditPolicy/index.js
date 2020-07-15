@@ -238,7 +238,7 @@ class EditPolicy extends React.Component {
   }
 
   navigateBack = () => {
-    this.props.history.push(`/${this.props.match.params.teamName}`);
+    this.props.history.push(`/teams/${this.props.match.params.teamId}`);
   };
 
   render() {
@@ -261,7 +261,6 @@ class EditPolicy extends React.Component {
     if (isFetching) {
       return <LoadingAnimation />;
     }
-
     if (error) {
       return <ErrorDragon />;
     }

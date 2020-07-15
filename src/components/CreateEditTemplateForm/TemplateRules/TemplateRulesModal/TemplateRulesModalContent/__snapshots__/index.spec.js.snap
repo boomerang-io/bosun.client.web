@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
-<body>
+<body
+  id="app"
+>
   <div>
     <form
       class="bx--bmrg-modal-flow-form"
@@ -20,7 +22,7 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               for="label"
             >
               <div
-                style="display: flex;"
+                class="bx--bmrg-text-input__label"
               >
                 <div>
                   Name
@@ -51,7 +53,7 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               for="description"
             >
               <div
-                style="display: flex;"
+                class="bx--bmrg-text-input__label"
               >
                 <div>
                   Description
@@ -81,7 +83,13 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               class="bx--label"
               for="type"
             >
-              Type
+              <div
+                style="display: flex;"
+              >
+                <div>
+                  Type
+                </div>
+              </div>
             </label>
             <div
               class="bx--combo-box bx--list-box"
@@ -170,7 +178,7 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               for="defaultValue"
             >
               <div
-                style="display: flex;"
+                class="bx--bmrg-text-input__label"
               >
                 <div>
                   Default Value

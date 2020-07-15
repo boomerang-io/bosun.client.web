@@ -1,30 +1,47 @@
 import React from "react";
-import { matchPath, useLocation } from "react-router-dom";
+import { matchPath, useLocation, useHistory } from "react-router-dom";
 import ErrorBoundary from "components/ErrorBoundary";
 import ErrorDragon from "components/ErrorDragon";
 import Loading from "components/Loading";
 import Main from "./Main";
 import Navbar from "./Navbar";
-import { SERVICE_PRODUCT_TEAM_PATH } from "config/servicesConfig";
+import {
+  SERVICE_PRODUCT_TEAM_PATH,
+  SERVICE_PLATFORM_PROFILE_PATH,
+  SERVICE_PLATFORM_NAVIGATION_PATH
+} from "config/servicesConfig";
 import useAxiosFetch from "utils/hooks/useAxios";
 import AppContext from "state/context/appContext";
 import styles from "./App.module.scss";
 
 export function App() {
+  const history = useHistory();
   const location = useLocation();
-  const globalMatch = matchPath(location.pathname, { path: "/:teamName" });
+  const teamsMatch = matchPath(location.pathname, { path: "/teams/:teamId" });
+  const templatesMatch = matchPath(location.pathname, { path: "/templates" });
 
+  const userState = useAxiosFetch(SERVICE_PLATFORM_PROFILE_PATH);
+  const navigationState = useAxiosFetch(SERVICE_PLATFORM_NAVIGATION_PATH);
   const teamsState = useAxiosFetch(SERVICE_PRODUCT_TEAM_PATH);
 
   const [activeTeam, setActiveTeam] = React.useState();
-
-  const activeTeamName = globalMatch?.params?.teamName;
+  const activeTeamId = teamsMatch?.params?.teamId;
   React.useEffect(() => {
-    if (activeTeamName) {
-      const activeTeam = teamsState.data?.find(team => team.name === activeTeamName);
-      setActiveTeam(activeTeam);
+    if (!teamsState?.data) {
+      return;
     }
-  }, [activeTeamName, setActiveTeam, teamsState.data]);
+
+    if (activeTeamId) {
+      const activeTeam = teamsState.data?.find(team => team.id === activeTeamId);
+      setActiveTeam(activeTeam);
+    } else {
+      const firstTeam = teamsState.data[0];
+      setActiveTeam(firstTeam);
+      if (!templatesMatch) {
+        history.push(`/teams/${firstTeam.id}`);
+      }
+    }
+  }, [activeTeam, activeTeamId, history, setActiveTeam, teamsState, templatesMatch]);
 
   function renderMain() {
     if (teamsState.isLoading) {
@@ -49,7 +66,7 @@ export function App() {
   return (
     <ErrorBoundary errorComponent={ErrorDragon}>
       <div className={styles.container}>
-        <Navbar />
+        <Navbar activeTeam={activeTeam} navigationState={navigationState} userState={userState} />
         {renderMain()}
       </div>
     </ErrorBoundary>

@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { fireEvent, waitForElement } from "@testing-library/react";
+import { fireEvent, wait, screen } from "@testing-library/react";
 import EditPolicy from ".";
 import MockAdapter from "axios-mock-adapter";
-import { SERVICE_PRODUCT_TEMPLATES_PATH, SERVICE_PRODUCT_POLICIES_PATH } from "Config/servicesConfig";
+import { SERVICE_PRODUCT_TEMPLATES_PATH, SERVICE_PRODUCT_POLICIES_PATH, SERVICE_PRODUCT_VALIDATION_INFO_PATH } from "Config/servicesConfig";
 
 const route = "/111/policy/edit/222";
 const props = {
@@ -12,49 +12,22 @@ const props = {
 
 const definitions = [
   {
-    id: "5cd49777f6ea74a9bb6ac629",
-    key: "static_code_analysis",
-    name: "Static Code Analysis",
-    description: "The following policy metrics are validated from SonarQube data collected in your CI pipeline.",
-    order: 0,
-    config: [
+    "id": "5cd49777f6ea74a9bb6ac629",
+    "key": "package_safelist",
+    "name": "Package Safe List",
+    "createDate": "2019-06-21T00:00:00.000+0000",
+    "description": "The following package and artifact validation is validated against scans by JFrog Xray. Artifact and Version are validated through regular expression.",
+    "order": 1,
+    "rego": "",
+    "rules": [
       {
-        key: "metric",
-        label: "Metric",
-        type: "select",
-        defaultValue: "",
-        required: false,
-        description: "",
-        options: [
-          "issues-total",
-          "issues-blocker",
-          "issues-critical",
-          "issues-major",
-          "issues-minor",
-          "issues-info",
-          "issues-filesAnalyzed",
-          "ncloc",
-          "complexity",
-          "violations"
-        ]
-      },
-      {
-        key: "operator",
-        label: "Operator",
-        type: "select",
-        defaultValue: "",
-        required: false,
-        description: "",
-        options: ["equal", "not equal", "less than", "less than or equal", "greater than", "greater than or equal"]
-      },
-      {
-        key: "value",
-        label: "Value",
-        type: "text",
-        defaultValue: "",
-        required: false,
-        description: "",
-        options: null
+        "key": "artifact",
+        "label": "Package",
+        "type": "text",
+        "defaultValue": "",
+        "required": false,
+        "description": "Regular Expression",
+        "options": null
       }
     ]
   }
@@ -84,6 +57,20 @@ const policy = {
   ],
   stages: ["dev"]
 };
+const validateInfo = {
+  "policyId": "5db9a8c7b01c530001b838d1",
+  "referenceId": null,
+  "referenceLink": null,
+  "labels": {
+    "artifact-path": "",
+    "artifact-name": "",
+    "artifact-version": "",
+    "sonarqube-id": "",
+    "sonarqube-version": ""
+  },
+  "annotations": null,
+  "data": null
+};
 
 describe("EditPolicy --- Snapshot", () => {
   beforeEach(() => {
@@ -93,9 +80,10 @@ describe("EditPolicy --- Snapshot", () => {
   const mockAxios = new MockAdapter(axios);
   mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
   mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
+  mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
   it("+++ renders correctly", async () => {
-    const { baseElement, getByText } = renderWithRouter(<EditPolicy {...props} />, { route });
-    await waitForElement(() => getByText(/Edit Policy/i));
+    const { baseElement } = rtlRouterRender(<EditPolicy {...props} />, { route });
+    await screen.findByText(/Edit Policy/i);
     expect(baseElement).toMatchSnapshot();
   });
 });
@@ -110,8 +98,8 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(404);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
 
-    const { getByText } = renderWithRouter(<EditPolicy {...props} />, { route });
-    const errorMessage = await waitForElement(() => getByText("Don’t lose your daks"));
+    rtlRouterRender(<EditPolicy {...props} />, { route });
+    const errorMessage = await screen.findByText("Don’t lose your daks");
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -120,8 +108,8 @@ describe("EditPolicy --- RTL", () => {
     mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(404);
 
-    const { getByText } = renderWithRouter(<EditPolicy {...props} />, { route });
-    const errorMessage = await waitForElement(() => getByText("Don’t lose your daks"));
+    rtlRouterRender(<EditPolicy {...props} />, { route });
+    const errorMessage = await screen.findByText("Don’t lose your daks");
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -129,14 +117,16 @@ describe("EditPolicy --- RTL", () => {
     const mockAxios = new MockAdapter(axios);
     mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
+    mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
 
-    const { getByPlaceholderText, getByTestId } = renderWithRouter(<EditPolicy {...props} />, { route });
+    rtlRouterRender(<EditPolicy {...props} />, { route });
+    await screen.findByText(/Edit Policy/i);
 
-    const saveButton = await waitForElement(() => getByTestId("policy-header-affirmative-action"));
+    const saveButton = await screen.findByTestId("policy-header-affirmative-action");
 
     expect(saveButton).toBeEnabled();
 
-    const nameInput = getByPlaceholderText(/name/i);
+    const nameInput = screen.getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "" } });
     expect(saveButton).toBeDisabled();
 
@@ -148,34 +138,17 @@ describe("EditPolicy --- RTL", () => {
     const mockAxios = new MockAdapter(axios);
     mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
     mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
+    mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
 
-    const { getByPlaceholderText, getByTestId } = renderWithRouter(<EditPolicy {...props} />, { route });
+    rtlRouterRender(<EditPolicy {...props} />, { route });
 
-    const saveButton = await waitForElement(() => getByTestId("policy-header-affirmative-action"));
+    const saveButton = await screen.findByTestId("policy-header-affirmative-action");
 
-    const nameInput = getByPlaceholderText(/name/i);
+    const nameInput = screen.getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "test" } });
     expect(saveButton).toBeEnabled();
 
     fireEvent.click(saveButton);
     expect(saveButton).toBeDisabled();
   });
-
-  // test("delete modals appears and delete button is disabled while deleting", async () => {
-  //   const mockAxios = new MockAdapter(axios);
-  //   mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
-  //   mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
-  //   mockAxios.onDelete(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200);
-
-  //   const { getByText } = renderWithRouter(<EditPolicy {...props} />, { route });
-
-  //   const deleteButton = await waitForElement(() => getByText(/delete/i));
-  //   expect(deleteButton).toBeEnabled();
-
-  //   fireEvent.click(deleteButton);
-  //   getByText(/it will be gone/i);
-
-  //   fireEvent.click(getByText(/yes/i));
-  //   expect(deleteButton).toBeDisabled();
-  // });
 });

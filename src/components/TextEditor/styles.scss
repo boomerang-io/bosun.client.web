@@ -3,10 +3,13 @@
 .CodeMirror {
   height: 36rem;
   font-size: 1rem;
+  letter-spacing: 0.0125rem;
 }
 
 .CodeMirror-sizer {
-  font-size: 1rem;
+  font-size: 0.875rem;
+  font-family: monospace;
+  letter-spacing: 0.06125rem;
 }
 
 .CodeMirror-hints {

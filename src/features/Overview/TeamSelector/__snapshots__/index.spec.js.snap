@@ -194,11 +194,7 @@ exports[`TeamSelector --- Snapshot Capturing Snapshot of TeamSelector 1`] = `
                     htmlFor="name"
                   >
                     <div
-                      style={
-                        Object {
-                          "display": "flex",
-                        }
-                      }
+                      className="bx--bmrg-text-input__label"
                     >
                       <div>
                         Name

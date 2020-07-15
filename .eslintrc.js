@@ -4,15 +4,27 @@ module.exports = {
   env: {
     "jest/globals": true
   },
+  overrides: [
+    {
+      files: ["*.spec.js"],
+      rules: {
+        "no-unused-expressions": "off",
+        "no-unused-vars": "off",
+        "jest/no-commented-out-tests": "off"
+      }
+    }
+  ],
   globals: {
+    cy: true,
     shallow: true,
     render: true,
     mount: true,
     renderer: true,
     rtlRender: true,
-    renderWithProvider: true,
-    renderWithRouter: true,
-    renderWithRouter: true,
+    rtlReduxRender: true,
+    rtlRouterRender: true,
+    rtlReduxRouterRender: true,
+    rtlContextRouterRender: true,
     cy: true
   }
 };

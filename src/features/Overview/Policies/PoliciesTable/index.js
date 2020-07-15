@@ -35,7 +35,7 @@ export default function PoliciesTable(props) {
   let history = useHistory();
   let params = useParams();
   const handleRowClick = row => {
-    history.push(`/${params.teamName}/policy/edit/${row.id}`);
+    history.push(`/teams/${params.teamId}/policy/edit/${row.id}`);
   };
 
   const renderCell = (cells, cellIndex, value) => {

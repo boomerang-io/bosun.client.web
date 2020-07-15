@@ -13,44 +13,228 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
         className="tableHeadRow"
       >
         <th
-          className="tableHeader"
+          aria-sort="none"
+          className="tableHeader name"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader name bx--table-sort"
+            onClick={[Function]}
           >
-            Name
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Name
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
         <th
-          className="tableHeader"
+          aria-sort="none"
+          className="tableHeader definitions"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader definitions bx--table-sort"
+            onClick={[Function]}
           >
-            Definitions
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Definitions
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
         <th
-          className="tableHeader"
+          aria-sort="none"
+          className="tableHeader rules"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader rules bx--table-sort"
+            onClick={[Function]}
           >
-            Rules
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Rules
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
         <th
-          className="tableHeader"
+          aria-sort="none"
+          className="tableHeader createdDate"
           scope="col"
         >
-          <span
-            className="bx--table-header-label"
+          <button
+            className="tableHeader createdDate bx--table-sort"
+            onClick={[Function]}
           >
-            Stage Gate Allocations
-          </span>
+            <span
+              className="bx--table-header-label"
+            >
+              Created Date
+            </span>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
+              />
+            </svg>
+            <svg
+              aria-label="Sort rows by this header in ascending order"
+              className="bx--table-sort__icon-unsorted"
+              focusable="false"
+              height={20}
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 32 32"
+              width={20}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+              />
+            </svg>
+          </button>
         </th>
       </tr>
     </thead>
@@ -124,11 +308,11 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
           <div
             className="tableCell"
           >
-            <p
+            <time
               className="tableTextarea"
             >
-              dev
-            </p>
+              Jan 01, 2019 - 12:00 am
+            </time>
           </div>
         </td>
       </tr>

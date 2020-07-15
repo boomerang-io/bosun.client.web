@@ -16,7 +16,7 @@ class WorkflowProperties extends Component {
   editTrigger = ({ openModal }) => {
     let output = null;
     this.props.isEdit
-      ? (output = <EditButton className={styles.editContainer} onClick={openModal} aria-label="Edit" />)
+      ? (output = <EditButton className={styles.editContainer} onClick={openModal} aria-label="Edit" data-testid="edit-property-trigger" />)
       : (output = (
           <button
             className={styles.createPropertyCard}

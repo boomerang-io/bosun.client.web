@@ -1,10 +1,108 @@
 import React from "react";
+import renderer from "react-test-renderer";
 import Enzyme, { shallow, render, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
+import Adapter from "enzyme-adapter-react-16";
 import { render as rtlRender } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { AppContext } from "./state/context";
+import configureStore from "./store/configureStore";
 import "@testing-library/jest-dom/extend-expect";
+
+/**
+ * Setup store w/ same config we use for the app so things like thunks work
+ * The entire store  w/ the root reducer gets created, but its is relatively lightweight if there is no data in it
+ * The alternative is passing in the reducer to this function for each test. I prefer this simpler setup.
+ */
+
+function rtlReduxRender(ui, { initialState = {} } = {}) {
+  const store = configureStore(initialState);
+  return {
+    ...rtlRender(<Provider store={store}>{ui}</Provider>),
+    store,
+  };
+}
+
+function rtlRouterRender(
+  ui,
+  { route = "/", history = createMemoryHistory({ initialEntries: [route] }), ...options } = {}
+) {
+  return {
+    ...rtlRender(<Router history={history}>{ui}</Router>, options),
+    history,
+  };
+}
+
+function rtlReduxRouterRender(
+  ui,
+  { initialState = {}, route = "/", history = createMemoryHistory({ initialEntries: [route] }), ...options } = {}
+) {
+  let { store } = options;
+  if (!store) {
+    store = configureStore(initialState, history);
+  }
+
+  return {
+    ...rtlRender(
+      <Provider store={store}>
+        <Router history={history}>{ui}</Router>
+      </Provider>,
+      options
+    ),
+    history,
+    store,
+  };
+}
+
+const defaultContextValue = {
+  user: { id: "1", email: "boomrng@us.ibm.com", type: "admin" },
+  activeTeam: { id: "1", userRoles: ["operator"] },
+  teams: [],
+  setActiveTeam: () => {},
+  refetchTeams: () => {},
+};
+function rtlContextRouterRender(
+  ui,
+  {
+    contextValue = {},
+    initialState = {},
+    route = "/",
+    history = createMemoryHistory({ initialEntries: [route] }),
+    ...options
+  } = {}
+) {
+  const store = configureStore(initialState);
+  return {
+    ...rtlRender(
+      <Provider store={store}>
+        <AppContext.Provider value={{ ...defaultContextValue, ...contextValue }}>
+          <Router history={history}>{ui}</Router>
+        </AppContext.Provider>
+      </Provider>,
+      options
+    ), history,
+  };
+}
+
+// RTL globals
+// Open question if we want to attach these to the global or required users to import
+global.rtlRender = rtlRender;
+global.rtlReduxRender = rtlReduxRender;
+global.rtlRouterRender = rtlRouterRender;
+global.rtlReduxRouterRender = rtlReduxRouterRender;
+global.rtlContextRouterRender = rtlContextRouterRender;
+
+// Make renderer global
+global.renderer = renderer;
+// mock document text range
+global.document.createRange = () => {
+  return {
+    setEnd: () => {},
+    setStart: () => {},
+    getBoundingClientRect: () => {}
+  }
+}
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });
@@ -14,16 +112,21 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 
-// Mock browser storage
-const storageMock = {
+const localStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
-  clear: jest.fn()
+  clear: jest.fn(),
 };
 
-global.localStorage = storageMock;
+const sessionStorageMock = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  clear: jest.fn(),
+};
 
-global.sessionStorage = storageMock;
+global.localStorage = localStorageMock;
+
+global.sessionStorage = sessionStorageMock;
 
 //Dates
 const DATE_TO_USE = new Date("Jan 1 2019 00:00:00 UTC");
@@ -33,21 +136,13 @@ global.Date.UTC = _Date.UTC;
 global.Date.parse = _Date.parse;
 global.Date.now = _Date.now;
 
-const moment = require.requireActual("moment-timezone");
+const moment = jest.requireActual("moment-timezone");
 jest.doMock("moment", () => {
   moment.tz.setDefault("UTC");
   return moment;
 });
 
-global.rtlRender = rtlRender;
-
-// Custom render function with Router for components that needs Router
-global.renderWithRouter = (
-  ui,
-  { route = "/", memoryHistory = createMemoryHistory({ initialEntries: [route] }), ...options } = {}
-) => {
-  return {
-    ...rtlRender(<Router history={memoryHistory}>{ui}</Router>, options),
-    memoryHistory
-  };
-};
+// React-modal
+beforeEach(() => {
+  document.body.setAttribute("id", "app");
+});
