@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink, useLocation } from "react-router-dom";
-import { LeftSideNav, UIShell } from "@boomerang/carbon-addons-boomerang-react";
+import { LeftSideNav, UIShell } from "@boomerang-io/carbon-addons-boomerang-react";
 import { BASE_LAUNCH_ENV_URL } from "config/platformUrlConfig";
 import { BASE_SERVICE_ENV_URL } from "config/servicesConfig";
 import {

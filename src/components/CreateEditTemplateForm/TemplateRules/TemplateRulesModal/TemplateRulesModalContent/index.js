@@ -7,7 +7,7 @@ import {
   TextInput,
   Toggle,
   ModalFlowForm
-} from "@boomerang/carbon-addons-boomerang-react";
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import { Button, ModalBody, ModalFooter } from "carbon-components-react";
 import { Formik } from "formik";
 import * as Yup from "yup";

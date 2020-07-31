@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
-import { Error404 } from "@boomerang/carbon-addons-boomerang-react";
+import { Error404 } from "@boomerang-io/carbon-addons-boomerang-react";
 import LoadingAnimation from "components/Loading";
 import CreatePolicy from "features/CreatePolicy";
 import CreateTemplate from "features/CreateTemplate";

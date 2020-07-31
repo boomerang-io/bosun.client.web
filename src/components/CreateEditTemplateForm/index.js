@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Creatable, TextInput, TextArea } from "@boomerang/carbon-addons-boomerang-react";
+import { Creatable, TextInput, TextArea } from "@boomerang-io/carbon-addons-boomerang-react";
 import { Tabs, Tab } from "carbon-components-react";
 import CreateEditTemplateHeader from "components/CreateEditTemplateHeader";
 import TextEditor from "components/TextEditor";

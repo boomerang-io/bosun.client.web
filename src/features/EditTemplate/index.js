@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Error } from "@boomerang/carbon-addons-boomerang-react";
+import { Error } from "@boomerang-io/carbon-addons-boomerang-react";
 import { ToastNotification } from "carbon-components-react";
 import useAxiosFetch from "utils/hooks/useAxios";
 import CreateEditTemplateForm from "components/CreateEditTemplateForm";

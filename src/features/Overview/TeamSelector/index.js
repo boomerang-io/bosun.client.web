@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { ComboBox, TextInput } from "@boomerang/carbon-addons-boomerang-react";
+import { ComboBox, TextInput } from "@boomerang-io/carbon-addons-boomerang-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Button, ComposedModal, ModalHeader, ModalFooter, ModalBody, ToastNotification } from "carbon-components-react";

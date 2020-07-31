@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ConfirmModal } from "@boomerang/carbon-addons-boomerang-react";
+import { ConfirmModal } from "@boomerang-io/carbon-addons-boomerang-react";
 import TemplateRulesModal from "./TemplateRulesModal";
 import CloseButton from "components/CloseButton";
 import styles from "./templateRules.module.scss";
