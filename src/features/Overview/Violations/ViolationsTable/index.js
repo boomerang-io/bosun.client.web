@@ -9,7 +9,7 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  Tag
+  Tag,
 } from "carbon-components-react";
 import copy from "copy-to-clipboard";
 import { isAccessibleEvent } from "utils";
@@ -17,7 +17,7 @@ import styles from "./violationsTable.module.scss";
 
 export class ViolationsTable extends Component {
   static propTypes = {
-    violations: PropTypes.array
+    violations: PropTypes.array,
   };
 
   annotationsRef = React.createRef();
@@ -26,35 +26,35 @@ export class ViolationsTable extends Component {
   headers = [
     {
       header: "Policy",
-      key: "policyName"
+      key: "policyName",
     },
     {
       header: "Violations",
-      key: "nbrViolations"
+      key: "nbrViolations",
     },
     {
       header: "Failed Definition Types",
-      key: "policyDefinitionTypes"
+      key: "policyDefinitionTypes",
     },
     {
       header: "Reference ID",
-      key: "referenceId"
+      key: "referenceId",
     },
     {
       header: "Activity Date",
-      key: "policyActivityCreatedDate"
-    }
+      key: "policyActivityCreatedDate",
+    },
   ];
 
   subHeaders = [
     {
       header: "Metrics",
-      key: "metric"
+      key: "metric",
     },
     {
       header: "Message",
-      key: "message"
-    }
+      key: "message",
+    },
   ];
 
   renderCell = (rowIndex, cellIndex, value) => {
@@ -69,13 +69,13 @@ export class ViolationsTable extends Component {
     }
   };
 
-  renderSubRow = row => {
+  renderSubRow = (row) => {
     const { violations } = this.props;
-    const currentViolation = violations.find(violation => violation.id === row.id);
+    const currentViolation = violations.find((violation) => violation.id === row.id);
     if (currentViolation && currentViolation.violations.length > 0)
-      return currentViolation.violations.map(violation => (
+      return currentViolation.violations.map((violation) => (
         <div className={styles.subRow}>
-          {this.subHeaders.map(cell => (
+          {this.subHeaders.map((cell) => (
             <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>
               {this.renderDetail(cell.key, violation[cell.key])}
             </div>
@@ -85,7 +85,7 @@ export class ViolationsTable extends Component {
     else {
       return (
         <div className={styles.subRow}>
-          {this.subHeaders.map(cell => (
+          {this.subHeaders.map((cell) => (
             <div key={cell.key} className={`${styles.tableCell} ${styles[cell.key]}`}>
               {this.renderDetail(cell.key, "---")}
             </div>
@@ -106,10 +106,10 @@ export class ViolationsTable extends Component {
     }
   };
 
-  handleRowClick = row => {
+  handleRowClick = (row) => {
     this.setState({
       isModalOpen: true,
-      selectedPolicyIndex: row
+      selectedPolicyIndex: row,
     });
   };
 
@@ -142,7 +142,7 @@ export class ViolationsTable extends Component {
             </p>
             <h2 className={styles.modalSectionTitle}>Labels</h2>
             <ul className={styles.modalLabels}>
-              {Object.entries(selectedViolation?.labels ?? {})?.map(entry => (
+              {Object.entries(selectedViolation?.labels ?? {})?.map((entry) => (
                 <li key={entry[0]}>
                   <Tag type="purple">
                     {entry[0]}
@@ -154,7 +154,7 @@ export class ViolationsTable extends Component {
             </ul>
             <h2 className={styles.modalSectionTitle}>Reference Link</h2>
             {selectedViolation?.referenceLink ? (
-              <a href={selectedViolation?.referenceLink} alt="Reference link">
+              <a href={selectedViolation.referenceLink} alt="Reference link">
                 {selectedViolation.referenceLink}
               </a>
             ) : (
@@ -191,7 +191,7 @@ export class ViolationsTable extends Component {
               <Table className={styles.tableContainer} sortable={"true"} useZebraStyles={false}>
                 <TableHead>
                   <TableRow className={styles.tableHeadRow}>
-                    {headers.map(header => (
+                    {headers.map((header) => (
                       <TableHeader
                         {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
                       >
@@ -208,7 +208,7 @@ export class ViolationsTable extends Component {
                         key={row.id}
                         {...getRowProps({ row })}
                         onClick={() => this.handleRowClick(rowIndex)}
-                        onKeyDown={e => isAccessibleEvent(e) && this.handleRowClick(rowIndex)}
+                        onKeyDown={(e) => isAccessibleEvent(e) && this.handleRowClick(rowIndex)}
                         tabIndex={0}
                       >
                         {row.cells.map((cell, cellIndex) => (
