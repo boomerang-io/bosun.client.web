@@ -1,8 +1,7 @@
 import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
-import { Error404 } from "@boomerang-io/carbon-addons-boomerang-react";
-import LoadingAnimation from "components/Loading";
+import { Error404, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreatePolicy from "features/CreatePolicy";
 import CreateTemplate from "features/CreateTemplate";
 import EditPolicy from "features/EditPolicy";
@@ -19,7 +18,7 @@ function Main() {
         //<MessageBanner />
       }
       <main id="content" className={styles.container}>
-        <Suspense fallback={<LoadingAnimation centered />}>
+        <Suspense fallback={<Loading />}>
           <Switch>
             <Route path="/templates/create" component={CreateTemplate} />
             <Route path="/templates/edit/:templateId" component={EditTemplate} />

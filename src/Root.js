@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import ErrorBoundary from "components/ErrorBoundary";
-import ErrorDragon from "components/ErrorDragon";
+import { ErrorDragon, ErrorBoundary } from "@boomerang-io/carbon-addons-boomerang-react";
 import App from "features/App";
 import { APP_ROOT } from "config/appConfig";
 

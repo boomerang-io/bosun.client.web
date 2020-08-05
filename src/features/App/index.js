@@ -1,10 +1,10 @@
 import React from "react";
 import { matchPath, useLocation, useHistory } from "react-router-dom";
-import ErrorBoundary from "components/ErrorBoundary";
-import ErrorDragon from "components/ErrorDragon";
-import Loading from "components/Loading";
+import { FlagsProvider } from "flagged";
+import { ErrorDragon, ErrorBoundary, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import Main from "./Main";
 import Navbar from "./Navbar";
+import { PRODUCT_STANDALONE } from "config/appConfig";
 import {
   SERVICE_PRODUCT_TEAM_PATH,
   SERVICE_PLATFORM_PROFILE_PATH,
@@ -45,7 +45,7 @@ export function App() {
 
   function renderMain() {
     if (teamsState.isLoading) {
-      return <Loading centered />;
+      return <Loading />;
     }
 
     if (teamsState.error) {
@@ -65,10 +65,12 @@ export function App() {
 
   return (
     <ErrorBoundary errorComponent={ErrorDragon}>
-      <div className={styles.container}>
-        <Navbar activeTeam={activeTeam} navigationState={navigationState} userState={userState} />
-        {renderMain()}
-      </div>
+      <FlagsProvider features={{ standalone: PRODUCT_STANDALONE }}>
+        <div className={styles.container}>
+          <Navbar activeTeam={activeTeam} navigationState={navigationState} userState={userState} />
+          {renderMain()}
+        </div>
+      </FlagsProvider>
     </ErrorBoundary>
   );
 }

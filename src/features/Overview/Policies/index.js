@@ -34,7 +34,7 @@ export function Policies({ policies }) {
       {policies.length > 0 ? (
         <PoliciesTable policies={policies} />
       ) : (
-        <NoDisplay text="No policies to be found. Add some!" style={{ width: "20rem" }} />
+        <NoDisplay text="No policies found. Go forth and create one or two why don't you?" style={{ width: "20rem" }} />
       )}
     </section>
   );

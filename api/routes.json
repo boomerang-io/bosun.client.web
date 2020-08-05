@@ -1,8 +1,9 @@
 {
+  "/api/*": "/$1",
   "/bosun/policies/definitions": "/definitions",
   "/bosun/policies/operators": "/operators",
-  "/bosun/policies/insights?teamId=:teamId": "/insights",
-  "/bosun/policies/violations?teamId=:teamId": "/violations",
+  "/bosun/policies/insights?*": "/insights",
+  "/bosun/policies/violations?*": "/violations",
   "/bosun/policies/:id": "/policies/:id?singular=1",
   "/bosun/validate/info/:id": "/validateInfo",
   "/bosun/*": "/$1",

@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { ToastNotification } from "carbon-components-react";
+import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import { toast } from "react-toastify";
-import LoadingAnimation from "components/Loading";
-import ErrorDragon from "components/ErrorDragon";
 import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
 import CreateEditPolicyForm from "components/CreateEditPolicyForm";
 import {
@@ -196,7 +195,7 @@ class CreatePolicy extends React.Component {
     };
 
     if (isFetching) {
-      return <LoadingAnimation />;
+      return <Loading />;
     }
 
     if (error) {

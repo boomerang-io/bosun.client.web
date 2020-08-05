@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import ErrorDragon from "components/ErrorDragon";
-import LoadingAnimation from "components/Loading";
+import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import Welcome from "components/Welcome";
 import Insights from "./Insights";
 import Policies from "./Policies";
@@ -21,7 +20,7 @@ export function Overview() {
   const history = useHistory();
   const { activeTeam, teams } = React.useContext(AppContext);
   const activeTeamId = activeTeam?.id;
-  
+
   const policiesState = useAxiosFetch(`${SERVICE_PRODUCT_POLICIES_PATH}?teamId=${activeTeamId}`);
   const insightsState = useAxiosFetch(`${SERVICE_PRODUCT_INSIGHTS_PATH}?teamId=${activeTeamId}`);
   const violationsState = useAxiosFetch(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?teamId=${activeTeamId}`);
@@ -37,8 +36,7 @@ export function Overview() {
       return <Welcome />;
     }
 
-    if (policiesState.isLoading || insightsState.isLoading || violationsState.isLoading)
-      return <LoadingAnimation message="Just a moment, por favor" delay={0} />;
+    if (policiesState.isLoading || insightsState.isLoading || violationsState.isLoading) return <Loading />;
 
     if (policiesState.error && insightsState.error && violationsState.error) {
       return <ErrorDragon />;

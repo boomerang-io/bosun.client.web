@@ -1,6 +1,5 @@
 import React from "react";
-import ErrorDragon from "components/ErrorDragon";
-import LoadingAnimation from "components/Loading";
+import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import FullPageHeader from "components/FullPageHeader";
 import TemplatesTable from "./TemplatesTable";
 import { SERVICE_PRODUCT_TEMPLATES_PATH } from "config/servicesConfig";
@@ -8,11 +7,9 @@ import useAxiosFetch from "utils/hooks/useAxios";
 import styles from "./templates.module.scss";
 
 export function TemplatesContainer() {
-  //const history = useHistory();
-
   const templatesState = useAxiosFetch(`${SERVICE_PRODUCT_TEMPLATES_PATH}`);
 
-  if (templatesState.isLoading) return <LoadingAnimation message="Just a moment, por favor" delay={0} />;
+  if (templatesState.isLoading) return <Loading />;
 
   if (templatesState.error) {
     return <ErrorDragon />;

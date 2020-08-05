@@ -4,6 +4,7 @@ $carbon-addons-bmrg--theme: boomerang;
 
 @import "~@boomerang-io/carbon-addons-boomerang-react/styles/scss/styles";
 @import "~carbon-components/scss/components/code-snippet/code-snippet";
+@import "~carbon-components/scss/components/copy-button/copy-button";
 @import "~carbon-components/scss/components/data-table-v2/data-table-v2";
 @import "~carbon-components/scss/components/data-table-v2/data-table-v2-core";
 @import "~carbon-components/scss/components/data-table-v2/data-table-v2-sort";
@@ -25,8 +26,4 @@ $carbon-addons-bmrg--theme: boomerang;
 
 .bx--list-box input[role="combobox"] {
   min-width: 15rem;
-}
-
-.bx--form__helper-text {
-  font-style: italic;
 }

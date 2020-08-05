@@ -2,11 +2,10 @@ import React from "react";
 import axios from "axios";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Error } from "@boomerang-io/carbon-addons-boomerang-react";
+import { Error, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import { ToastNotification } from "carbon-components-react";
 import useAxiosFetch from "utils/hooks/useAxios";
 import CreateEditTemplateForm from "components/CreateEditTemplateForm";
-import Loading from "components/Loading";
 import NoDisplay from "components/NoDisplay";
 import { TEMPLATE_INTERACTION_TYPES } from "../../constants";
 import { SERVICE_PRODUCT_TEMPLATES_PATH } from "config/servicesConfig";
@@ -61,7 +60,7 @@ function EditTemplate(props) {
     return false;
   }
   if (templatesState.isLoading) {
-    return <Loading centered />;
+    return <Loading />;
   }
 
   if (templatesState.error) {

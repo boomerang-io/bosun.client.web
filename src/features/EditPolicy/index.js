@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import uuid from "uuid";
 import { ToastNotification } from "carbon-components-react";
+import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import { toast } from "react-toastify";
 import CreateEditPolicyForm from "components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
-import ErrorDragon from "components/ErrorDragon";
-import LoadingAnimation from "components/Loading";
 import {
   SERVICE_PRODUCT_TEMPLATES_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
@@ -259,7 +258,7 @@ class EditPolicy extends React.Component {
     };
 
     if (isFetching) {
-      return <LoadingAnimation />;
+      return <Loading />;
     }
     if (error) {
       return <ErrorDragon />;
