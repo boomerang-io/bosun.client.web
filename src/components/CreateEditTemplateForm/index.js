@@ -31,7 +31,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
         rego: template?.rego ? atob(template.rego) : "",
         rules: template?.rules ?? [],
         // integration: template?.integration ?? "integrated",
-        labels: template?.labels ?? []
+        labels: template?.labels ?? [],
       }}
       validationSchema={Yup.object().shape({
         key: Yup.string()
@@ -46,13 +46,11 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
           .max(64, "Enter no more than 64 character"),
         order: Yup.number().min(0, "Enter a positive number"),
         rego: Yup.string().required("Enter a Rego OPA policy"),
-        rules: Yup.array()
-          .min(1, "Create at least one rule")
-          .max(20, "Really, more than 20 rules?"),
-        labels: Yup.array().max(50, "Really, more than 50 labels?")
+        rules: Yup.array().min(1, "Create at least one rule").max(20, "Really, more than 20 rules?"),
+        labels: Yup.array().max(50, "Really, more than 50 labels?"),
       })}
     >
-      {formikProps => {
+      {(formikProps) => {
         const {
           errors,
           values,
@@ -61,7 +59,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
           handleChange,
           handleSubmit,
           setFieldValue,
-          validateForm
+          validateForm,
         } = formikProps;
         return (
           <Form onSubmit={handleSubmit}>
@@ -139,7 +137,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
                         name="labels"
                         label="Labels (optional)"
                         helperText="Metadata to pass information into the pre-integrated repositories"
-                        onChange={values => setFieldValue("labels", values)}
+                        onChange={(values) => setFieldValue("labels", values)}
                         values={values.labels}
                         placeholder="Create labels"
                         type="text"
@@ -151,13 +149,13 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
                 <Tab label="Rules">
                   <FieldArray
                     name="rules"
-                    render={arrayHelpers => <TemplateRules arrayHelpers={arrayHelpers} rules={values.rules} />}
+                    render={(arrayHelpers) => <TemplateRules arrayHelpers={arrayHelpers} rules={values.rules} />}
                   />
                 </Tab>
                 <Tab label="OPA Rego" onClick={() => codeMirrorEditor.current.refresh()}>
                   <section className={styles.opaPolicyContainer}>
                     <TextEditor
-                      onChange={value => setFieldValue("rego", value)}
+                      onChange={(value) => setFieldValue("rego", value)}
                       setCodeMirroEditor={setCodeMirroEditor}
                       value={values.rego}
                     />

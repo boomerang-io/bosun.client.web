@@ -4,12 +4,12 @@ import axios from "axios";
 import { ToastNotification } from "carbon-components-react";
 import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import { toast } from "react-toastify";
-import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
 import CreateEditPolicyForm from "components/CreateEditPolicyForm";
+import CreateEditPolicyHeader from "components/CreateEditPolicyHeader";
 import {
   SERVICE_PRODUCT_TEMPLATES_PATH,
   SERVICE_PRODUCT_POLICIES_PATH,
-  SERVICE_REQUEST_STATUSES
+  SERVICE_REQUEST_STATUSES,
 } from "config/servicesConfig";
 import AppContext from "state/context/appContext";
 import { POLICY_INTERACTION_TYPES } from "../../constants";
@@ -17,7 +17,7 @@ import styles from "./createPolicy.module.scss";
 
 class CreatePolicy extends React.Component {
   static propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
   };
 
   static contextType = AppContext;
@@ -31,7 +31,7 @@ class CreatePolicy extends React.Component {
     status: null,
     errors: {},
     inputs: {},
-    name: ""
+    name: "",
   };
 
   componentDidMount() {
@@ -42,38 +42,38 @@ class CreatePolicy extends React.Component {
 
   async fetchPolicyData() {
     this.setState({
-      isFetching: true
+      isFetching: true,
     });
     try {
       const response = await axios.get(SERVICE_PRODUCT_TEMPLATES_PATH);
       this.setState({
         definitions: response.data,
         isFetching: false,
-        status: SERVICE_REQUEST_STATUSES.SUCCESS
+        status: SERVICE_REQUEST_STATUSES.SUCCESS,
       });
     } catch (e) {
       this.setState({
         error: e,
         isFetching: false,
-        status: SERVICE_REQUEST_STATUSES.FAILURE
+        status: SERVICE_REQUEST_STATUSES.FAILURE,
       });
     }
   }
 
   createPolicy = async () => {
     this.setState({
-      isCreating: true
+      isCreating: true,
     });
     const { name, inputs, definitions } = this.state;
     let policyObject = {
       name: name,
       teamId: this.context?.activeTeam.id,
-      definitions: []
+      definitions: [],
     };
 
-    definitions.forEach(definition => {
+    definitions.forEach((definition) => {
       let newDefinition = {
-        policyTemplateId: definition.id
+        policyTemplateId: definition.id,
       };
       let rules = [];
       const definitionRows = inputs[definition.key];
@@ -87,7 +87,7 @@ class CreatePolicy extends React.Component {
     try {
       await axios.post(SERVICE_PRODUCT_POLICIES_PATH, policyObject);
       this.setState({
-        isCreating: false
+        isCreating: false,
       });
       toast(
         <ToastNotification
@@ -100,7 +100,7 @@ class CreatePolicy extends React.Component {
       this.navigateBack();
     } catch (e) {
       this.setState({
-        isCreating: false
+        isCreating: false,
       });
       toast(
         <ToastNotification
@@ -115,30 +115,30 @@ class CreatePolicy extends React.Component {
 
   // State updates
 
-  setError = error => {
-    this.setState(prevState => ({ errors: { ...prevState.errors, ...error } }));
+  setError = (error) => {
+    this.setState((prevState) => ({ errors: { ...prevState.errors, ...error } }));
   };
 
-  setName = e => {
+  setName = (e) => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
   setInput = ({ event: e, definitionKey, uuid }) => {
     const { name, value } = e.target;
     this.setState(
-      prevState => {
+      (prevState) => {
         const prevStateDefinitionRows = prevState.inputs[definitionKey] ? prevState.inputs[definitionKey][uuid] : {};
         return {
           inputs: {
             ...prevState.inputs,
             [definitionKey]: {
               ...prevState.inputs[definitionKey],
-              [uuid]: { ...prevStateDefinitionRows, [name]: value }
-            }
-          }
+              [uuid]: { ...prevStateDefinitionRows, [name]: value },
+            },
+          },
         };
       },
       () => this.validateRow(definitionKey)
@@ -150,15 +150,15 @@ class CreatePolicy extends React.Component {
     if (definitionRows) {
       delete definitionRows[uuid];
       this.setState(
-        prevState => ({
-          inputs: { ...prevState.inputs, [definitionKey]: definitionRows }
+        (prevState) => ({
+          inputs: { ...prevState.inputs, [definitionKey]: definitionRows },
         }),
         () => this.validateRow(definitionKey)
       );
     }
   };
 
-  validateRow = definitionKey => {
+  validateRow = (definitionKey) => {
     const { definitions, inputs } = this.state;
     const definitionRows = inputs[definitionKey] || {};
     const definitionRowsInputCount = Object.keys(definitionRows).reduce((accum, uuid) => {
@@ -168,9 +168,9 @@ class CreatePolicy extends React.Component {
     }, 0);
 
     // Each row should have the same number of inputs as the number of inputs in the policy definition rules
-    const matchingDefintion = definitions.find(definition => definition.key === definitionKey);
+    const matchingDefintion = definitions.find((definition) => definition.key === definitionKey);
     const isInvalid = Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
-    this.setState(prevState => ({ errors: { ...prevState.errors, [definitionKey]: isInvalid } }));
+    this.setState((prevState) => ({ errors: { ...prevState.errors, [definitionKey]: isInvalid } }));
   };
 
   // Local methods
@@ -191,7 +191,7 @@ class CreatePolicy extends React.Component {
       removeRow: this.removeRow,
       validateRow: this.validateRow,
       affirmativeAction: this.createPolicy,
-      isPerformingAffirmativeAction: isCreating
+      isPerformingAffirmativeAction: isCreating,
     };
 
     if (isFetching) {
