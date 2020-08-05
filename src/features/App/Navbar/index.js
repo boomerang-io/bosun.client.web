@@ -14,7 +14,7 @@ import {
   Rocket16,
   Document16,
   ReportData16,
-  Settings16
+  Settings16,
 } from "@carbon/icons-react";
 import { FeatureFlag } from "config/appConfig";
 import styles from "./navbar.module.scss";
@@ -24,23 +24,23 @@ const ACTIVE_CLASS_NAME = "bx--side-nav__link--current";
 const defaultUIShellProps = {
   baseLaunchEnvUrl: BASE_LAUNCH_ENV_URL,
   baseServiceUrl: BASE_SERVICE_ENV_URL,
-  renderLogo: true
+  renderLogo: true,
 };
 
 const skipToContentProps = {
-  href: "#content"
+  href: "#content",
 };
 
 Navbar.propTypes = {
   navigationState: PropTypes.object.isRequired,
-  userState: PropTypes.object.isRequired
+  userState: PropTypes.object.isRequired,
 };
 
 function Navbar({ activeTeam, navigationState, userState }) {
   const isStandaloneMode = useFeature(FeatureFlag.Standalone);
   const location = useLocation();
   const activeTeamId = activeTeam?.id;
-  return !isStandaloneMode ? (
+  return isStandaloneMode ? (
     <UIShell
       {...defaultUIShellProps}
       productName="Bosun"
