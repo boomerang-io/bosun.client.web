@@ -10,16 +10,16 @@ const INPUT_TYPES = {
   password: { type: "password" },
   number: { type: "number" },
   url: { type: "url" },
-  email: { type: "email" }
+  email: { type: "email" },
 };
 
 const TEXT_AREA_TYPES = {
-  textarea: { type: "textarea" }
+  textarea: { type: "textarea" },
 };
 
 const SELECT_TYPES = {
   select: { type: "select", isMultiselect: false, valueProperty: "value" },
-  multiselect: { type: "multiselect", isMultiselect: true, valueProperty: "values" }
+  multiselect: { type: "multiselect", isMultiselect: true, valueProperty: "values" },
 };
 
 function determineInput({ onChange, inputs, inputData, uuid }) {
@@ -33,8 +33,7 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
         key={key}
         labelText={label}
         name={key}
-        onChange={e => onChange(e, uuid)}
-        placeholder={label}
+        onChange={(e) => onChange(e, uuid)}
         required={required}
         type={config.type}
         value={inputs[key]}
@@ -50,8 +49,7 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
         key={key}
         labelText={label}
         name={key}
-        onChange={e => onChange(e, uuid)}
-        placeholder={label}
+        onChange={(e) => onChange(e, uuid)}
         required={required}
         value={inputs[key]}
       />
@@ -68,7 +66,6 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
         initialSelectedItem={inputs[key]}
         items={options}
         onChange={({ selectedItem }) => onChange({ target: { name: key, value: selectedItem } }, uuid)}
-        placeholder={label}
         required={required}
         type="text"
       />
@@ -117,13 +114,13 @@ function PolicyFormDefinitionSection({ definition, form }) {
         {rows.map((row, index) => {
           return (
             <div className={styles.row} key={row.uuid}>
-              {row.rules.map(input =>
+              {row.rules.map((input) =>
                 determineInput({
                   onChange,
                   inputs: inputs[row.uuid] || {},
                   inputData: input,
                   definitionKey: definition.key,
-                  uuid: row.uuid
+                  uuid: row.uuid,
                 })
               )}
               <button className={styles.delete} onClick={() => removeRow(index)}>
