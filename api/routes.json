@@ -1,12 +1,12 @@
 {
   "/api/*": "/$1",
-  "/bosun/policies/definitions": "/definitions",
-  "/bosun/policies/operators": "/operators",
-  "/bosun/policies/insights?*": "/insights",
-  "/bosun/policies/violations?*": "/violations",
-  "/bosun/policies/:id": "/policies/:id?singular=1",
-  "/bosun/validate/info/:id": "/validateInfo",
-  "/bosun/*": "/$1",
+  "/policy/policies/definitions": "/definitions",
+  "/policy/policies/operators": "/operators",
+  "/policy/policies/insights?*": "/insights",
+  "/policy/policies/violations?*": "/violations",
+  "/policy/policies/:id": "/policies/:id?singular=1",
+  "/policy/validate/info/:id": "/validateInfo",
+  "/policy/*": "/$1",
   "/users/*": "/$1",
   "/support/*": "/$1"
 }

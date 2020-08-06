@@ -9,7 +9,7 @@ import {
   ModalFooter,
   ModalBody,
   OrderedList,
-  ListItem
+  ListItem,
 } from "carbon-components-react";
 import FullPageHeader from "components/FullPageHeader";
 import { formatDateTimeString } from "utils";
@@ -25,7 +25,7 @@ const ACTION_TYPE_CONFIG = {
     title: "Create",
     affirmativeActionVerb: "Create",
     isPerformingActionVerb: "Creating...",
-    icon: Add16
+    icon: Add16,
   },
   [POLICY_INTERACTION_TYPES.EDIT]: {
     title: "Edit",
@@ -33,15 +33,15 @@ const ACTION_TYPE_CONFIG = {
     isPerformingActionVerb: "Saving...",
     deleteActionVerb: "Delete",
     isDeletingActionVerb: "Deleting...",
-    icon: Save16
-  }
+    icon: Save16,
+  },
 };
 
 CreateEditPolicyHeader.propTypes = {
   form: PropTypes.object.isRequired,
   policy: PropTypes.object,
   navigateBack: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(Object.values(POLICY_INTERACTION_TYPES))
+  type: PropTypes.oneOf(Object.values(POLICY_INTERACTION_TYPES)),
 };
 
 function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validateInfo }) {
@@ -128,7 +128,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
           />
           <ModalBody>
             <h2 className={styles.modalSectionTitle}>Validation Endpoint</h2>
-            <p>{`${PRODUCT_SERVICE_ENV_URL}/bosun/validate`}</p>
+            <p>{`${PRODUCT_SERVICE_ENV_URL}/policy/validate`}</p>
             <h2 className={styles.modalSectionTitle}>Sample Payload</h2>
             <CodeSnippet
               copyButtonDescription="Copy annotations to clipboard"

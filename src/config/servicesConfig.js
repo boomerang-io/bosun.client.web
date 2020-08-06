@@ -28,7 +28,7 @@ export const PRODUCT_SERVICE_ENV_URL =
 // }
 
 // Product
-export const SERVICE_PRODUCT_BASE_PATH = "/bosun";
+export const SERVICE_PRODUCT_BASE_PATH = "/policy";
 export const SERVICE_PRODUCT_TEMPLATES_PATH = `${SERVICE_PRODUCT_BASE_PATH}/templates`;
 export const SERVICE_PRODUCT_INSIGHTS_PATH = `${SERVICE_PRODUCT_BASE_PATH}/policies/insights`;
 export const SERVICE_PRODUCT_POLICIES_PATH = `${SERVICE_PRODUCT_BASE_PATH}/policies`;
@@ -42,5 +42,5 @@ export const SERVICE_PLATFORM_NAVIGATION_PATH = `${BASE_SERVICE_ENV_URL}/users/n
 
 export const SERVICE_REQUEST_STATUSES = {
   FAILURE: "failure",
-  SUCCESS: "success"
+  SUCCESS: "success",
 };
