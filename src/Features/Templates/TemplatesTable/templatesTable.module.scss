@@ -1,0 +1,82 @@
+@import "Styles/variables";
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.createButton {
+  align-self: flex-end;
+}
+
+.tableContainer {
+  margin-top: 1rem;
+}
+
+.tableHeadRow {
+  //background-color: $cool-white-1;
+}
+
+.tableHeadRow > .tableHeader {
+  color: $interactive-01;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  height: 3rem;
+
+  &.policyName {
+    width: 40%;
+  }
+
+  &.definitions {
+    width: 20%;
+  }
+
+  &.rules {
+    width: 20%;
+  }
+
+  &.createdDate {
+    width: 20%;
+  }
+}
+.tableBody {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
+}
+.tableRow {
+  cursor: pointer;
+}
+.tableCell {
+  align-items: center;
+  display: flex;
+  height: 3.5rem;
+  padding-left: 0.75rem;
+  width: 100%;
+}
+.tableIcons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.tableIcon {
+  cursor: pointer;
+  display: flex;
+  height: 1.25rem;
+  margin-right: 1.5rem;
+  width: 1.25rem;
+}
+
+.tableTextarea {
+  background: inherit;
+  max-width: 100%;
+  resize: none;
+  text-align: left;
+  white-space: normal;
+  width: 90%;
+  margin-left: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
+}

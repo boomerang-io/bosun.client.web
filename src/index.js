@@ -1,9 +1,9 @@
 import React from "react";
 import { render } from "react-dom";
 import Root from "./Root";
-import "config/axiosGlobalConfig";
+import "Config/axiosGlobalConfig";
 import "typeface-ibm-plex-sans";
-import "styles/index.scss";
+import "Styles/index.scss";
 
 // Setup hot module reloading to improve dev experience
 render(<Root />, document.getElementById("app"));

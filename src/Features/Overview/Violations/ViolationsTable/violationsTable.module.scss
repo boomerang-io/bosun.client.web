@@ -1,0 +1,131 @@
+@import "Styles/variables";
+
+.tableContainer {
+  margin-top: 1rem;
+}
+
+.tableHeadRow > .tableHeader {
+  color: $interactive-01;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  height: 3rem;
+
+  &.policyName {
+    width: 20%;
+  }
+
+  &.violations {
+    width: 5%;
+  }
+
+  &.referenceId {
+    width: 15%;
+  }
+
+  &.policyDefinitionTypes {
+    width: 40%;
+    overflow-y: auto;
+  }
+
+  &.policyActivityCreatedDate {
+    width: 20%;
+  }
+}
+.tableSubHeader {
+  color: $interactive-01;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  height: 3rem;
+  margin-left: 3.5rem;
+
+  &.metric {
+    width: 30%;
+  }
+  &.message {
+    width: 70%;
+  }
+}
+
+.tableBody {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
+  :global .bx--expandable-row {
+    td {
+      padding: 1rem 0rem !important;
+    }
+  }
+}
+
+.tableBodyRow {
+  cursor: pointer;
+  &:focus {
+    outline: 2px solid $interactive-01;
+    outline-offset: -2px;
+  }
+}
+
+.tableCell {
+  align-items: center;
+  display: flex;
+  height: 3.5rem;
+  line-height: 1.2rem;
+  padding-left: 0.75rem;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
+  overflow-y: auto;
+  &.metric {
+    width: 30%;
+  }
+  &.message {
+    width: 70%;
+  }
+}
+.tableTextarea {
+  background: inherit;
+  max-width: 100%;
+  max-height: 100%;
+  resize: none;
+  text-align: left;
+  white-space: normal;
+  width: 90%;
+  margin-left: 0.25rem;
+  word-break: break-all;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
+}
+.tableSubHeaders {
+  display: flex;
+  width: 100%;
+}
+.detailMetrics {
+  margin-left: 3rem;
+  width: 100%;
+}
+.detailMessage {
+  margin-left: 4.25rem;
+  width: 100%;
+}
+.subRow {
+  display: flex;
+  width: 100%;
+}
+.noDetail {
+  margin-left: 3.25rem;
+}
+
+.modalSectionTitle {
+  color: var(--cds-text-02);
+  font-size: 0.75rem !important;
+  margin: 1rem 0 0rem;
+}
+
+.modalLabels {
+  display: flex;
+  flex-flow: wrap;
+}
