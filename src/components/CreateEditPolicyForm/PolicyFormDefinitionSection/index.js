@@ -110,7 +110,7 @@ function PolicyFormDefinitionSection({ definition, form }) {
     <section className={styles.section}>
       <h2>{definition.name}</h2>
       <p>{definition.description}</p>
-      <div>
+      <div className={styles.rowsContainer}>
         {rows.map((row, index) => {
           return (
             <div className={styles.row} key={row.uuid}>
@@ -130,7 +130,14 @@ function PolicyFormDefinitionSection({ definition, form }) {
           );
         })}
       </div>
-      <Button kind="ghost" iconDescription={"Add Rule"} onClick={addRow} renderIcon={Add16} size="field">
+      <Button
+        kind="ghost"
+        iconDescription={"Add Rule"}
+        onClick={addRow}
+        renderIcon={Add16}
+        size="field"
+        style={{ marginLeft: "-0.625rem" }}
+      >
         Add Rule
       </Button>
     </section>
