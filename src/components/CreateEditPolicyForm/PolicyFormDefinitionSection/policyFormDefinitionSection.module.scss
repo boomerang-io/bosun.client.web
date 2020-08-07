@@ -8,13 +8,14 @@
   }
   h2 {
     padding: 0;
+    font-size:1.5rem;
   }
 
   p {
     color: #242a2e;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     letter-spacing: 0.01rem;
-    line-height: 0.92rem;
+    line-height: 1.2;
     text-align: left;
     text-overflow: ellipsis;
     word-break: break-word;
@@ -57,7 +58,7 @@
   display: flex;
   height: 1rem;
   margin: 0;
-  margin-top: 1.25rem;
+  margin-top: 0.5rem;
   opacity: 0;
   order: 3;
   padding: 0rem;

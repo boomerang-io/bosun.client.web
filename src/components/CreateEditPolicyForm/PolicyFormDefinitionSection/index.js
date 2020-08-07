@@ -130,7 +130,7 @@ function PolicyFormDefinitionSection({ definition, form }) {
           );
         })}
       </div>
-      <Button iconDescription={"Add Rule"} onClick={addRow} renderIcon={Add16} size="field">
+      <Button kind="ghost" iconDescription={"Add Rule"} onClick={addRow} renderIcon={Add16} size="field">
         Add Rule
       </Button>
     </section>
