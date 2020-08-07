@@ -1,18 +1,18 @@
 import React from "react";
 import { matchPath, useLocation, useHistory } from "react-router-dom";
+import { useQuery } from "react-query";
 import { FlagsProvider } from "flagged";
 import { ErrorDragon, ErrorBoundary, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import Main from "./Main";
 import Navbar from "./Navbar";
 import { PRODUCT_STANDALONE } from "config/appConfig";
-import {
-  SERVICE_PRODUCT_TEAM_PATH,
-  SERVICE_PLATFORM_PROFILE_PATH,
-  SERVICE_PLATFORM_NAVIGATION_PATH
-} from "config/servicesConfig";
-import useAxiosFetch from "utils/hooks/useAxios";
+import { serviceUrl, resolver } from "config/servicesConfig";
 import AppContext from "state/context/appContext";
 import styles from "./App.module.scss";
+
+const userUrl = serviceUrl.getUserProfile();
+const navigationUrl = serviceUrl.getNavigation();
+const teamsUrl = serviceUrl.getTeams();
 
 export function App() {
   const history = useHistory();
@@ -20,9 +20,18 @@ export function App() {
   const teamsMatch = matchPath(location.pathname, { path: "/teams/:teamId" });
   const templatesMatch = matchPath(location.pathname, { path: "/templates" });
 
-  const userState = useAxiosFetch(SERVICE_PLATFORM_PROFILE_PATH);
-  const navigationState = useAxiosFetch(SERVICE_PLATFORM_NAVIGATION_PATH);
-  const teamsState = useAxiosFetch(SERVICE_PRODUCT_TEAM_PATH);
+  const userState = useQuery({
+    queryKey: userUrl,
+    queryFn: resolver.query(userUrl),
+  });
+  const navigationState = useQuery({
+    queryKey: navigationUrl,
+    queryFn: resolver.query(navigationUrl),
+  });
+  const teamsState = useQuery({
+    queryKey: teamsUrl,
+    queryFn: resolver.query(teamsUrl),
+  });
 
   const [activeTeam, setActiveTeam] = React.useState();
   const activeTeamId = teamsMatch?.params?.teamId;
