@@ -1,12 +1,15 @@
 import { Server, Serializer, Model } from "miragejs";
 import { inflections } from "inflected";
+import uuid from "uuid/v4";
 import { serviceUrl } from "Config/servicesConfig";
 import * as fixtures from "./fixtures";
 
 export function startApiServer({ environment = "test", timing = 0 } = {}) {
   inflections("en", function (inflect) {
     // Prevent pluralization bc our apis are weird
-    inflect.irregular("catalog", "catalog");
+    inflect.irregular("policy", "policy");
+    inflect.irregular("violation", "violation");
+    inflect.irregular("insights", "insights");
   });
 
   return new Server({
@@ -25,8 +28,10 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
     },
     // Register the data as a model so we can use the schema
     models: {
-      catalog: Model,
-      teamDetails: Model,
+      templates: Model,
+      policies: Model,
+      violations: Model,
+      insights: Model,
     },
 
     routes() {
@@ -36,7 +41,7 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
       // Allow unhandled requests on the current domain to pass through
       this.passthrough();
 
-      // this.get("/info", () => []);
+      this.get("/info", () => []);
 
       /**
        * Simple GET of static data
@@ -57,8 +62,10 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
         return schema.db.templates;
       });
 
-      this.get(serviceUrl.getPolicy({policyId: ":policyId"}), (schema) => {
-        return schema.db.templates[0];
+      this.get(serviceUrl.getPolicy({policyId: ":policyId"}), (schema, request) => {
+        let { policyId } = request.params;
+        let activePolicy = schema.policies.find(policyId);
+        return activePolicy;
       });
 
       this.get(serviceUrl.getValidateInfo({policyId: ":policyId"}), (schema) => {
@@ -69,89 +76,51 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
         return schema.db.templates;
       });
 
-      this.get("/api/policy/policies?teamId", (schema) => {
-        console.log("team policies");
-        return schema.db.policies;
+      this.get(serviceUrl.getPolicyOverview(), (schema, request) => {
+        let { teamId } = request.queryParams;
+        return schema.db.policies.filter(policy => policy.teamId === teamId);
       });
 
-      this.get("/api/policy/policies/violations?teamId", (schema) => {
-        console.log("violations");
+      this.get(serviceUrl.getViolationsOverview(), (schema) => {
         return schema.db.violations;
       });
 
-      this.get("/api/policy/policies/insights?teamId", (schema) => {
-        console.log("insights");
+      this.get(serviceUrl.getInsightsOverview(), (schema) => {
         return schema.db.insights;
       });
 
-      this.post(serviceUrl.postCreatePolicy(), (schema) => {
-        return {};
+      this.post(serviceUrl.postCreatePolicy(), (schema, request) => {
+        let body = JSON.parse(request.requestBody);
+        return schema.policies.create({...body, id: uuid()});
       });
 
-      this.post(serviceUrl.postCreatePolicyTemplate(), (schema) => {
-        return {};
+      this.post(serviceUrl.postCreatePolicyTemplate(), (schema, request) => {
+        let body = JSON.parse(request.requestBody);
+        return schema.templates.create({...body, id: uuid()});
       });
 
-      this.patch(serviceUrl.patchUpdatePolicy({policyId: ":policyId"}), (schema) => {
-        return {};
+      this.patch(serviceUrl.patchUpdatePolicy({policyId: ":policyId"}), (schema, request) => {
+        let { policyId } = request.params;
+        let body = JSON.parse(request.requestBody);
+        let activePolicy = schema.policies.find(policyId);
+        activePolicy.update(body);
+        return schema.policies.all();
       });
 
-      this.patch(serviceUrl.patchUpdatePolicyTemplate({policyId: ":templateId"}), (schema) => {
-        return {};
+      this.patch(serviceUrl.patchUpdatePolicyTemplate({templateId: ":templateId"}), (schema, request) => {
+        let { templateId } = request.params;
+        let body = JSON.parse(request.requestBody);
+        let activeTemplate = schema.templates.find(templateId);
+        activeTemplate.update(body);
+        return schema.templates.all();
       });
 
-      this.delete(serviceUrl.deletePolicy({policyId: ":policyId"}), (schema) => {
-        return {};
+      this.delete(serviceUrl.deletePolicy({policyId: ":policyId"}), (schema, request) => {
+        let { policyId } = request.params;
+        let activePolicy = schema.policies.find(policyId);
+        activePolicy.destroy({id: policyId});
+        return schema.policies.all();
       });
-      // // this.get(serviceUrl.getServices({size:"1000"}), (schema, request) => {
-      // //   return schema.db.catalog;
-      // // });
-      // // Need to find a way to read the size param
-      // this.get("/api/catalog", (schema, request) => {
-      //   return schema.db.catalog;
-      // });
-
-      // this.get(serviceUrl.getCategories(), (schema) => {
-      //   // For some reason when we return usind schema.db it returns string as object
-      //   return schema.db.categories[0].data;
-      // });
-
-      // this.get(serviceUrl.getAttributes(), (schema) => {
-      //   // For some reason when we return usind schema.db it returns string as object
-      //   return schema.db.attributes[0].data;
-      // });
-
-      // this.get(serviceUrl.getBundles(), (schema) => {
-      //   // For some reason when we return usind schema.db it returns string as object
-      //   return schema.db.bundles[0].data;
-      // });
-
-      // this.get(serviceUrl.getTeams(), (schema) => {
-      //   return schema.db.userTeams;
-      // });
-
-      // /** Team details - Quick Add */
-      // this.get(serviceUrl.getTeamDetail({ teamId: ":teamId" }), (schema, request) => {
-      //   return schema.db.teamDetails[0];
-      // });
-
-      // /** Service details */
-      // this.get(serviceUrl.getServiceDetails({ serviceId: ":serviceId" }), (schema, request) => {
-      //   return schema.db.serviceDetails[0];
-      // });
-
-      // /** Service details - Get add teams */
-      // this.get(serviceUrl.getAddServiceTeams({ serviceId: ":serviceId" }), (schema, request) => {
-      //   return schema.db.addServiceTeams;
-      // });
-
-      // /**
-      //  * Add service - Quick Add
-      //  */
-
-      // this.post(serviceUrl.postAddService(), (schema, request) => {
-      //   return {};
-      // });
     },
   });
 }

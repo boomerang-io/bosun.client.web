@@ -1,5 +1,11 @@
 // Setup global config for Axios requests so they work with ICP
 import axios from "axios";
-import { PRODUCT_SERVICE_ENV_URL } from "./servicesConfig";
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = PRODUCT_SERVICE_ENV_URL;
+
+// If port forwarding is set, we need to attach the JWT to all requests
+if (process.env.REACT_APP_PORT_FORWARD) {
+  const JWT = `Bearer ${process.env.REACT_APP_JWT}`;
+
+  axios.defaults.headers.common["Authorization"] = JWT;
+}
+

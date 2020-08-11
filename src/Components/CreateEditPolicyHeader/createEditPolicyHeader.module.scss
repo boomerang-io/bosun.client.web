@@ -52,10 +52,15 @@
   margin-right: 0.375rem;
 }
 
+.orderedList {
+  margin-left: 2rem;
+}
+
 .validationInfoButton {
   background: none;
   border: none;
   color: $interactive-01;
+  cursor: pointer;
   margin-left: 0.5rem;
   &:focus {
     @include focus-outline();

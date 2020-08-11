@@ -5,21 +5,16 @@ import portForwardMap from "../setupPortForwarding";
 //const REACT_APP_PORT_FORWARD = process.env.REACT_APP_PORT_FORWARD;
 
 export const BASE_SERVICE_ENV_URL =
-  process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test"
-    ? "http://localhost:8000/api"
-    : window._SERVER_DATA && window._SERVER_DATA.BASE_SERVICE_ENV_URL;
+  process.env.NODE_ENV === "production" ? window._SERVER_DATA && window._SERVER_DATA.BASE_SERVICE_ENV_URL : "/api";
 
 export const PRODUCT_SERVICE_ENV_URL =
-  process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test"
-    ? "http://localhost:8000/api"
-    : window._SERVER_DATA && window._SERVER_DATA.PRODUCT_SERVICE_ENV_URL;
+  process.env.NODE_ENV === "production" ? window._SERVER_DATA && window._SERVER_DATA.PRODUCT_SERVICE_ENV_URL : "/api";
 
-// Standard
 const REACT_APP_PORT_FORWARD = process.env.REACT_APP_PORT_FORWARD;
 
 /**
  * if port forwarding is enabled, then check to see if service is in config map
- * If it is, set the url request to be only the serviceContextPath
+ * If it is, set the url request to be only the serviceContextPath so the url is relativet to the root of the app
  * CRA will proxy the request as seen in setupProxy.js
  * @param {string} baseUrl - base of the serivce url
  * @param {sring} serviceContextPath - additional path for the service context e.g. /admin
@@ -31,44 +26,34 @@ function determineUrl(baseUrl, serviceContextPath) {
     return baseUrl + serviceContextPath;
   }
 }
-
 export const BASE_SERVICE_USERS_URL = determineUrl(BASE_SERVICE_ENV_URL, "/users");
-
+export const BASE_SERVICE_PRODUCT_URL = determineUrl(PRODUCT_SERVICE_ENV_URL, "/policy");
 // Product
-export const SERVICE_PRODUCT_BASE_PATH = "/policy";
-export const SERVICE_PRODUCT_TEMPLATES_PATH = `${SERVICE_PRODUCT_BASE_PATH}/templates`;
-export const SERVICE_PRODUCT_INSIGHTS_PATH = `${SERVICE_PRODUCT_BASE_PATH}/policies/insights`;
-export const SERVICE_PRODUCT_POLICIES_PATH = `${SERVICE_PRODUCT_BASE_PATH}/policies`;
-export const SERVICE_PRODUCT_VALIDATION_INFO_PATH = `${SERVICE_PRODUCT_BASE_PATH}/validate/info`;
-export const SERVICE_PRODUCT_TEAM_PATH = `${SERVICE_PRODUCT_BASE_PATH}/teams`;
-export const SERVICE_PRODUCT_VIOLATIONS_PATH = `${SERVICE_PRODUCT_BASE_PATH}/policies/violations`;
-
-// Platform
-export const SERVICE_PLATFORM_PROFILE_PATH = `${BASE_SERVICE_ENV_URL}/users/profile`;
-export const SERVICE_PLATFORM_NAVIGATION_PATH = `${BASE_SERVICE_ENV_URL}/users/navigation`;
-
 export const SERVICE_REQUEST_STATUSES = {
   FAILURE: "failure",
   SUCCESS: "success",
 };
 
 export const serviceUrl = {
-  deletePolicy: ({policyId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies/${policyId}`,
-  getInsights: ({teamId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies/insights?teamId=${teamId}`,
+  deletePolicy: ({policyId}) => `${BASE_SERVICE_PRODUCT_URL}/policies/${policyId}`,
+  getInsights: ({teamId}) => `${BASE_SERVICE_PRODUCT_URL}/policies/insights?teamId=${teamId}`,
+  getInsightsOverview: () => `${BASE_SERVICE_PRODUCT_URL}/policies/insights`,
   getNavigation: () => `${BASE_SERVICE_USERS_URL}/navigation`,
-  getPolicies: () => `${SERVICE_PRODUCT_BASE_PATH}/templates`,
-  getPolicy: ({policyId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies/${policyId}`,
-  getTeams: () => `${SERVICE_PRODUCT_BASE_PATH}/teams`,
-  getTeamPolicies: ({teamId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies?teamId=${teamId}`,
-  getTemplates: () => `${SERVICE_PRODUCT_BASE_PATH}/templates`,
+  getPolicies: () => `${BASE_SERVICE_PRODUCT_URL}/templates`,
+  getPolicy: ({policyId}) => `${BASE_SERVICE_PRODUCT_URL}/policies/${policyId}`,
+  getPolicyOverview: () => `${BASE_SERVICE_PRODUCT_URL}/policies`,
+  getTeams: () => `${BASE_SERVICE_PRODUCT_URL}/teams`,
+  getTeamPolicies: ({teamId}) => `${BASE_SERVICE_PRODUCT_URL}/policies?teamId=${teamId}`,
+  getTemplates: () => `${BASE_SERVICE_PRODUCT_URL}/templates`,
   getUserProfile: () => `${BASE_SERVICE_USERS_URL}/profile`,
-  getValidateInfo: ({policyId}) => `${SERVICE_PRODUCT_BASE_PATH}/validate/info/${policyId}`,
-  getViolations: ({teamId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies/violations?teamId=${teamId}`,
-  patchUpdatePolicy: ({policyId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies/${policyId}`,
-  patchUpdatePolicyTemplate: ({templateId}) =>`${SERVICE_PRODUCT_BASE_PATH}/templates/${templateId}`,
-  postCreatePolicy: () => `${SERVICE_PRODUCT_BASE_PATH}/policies`,
-  postCreatePolicyTemplate: () => `${SERVICE_PRODUCT_BASE_PATH}/templates`,
-  postCreateTeam: () => `${SERVICE_PRODUCT_BASE_PATH}/teams`,
+  getValidateInfo: ({policyId}) => `${BASE_SERVICE_PRODUCT_URL}/validate/info/${policyId}`,
+  getViolations: ({teamId}) => `${BASE_SERVICE_PRODUCT_URL}/policies/violations?teamId=${teamId}`,
+  getViolationsOverview: () => `${BASE_SERVICE_PRODUCT_URL}/policies/violations`,
+  patchUpdatePolicy: ({policyId}) => `${BASE_SERVICE_PRODUCT_URL}/policies/${policyId}`,
+  patchUpdatePolicyTemplate: ({templateId}) =>`${BASE_SERVICE_PRODUCT_URL}/templates/${templateId}`,
+  postCreatePolicy: () => `${BASE_SERVICE_PRODUCT_URL}/policies`,
+  postCreatePolicyTemplate: () => `${BASE_SERVICE_PRODUCT_URL}/templates`,
+  postCreateTeam: () => `${BASE_SERVICE_PRODUCT_URL}/teams`,
 };
 
 export const cancellableResolver = ({ url, method, body, ...config }) => {

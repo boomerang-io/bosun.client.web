@@ -19,7 +19,7 @@ export function App() {
   const location = useLocation();
   const teamsMatch = matchPath(location.pathname, { path: "/teams/:teamId" });
   const templatesMatch = matchPath(location.pathname, { path: "/templates" });
-
+  
   const userState = useQuery({
     queryKey: userUrl,
     queryFn: resolver.query(userUrl),

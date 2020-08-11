@@ -5,12 +5,12 @@ import {
   CodeSnippet,
   ComposedModal,
   Modal,
-  ModalHeader,
+  ModalForm,
   ModalFooter,
   ModalBody,
   OrderedList,
   ListItem,
-} from "carbon-components-react";
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import FullPageHeader from "Components/FullPageHeader";
 import { formatDateTimeString } from "Utils";
 import { PRODUCT_SERVICE_ENV_URL } from "Config/servicesConfig";
@@ -119,44 +119,50 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
         />
       )}
       {type === POLICY_INTERACTION_TYPES.EDIT && (
-        <ComposedModal open={isDetailsModalOpen} onClose={() => setIsDetailsModalOpen(false)}>
-          <ModalHeader
-            title={"Validation Guide"}
-            label="How to use this policy"
-            buttonOnClick={() => setIsDetailsModalOpen(false)}
-          />
-          <ModalBody>
-            <h2 className={styles.modalSectionTitle}>Validation Endpoint</h2>
-            <p>{`${PRODUCT_SERVICE_ENV_URL}/policy/validate`}</p>
-            <h2 className={styles.modalSectionTitle}>Sample Payload</h2>
-            <CodeSnippet
-              copyButtonDescription="Copy annotations to clipboard"
-              onClick={() => copy(JSON.stringify(validateInfo))}
-              type="multi"
-            >
-              {JSON.stringify(validateInfo, null, 1)}
-            </CodeSnippet>
-            <h2 className={styles.modalSectionTitle}>Next Steps (things to adjust)</h2>
-            <OrderedList>
-              <ListItem>
-                Update <code>ReferenceId</code> to a unique identifier to ensure you can track specific xyz
-              </ListItem>
-              <ListItem>
-                Update <code>ReferenceLink</code> a link back to xyz
-              </ListItem>
-              <ListItem>
-                Supply{" "}
-                <a href="https://github.com/boomerang-io/boomerang.docs/blob/stable/content/bosun.md#labels-required">
-                  labels
-                </a>{" "}
-                that can be used by the integrations to integrate and retrieve backend information
-              </ListItem>
-              <ListItem>Call the validation endpoint with the updated data</ListItem>
-            </OrderedList>
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={() => setIsDetailsModalOpen(false)}>Close</Button>
-          </ModalFooter>
+        <ComposedModal 
+          isOpen={isDetailsModalOpen} 
+          composedModalProps={{shouldCloseOnOverlayClick: true}}
+          onCloseModal={() => setIsDetailsModalOpen(false)}
+          modalHeaderProps={{title: "Validation Guide", subtitle: "How to use this policy"}}
+        >
+          {
+            () => (
+              <ModalForm>
+                <ModalBody>
+                  <h2 className={styles.modalSectionTitle}>Validation Endpoint</h2>
+                  <p>{`${PRODUCT_SERVICE_ENV_URL}/policy/validate`}</p>
+                  <h2 className={styles.modalSectionTitle}>Sample Payload</h2>
+                  <CodeSnippet
+                    copyButtonDescription="Copy annotations to clipboard"
+                    onClick={() => copy(JSON.stringify(validateInfo))}
+                    type="multi"
+                  >
+                    {JSON.stringify(validateInfo, null, 1)}
+                  </CodeSnippet>
+                  <h2 className={styles.modalSectionTitle}>Next Steps (things to adjust)</h2>
+                  <OrderedList className={styles.orderedList}>
+                    <ListItem>
+                      Update <code>ReferenceId</code> to a unique identifier to ensure you can track specific xyz
+                    </ListItem>
+                    <ListItem>
+                      Update <code>ReferenceLink</code> a link back to xyz
+                    </ListItem>
+                    <ListItem>
+                      Supply{" "}
+                      <a href="https://github.com/boomerang-io/boomerang.docs/blob/stable/content/bosun.md#labels-required">
+                        labels
+                      </a>{" "}
+                      that can be used by the integrations to integrate and retrieve backend information
+                    </ListItem>
+                    <ListItem>Call the validation endpoint with the updated data</ListItem>
+                  </OrderedList>
+                </ModalBody>
+                <ModalFooter>
+                  <Button onClick={() => setIsDetailsModalOpen(false)}>Close</Button>
+                </ModalFooter>
+              </ModalForm>
+            )
+          }
         </ComposedModal>
       )}
     </FullPageHeader>
