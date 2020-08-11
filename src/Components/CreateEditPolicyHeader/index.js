@@ -4,7 +4,7 @@ import {
   Button,
   CodeSnippet,
   ComposedModal,
-  Modal,
+  ConfirmModal,
   ModalForm,
   ModalFooter,
   ModalBody,
@@ -102,17 +102,16 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
         </section>
       </div>
       {isDeleteModalOpen && (
-        <Modal
-          danger
-          open
-          shouldSubmitOnEnter
-          className={styles.deleteConfirmModal}
-          modalHeading={`Delete ${policy.name}?`}
-          primaryButtonText="Yes"
-          secondaryButtonText="No"
-          onRequestClose={() => setIsDeleteModalOpen(false)}
-          onSecondarySubmit={() => setIsDeleteModalOpen(false)}
-          onRequestSubmit={() => {
+        <ConfirmModal
+          isOpen
+          title={`Delete ${policy.name}?`}
+          negativeText="No"
+          affirmativeText="Yes"
+          onCloseModal={() => {
+            setIsDeleteModalOpen(false);
+          }}
+          affirmativeButtonProps={{ kind: "danger" }}
+          affirmativeAction={() => {
             form.deletePolicy();
             setIsDeleteModalOpen(false);
           }}

@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid";
 import { useQuery, useMutation, queryCache } from "react-query";
-import { ToastNotification } from "carbon-components-react";
-import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
-import { toast } from "react-toastify";
+import { ErrorDragon, Loading, notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
 import { serviceUrl, resolver } from "Config/servicesConfig";
@@ -107,17 +105,16 @@ function EditPolicy ({ history, match }) {
 
     try {
       await updatePolicyMutation({body: policyObject, policyId: policyData.id});
-      toast(
-        <ToastNotification kind="success" title="Policy Updated" subtitle="Policy successfully updated" caption="" />
+      notify(
+        <ToastNotification kind="success" title="Policy Updated" subtitle="Policy successfully updated" />
       );
       navigateBack();
     } catch (e) {
-      toast(
+      notify(
         <ToastNotification
           kind="error"
           title="Something's Wrong"
           subtitle="Request to update policy failed"
-          caption=""
         />
       );
     }
@@ -126,19 +123,18 @@ function EditPolicy ({ history, match }) {
   const deletePolicy = async () => {
     try {
       await deletePolicyMutation({policyId: policyData.id});
-      toast(
+      notify(
         <ToastNotification
           kind="success"
           title="Policy deleted"
           subtitle={`Policy ${policyData.name} successfully deleted`}
-          caption=""
         />
       );
       navigateBack();
     } catch (err) {
       const { data } = err && err.response;
-      toast(
-        <ToastNotification kind="error" title={`${data.status} - ${data.error}`} subtitle={data.message} caption="" />,
+      notify(
+        <ToastNotification kind="error" title={`${data.status} - ${data.error}`} subtitle={data.message} />,
         {
           autoClose: 5000
         }

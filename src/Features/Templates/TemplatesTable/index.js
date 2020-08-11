@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
-import { Button, DataTable } from "carbon-components-react";
+import { Button, DataTable } from "@boomerang-io/carbon-addons-boomerang-react";
 import { Add16 } from "@carbon/icons-react";
 import styles from "./templatesTable.module.scss";
 

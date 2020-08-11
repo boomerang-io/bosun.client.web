@@ -1,9 +1,7 @@
 import React from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useQuery, useMutation, queryCache } from "react-query";
-import { toast } from "react-toastify";
-import { Error, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
-import { ToastNotification } from "carbon-components-react";
+import { Error, Loading, notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
 import NoDisplay from "Components/NoDisplay";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants";
@@ -47,22 +45,20 @@ function EditTemplate(props) {
     const valuesToSave = { ...values, rego: btoa(values.rego), id: templateId };
     try {
       await updatePolicyTemplateMutation({templateId, body: valuesToSave});
-      toast(
+      notify(
         <ToastNotification
           kind="success"
           title="Template Updated"
           subtitle="Template was successfully updated"
-          caption=""
         />
       );
       navigateBack();
     } catch (e) {
-      toast(
+      notify(
         <ToastNotification
           kind="error"
           title="Something's Wrong"
           subtitle="Request to update template failed"
-          caption=""
         />
       );
     }

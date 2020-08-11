@@ -4,9 +4,7 @@ import { useMutation, queryCache } from "react-query";
 import { useFeature } from "flagged";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { ComboBox, TextInput, Button, ComposedModal, ModalFooter, ModalBody, ModalForm, Loading, InlineNotification } from "@boomerang-io/carbon-addons-boomerang-react";
-import { ToastNotification } from "carbon-components-react";
-import { toast } from "react-toastify";
+import { ComboBox, TextInput, Button, ComposedModal, ModalFooter, ModalBody, ModalForm, Loading, InlineNotification, notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
 import { FeatureFlag } from "Config/appConfig";
 import { serviceUrl, resolver } from "Config/servicesConfig";
 import { Add16 } from "@carbon/icons-react";
@@ -52,15 +50,14 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }) {
   async function createTeam(body) {
     try {
       await createTeamMutation({body});
-      toast(<ToastNotification kind="success" title="Team Created" subtitle="Team successfully created" caption="" />);
+      notify(<ToastNotification kind="success" title="Team Created" subtitle="Team successfully created" />);
       setModalIsOpen(false);
     } catch (e) {
-      toast(
+      notify(
         <ToastNotification
           kind="error"
           title="Team Creation Failure"
           subtitle="Request to create team failed"
-          caption=""
         />
       );
     }

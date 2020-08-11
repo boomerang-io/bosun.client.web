@@ -1,7 +1,6 @@
 import React from "react";
-import { toast } from "react-toastify";
 import { useMutation, queryCache } from "react-query";
-import { ToastNotification } from "carbon-components-react";
+import { notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants";
 import { resolver, serviceUrl } from "Config/servicesConfig";
@@ -22,22 +21,20 @@ function CreateTemplate(props) {
     const valuesToSave = { ...values, rego: btoa(values.rego) };
     try {
       await createPolicyTemplateMutation({body: valuesToSave});
-      toast(
+      notify(
         <ToastNotification
           kind="success"
           title="Template Created"
           subtitle="Template was successfully created"
-          caption=""
         />
       );
       navigateBack();
     } catch (e) {
-      toast(
+      notify(
         <ToastNotification
           kind="error"
           title="Something's Wrong"
           subtitle="Request to create template failed"
-          caption=""
         />
       );
     }

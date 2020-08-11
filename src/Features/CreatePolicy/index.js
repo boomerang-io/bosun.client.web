@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useAppContext } from "Hooks";
 import { useQuery, useMutation, queryCache } from "react-query";
-import { ToastNotification } from "carbon-components-react";
-import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
-import { toast } from "react-toastify";
+import { ErrorDragon, Loading, notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
 import { serviceUrl, resolver } from "Config/servicesConfig";
@@ -58,22 +56,20 @@ export function CreatePolicy({history, match}) {
 
     try {
       await createPolicyMutation({body: policyObject});
-      toast(
+      notify(
         <ToastNotification
           kind="success"
           title="Policy Created"
           subtitle="Policy was successfully created"
-          caption=""
         />
       );
       navigateBack();
     } catch (e) {
-      toast(
+      notify(
         <ToastNotification
           kind="error"
           title="Something's Wrong"
           subtitle="Request to create policy failed"
-          caption=""
         />
       );
     }

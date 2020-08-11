@@ -30,8 +30,6 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
     models: {
       templates: Model,
       policies: Model,
-      violations: Model,
-      insights: Model,
     },
 
     routes() {
