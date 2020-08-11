@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button, Modal } from "carbon-components-react";
+import { Button, Modal } from "@boomerang-io/carbon-addons-boomerang-react";
 import FullPageHeader from "Components/FullPageHeader";
 import { formatDateTimeString } from "Utils";
 import { Add16, Delete16, Save16 } from "@carbon/icons-react";

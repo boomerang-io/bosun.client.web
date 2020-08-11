@@ -20,7 +20,7 @@ import "codemirror/addon/comment/comment.js";
 import "codemirror-rego/mode";
 import "./autorefresh.ext.js";
 import { Undo20, Redo20, Copy20, Cut20, Paste20, ArrowUp16, ArrowDown16 } from "@carbon/icons-react";
-import { Toolbar, ToolbarItem, Search, Button } from "carbon-components-react";
+import { Toolbar, ToolbarItem, Search, Button } from "@boomerang-io/carbon-addons-boomerang-react";
 import "./styles.scss";
 
 const languageParams = { mode: "rego" };

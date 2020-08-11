@@ -1,8 +1,7 @@
 import React from "react";
 import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Creatable, TextInput, TextArea } from "@boomerang-io/carbon-addons-boomerang-react";
-import { Tabs, Tab } from "carbon-components-react";
+import { Creatable, TextInput, TextArea, Tabs, Tab, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditTemplateHeader from "Components/CreateEditTemplateHeader";
 import TextEditor from "Components/TextEditor";
 import ValidateFormikOnRender from "Components/ValidateFormikOnRender";
@@ -14,7 +13,7 @@ function validateKey(key) {
   return !regexp.test(key);
 }
 
-function CreateTemplate({ navigateBack, onSubmit, template, type, validationData }) {
+function CreateTemplate({ navigateBack, onSubmit, template, type, validationData, isLoading }) {
   const codeMirrorEditor = React.useRef(null);
 
   function setCodeMirroEditor(codeMirroEditor) {
@@ -65,6 +64,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
           <Form onSubmit={handleSubmit}>
             <CreateEditTemplateHeader form={formikProps} navigateBack={navigateBack} type={type} />
             <section className={styles.container}>
+              {isLoading && <Loading />}
               <Tabs>
                 <Tab label="About">
                   <div className={styles.generalContainer}>

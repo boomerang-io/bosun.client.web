@@ -6,6 +6,7 @@ import { LeftSideNav, UIShell } from "@boomerang-io/carbon-addons-boomerang-reac
 import { SideNav, SideNavLink, SideNavItems, SideNavMenu, SideNavMenuItem } from "carbon-components-react";
 import { BASE_LAUNCH_ENV_URL } from "Config/platformUrlConfig";
 import { BASE_SERVICE_ENV_URL } from "Config/servicesConfig";
+import { appLink } from "Config/appConfig";
 import {
   Apps16,
   Analytics16,
@@ -86,39 +87,39 @@ function Navbar({ activeTeam, navigationState, userState }) {
         <LeftSideNav isOpen={isOpen}>
           <SideNav expanded={isOpen} isChildOfHeader={true}>
             <SideNavItems>
-              <SideNavLink large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}`} renderIcon={Home16}>
+              <SideNavLink large href={appLink.home({activeTeamId})} renderIcon={Home16}>
                 Home
               </SideNavLink>
               <div className={styles.divider} />
               <SideNavLink
                 large
-                href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/components`}
+                href={appLink.components({activeTeamId})}
                 renderIcon={Apps16}
               >
                 Components
               </SideNavLink>
               <SideNavLink
                 large
-                href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/pipelines`}
+                href={appLink.pipelines({activeTeamId})}
                 renderIcon={Rocket16}
               >
                 Pipelines
               </SideNavLink>
               <SideNavLink
                 large
-                href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/scorecard`}
+                href={appLink.scorecard({activeTeamId})}
                 renderIcon={ReportData16}
               >
                 Scorecard
               </SideNavLink>
               <SideNavLink
                 large
-                href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/insights`}
+                href={appLink.insights({activeTeamId})}
                 renderIcon={Analytics16}
               >
                 Insights
               </SideNavLink>
-              <SideNavLink large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/lib`} renderIcon={Document16}>
+              <SideNavLink large href={appLink.lib()} renderIcon={Document16}>
                 Lib
               </SideNavLink>
               <SideNavLink
@@ -134,19 +135,19 @@ function Navbar({ activeTeam, navigationState, userState }) {
                 Policies
               </SideNavLink>
               <SideNavMenu large title="Manage" renderIcon={Settings16}>
-                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/properties`}>
+                <SideNavMenuItem large href={appLink.properties()}>
                   Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/properties`}>
+                <SideNavMenuItem large href={appLink.teamProperties({activeTeamId})}>
                   Team Properties
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/configuration`}>
+                <SideNavMenuItem large href={appLink.teamConfiguration({activeTeamId})}>
                   Team Configuration
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/repositories`}>
+                <SideNavMenuItem large href={appLink.scmRepositories()}>
                   SCM Repositories
                 </SideNavMenuItem>
-                <SideNavMenuItem large href={`${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/component-modes`}>
+                <SideNavMenuItem large href={appLink.componentModes()}>
                   Component Modes
                 </SideNavMenuItem>
                 <SideNavMenuItem
@@ -154,7 +155,7 @@ function Navbar({ activeTeam, navigationState, userState }) {
                   activeClassName={ACTIVE_CLASS_NAME}
                   element={NavLink}
                   onClick={onMenuClose}
-                  to={`/templates`}
+                  to={appLink.policyTemplates()}
                 >
                   Policy Templates
                 </SideNavMenuItem>

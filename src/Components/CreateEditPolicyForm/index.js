@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { TextInput } from "@boomerang-io/carbon-addons-boomerang-react";
 import PolicyFormDefinitionSection from "./PolicyFormDefinitionSection";
 import KingJellyGraphic from "Components/KingJellyGraphic";
-//import ThanksRoosGraphic from "Components/ThanksRoosGraphic";
+//import ThanksRoosGraphic from "components/ThanksRoosGraphic";
 import styles from "./createEditPolicyForm.module.scss";
 
 CreateEditPolicyForm.propTypes = {
@@ -19,7 +19,7 @@ export default function CreateEditPolicyForm({ definitions, form }) {
           labelText="Name"
           name="name"
           id="name"
-          onChange={form.setName}
+          onChange={(e) => form.setName(e.target.value)}
           placeholder="Name"
           value={form.name}
           type="text"

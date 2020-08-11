@@ -1,14 +1,13 @@
 import React from "react";
-import axios from "axios";
 import { useParams, useHistory, Link } from "react-router-dom";
+import { useQuery, useMutation, queryCache } from "react-query";
 import { toast } from "react-toastify";
 import { Error, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import { ToastNotification } from "carbon-components-react";
-import useAxiosFetch from "Utils/hooks/useAxios";
 import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
 import NoDisplay from "Components/NoDisplay";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants";
-import { SERVICE_PRODUCT_TEMPLATES_PATH } from "Config/servicesConfig";
+import { serviceUrl, resolver } from "Config/servicesConfig";
 
 function EditTemplate(props) {
   const history = useHistory();
@@ -19,7 +18,7 @@ function EditTemplate(props) {
   function getTakenNamesAndKeys() {
     const templateNames = [];
     const templateKeys = [];
-    templatesState.data.forEach(template => {
+    templatesData.forEach(template => {
       if (template.id !== templateId) {
         templateNames.push(template.name);
         templateKeys.push(template.key);
@@ -31,12 +30,23 @@ function EditTemplate(props) {
 
   const { templateId } = useParams();
 
-  const templatesState = useAxiosFetch(SERVICE_PRODUCT_TEMPLATES_PATH);
+  const getTemplatesUrl = serviceUrl.getTemplates();
+  const { data: templatesData, isLoading, error } = useQuery({
+    queryKey: getTemplatesUrl,
+    queryFn: resolver.query(getTemplatesUrl)
+  });
+
+  const [updatePolicyTemplateMutation, { isLoading: isUpdating }] = useMutation(
+    resolver.patchUpdatePolicyTemplate,
+    {
+      onSuccess: () => queryCache.invalidateQueries(serviceUrl.getTemplates()),
+    }
+  );
 
   async function updateTemplate(values) {
     const valuesToSave = { ...values, rego: btoa(values.rego), id: templateId };
     try {
-      await axios.patch(`${SERVICE_PRODUCT_TEMPLATES_PATH}/${templateId}`, valuesToSave);
+      await updatePolicyTemplateMutation({templateId, body: valuesToSave});
       toast(
         <ToastNotification
           kind="success"
@@ -59,11 +69,11 @@ function EditTemplate(props) {
 
     return false;
   }
-  if (templatesState.isLoading) {
+  if (isLoading) {
     return <Loading />;
   }
 
-  if (templatesState.error) {
+  if (error) {
     return (
       <>
         <Error />
@@ -72,11 +82,11 @@ function EditTemplate(props) {
     );
   }
 
-  if (templatesState.data) {
-    const template = templatesState.data.find(template => template.id === templateId);
+  if (templatesData) {
+    const template = templatesData.find(template => template.id === templateId);
 
     if (template) {
-      const validationData = getTakenNamesAndKeys(templatesState.data);
+      const validationData = getTakenNamesAndKeys(templatesData);
 
       return (
         <CreateEditTemplateForm
@@ -85,6 +95,7 @@ function EditTemplate(props) {
           template={template}
           validationData={validationData}
           type={TEMPLATE_INTERACTION_TYPES.EDIT}
+          isLoading={isUpdating}
         />
       );
     } else {

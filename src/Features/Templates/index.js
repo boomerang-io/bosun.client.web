@@ -1,21 +1,26 @@
 import React from "react";
+import { useQuery } from "react-query";
 import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import FullPageHeader from "Components/FullPageHeader";
 import TemplatesTable from "./TemplatesTable";
-import { SERVICE_PRODUCT_TEMPLATES_PATH } from "Config/servicesConfig";
-import useAxiosFetch from "Utils/hooks/useAxios";
+import { serviceUrl, resolver } from "Config/servicesConfig";
 import styles from "./templates.module.scss";
 
 export function TemplatesContainer() {
-  const templatesState = useAxiosFetch(`${SERVICE_PRODUCT_TEMPLATES_PATH}`);
 
-  if (templatesState.isLoading) return <Loading />;
+  const getTemplatesUrl = serviceUrl.getTemplates();
+  const { data: templatesData, isLoading, error } = useQuery({
+    queryKey: getTemplatesUrl,
+    queryFn: resolver.query(getTemplatesUrl)
+  });
 
-  if (templatesState.error) {
+  if (isLoading) return <Loading />;
+
+  if (error) {
     return <ErrorDragon />;
   }
 
-  if (templatesState.data) {
+  if (templatesData) {
     return (
       <>
         <FullPageHeader>
@@ -24,7 +29,7 @@ export function TemplatesContainer() {
             <h1 className={styles.title}>Policy Templates</h1>
           </div>
         </FullPageHeader>
-        <TemplatesTable data={templatesState.data} />
+        <TemplatesTable data={templatesData} />
       </>
     );
   }

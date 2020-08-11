@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Dropdown } from "carbon-components-react";
+import { Dropdown } from "@boomerang-io/carbon-addons-boomerang-react";
 
 FilterDropdown.propTypes = {
   label: PropTypes.string.isRequired,

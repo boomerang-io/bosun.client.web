@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
+import { useMutation, queryCache } from "react-query";
 import { useFeature } from "flagged";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { ComboBox, TextInput } from "@boomerang-io/carbon-addons-boomerang-react";
-import { Button, ComposedModal, ModalHeader, ModalFooter, ModalBody, ToastNotification } from "carbon-components-react";
+import { ComboBox, TextInput, Button, ComposedModal, ModalFooter, ModalBody, ModalForm, Loading, InlineNotification } from "@boomerang-io/carbon-addons-boomerang-react";
+import { ToastNotification } from "carbon-components-react";
 import { toast } from "react-toastify";
 import { FeatureFlag } from "Config/appConfig";
-import { SERVICE_PRODUCT_TEAM_PATH } from "Config/servicesConfig";
+import { serviceUrl, resolver } from "Config/servicesConfig";
 import { Add16 } from "@carbon/icons-react";
 import styles from "./TeamSelector.module.scss";
 
@@ -21,6 +21,19 @@ TeamSelector.propTypes = {
 export function TeamSelector({ activeTeam, handleChangeTeam, teams }) {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const isStandaloneMode = useFeature(FeatureFlag.Standalone);
+  const cancelRequestRef = React.useRef();
+
+  const [createTeamMutation, { isLoading: createIsLoading, error: createError }] = useMutation(
+    (args) => {
+      const { promise, cancel } = resolver.postCreateTeam(args);
+      cancelRequestRef.current = cancel;
+      return promise;
+    },
+    {
+      onSuccess: () => queryCache.invalidateQueries(serviceUrl.getTeams()),
+    }
+  );
+
   const selectedTeam = activeTeam
     ? {
         id: activeTeam.id,
@@ -38,7 +51,7 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }) {
 
   async function createTeam(body) {
     try {
-      await axios.post(SERVICE_PRODUCT_TEAM_PATH, body);
+      await createTeamMutation({body});
       toast(<ToastNotification kind="success" title="Team Created" subtitle="Team successfully created" caption="" />);
       setModalIsOpen(false);
     } catch (e) {
@@ -75,9 +88,10 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }) {
                 .required("Enter a name")
                 .notOneOf(teamNames, "Name must be unique")
             })}
+            enableReinitialize
           >
             {formikProps => {
-              const { isSubmitting, values, touched, errors, handleBlur, handleChange, handleSubmit } = formikProps;
+              const { isSubmitting, values, touched, errors, handleBlur, handleChange, handleSubmit, resetForm } = formikProps;
               return (
                 <>
                   <Button
@@ -89,30 +103,52 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }) {
                     Create Team
                   </Button>
                   <form onSubmit={handleSubmit}>
-                    <ComposedModal onClose={() => setModalIsOpen(false)} open={modalIsOpen}>
-                      <ModalHeader label="Add a new one" title="Create team" />
-                      <ModalBody>
-                        <div className={styles.modalForm}>
-                          <TextInput
-                            id="name"
-                            placeholder="Enter team name"
-                            labelText="Name"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            invalid={errors.name && touched.name}
-                            invalidText={errors.name}
-                            value={values.name}
-                          />
-                        </div>
-                      </ModalBody>
-                      <ModalFooter>
-                        <Button onClick={() => setModalIsOpen(false)} kind="secondary">
-                          Cancel
-                        </Button>
-                        <Button disabled={!values.name || Object.values(errors).length || isSubmitting} type="submit">
-                          Create
-                        </Button>
-                      </ModalFooter>
+                    <ComposedModal 
+                     composedModalProps={{ containerClassName: styles.modalForm }}
+                      modalHeaderProps={{
+                        title: "Create team",
+                        subtitle: "Add a new one",
+                      }}
+                      onCloseModal={() => { 
+                        resetForm();
+                        setModalIsOpen(false);
+                      }} 
+                      isOpen={modalIsOpen}>
+                    {
+                      () => (
+                        <ModalForm>
+                          <ModalBody>
+                            { createIsLoading && <Loading />}
+                            <TextInput
+                              id="name"
+                              placeholder="Enter team name"
+                              labelText="Name"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              invalid={errors.name && touched.name}
+                              invalidText={errors.name}
+                              value={values.name}
+                            />
+                          </ModalBody>
+                          { createError && 
+                            <InlineNotification
+                              lowContrast
+                              kind="error"
+                              title="Something's Wrong"
+                              subtitle="Request to create version failed"
+                            /> 
+                          }
+                          <ModalFooter>
+                            <Button onClick={() =>setModalIsOpen(false)} kind="secondary">
+                              Cancel
+                            </Button>
+                            <Button disabled={!values.name || Object.values(errors).length || isSubmitting} type="submit">
+                              { createIsLoading ? "Creating" :  createError? "Try Again" : "Create" }
+                            </Button>
+                          </ModalFooter>
+                        </ModalForm>
+                      )
+                    }
                     </ComposedModal>
                   </form>
                 </>

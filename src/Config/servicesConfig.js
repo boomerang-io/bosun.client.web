@@ -53,9 +53,22 @@ export const SERVICE_REQUEST_STATUSES = {
 };
 
 export const serviceUrl = {
+  deletePolicy: ({policyId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies/${policyId}`,
+  getInsights: ({teamId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies/insights?teamId=${teamId}`,
   getNavigation: () => `${BASE_SERVICE_USERS_URL}/navigation`,
+  getPolicies: () => `${SERVICE_PRODUCT_BASE_PATH}/templates`,
+  getPolicy: ({policyId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies/${policyId}`,
   getTeams: () => `${SERVICE_PRODUCT_BASE_PATH}/teams`,
+  getTeamPolicies: ({teamId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies?teamId=${teamId}`,
+  getTemplates: () => `${SERVICE_PRODUCT_BASE_PATH}/templates`,
   getUserProfile: () => `${BASE_SERVICE_USERS_URL}/profile`,
+  getValidateInfo: ({policyId}) => `${SERVICE_PRODUCT_BASE_PATH}/validate/info/${policyId}`,
+  getViolations: ({teamId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies/violations?teamId=${teamId}`,
+  patchUpdatePolicy: ({policyId}) => `${SERVICE_PRODUCT_BASE_PATH}/policies/${policyId}`,
+  patchUpdatePolicyTemplate: ({templateId}) =>`${SERVICE_PRODUCT_BASE_PATH}/templates/${templateId}`,
+  postCreatePolicy: () => `${SERVICE_PRODUCT_BASE_PATH}/policies`,
+  postCreatePolicyTemplate: () => `${SERVICE_PRODUCT_BASE_PATH}/templates`,
+  postCreateTeam: () => `${SERVICE_PRODUCT_BASE_PATH}/teams`,
 };
 
 export const cancellableResolver = ({ url, method, body, ...config }) => {
@@ -70,6 +83,11 @@ export const resolver = {
   postMutation: (request) => axios.post(request),
   patchMutation: (request) => axios.patch(request),
   putMutation: (request) => axios.put(request),
-  postAddService: ({ body }) =>
-    cancellableResolver({ url: serviceUrl.postAddService(), data: body, method: HTTPMethods.Post }),
+  deletePolicy: ({policyId}) => axios.delete(serviceUrl.deletePolicy({policyId})),
+  patchUpdatePolicy: ({policyId, body}) => axios.patch(serviceUrl.patchUpdatePolicy({policyId}), body),
+  patchUpdatePolicyTemplate: ({templateId, body}) => axios.patch(serviceUrl.patchUpdatePolicyTemplate({templateId}), body),
+  postCreatePolicy: ({ body }) => axios.post(serviceUrl.postCreatePolicy(), body),
+  postCreatePolicyTemplate: ({ body }) => axios.post(serviceUrl.postCreatePolicyTemplate(), body),
+  postCreateTeam: ({ body }) =>
+    cancellableResolver({ url: serviceUrl.postCreateTeam(), data: body, method: HTTPMethods.Post }),
 };

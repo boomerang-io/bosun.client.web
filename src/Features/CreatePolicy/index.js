@@ -1,77 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
+import { useAppContext } from "Hooks";
+import { useQuery, useMutation, queryCache } from "react-query";
 import { ToastNotification } from "carbon-components-react";
 import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import { toast } from "react-toastify";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
-import {
-  SERVICE_PRODUCT_TEMPLATES_PATH,
-  SERVICE_PRODUCT_POLICIES_PATH,
-  SERVICE_REQUEST_STATUSES,
-} from "Config/servicesConfig";
-import AppContext from "State/context/appContext";
+import { serviceUrl, resolver } from "Config/servicesConfig";
 import { POLICY_INTERACTION_TYPES } from "Constants";
 import styles from "./createPolicy.module.scss";
 
-class CreatePolicy extends React.Component {
-  static propTypes = {
-    history: PropTypes.object.isRequired,
-  };
+CreatePolicy.propTypes = {
+  history: PropTypes.object.isRequired,
+};
 
-  static contextType = AppContext;
+export function CreatePolicy({history, match}) {
+  const { activeTeam } = useAppContext();
 
-  state = {
-    error: null,
-    isFetching: false,
-    isCreating: false,
-    policy: null,
-    definitions: null,
-    status: null,
-    errors: {},
-    inputs: {},
-    name: "",
-  };
+  const policiesUrl = serviceUrl.getPolicies();
+  const { params } = match;
 
-  componentDidMount() {
-    this.fetchPolicyData();
-  }
-
-  // Network requests
-
-  async fetchPolicyData() {
-    this.setState({
-      isFetching: true,
-    });
-    try {
-      const response = await axios.get(SERVICE_PRODUCT_TEMPLATES_PATH);
-      this.setState({
-        definitions: response.data,
-        isFetching: false,
-        status: SERVICE_REQUEST_STATUSES.SUCCESS,
-      });
-    } catch (e) {
-      this.setState({
-        error: e,
-        isFetching: false,
-        status: SERVICE_REQUEST_STATUSES.FAILURE,
-      });
+  const [ errors, setErrors ] = useState({});
+  const [ inputs, setInputs ] = useState({});
+  const [ name, setName ] = useState("");
+  
+  const { data: definitionsData, isLoading, error } = useQuery({
+    queryKey: policiesUrl,
+    queryFn: resolver.query(policiesUrl)
+  });
+  
+  const [createPolicyMutation, { isLoading: createIsLoading }] = useMutation(
+    resolver.postCreatePolicy,
+    {
+      onSuccess: () => queryCache.invalidateQueries(policiesUrl),
     }
-  }
-
-  createPolicy = async () => {
-    this.setState({
-      isCreating: true,
-    });
-    const { name, inputs, definitions } = this.state;
+  );
+  const createPolicy = async () => {
     let policyObject = {
       name: name,
-      teamId: this.context?.activeTeam.id,
+      teamId: activeTeam.id,
       definitions: [],
     };
 
-    definitions.forEach((definition) => {
+    definitionsData.forEach((definition) => {
       let newDefinition = {
         policyTemplateId: definition.id,
       };
@@ -85,10 +57,7 @@ class CreatePolicy extends React.Component {
     });
 
     try {
-      await axios.post(SERVICE_PRODUCT_POLICIES_PATH, policyObject);
-      this.setState({
-        isCreating: false,
-      });
+      await createPolicyMutation({body: policyObject});
       toast(
         <ToastNotification
           kind="success"
@@ -97,11 +66,8 @@ class CreatePolicy extends React.Component {
           caption=""
         />
       );
-      this.navigateBack();
+      navigateBack();
     } catch (e) {
-      this.setState({
-        isCreating: false,
-      });
       toast(
         <ToastNotification
           kind="error"
@@ -115,86 +81,74 @@ class CreatePolicy extends React.Component {
 
   // State updates
 
-  setError = (error) => {
-    this.setState((prevState) => ({ errors: { ...prevState.errors, ...error } }));
+ const setError = (error) => {
+    setErrors((prevState) => ({ ...prevState, ...error }));
   };
 
-  setName = (e) => {
+ const setInput = async ({ event: e, definitionKey, uuid }) => {
     const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  setInput = ({ event: e, definitionKey, uuid }) => {
-    const { name, value } = e.target;
-    this.setState(
+    await setInputs(
       (prevState) => {
-        const prevStateDefinitionRows = prevState.inputs[definitionKey] ? prevState.inputs[definitionKey][uuid] : {};
+        const prevStateDefinitionRows = prevState[definitionKey] ? prevState[definitionKey][uuid] : {};
         return {
-          inputs: {
-            ...prevState.inputs,
-            [definitionKey]: {
-              ...prevState.inputs[definitionKey],
-              [uuid]: { ...prevStateDefinitionRows, [name]: value },
-            },
+          ...prevState,
+          [definitionKey]: {
+            ...prevState[definitionKey],
+            [uuid]: { ...prevStateDefinitionRows, [name]: value },
           },
         };
-      },
-      () => this.validateRow(definitionKey)
+      }
     );
+    validateRow(definitionKey);
   };
 
-  removeRow = ({ definitionKey, uuid }) => {
-    let definitionRows = { ...this.state.inputs[definitionKey] };
+ const removeRow = async ({ definitionKey, uuid }) => {
+    let definitionRows = { ...inputs[definitionKey] };
     if (definitionRows) {
       delete definitionRows[uuid];
-      this.setState(
+      await setInputs(
         (prevState) => ({
-          inputs: { ...prevState.inputs, [definitionKey]: definitionRows },
-        }),
-        () => this.validateRow(definitionKey)
+           ...prevState, [definitionKey]: definitionRows
+        })
       );
+      validateRow(definitionKey);
     }
   };
 
-  validateRow = (definitionKey) => {
-    const { definitions, inputs } = this.state;
-    const definitionRows = inputs[definitionKey] || {};
-    const definitionRowsInputCount = Object.keys(definitionRows).reduce((accum, uuid) => {
-      const inputCount = Object.values(definitionRows[uuid]).filter(Boolean).length;
-      accum += inputCount;
-      return accum;
-    }, 0);
+const validateRow = (definitionKey) => {
+  const definitionRows = inputs[definitionKey] || {};
+  const definitionRowsInputCount = Object.keys(definitionRows).reduce((accum, uuid) => {
+    const inputCount = Object.values(definitionRows[uuid]).filter(Boolean).length;
+    accum += inputCount;
+    return accum;
+  }, 0);
 
-    // Each row should have the same number of inputs as the number of inputs in the policy definition rules
-    const matchingDefintion = definitions.find((definition) => definition.key === definitionKey);
-    const isInvalid = Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
-    this.setState((prevState) => ({ errors: { ...prevState.errors, [definitionKey]: isInvalid } }));
-  };
+  // Each row should have the same number of inputs as the number of inputs in the policy definition rules
+  const matchingDefintion = definitionsData.find((definition) => definition.key === definitionKey);
+  const isInvalid = Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
+  setErrors((prevState) => ({  ...prevState, [definitionKey]: isInvalid }));
+};
 
   // Local methods
 
-  navigateBack = () => {
-    this.props.history.push(`/teams/${this.props.match.params.teamId}`);
+  const navigateBack = () => {
+    history.push(`/teams/${params.teamId}`);
   };
 
-  render() {
-    const { name, error, isFetching, isCreating, status, definitions, inputs, errors } = this.state;
     const form = {
       name,
       inputs,
       errors,
-      setName: this.setName,
-      setInput: this.setInput,
-      setError: this.setError,
-      removeRow: this.removeRow,
-      validateRow: this.validateRow,
-      affirmativeAction: this.createPolicy,
-      isPerformingAffirmativeAction: isCreating,
+      setName,
+      setInput: setInput,
+      setError: setError,
+      removeRow,
+      validateRow,
+      affirmativeAction: createPolicy,
+      isPerformingAffirmativeAction: createIsLoading,
     };
 
-    if (isFetching) {
+    if (isLoading) {
       return <Loading />;
     }
 
@@ -202,17 +156,18 @@ class CreatePolicy extends React.Component {
       return <ErrorDragon />;
     }
 
-    if (status === SERVICE_REQUEST_STATUSES.SUCCESS) {
+    if (definitionsData) {
       return (
         <div className={styles.container}>
-          <CreateEditPolicyHeader form={form} navigateBack={this.navigateBack} type={POLICY_INTERACTION_TYPES.CREATE} />
-          <CreateEditPolicyForm form={form} definitions={definitions} />
+          {createIsLoading && <Loading />}
+          <CreateEditPolicyHeader form={form} navigateBack={navigateBack} type={POLICY_INTERACTION_TYPES.CREATE} />
+          <CreateEditPolicyForm form={form} definitions={definitionsData} />
         </div>
       );
     }
 
     return null;
   }
-}
+
 
 export default CreatePolicy;

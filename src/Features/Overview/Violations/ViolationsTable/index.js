@@ -10,7 +10,7 @@ import {
   ModalFooter,
   ModalBody,
   Tag,
-} from "carbon-components-react";
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import copy from "copy-to-clipboard";
 import { isAccessibleEvent } from "Utils";
 import styles from "./violationsTable.module.scss";

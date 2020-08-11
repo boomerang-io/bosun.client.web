@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useHistory, useParams } from "react-router-dom";
 import moment from "moment";
-import { DataTable } from "carbon-components-react";
+import { DataTable } from "@boomerang-io/carbon-addons-boomerang-react";
 
 import styles from "./policiesTable.module.scss";
 

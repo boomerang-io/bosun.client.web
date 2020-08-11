@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import NoDisplay from "Components/NoDisplay";
-import { Button } from "carbon-components-react";
+import { Button } from "@boomerang-io/carbon-addons-boomerang-react";
 import { useHistory, useLocation } from "react-router-dom";
 import PoliciesTable from "./PoliciesTable";
 import { Add16 } from "@carbon/icons-react";

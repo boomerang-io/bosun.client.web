@@ -1,18 +1,13 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useQuery } from "react-query";
 import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
 import Welcome from "Components/Welcome";
 import Insights from "./Insights";
 import Policies from "./Policies";
 import TeamSelector from "./TeamSelector";
 import Violations from "./Violations";
-import {
-  SERVICE_PRODUCT_INSIGHTS_PATH,
-  SERVICE_PRODUCT_POLICIES_PATH,
-  SERVICE_PRODUCT_VIOLATIONS_PATH
-} from "Config/servicesConfig";
-
-import useAxiosFetch from "Utils/hooks/useAxios";
+import { serviceUrl, resolver } from "Config/servicesConfig";
 import AppContext from "State/context/appContext";
 import styles from "./overview.module.scss";
 
@@ -21,9 +16,24 @@ export function Overview() {
   const { activeTeam, teams } = React.useContext(AppContext);
   const activeTeamId = activeTeam?.id;
 
-  const policiesState = useAxiosFetch(`${SERVICE_PRODUCT_POLICIES_PATH}?teamId=${activeTeamId}`);
-  const insightsState = useAxiosFetch(`${SERVICE_PRODUCT_INSIGHTS_PATH}?teamId=${activeTeamId}`);
-  const violationsState = useAxiosFetch(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?teamId=${activeTeamId}`);
+  const policiesUrl = serviceUrl.getTeamPolicies({teamId: activeTeamId});
+  const insightsUrl = serviceUrl.getInsights({teamId: activeTeamId});
+  const violationsUrl = serviceUrl.getViolations({teamId: activeTeamId});
+
+  const { data: policiesData, isLoading: policiesIsLoading, error: policiesError } = useQuery({
+    queryKey: policiesUrl,
+    queryFn: resolver.query(policiesUrl)
+  });
+
+  const { data: insightsData, isLoading: insightsIsLoading, error: insightsError } = useQuery({
+    queryKey: insightsUrl,
+    queryFn: resolver.query(insightsUrl)
+  });
+
+  const { data: violationsData, isLoading: violationsIsLoading, error: violationsError } = useQuery({
+    queryKey: violationsUrl,
+    queryFn: resolver.query(violationsUrl)
+  });
 
   const handleChangeTeam = ({ selectedItem }) => {
     if (selectedItem?.id) {
@@ -36,19 +46,19 @@ export function Overview() {
       return <Welcome />;
     }
 
-    if (policiesState.isLoading || insightsState.isLoading || violationsState.isLoading) return <Loading />;
+    if (policiesIsLoading || insightsIsLoading || violationsIsLoading) return <Loading />;
 
-    if (policiesState.error && insightsState.error && violationsState.error) {
+    if (policiesError && insightsError && violationsError) {
       return <ErrorDragon />;
     }
     return (
       <>
-        {insightsState.data && (
-          <Insights insights={insightsState.data} policies={policiesState.data} violations={violationsState.data} />
+        {insightsData && (
+          <Insights insights={insightsData} policies={policiesData} violations={violationsData} />
         )}
-        {policiesState.data && <Policies policies={policiesState.data} />}
-        {violationsState.data && (
-          <Violations hasPolicies={policiesState?.data.length} violations={violationsState.data} />
+        {policiesData && <Policies policies={policiesData} />}
+        {violationsData && (
+          <Violations hasPolicies={policiesData?.length} violations={violationsData} />
         )}
       </>
     );

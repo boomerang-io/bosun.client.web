@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Tile } from "carbon-components-react";
+import { Tile } from "@boomerang-io/carbon-addons-boomerang-react";
 import styles from "./info.module.scss";
 
 Info.propTypes = {

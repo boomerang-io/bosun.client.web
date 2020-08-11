@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Tile } from "carbon-components-react";
+import { Tile } from "@boomerang-io/carbon-addons-boomerang-react";
 import LineChart from "./LineChart";
 import styles from "./graph.module.scss";
 

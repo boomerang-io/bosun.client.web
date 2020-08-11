@@ -51,7 +51,6 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
-
   return (
     <FullPageHeader>
       <div className={styles.content}>

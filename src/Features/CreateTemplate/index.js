@@ -1,24 +1,27 @@
 import React from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { useMutation, queryCache } from "react-query";
 import { ToastNotification } from "carbon-components-react";
 import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants";
-import { SERVICE_PRODUCT_TEMPLATES_PATH } from "Config/servicesConfig";
+import { resolver, serviceUrl } from "Config/servicesConfig";
 
 function CreateTemplate(props) {
   function navigateBack() {
     props.history.push("/templates");
   }
 
-  //const [status, setStatus] = React.useState();
+  const [createPolicyTemplateMutation, { isLoading }] = useMutation(
+    resolver.postCreatePolicyTemplate,
+    {
+      onSuccess: () => queryCache.invalidateQueries(serviceUrl.getTemplates()),
+    }
+  );
 
   async function createTemplate(values) {
-    //setStatus("pending");
     const valuesToSave = { ...values, rego: btoa(values.rego) };
     try {
-      await axios.post(SERVICE_PRODUCT_TEMPLATES_PATH, valuesToSave);
-      //setStatus("resolved");
+      await createPolicyTemplateMutation({body: valuesToSave});
       toast(
         <ToastNotification
           kind="success"
@@ -29,7 +32,6 @@ function CreateTemplate(props) {
       );
       navigateBack();
     } catch (e) {
-      //setStatus("rejected");
       toast(
         <ToastNotification
           kind="error"
@@ -48,6 +50,7 @@ function CreateTemplate(props) {
       navigateBack={navigateBack}
       onSubmit={createTemplate}
       type={TEMPLATE_INTERACTION_TYPES.CREATE}
+      isLoading={isLoading}
     />
   );
 }

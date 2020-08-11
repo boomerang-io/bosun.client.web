@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { Link } from "carbon-components-react";
+import { Link } from "@boomerang-io/carbon-addons-boomerang-react";
 import { Close16 } from "@carbon/icons-react";
 import styles from "./MessageBanner.module.scss";
 

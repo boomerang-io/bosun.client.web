@@ -38,17 +38,71 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
 
       // this.get("/info", () => []);
 
-      // /**
-      //  * Simple GET of static data
-      //  */
-      // this.get(serviceUrl.getUserProfile(), (schema) => {
-      //   return schema.db.profile[0];
-      // });
+      /**
+       * Simple GET of static data
+       */
+      this.get(serviceUrl.getUserProfile(), (schema) => {
+        return schema.db.profile[0];
+      });
 
-      // this.get(serviceUrl.getNavigation(), (schema) => {
-      //   return schema.db.navigation[0];
-      // });
+      this.get(serviceUrl.getNavigation(), (schema) => {
+        return schema.db.navigation[0];
+      });
 
+      this.get(serviceUrl.getTeams(), (schema) => {
+        return schema.db.teams;
+      });
+
+      this.get(serviceUrl.getPolicies(), (schema) => {
+        return schema.db.templates;
+      });
+
+      this.get(serviceUrl.getPolicy({policyId: ":policyId"}), (schema) => {
+        return schema.db.templates[0];
+      });
+
+      this.get(serviceUrl.getValidateInfo({policyId: ":policyId"}), (schema) => {
+        return schema.db.validateInfo;
+      });
+
+      this.get(serviceUrl.getTemplates(), (schema) => {
+        return schema.db.templates;
+      });
+
+      this.get("/api/policy/policies?teamId", (schema) => {
+        console.log("team policies");
+        return schema.db.policies;
+      });
+
+      this.get("/api/policy/policies/violations?teamId", (schema) => {
+        console.log("violations");
+        return schema.db.violations;
+      });
+
+      this.get("/api/policy/policies/insights?teamId", (schema) => {
+        console.log("insights");
+        return schema.db.insights;
+      });
+
+      this.post(serviceUrl.postCreatePolicy(), (schema) => {
+        return {};
+      });
+
+      this.post(serviceUrl.postCreatePolicyTemplate(), (schema) => {
+        return {};
+      });
+
+      this.patch(serviceUrl.patchUpdatePolicy({policyId: ":policyId"}), (schema) => {
+        return {};
+      });
+
+      this.patch(serviceUrl.patchUpdatePolicyTemplate({policyId: ":templateId"}), (schema) => {
+        return {};
+      });
+
+      this.delete(serviceUrl.deletePolicy({policyId: ":policyId"}), (schema) => {
+        return {};
+      });
       // // this.get(serviceUrl.getServices({size:"1000"}), (schema, request) => {
       // //   return schema.db.catalog;
       // // });
