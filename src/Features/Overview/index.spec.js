@@ -1,18 +1,11 @@
 import React from "react";
 import { render as rtlRender, fireEvent, waitForElement } from "@testing-library/react";
+import { queryCaches } from "react-query";
 import { Router, Route } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import mockAxios from "Utils/mocks/axios"
-import {
-  SERVICE_PRODUCT_INSIGHTS_PATH,
-  SERVICE_PRODUCT_POLICIES_PATH,
-  SERVICE_PRODUCT_VIOLATIONS_PATH
-} from "Config/servicesConfig";
+import { startApiServer } from "ApiServer";
 import { Overview } from "./index";
 
-const insightsActions = { fetch: () => new Promise(() => {}) };
-const getPoliciesActions = { fetch: () => new Promise(() => {}) };
-const violationsActions = { fetch: () => new Promise(() => {}) };
 const teams = [
   {
     id: "5a8b331e262a70306622df73",
@@ -223,29 +216,27 @@ const policies = [
     ]
   }
 ];
-const props = {
-  activeTeam: null,
-  insightsActions,
-  getPoliciesActions,
-  violationsActions,
-  insights: reducerState,
-  policies: reducerState,
-  violations: reducerState,
-  teams
-};
+
+let server;
+
+beforeEach(() => {
+  server = startApiServer();
+});
+
+afterEach(() => {
+  server.shutdown();
+  queryCaches.forEach((queryCache) => queryCache.clear());
+});
 
 describe("Overview --- Snapshot", () => {
-  mockAxios.onGet(`${SERVICE_PRODUCT_INSIGHTS_PATH}?teamId=1`).reply(200, insights);
-  mockAxios.onGet(`${SERVICE_PRODUCT_POLICIES_PATH}?teamId=1`).reply(200, policies);
-  mockAxios.onGet(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?teamId=1`).reply(200, violations);
 
   it("Capturing Snapshot of Overview", async () => {
     const { baseElement, findByText } = rtlContextRouterRender(
     <Route path="/teams/:id">
-      <Overview {...props} activeTeam={team} /> 
+      <Overview /> 
     </Route>,
     {
-      route: "/teams/1",
+      route: "/teams/5a8b331e262a70306622df73",
     }
     );
     await findByText(/Violations Trend/);
@@ -254,18 +245,15 @@ describe("Overview --- Snapshot", () => {
 });
 
 describe("Overview --- RTL", () => {
-  mockAxios.onGet(`${SERVICE_PRODUCT_INSIGHTS_PATH}?teamId=1`).reply(200, insights);
-  mockAxios.onGet(`${SERVICE_PRODUCT_POLICIES_PATH}?teamId=1`).reply(200, policies);
-  mockAxios.onGet(`${SERVICE_PRODUCT_VIOLATIONS_PATH}?teamId=1`).reply(200, violations);
 
   it("Render Overview Content", async () => {
     
     const { getByText, getAllByText, getAllByTestId, getByTestId, findByText } = rtlContextRouterRender(
       <Route path="/teams/:id">
-        <Overview {...props} activeTeam={teams[0]} policies={policiesReducerState}/> 
+        <Overview /> 
       </Route>,
       {
-        route: "/teams/1",
+        route: "/teams/5a8b331e262a70306622df73",
       }
     );
     await findByText(/Violations Trend/);
@@ -284,29 +272,29 @@ describe("Overview --- RTL", () => {
   it("Redirect to Create Policy", async () => {
     const { history, findByText, getByText } = rtlContextRouterRender(
       <Route path="/teams/:id">
-        <Overview {...props} activeTeam={team} /> 
+        <Overview /> 
       </Route>,
       {
-        route: "/teams/1"
+        route: "/teams/5a8b331e262a70306622df73"
       }
     );
     await findByText("Violations Trend");
     const addPolicyButton = getByText("Create Policy");
     fireEvent.click(addPolicyButton);
-    expect(history.location.pathname).toEqual("/teams/1/policy/create");
+    expect(history.location.pathname).toEqual("/teams/5a8b331e262a70306622df73/policy/create");
   });
   it("Redirect to Edit Policy", async () => {
     const { getByTestId, history, findByText } = rtlContextRouterRender(
       <Route path="/teams/:teamId">
-        <Overview {...props} activeTeam={team} /> 
+        <Overview /> 
       </Route>,
       {
-        route: "/teams/5a8b331f262a70306622df75"
+        route: "/teams/5a8b331e262a70306622df73"
       }
     );
     await findByText("Violations Trend");
     const policyTbody = getByTestId("policies-tbody");
     fireEvent.click(policyTbody.firstChild);
-    expect(history.location.pathname).toEqual(`/teams/${team.id}/policy/edit/${policies[0].id}`);
+    expect(history.location.pathname).toEqual(`/teams/5a8b331e262a70306622df73/policy/edit/5cd49adff6ea74a9bb6adef3`);
   });
 });

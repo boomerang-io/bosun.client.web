@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import ViolationsTable from "./index";
+import ViolationsTableTable from "./index";
 
 const violations = [
   {
@@ -20,20 +20,8 @@ const violations = [
 ];
 
 describe("ViolationsTable --- Snapshot", () => {
-  it("Capturing Snapshot of ViolationsTable", () => {
-    const renderedValue = renderer.create(<ViolationsTable violations={violations} />).toJSON();
-    expect(renderedValue).toMatchSnapshot();
-  });
-});
-
-describe("ViolationsTable --- Shallow render", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = shallow(<ViolationsTable violations={violations} />);
-  });
-
-  it("Render the DUMB component", () => {
-    expect(wrapper.length).toEqual(1);
+  it("Capturing Snapshot of ViolationsTable", async () => {
+    const { baseElement } = global.rtlRender(<ViolationsTable violations={violations} />);
+    expect(baseElement).toMatchSnapshot();
   });
 });

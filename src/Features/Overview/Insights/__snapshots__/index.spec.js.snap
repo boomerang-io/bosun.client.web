@@ -1,171 +1,123 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Insights --- Snapshot Capturing Snapshot of Insights 1`] = `
-<section
-  className="container"
+<body
+  id="app"
 >
-  <h2
-    className="title"
-  >
-    Insights
-  </h2>
-  <div
-    className="contentContainer"
-  >
-    <div
-      className="tilesContainer"
+  <div>
+    <section
+      class="container"
     >
+      <h2
+        class="title"
+      >
+        Insights
+      </h2>
       <div
-        className="bx--tile"
-        data-testid="tile-info"
-        style={
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "height": "10rem",
-            "padding": "0",
-            "width": "100%",
-          }
-        }
+        class="contentContainer"
       >
         <div
-          className="counter"
-          style={
-            Object {
-              "color": "#047cc0",
-            }
-          }
-        >
-          1
-        </div>
-        <div
-          className="divider"
-        />
-        <div
-          className="text"
-        >
-          <h3
-            className="title"
-          >
-            Current Gates
-          </h3>
-          <p
-            className="content"
-          >
-            Software never is perfect and it won’t be. But is that a license to create garbage?
-          </p>
-        </div>
-      </div>
-      <div
-        className="bx--tile"
-        data-testid="tile-info"
-        style={
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "height": "10rem",
-            "padding": "0",
-            "width": "100%",
-          }
-        }
-      >
-        <div
-          className="counter"
-          style={
-            Object {
-              "color": "#ffaa9d",
-            }
-          }
-        >
-          NaN
-        </div>
-        <div
-          className="divider"
-        />
-        <div
-          className="text"
-        >
-          <h3
-            className="title"
-          >
-            Current Violations
-          </h3>
-          <p
-            className="content"
-          >
-            Code will set you free. Think of this as an opportunity for better code. Drive towards zero.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div
-      className="graphsContainer"
-    >
-      <div
-        className="bx--tile"
-        style={
-          Object {
-            "alignItems": "spaceBetween",
-            "display": "flex",
-            "flexDirection": "column",
-            "minHeight": "10rem",
-            "width": "100%",
-          }
-        }
-      >
-        <div
-          className="header"
-        >
-          <h3
-            className="title"
-          >
-            Violations Trend
-          </h3>
-          <div
-            className="filters"
-          />
-        </div>
-        <div
-          className="container"
-          data-testid="insights-graph"
+          class="tilesContainer"
         >
           <div
-            style={
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "width": "100%",
-              }
-            }
+            class="bx--tile"
+            data-testid="tile-info"
+            style="display: flex; width: 100%; height: 10rem; align-items: center; padding: 0px;"
           >
             <div
-              className="recharts-responsive-container"
-              style={
-                Object {
-                  "height": "auto",
-                  "maxHeight": undefined,
-                  "minHeight": 100,
-                  "minWidth": 0,
-                  "width": "100%",
-                }
-              }
+              class="counter"
+              style="color: rgb(4, 124, 192);"
+            >
+              1
+            </div>
+            <div
+              class="divider"
+            />
+            <div
+              class="text"
+            >
+              <h3
+                class="title"
+              >
+                Current Gates
+              </h3>
+              <p
+                class="content"
+              >
+                Software never is perfect and it won’t be. But is that a license to create garbage?
+              </p>
+            </div>
+          </div>
+          <div
+            class="bx--tile"
+            data-testid="tile-info"
+            style="display: flex; width: 100%; height: 10rem; align-items: center; padding: 0px;"
+          >
+            <div
+              class="counter"
+              style="color: rgb(255, 170, 157);"
+            >
+              NaN
+            </div>
+            <div
+              class="divider"
+            />
+            <div
+              class="text"
+            >
+              <h3
+                class="title"
+              >
+                Current Violations
+              </h3>
+              <p
+                class="content"
+              >
+                Code will set you free. Think of this as an opportunity for better code. Drive towards zero.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="graphsContainer"
+        >
+          <div
+            class="bx--tile"
+            style="width: 100%; display: flex; flex-direction: column; align-items: spaceBetween; min-height: 10rem;"
+          >
+            <div
+              class="header"
+            >
+              <h3
+                class="title"
+              >
+                Violations Trend
+              </h3>
+              <div
+                class="filters"
+              />
+            </div>
+            <div
+              class="container"
+              data-testid="insights-graph"
             >
               <div
-                style={
-                  Object {
-                    "display": "none",
-                    "height": 0,
-                    "position": "absolute",
-                    "visibility": "hidden",
-                    "width": 0,
-                  }
-                }
-              />
+                style="display: flex; align-items: center; width: 100%;"
+              >
+                <div
+                  class="recharts-responsive-container"
+                  style="width: 100%; height: auto; min-width: 0; min-height: 100px;"
+                >
+                  <div
+                    style="position: absolute; width: 0px; height: 0px; visibility: hidden; display: none;"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
-</section>
+</body>
 `;

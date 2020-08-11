@@ -1,45 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Info --- Snapshot Capturing Snapshot of Info 1`] = `
-<div
-  className="bx--tile"
-  data-testid="tile-info"
-  style={
-    Object {
-      "alignItems": "center",
-      "display": "flex",
-      "height": "10rem",
-      "padding": "0",
-      "width": "100%",
-    }
-  }
+<body
+  id="app"
 >
-  <div
-    className="counter"
-    style={
-      Object {
-        "color": "#ffaa9d",
-      }
-    }
-  >
-    ---
-  </div>
-  <div
-    className="divider"
-  />
-  <div
-    className="text"
-  >
-    <h3
-      className="title"
+  <div>
+    <div
+      class="bx--tile"
+      data-testid="tile-info"
+      style="display: flex; width: 100%; height: 10rem; align-items: center; padding: 0px;"
     >
-      Test title
-    </h3>
-    <p
-      className="content"
-    >
-      Test content text
-    </p>
+      <div
+        class="counter"
+        style="color: rgb(255, 170, 157);"
+      >
+        ---
+      </div>
+      <div
+        class="divider"
+      />
+      <div
+        class="text"
+      >
+        <h3
+          class="title"
+        >
+          Test title
+        </h3>
+        <p
+          class="content"
+        >
+          Test content text
+        </p>
+      </div>
+    </div>
   </div>
-</div>
+</body>
 `;

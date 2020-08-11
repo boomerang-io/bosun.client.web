@@ -1,6 +1,4 @@
 import React from "react";
-import { shallow } from "enzyme";
-import renderer from "react-test-renderer";
 import Violations from "./index";
 
 const violations = [
@@ -19,20 +17,8 @@ const violations = [
 ];
 
 describe("Violations --- Snapshot", () => {
-  it("Capturing Snapshot of Violations", () => {
-    const renderedValue = renderer.create(<Violations violations={violations} />).toJSON();
-    expect(renderedValue).toMatchSnapshot();
-  });
-});
-
-describe("Violations --- Shallow render", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = shallow(<Violations violations={violations} />);
-  });
-
-  it("Render the DUMB component", () => {
-    expect(wrapper.length).toEqual(1);
+  it("Capturing Snapshot of Violations", async () => {
+    const { baseElement } = global.rtlRender(<Violations violations={violations} />);
+    expect(baseElement).toMatchSnapshot();
   });
 });

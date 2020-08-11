@@ -1,6 +1,4 @@
 import React from "react";
-import { shallow } from "enzyme";
-import renderer from "react-test-renderer";
 import { TeamSelector } from "./index";
 
 const mockfn = jest.fn();
@@ -24,20 +22,8 @@ const teams = [
 ];
 
 describe("TeamSelector --- Snapshot", () => {
-  it("Capturing Snapshot of TeamSelector", () => {
-    const renderedValue = renderer.create(<TeamSelector handleChangeTeam={mockfn} teams={teams} />).toJSON();
-    expect(renderedValue).toMatchSnapshot();
-  });
-});
-
-describe("TeamSelector --- Shallow render", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = shallow(<TeamSelector handleChangeTeam={mockfn} teams={teams} />);
-  });
-
-  it("Render the DUMB component", () => {
-    expect(wrapper.length).toEqual(1);
+  it("Capturing Snapshot of TeamSelector", async () => {
+    const { baseElement } = global.rtlRender(<TeamSelector handleChangeTeam={mockfn} teams={teams} />);
+    expect(baseElement).toMatchSnapshot();
   });
 });

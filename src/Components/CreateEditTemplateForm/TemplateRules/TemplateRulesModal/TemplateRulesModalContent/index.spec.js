@@ -25,14 +25,14 @@ const props = {
 
 describe("Inputs --- Snapshot Test", () => {
   it("Capturing Snapshot of Inputs", () => {
-    const { baseElement } = rtlReduxRender(<Inputs {...props} />);
+    const { baseElement } = rtlRender(<Inputs {...props} />);
     expect(baseElement).toMatchSnapshot();
   });
 });
 
 describe("Inputs --- RTL", () => {
   it("Change default value by type correctly", () => {
-    const { getByText, getByLabelText, queryByTestId } = rtlReduxRender(<Inputs {...props} />);
+    const { getByText, getByLabelText, queryByTestId } = rtlRender(<Inputs {...props} />);
     expect(queryByTestId("text-input")).toBeInTheDocument();
 
     const typeSelect = getByLabelText(/type/i);
@@ -51,7 +51,7 @@ describe("Inputs --- RTL", () => {
   });
 
   it("Shouldn't save property without key and label", async () => {
-    const { getByText, getByPlaceholderText, getByLabelText, getByTestId } = rtlReduxRender(
+    const { getByText, getByPlaceholderText, getByLabelText, getByTestId } = rtlRender(
       <Inputs {...props} isEdit={false} input={undefined} />
     );
     fireEvent.click(getByText(/create/i));

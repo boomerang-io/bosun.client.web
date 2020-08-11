@@ -1,11 +1,11 @@
 import React from "react";
-import axios from "axios";
 import { fireEvent, wait, screen } from "@testing-library/react";
+import { queryCaches } from "react-query";
+import { startApiServer } from "ApiServer";
 import EditPolicy from "../EditPolicy";
-import MockAdapter from "axios-mock-adapter";
-import { SERVICE_PRODUCT_TEMPLATES_PATH, SERVICE_PRODUCT_POLICIES_PATH, SERVICE_PRODUCT_VALIDATION_INFO_PATH } from "Config/servicesConfig";
+import { serviceUrl } from "Config/servicesConfig";
 
-const route = "/111/policy/edit/222";
+const route = "/5a8b331e262a70306622df73/policy/edit/5cd49adff6ea74a9bb6adef3";
 const props = {
   match: { params: { policyId: "222" } }
 };
@@ -72,16 +72,23 @@ const validateInfo = {
   "data": null
 };
 
+let server;
+
+beforeEach(() => {
+  server = startApiServer();
+});
+
+afterEach(() => {
+  server.shutdown();
+  queryCaches.forEach((queryCache) => queryCache.clear());
+});
+
 describe("EditPolicy --- Snapshot", () => {
   beforeEach(() => {
     document.body.setAttribute("id", "app");
   });
 
-  const mockAxios = new MockAdapter(axios);
-  mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
-  mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
-  mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
-  it("+++ renders correctly", async () => {
+  it("renders correctly", async () => {
     const { baseElement } = rtlRouterRender(<EditPolicy {...props} />, { route });
     await screen.findByText(/Edit Policy/i);
     expect(baseElement).toMatchSnapshot();
@@ -94,9 +101,9 @@ describe("EditPolicy --- RTL", () => {
   });
 
   test("renders error message when fetching definitions failed", async () => {
-    const mockAxios = new MockAdapter(axios);
-    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(404);
-    mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
+    server.get(serviceUrl.getPolicies(), () => {
+      return new Response(404, {}, {data: {status:404}})
+    });
 
     rtlRouterRender(<EditPolicy {...props} />, { route });
     const errorMessage = await screen.findByText("Don’t lose your daks");
@@ -104,21 +111,15 @@ describe("EditPolicy --- RTL", () => {
   });
 
   test("renders error message when fetching policy failed", async () => {
-    const mockAxios = new MockAdapter(axios);
-    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
-    mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(404);
-
+    server.get(serviceUrl.getPolicy({ policyId: "5cd49adff6ea74a9bb6adef3" }), () => {
+      return new Response(404, {}, {data: {status:404}})
+    });
     rtlRouterRender(<EditPolicy {...props} />, { route });
     const errorMessage = await screen.findByText("Don’t lose your daks");
     expect(errorMessage).toBeInTheDocument();
   });
 
   test("it is able to update policy only if it has a name", async () => {
-    const mockAxios = new MockAdapter(axios);
-    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
-    mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
-    mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
-
     rtlRouterRender(<EditPolicy {...props} />, { route });
     await screen.findByText(/Edit Policy/i);
 
@@ -135,10 +136,6 @@ describe("EditPolicy --- RTL", () => {
   });
 
   test("save button is disabled while saving", async () => {
-    const mockAxios = new MockAdapter(axios);
-    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
-    mockAxios.onGet(SERVICE_PRODUCT_POLICIES_PATH + "/222").reply(200, policy);
-    mockAxios.onGet(SERVICE_PRODUCT_VALIDATION_INFO_PATH + "/222").reply(200, validateInfo);
 
     rtlRouterRender(<EditPolicy {...props} />, { route });
 

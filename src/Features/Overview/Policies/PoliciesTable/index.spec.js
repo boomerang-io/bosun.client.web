@@ -1,7 +1,4 @@
 import React from "react";
-import { shallow } from "enzyme";
-import renderer from "react-test-renderer";
-import { MemoryRouter } from "react-router";
 import PoliciesTable from "./index";
 
 const policies = [
@@ -37,30 +34,8 @@ const policies = [
 ];
 
 describe("PoliciesTable --- Snapshot", () => {
-  it("Capturing Snapshot of PoliciesTable", () => {
-    const renderedValue = renderer
-      .create(
-        <MemoryRouter>
-          <PoliciesTable policies={policies} />
-        </MemoryRouter>
-      )
-      .toJSON();
-    expect(renderedValue).toMatchSnapshot();
-  });
-});
-
-describe("PoliciesTable --- Shallow render", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = shallow(
-      <MemoryRouter>
-        <PoliciesTable policies={policies} />
-      </MemoryRouter>
-    );
-  });
-
-  it("Render the DUMB component", () => {
-    expect(wrapper.length).toEqual(1);
+  it("Capturing Snapshot of PoliciesTable", async () => {
+    const { baseElement } = global.rtlRouterRender(<PoliciesTable policies={policies} />);
+    expect(baseElement).toMatchSnapshot();
   });
 });

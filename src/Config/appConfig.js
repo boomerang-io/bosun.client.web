@@ -8,7 +8,7 @@ export const PRODUCT_STANDALONE = process.env.PRODUCT_STANDALONE === "true" ?? f
 // TODO
 export const ROUTES = {};
 export const appPath = {
-
+  policyTemplates: "/templates",
 };
 
 export const appLink = {
@@ -25,6 +25,8 @@ export const appLink = {
   scmRepositories: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/repositories`,
   componentModes: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/component-modes`,
   policyTemplates: () => `/templates`,
+
+  createPolicy: ({teamId}) => `${teamId}`
 };
 
 export const FeatureFlag = {

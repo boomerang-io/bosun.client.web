@@ -1,82 +1,86 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FilterDropdown --- Snapshot Capturing Snapshot of FilterDropdown 1`] = `
-<div
-  style={
-    Object {
-      "height": "3rem",
-      "width": "15rem",
-    }
-  }
+<body
+  id="app"
 >
-  <div
-    className="bx--dropdown__wrapper bx--list-box__wrapper"
-  >
-    <label
-      className="bx--label"
-      htmlFor="dropdown-1"
-    >
-      testLabel
-    </label>
+  <div>
     <div
-      className="bx--dropdown bx--list-box"
-      id="dropdown-1"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="listbox"
-      tabIndex="-1"
+      style="width: 15rem; height: 3rem;"
     >
       <div
-        aria-controls={null}
-        aria-disabled={false}
-        aria-expanded={false}
-        aria-haspopup={true}
-        aria-label="Open menu"
-        aria-owns={null}
-        className="bx--list-box__field"
-        data-toggle={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex="0"
-        type="button"
+        class="bx--dropdown__wrapper bx--list-box__wrapper"
       >
         <span
-          className="bx--list-box__label"
-          htmlFor="downshift-0-input"
+          class="bx--label"
         >
           testLabel
         </span>
         <div
-          className="bx--list-box__menu-icon"
+          class="bx--dropdown bx--list-box"
+          id="filter-dropdown"
         >
-          <svg
-            aria-label="Open menu"
-            focusable="false"
-            height={16}
-            name="chevron--down"
-            preserveAspectRatio="xMidYMid meet"
-            role="img"
-            style={
-              Object {
-                "willChange": "transform",
-              }
-            }
-            viewBox="0 0 16 16"
-            width={16}
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            aria-disabled="false"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-labelledby="dropdown-label-filter-dropdown dropdown-field-label-filter-dropdown"
+            class="bx--list-box__field"
+            data-toggle="true"
+            role="button"
+            tabindex="0"
+            type="button"
           >
-            <path
-              d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
-            />
-            <title>
-              Open menu
-            </title>
-          </svg>
+            <span
+              class="bx--list-box__label"
+              for="downshift-0-input"
+              id="dropdown-field-label-filter-dropdown"
+              title="testLabel"
+            >
+              testLabel
+            </span>
+            <div
+              class="bx--list-box__menu-icon"
+            >
+              <svg
+                aria-label="Open menu"
+                fill="currentColor"
+                focusable="false"
+                height="16"
+                name="chevron--down"
+                preserveAspectRatio="xMidYMid meet"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"
+                />
+                <title>
+                  Open menu
+                </title>
+              </svg>
+            </div>
+          </div>
+          <div
+            aria-labelledby="filter-dropdown"
+            class="bx--list-box__menu"
+            id="filter-dropdown__menu"
+            role="listbox"
+          >
+            <div
+              class="bx--list-box__menu-item"
+              id="downshift-0-item-0"
+            >
+              <div
+                class="bx--list-box__menu-item__option"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</body>
 `;

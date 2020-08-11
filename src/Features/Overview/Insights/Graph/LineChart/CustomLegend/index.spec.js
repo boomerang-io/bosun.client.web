@@ -1,7 +1,4 @@
 import React from "react";
-import { shallow } from "enzyme";
-import renderer from "react-test-renderer";
-import { MemoryRouter } from "react-router";
 import CustomLegend from "./index";
 
 const payload = [
@@ -24,28 +21,8 @@ const toggledItems = [];
 const lastDots = [];
 
 describe("CustomLegend --- Snapshot", () => {
-  it("Capturing Snapshot of CustomLegend", () => {
-    const renderedValue = renderer.create(
-      <MemoryRouter>
-        <CustomLegend payload={payload} toggleItem={toggleItem} toggledItems={toggledItems} lastDots={lastDots} />
-      </MemoryRouter>
-    );
-    expect(renderedValue).toMatchSnapshot();
-  });
-});
-
-describe("CustomLegend --- Shallow render", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = shallow(
-      <MemoryRouter>
-        <CustomLegend payload={payload} toggleItem={toggleItem} toggledItems={toggledItems} lastDots={lastDots} />
-      </MemoryRouter>
-    );
-  });
-
-  it("Render the DUMB component", () => {
-    expect(wrapper.length).toEqual(1);
+  it("Capturing Snapshot of CustomLegend", async () => {
+    const { baseElement } = global.rtlRouterRender(<CustomLegend payload={payload} toggleItem={toggleItem} toggledItems={toggledItems} lastDots={lastDots} />);
+    expect(baseElement).toMatchSnapshot();
   });
 });

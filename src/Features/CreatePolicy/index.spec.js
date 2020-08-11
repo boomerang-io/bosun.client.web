@@ -1,10 +1,11 @@
 import React from "react";
 import { fireEvent, waitForElement } from "@testing-library/react";
+import { queryCaches } from "react-query";
+import { startApiServer } from "ApiServer";
 import CreatePolicy from "../CreatePolicy";
-import mockAxios from "Utils/mocks/axios";
-import { SERVICE_PRODUCT_TEMPLATES_PATH } from "Config/servicesConfig";
+import { serviceUrl } from "Config/servicesConfig";
 
-const route = "/111/policy/create";
+const route = "/5a8b331e262a70306622df73/policy/create";
 const initialState = {
   app: {
     activeTeam: {
@@ -63,14 +64,20 @@ const definitions = [
   }
 ];
 
+let server;
+
 beforeEach(() => {
-  mockAxios.resetHistory();
+  server = startApiServer();
+});
+
+afterEach(() => {
+  server.shutdown();
+  queryCaches.forEach((queryCache) => queryCache.clear());
 });
 
 describe("CreatePolicy --- Snapshot", () => {
-  mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
-  it("+++ renders correctly", async () => {
-    const { baseElement, getByText } = rtlReduxRouterRender(<CreatePolicy />, { initialState, route });
+  it("renders correctly", async () => {
+    const { baseElement, getByText } = rtlRouterRender(<CreatePolicy />, { initialState, route });
     await waitForElement(() => getByText(/Create Policy/i));
     expect(baseElement).toMatchSnapshot();
   });
@@ -78,20 +85,16 @@ describe("CreatePolicy --- Snapshot", () => {
 
 describe("CreatePolicy --- RTL", () => {
   test("renders error message when fetching definitions failed", async () => {
-    mockAxios
-      .onGet(SERVICE_PRODUCT_TEMPLATES_PATH)
-      .reply(404, { response: { data: { status: "error", message: "something went wrong" } } });
-
-    const { getByText } = rtlReduxRouterRender(<CreatePolicy />, { route });
+    server.get(serviceUrl.getPolicies(), () => {
+      return new Response(404, {}, {data: {status:404}})
+    });
+    const { getByText } = rtlRouterRender(<CreatePolicy />, { route });
     const errorMessage = await waitForElement(() => getByText("Don’t lose your daks"));
     expect(errorMessage).toBeInTheDocument();
   });
 
   test("it is able to create policy only after adding a name", async () => {
-    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
-
-    const { getByPlaceholderText, getByTestId } = rtlReduxRouterRender(<CreatePolicy />, {
-      initialState,
+    const { getByPlaceholderText, getByTestId } = rtlRouterRender(<CreatePolicy />, {
       route
     });
 
@@ -106,8 +109,6 @@ describe("CreatePolicy --- RTL", () => {
   });
 
   test("create button is disabled while creating", async () => {
-    mockAxios.onGet(SERVICE_PRODUCT_TEMPLATES_PATH).reply(200, definitions);
-
     const { getByPlaceholderText, getByTestId, findByText } = rtlContextRouterRender(<CreatePolicy />, {
       initialState,
       route

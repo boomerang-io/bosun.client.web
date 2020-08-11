@@ -53,19 +53,19 @@ beforeEach(() => {
 
 describe("Inputs --- Snapshot Test", () => {
   it("Capturing Snapshot of Inputs", () => {
-    const { baseElement } = rtlReduxRender(<Inputs {...props} />, { initialState });
+    const { baseElement } = rtlRender(<Inputs {...props} />);
     expect(baseElement).toMatchSnapshot();
   });
 });
 
 describe("Inputs --- RTL", () => {
   it("Render inputs correctly", () => {
-    const { queryByText } = rtlReduxRender(<Inputs {...props} />, { initialState });
+    const { queryByText } = rtlRender(<Inputs {...props} />);
     expect(queryByText("Testing")).toBeInTheDocument();
   });
 
   it("Opens create new property modal", () => {
-    const { queryByText, getByTestId } = rtlReduxRender(<Inputs {...props} />, { initialState });
+    const { queryByText, getByTestId } = rtlRender(<Inputs {...props} />);
 
     //expect(queryByText(/Create a new property/i)).not.toBeInTheDocument();
 
@@ -77,7 +77,7 @@ describe("Inputs --- RTL", () => {
   });
 
   it("Opens edit property modal", () => {
-    const { getByTestId, queryByText } = rtlReduxRender(<Inputs {...props} />, { initialState });
+    const { getByTestId, queryByText } = rtlRender(<Inputs {...props} />);
 
     //expect(queryByText(/Let's update it/i)).not.toBeInTheDocument();
 

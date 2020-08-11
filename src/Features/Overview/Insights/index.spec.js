@@ -1,12 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
-import renderer from "react-test-renderer";
 import Insights from "./index";
-
-function createNodeMock() {
-  const doc = document.implementation.createHTMLDocument();
-  return { parentElement: doc.body };
-}
 
 const insights = [
   {
@@ -88,22 +81,8 @@ const policies = [
 ];
 
 describe("Insights --- Snapshot", () => {
-  it("Capturing Snapshot of Insights", () => {
-    const renderedValue = renderer
-      .create(<Insights insights={insights} policies={policies} violations={violations} />, { createNodeMock })
-      .toJSON();
-    expect(renderedValue).toMatchSnapshot();
-  });
-});
-
-describe("Insights --- Shallow render", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = shallow(<Insights insights={insights} policies={policies} violations={violations} />);
-  });
-
-  it("Render the DUMB component", () => {
-    expect(wrapper.length).toEqual(1);
+  it("Capturing Snapshot of Insights", async () => {
+    const { baseElement } = global.rtlRender(<Insights insights={insights} policies={policies} violations={violations} />);
+    expect(baseElement).toMatchSnapshot();
   });
 });

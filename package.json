@@ -116,8 +116,6 @@
     "cross-env": "7.0.2",
     "cypress": "4.3.0",
     "cz-conventional-changelog": "3.1.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
     "eslint-plugin-cypress": "^2.11.1",
     "eslint-plugin-jest": "^23.11.0",
     "eslint-plugin-jest-dom": "3.0.1",
@@ -138,5 +136,17 @@
     "replace-in-file": "^3.4.3",
     "rimraf": "^3.0.0",
     "start-server-and-test": "^1.10.11"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "!**/*.spec.{js,jsx}",
+      "!**/assets/**",
+      "!**/apiServer/**",
+      "**/src/components/**/*.{js,jsx}",
+      "**/src/features/**/*.{js,jsx}",
+      "**/src/hooks/**/*.{js,jsx}",
+      "**/src/state/**/*.{js,jsx}",
+      "**/src/utils/**/*.{js,jsx}"
+    ]
   }
 }
