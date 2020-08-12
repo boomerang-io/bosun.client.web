@@ -22,12 +22,16 @@
   }
 }
 
+.rowsContainer {
+  margin-top: 1rem;
+}
+
 .row {
   align-items: center;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   > div:not(:last-child) {
     margin-right: 1rem;
   }
