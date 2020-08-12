@@ -200,12 +200,10 @@ function EditPolicy ({ history, match }) {
       queryCache.removeQueries(policyUrl, {exact:true});
     }
   },[policyUrl]);
-  
   // Local methods
   const navigateBack = () => {
     history.push(`/teams/${match.params.teamId}`);
   };
-
     if (policiesIsLoading || policyIsLoading || validateInfoIsLoading) {
       return <Loading />;
     }

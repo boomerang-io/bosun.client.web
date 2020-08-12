@@ -9,10 +9,16 @@ import "@testing-library/jest-dom/extend-expect";
 
 function rtlRouterRender(
   ui,
+  queryConfig = {},
   { route = "/", history = createMemoryHistory({ initialEntries: [route] }), ...options } = {}
 ) {
   return {
-    ...rtlRender(<Router history={history}>{ui}</Router>, options),
+    ...rtlRender(
+      <ReactQueryConfigProvider config={{ queries: { retry: false }, ...queryConfig }}>
+        <Router history={history}>{ui}</Router>
+      </ReactQueryConfigProvider>,
+      options
+    ),
     history,
   };
 }
@@ -29,6 +35,7 @@ function rtlContextRouterRender(
   {
     contextValue = {},
     initialState = {},
+    queryConfig = {},
     route = "/",
     history = createMemoryHistory({ initialEntries: [route] }),
     ...options
@@ -36,9 +43,11 @@ function rtlContextRouterRender(
 ) {
   return {
     ...rtlRender(
-      <AppContext.Provider value={{ ...defaultContextValue, ...contextValue }}>
-        <Router history={history}>{ui}</Router>
-      </AppContext.Provider>,
+      <ReactQueryConfigProvider config={{ queries: { retry: false }, ...queryConfig }}>
+        <AppContext.Provider value={{ ...defaultContextValue, ...contextValue }}>
+          <Router history={history}>{ui}</Router>
+        </AppContext.Provider>
+      </ReactQueryConfigProvider>,
       options
     ),
     history,

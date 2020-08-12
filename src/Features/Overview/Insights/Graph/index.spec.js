@@ -9,9 +9,9 @@ const formatedData = {
   higherValue: 2
 };
 
-describe("Info --- Snapshot", () => {
-  it("Capturing Snapshot of Info", async () => {
-    const { baseElement } = global.rtlRender(<Info formatedData={formatedData} />);
+describe("Graph --- Snapshot", () => {
+  it("Capturing Snapshot of Graph", async () => {
+    const { baseElement } = global.rtlRender(<Graph formatedData={formatedData} />);
     expect(baseElement).toMatchSnapshot();
   });
 });

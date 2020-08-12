@@ -18,7 +18,7 @@ const violations = [
 
 describe("Violations --- Snapshot", () => {
   it("Capturing Snapshot of Violations", async () => {
-    const { baseElement } = global.rtlRender(<Violations violations={violations} />);
+    const { baseElement } = global.rtlRender(<Violations violations={violations} hasPolicies={true}/>);
     expect(baseElement).toMatchSnapshot();
   });
 });

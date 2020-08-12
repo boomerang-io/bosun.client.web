@@ -1,75 +1,18 @@
 import React from "react";
-import { fireEvent, wait, screen } from "@testing-library/react";
+import { Response } from "miragejs";
+import { fireEvent, screen } from "@testing-library/react";
 import { queryCaches } from "react-query";
 import { startApiServer } from "ApiServer";
 import EditPolicy from "../EditPolicy";
 import { serviceUrl } from "Config/servicesConfig";
+import { appLink } from "Config/appConfig";
 
-const route = "/5a8b331e262a70306622df73/policy/edit/5cd49adff6ea74a9bb6adef3";
+const teamId = "5a8b331e262a70306622df73";
+const policyId = "5cd49adff6ea74a9bb6adef3";
+const route = appLink.editPolicy({teamId, policyId});
 const props = {
-  match: { params: { policyId: "222" } }
-};
-
-const definitions = [
-  {
-    "id": "5cd49777f6ea74a9bb6ac629",
-    "key": "package_safelist",
-    "name": "Package Safe List",
-    "createDate": "2019-06-21T00:00:00.000+0000",
-    "description": "The following package and artifact validation is validated against scans by JFrog Xray. Artifact and Version are validated through regular expression.",
-    "order": 1,
-    "rego": "",
-    "rules": [
-      {
-        "key": "artifact",
-        "label": "Package",
-        "type": "text",
-        "defaultValue": "",
-        "required": false,
-        "description": "Regular Expression",
-        "options": null
-      }
-    ]
-  }
-];
-
-const policy = {
-  id: "5cd49adff6ea74a9bb6adef3",
-  createdDate: "2019-06-21T00:00:00.000+0000",
-  name: "Tyson's Policy",
-  teamId: "5a8b331e262a70306622df73",
-  definitions: [
-    {
-      policyTemplateId: "5cd49777f6ea74a9bb6ac629",
-      rules: [
-        {
-          metric: "lines",
-          operator: "",
-          value: "10"
-        },
-        {
-          metric: "complexity",
-          operator: "",
-          value: "1000"
-        }
-      ]
-    }
-  ],
-  stages: ["dev"]
-};
-const validateInfo = {
-  "policyId": "5db9a8c7b01c530001b838d1",
-  "referenceId": null,
-  "referenceLink": null,
-  "labels": {
-    "artifact-path": "",
-    "artifact-name": "",
-    "artifact-version": "",
-    "sonarqube-id": "",
-    "sonarqube-version": ""
-  },
-  "annotations": null,
-  "data": null
+  match: { params: { policyId: "5cd49adff6ea74a9bb6adef3" } },
+  history: {}
 };
 
 let server;
@@ -102,7 +45,7 @@ describe("EditPolicy --- RTL", () => {
 
   test("renders error message when fetching definitions failed", async () => {
     server.get(serviceUrl.getPolicies(), () => {
-      return new Response(404, {}, {data: {status:404}})
+      return new Response(404, {}, {data: {status:404, error: "Error"}})
     });
 
     rtlRouterRender(<EditPolicy {...props} />, { route });
@@ -111,10 +54,10 @@ describe("EditPolicy --- RTL", () => {
   });
 
   test("renders error message when fetching policy failed", async () => {
-    server.get(serviceUrl.getPolicy({ policyId: "5cd49adff6ea74a9bb6adef3" }), () => {
-      return new Response(404, {}, {data: {status:404}})
-    });
     rtlRouterRender(<EditPolicy {...props} />, { route });
+    server.get(serviceUrl.getPolicy({ policyId: "5cd49adff6ea74a9bb6adef3" }), () => {
+      return new Response(404, {}, {errors: ["Error"]});
+    });
     const errorMessage = await screen.findByText("Don’t lose your daks");
     expect(errorMessage).toBeInTheDocument();
   });

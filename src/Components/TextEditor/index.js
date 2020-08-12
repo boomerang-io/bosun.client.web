@@ -195,7 +195,7 @@ const TextEditorView = props => {
             placeHolderText="Search"
             onChange={handleSearchText}
             onKeyPress={handleKeyPress}
-            small
+            size="sm"
           />
         </ToolbarItem>
         <ToolbarItem>

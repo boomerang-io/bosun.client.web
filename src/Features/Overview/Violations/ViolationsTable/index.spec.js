@@ -1,7 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
-import renderer from "react-test-renderer";
-import ViolationsTableTable from "./index";
+import ViolationsTable from "./index";
 
 const violations = [
   {

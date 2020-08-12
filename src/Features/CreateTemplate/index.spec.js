@@ -1,6 +1,5 @@
 import React from "react";
 import Inputs from "../CreateTemplate";
-import { fireEvent } from "@testing-library/react";
 
 const mockfn = jest.fn();
 

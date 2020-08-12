@@ -8,7 +8,10 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
   inflections("en", function (inflect) {
     // Prevent pluralization bc our apis are weird
     inflect.irregular("policy", "policy");
+    inflect.irregular("policies", "policies");
     inflect.irregular("violation", "violation");
+    inflect.irregular("template", "template");
+    inflect.irregular("templates", "templates");
     inflect.irregular("insights", "insights");
   });
 
@@ -21,10 +24,7 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
       application: Serializer.extend({
         root: false,
         embed: true,
-      }),
-      catalog: Serializer.extend({
-        include: ["size"],
-      }),
+      })
     },
     // Register the data as a model so we can use the schema
     models: {

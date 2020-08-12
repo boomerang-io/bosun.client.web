@@ -1,69 +1,17 @@
 import React from "react";
-import { fireEvent, waitForElement } from "@testing-library/react";
+import { Response } from "miragejs";
+import { fireEvent } from "@testing-library/react";
 import { queryCaches } from "react-query";
 import { startApiServer } from "ApiServer";
 import CreatePolicy from "../CreatePolicy";
 import { serviceUrl } from "Config/servicesConfig";
+import { appLink } from "Config/appConfig";
 
-const route = "/5a8b331e262a70306622df73/policy/create";
-const initialState = {
-  app: {
-    activeTeam: {
-      id: "111"
-    }
-  }
+const route = appLink.createPolicy({teamId: "5a8b331e262a70306622df73"});
+const props = {
+  match: { params: { policyId: "5cd49adff6ea74a9bb6adef3" } },
+  history: {}
 };
-
-const definitions = [
-  {
-    id: "5cd49777f6ea74a9bb6ac629",
-    key: "static_code_analysis",
-    name: "Static Code Analysis",
-    description: "The following policy metrics are validated from SonarQube data collected in your CI pipeline.",
-    order: 0,
-    config: [
-      {
-        key: "metric",
-        label: "Metric",
-        type: "select",
-        defaultValue: "",
-        required: false,
-        description: "",
-        options: [
-          "issues-total",
-          "issues-blocker",
-          "issues-critical",
-          "issues-major",
-          "issues-minor",
-          "issues-info",
-          "issues-filesAnalyzed",
-          "ncloc",
-          "complexity",
-          "violations"
-        ]
-      },
-      {
-        key: "operator",
-        label: "Operator",
-        type: "select",
-        defaultValue: "",
-        required: false,
-        description: "",
-        options: ["equal", "not equal", "less than", "less than or equal", "greater than", "greater than or equal"]
-      },
-      {
-        key: "value",
-        label: "Value",
-        type: "text",
-        defaultValue: "",
-        required: false,
-        description: "",
-        options: null
-      }
-    ]
-  }
-];
-
 let server;
 
 beforeEach(() => {
@@ -77,8 +25,8 @@ afterEach(() => {
 
 describe("CreatePolicy --- Snapshot", () => {
   it("renders correctly", async () => {
-    const { baseElement, getByText } = rtlRouterRender(<CreatePolicy />, { initialState, route });
-    await waitForElement(() => getByText(/Create Policy/i));
+    const { baseElement, findByText } = rtlRouterRender(<CreatePolicy {...props} />, { route });
+    await findByText(/Create Policy/i);
     expect(baseElement).toMatchSnapshot();
   });
 });
@@ -88,17 +36,17 @@ describe("CreatePolicy --- RTL", () => {
     server.get(serviceUrl.getPolicies(), () => {
       return new Response(404, {}, {data: {status:404}})
     });
-    const { getByText } = rtlRouterRender(<CreatePolicy />, { route });
-    const errorMessage = await waitForElement(() => getByText("Don’t lose your daks"));
+    const { findByText } = rtlRouterRender(<CreatePolicy {...props} />, { route });
+    const errorMessage = await findByText("Don’t lose your daks");
     expect(errorMessage).toBeInTheDocument();
   });
 
   test("it is able to create policy only after adding a name", async () => {
-    const { getByPlaceholderText, getByTestId } = rtlRouterRender(<CreatePolicy />, {
+    const { getByPlaceholderText, findByTestId } = rtlRouterRender(<CreatePolicy {...props} />, {
       route
     });
 
-    const createButton = await waitForElement(() => getByTestId("policy-header-affirmative-action"));
+    const createButton = await findByTestId("policy-header-affirmative-action");
 
     expect(createButton).toBeDisabled();
 
@@ -109,12 +57,11 @@ describe("CreatePolicy --- RTL", () => {
   });
 
   test("create button is disabled while creating", async () => {
-    const { getByPlaceholderText, getByTestId, findByText } = rtlContextRouterRender(<CreatePolicy />, {
-      initialState,
+    const { getByPlaceholderText, findByTestId, findByText } = rtlContextRouterRender(<CreatePolicy {...props} />, {
       route
     });
 
-    const createButton = await waitForElement(() => getByTestId("policy-header-affirmative-action"));
+    const createButton = await  findByTestId("policy-header-affirmative-action");
 
     const nameInput = getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "test" } });
