@@ -213,6 +213,7 @@ exports[`PoliciesTable --- Snapshot Capturing Snapshot of PoliciesTable 1`] = `
         >
           <tr
             class="tableRow"
+            data-testid="policies-table-row"
           >
             <td
               style="padding: 0px;"

@@ -88,7 +88,7 @@ export default function PoliciesTable(props) {
             </TableHead>
             <TableBody className={styles.tableBody} data-testid="policies-tbody">
               {rows.map((row, rowIndex) => (
-                <TableRow key={row.id} className={styles.tableRow} onClick={() => handleRowClick(row)}>
+                <TableRow key={row.id} className={styles.tableRow} onClick={() => handleRowClick(row)} data-testid="policies-table-row">
                   {row.cells.map((cell, cellIndex) => (
                     <TableCell key={`${cell.id}-${cellIndex}`} style={{ padding: "0" }}>
                       <div className={styles.tableCell}>{renderCell(row.cells, cellIndex, cell.value)}</div>

@@ -274,6 +274,7 @@ exports[`Violations --- Snapshot Capturing Snapshot of Violations 1`] = `
           >
             <tr
               class="tableBodyRow"
+              data-testid="violations-table-row"
               tabindex="0"
             >
               <td

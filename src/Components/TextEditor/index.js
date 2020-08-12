@@ -234,6 +234,7 @@ const TextEditorView = props => {
             setCodeMirroEditor(cmeditor);
           }
         }}
+        data-testid="text-editor"
         value={value}
         focus={true}
         options={{

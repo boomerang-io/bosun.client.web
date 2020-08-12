@@ -126,7 +126,7 @@ function EditPolicy ({ history, match }) {
       notify(
         <ToastNotification
           kind="success"
-          title="Policy deleted"
+          title="Policy Deleted"
           subtitle={`Policy ${policyData.name} successfully deleted`}
         />
       );

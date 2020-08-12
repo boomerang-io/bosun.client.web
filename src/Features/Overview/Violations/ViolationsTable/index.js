@@ -183,7 +183,7 @@ export class ViolationsTable extends Component {
                   )}
                 </ModalBody>
                 <ModalFooter>
-                  <Button onClick={() => this.setState({ isModalOpen: false })}>Close</Button>
+                  <Button onClick={() => this.setState({ isModalOpen: false })} data-testid="close-violation-detail">Close</Button>
                 </ModalFooter>
               </ModalForm>
             )
@@ -217,6 +217,7 @@ export class ViolationsTable extends Component {
                         onClick={() => this.handleRowClick(rowIndex)}
                         onKeyDown={(e) => isAccessibleEvent(e) && this.handleRowClick(rowIndex)}
                         tabIndex={0}
+                        data-testid="violations-table-row"
                       >
                         {row.cells.map((cell, cellIndex) => (
                           <TableCell key={cell.id} style={{ padding: "0" }}>
