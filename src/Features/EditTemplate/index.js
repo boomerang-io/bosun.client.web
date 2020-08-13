@@ -12,6 +12,7 @@ function EditTemplate(props) {
   function navigateBack() {
     history.push("/templates");
   }
+  const cancelRequestRef = React.useRef();
 
   function getTakenNamesAndKeys() {
     const templateNames = [];
@@ -34,8 +35,12 @@ function EditTemplate(props) {
     queryFn: resolver.query(getTemplatesUrl)
   });
 
-  const [updatePolicyTemplateMutation, { isLoading: isUpdating }] = useMutation(
-    resolver.patchUpdatePolicyTemplate,
+  const [updatePolicyTemplateMutation] = useMutation(
+    (args) => {
+      const { promise, cancel } = resolver.patchUpdatePolicyTemplate(args);
+      cancelRequestRef.current = cancel;
+      return promise;
+    },
     {
       onSuccess: () => queryCache.invalidateQueries(serviceUrl.getTemplates()),
     }
@@ -91,7 +96,7 @@ function EditTemplate(props) {
           template={template}
           validationData={validationData}
           type={TEMPLATE_INTERACTION_TYPES.EDIT}
-          isLoading={isUpdating}
+          onCancel={cancelRequestRef.current}
         />
       );
     } else {

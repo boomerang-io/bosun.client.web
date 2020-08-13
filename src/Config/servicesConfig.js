@@ -68,11 +68,11 @@ export const resolver = {
   postMutation: (request) => axios.post(request),
   patchMutation: (request) => axios.patch(request),
   putMutation: (request) => axios.put(request),
-  deletePolicy: ({policyId}) => axios.delete(serviceUrl.deletePolicy({policyId})),
-  patchUpdatePolicy: ({policyId, body}) => axios.patch(serviceUrl.patchUpdatePolicy({policyId}), body),
-  patchUpdatePolicyTemplate: ({templateId, body}) => axios.patch(serviceUrl.patchUpdatePolicyTemplate({templateId}), body),
-  postCreatePolicy: ({ body }) => axios.post(serviceUrl.postCreatePolicy(), body),
-  postCreatePolicyTemplate: ({ body }) => axios.post(serviceUrl.postCreatePolicyTemplate(), body),
+  deletePolicy: ({ policyId }) => cancellableResolver({url: serviceUrl.deletePolicy({policyId}), method:HTTPMethods.Delete}),
+  patchUpdatePolicy: ({ policyId, body }) => cancellableResolver({url: serviceUrl.patchUpdatePolicy({policyId}), method:HTTPMethods.Patch, data:body}),
+  patchUpdatePolicyTemplate: ({ templateId, body }) => cancellableResolver({url: serviceUrl.patchUpdatePolicyTemplate({templateId}), method:HTTPMethods.Patch, data:body}),
+  postCreatePolicy: ({ body }) => cancellableResolver({url: serviceUrl.postCreatePolicy(), method:HTTPMethods.Post, data:body}),
+  postCreatePolicyTemplate: ({ body }) => cancellableResolver({url: serviceUrl.postCreatePolicyTemplate(), method:HTTPMethods.Post, data:body}),
   postCreateTeam: ({ body }) =>
     cancellableResolver({ url: serviceUrl.postCreateTeam(), data: body, method: HTTPMethods.Post }),
 };

@@ -9,9 +9,14 @@ function CreateTemplate(props) {
   function navigateBack() {
     props.history.push("/templates");
   }
+  const cancelRequestRef = React.useRef();
 
-  const [createPolicyTemplateMutation, { isLoading }] = useMutation(
-    resolver.postCreatePolicyTemplate,
+  const [createPolicyTemplateMutation] = useMutation(
+    (args) => {
+      const { promise, cancel } = resolver.postCreatePolicyTemplate(args);
+      cancelRequestRef.current = cancel;
+      return promise;
+    },
     {
       onSuccess: () => queryCache.invalidateQueries(serviceUrl.getTemplates()),
     }
@@ -47,7 +52,7 @@ function CreateTemplate(props) {
       navigateBack={navigateBack}
       onSubmit={createTemplate}
       type={TEMPLATE_INTERACTION_TYPES.CREATE}
-      isLoading={isLoading}
+      onCancel={cancelRequestRef.current}
     />
   );
 }

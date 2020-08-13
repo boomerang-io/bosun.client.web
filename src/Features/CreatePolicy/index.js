@@ -22,6 +22,7 @@ export function CreatePolicy({history, match}) {
   const [ errors, setErrors ] = useState({});
   const [ inputs, setInputs ] = useState({});
   const [ name, setName ] = useState("");
+  const cancelRequestRef = React.useRef();
   
   const { data: definitionsData, isLoading, error } = useQuery({
     queryKey: policiesUrl,
@@ -29,7 +30,11 @@ export function CreatePolicy({history, match}) {
   });
   
   const [createPolicyMutation, { isLoading: createIsLoading }] = useMutation(
-    resolver.postCreatePolicy,
+    (args) => {
+      const { promise, cancel } = resolver.postCreatePolicy(args);
+      cancelRequestRef.current = cancel;
+      return promise;
+    },
     {
       onSuccess: () => queryCache.invalidateQueries(policiesUrl),
     }
@@ -140,6 +145,7 @@ const validateRow = (definitionKey) => {
       setError: setError,
       removeRow,
       validateRow,
+      onCancel: cancelRequestRef.current,
       affirmativeAction: createPolicy,
       isPerformingAffirmativeAction: createIsLoading,
     };
@@ -155,7 +161,6 @@ const validateRow = (definitionKey) => {
     if (definitionsData) {
       return (
         <div className={styles.container}>
-          {createIsLoading && <Loading />}
           <CreateEditPolicyHeader form={form} navigateBack={navigateBack} type={POLICY_INTERACTION_TYPES.CREATE} />
           <CreateEditPolicyForm form={form} definitions={definitionsData} />
         </div>

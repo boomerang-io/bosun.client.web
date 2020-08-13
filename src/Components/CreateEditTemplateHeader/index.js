@@ -31,11 +31,18 @@ CreateEditPolicyHeader.propTypes = {
   type: PropTypes.oneOf(Object.values(TEMPLATE_INTERACTION_TYPES))
 };
 
-function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
+function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, onCancel }) {
   const config = ACTION_TYPE_CONFIG[type];
   const { isSubmitting, isValid } = form;
 
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+
+  const handleOnCancel = () => {
+    if(isSubmitting  && onCancel)
+      onCancel();
+    else
+      navigateBack();
+  };
 
   return (
     <FullPageHeader>
@@ -52,7 +59,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type }) {
           )}
         </div>
         <section className={styles.buttons}>
-          <Button className={styles.button} kind="secondary" onClick={navigateBack} size="field">
+          <Button className={styles.button} kind="secondary" onClick={handleOnCancel} size="field">
             Cancel
           </Button>
           {type === TEMPLATE_INTERACTION_TYPES.EDIT && policy.id && (

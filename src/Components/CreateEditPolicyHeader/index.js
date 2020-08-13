@@ -46,11 +46,19 @@ CreateEditPolicyHeader.propTypes = {
 
 function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validateInfo }) {
   const config = ACTION_TYPE_CONFIG[type];
-  const { name, errors, isPerformingAffirmativeAction, isDeleting } = form;
+  const { name, errors, isPerformingAffirmativeAction, isDeleting, onCancel } = form;
   const hasErrors = Object.values(errors).filter(Boolean).length;
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+
+  const handleOnCancel = () => {
+    if((isPerformingAffirmativeAction || isDeleting) && onCancel)
+      onCancel();
+    else
+      navigateBack();
+  };
+
   return (
     <FullPageHeader>
       <div className={styles.content}>
@@ -71,7 +79,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
           )}
         </div>
         <section className={styles.buttons}>
-          <Button className={styles.button} kind="secondary" onClick={navigateBack} size="field">
+          <Button className={styles.button} kind="secondary" onClick={handleOnCancel} size="field">
             Cancel
           </Button>
           {type === POLICY_INTERACTION_TYPES.EDIT && policy.id && (

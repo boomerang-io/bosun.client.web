@@ -18,6 +18,7 @@ function EditPolicy ({ history, match }) {
 
   const [ errors, setErrors ] = useState({});
   const [ name, setName ] = useState("");
+  const cancelRequestRef = React.useRef();
 
   const policiesUrl = serviceUrl.getPolicies();
   const policyUrl = serviceUrl.getPolicy({policyId: match.params.policyId});
@@ -70,13 +71,21 @@ function EditPolicy ({ history, match }) {
   const [ inputs, setInputs ] = useState(formatPolicyDataForForm(policyData, definitionsData));
 
   const [updatePolicyMutation, { isLoading: isUpdating }] = useMutation(
-    resolver.patchUpdatePolicy,
+    (args) => {
+      const { promise, cancel } = resolver.patchUpdatePolicy(args);
+      cancelRequestRef.current = cancel;
+      return promise;
+    },
     {
       onSuccess: () => queryCache.invalidateQueries(policiesUrl),
     }
   );
   const [deletePolicyMutation, { isLoading: isDeleting }] = useMutation(
-    resolver.deletePolicy,
+    (args) => {
+      const { promise, cancel } = resolver.deletePolicy(args);
+      cancelRequestRef.current = cancel;
+      return promise;
+    },
     {
       onSuccess: () => queryCache.invalidateQueries(policiesUrl),
     }
@@ -201,9 +210,11 @@ function EditPolicy ({ history, match }) {
     }
   },[policyUrl]);
   // Local methods
+
   const navigateBack = () => {
     history.push(`/teams/${match.params.teamId}`);
   };
+
     if (policiesIsLoading || policyIsLoading || validateInfoIsLoading) {
       return <Loading />;
     }
@@ -221,14 +232,14 @@ function EditPolicy ({ history, match }) {
         setError,
         removeRow,
         validateRow,
+        onCancel: cancelRequestRef.current,
         affirmativeAction: updatePolicy,
         deletePolicy,
-        isPerformingAffirmativeAction: isUpdating,
-        isDeleting
+        isPerformingAffirmativeAction: isUpdating ,
+        isDeleting,
       };
       return (
         <div className={styles.container}>
-          {(isDeleting || isUpdating) && <Loading />}
           <CreateEditPolicyHeader
             form={form}
             navigateBack={navigateBack}
