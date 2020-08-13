@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import moment from "moment";
 import { Button, DataTable } from "@boomerang-io/carbon-addons-boomerang-react";
 import { Add16 } from "@carbon/icons-react";
+import { appLink } from "Config/appConfig";
 import styles from "./templatesTable.module.scss";
 
 const headers = [
@@ -34,11 +35,11 @@ TemplatesTable.propTypes = {
 export default function TemplatesTable(props) {
   let history = useHistory();
   const handleRowClick = row => {
-    history.push(`/templates/edit/${row.id}`);
+    history.push(appLink.editTemplate({templateId: row.id}));
   };
 
   const handleCreateButtonClick = row => {
-    history.push(`/templates/create`);
+    history.push(appLink.createTemplate());
   };
 
   const renderCell = (cells, cellIndex, value) => {

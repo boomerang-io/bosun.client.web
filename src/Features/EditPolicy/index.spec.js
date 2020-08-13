@@ -44,7 +44,7 @@ describe("EditPolicy --- RTL", () => {
   });
 
   test("renders error message when fetching definitions failed", async () => {
-    server.get(serviceUrl.getPolicies(), () => {
+    server.get(serviceUrl.getTemplates(), () => {
       return new Response(404, {}, {data: {status:404, error: "Error"}})
     });
 

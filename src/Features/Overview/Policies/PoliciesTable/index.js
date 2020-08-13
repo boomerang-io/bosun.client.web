@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 import { DataTable } from "@boomerang-io/carbon-addons-boomerang-react";
-
+import { appLink } from "Config/appConfig";
 import styles from "./policiesTable.module.scss";
 
 const headers = [
@@ -35,7 +35,7 @@ export default function PoliciesTable(props) {
   let history = useHistory();
   let params = useParams();
   const handleRowClick = row => {
-    history.push(`/teams/${params.teamId}/policy/edit/${row.id}`);
+    history.push(appLink.editPolicy({teamId: params.teamId, policyId: row.id}));
   };
 
   const renderCell = (cells, cellIndex, value) => {

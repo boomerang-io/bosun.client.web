@@ -8,6 +8,7 @@ import Policies from "./Policies";
 import TeamSelector from "./TeamSelector";
 import Violations from "./Violations";
 import { serviceUrl, resolver } from "Config/servicesConfig";
+import { appLink } from "Config/appConfig";
 import AppContext from "State/context/appContext";
 import styles from "./overview.module.scss";
 
@@ -37,7 +38,7 @@ export function Overview() {
 
   const handleChangeTeam = ({ selectedItem }) => {
     if (selectedItem?.id) {
-      history.push(`/teams/${selectedItem.id}`);
+      history.push(appLink.teamOverview({teamId: selectedItem.id}));
     }
   };
 
@@ -56,7 +57,7 @@ export function Overview() {
         {insightsData && (
           <Insights insights={insightsData} policies={policiesData} violations={violationsData} />
         )}
-        {policiesData && <Policies policies={policiesData} />}
+        {policiesData && <Policies policies={policiesData} activeTeamId={activeTeam.id}/>}
         {violationsData && (
           <Violations hasPolicies={policiesData?.length} violations={violationsData} />
         )}

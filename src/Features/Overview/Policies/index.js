@@ -2,18 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import NoDisplay from "Components/NoDisplay";
 import { Button } from "@boomerang-io/carbon-addons-boomerang-react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import PoliciesTable from "./PoliciesTable";
+import { appLink } from "Config/appConfig";
 import { Add16 } from "@carbon/icons-react";
 import styles from "./policies.module.scss";
 
 Policies.propTypes = {
-  policies: PropTypes.array
+  policies: PropTypes.array,
+  activeTeamId: PropTypes.string
 };
 
-export function Policies({ policies }) {
+export function Policies({ policies, activeTeamId }) {
   let history = useHistory();
-  let location = useLocation();
   return (
     <section className={styles.container} data-testid="policies-container" id="policies-container">
       <h2 className={styles.title}>{`Policies (${policies.length})`}</h2>
@@ -24,7 +25,7 @@ export function Policies({ policies }) {
         <Button
           data-testid="add-policy-button"
           iconDescription="Create Policy"
-          onClick={() => history.push(`${location.pathname}/policy/create`)}
+          onClick={() => history.push(appLink.createPolicy({teamId: activeTeamId}))}
           renderIcon={Add16}
           size="field"
         >

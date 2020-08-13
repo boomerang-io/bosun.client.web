@@ -6,6 +6,7 @@ import { ErrorDragon, Loading, notify, ToastNotification } from "@boomerang-io/c
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
 import { serviceUrl, resolver } from "Config/servicesConfig";
+import { appLink } from "Config/appConfig";
 import { POLICY_INTERACTION_TYPES } from "Constants";
 import styles from "./createPolicy.module.scss";
 
@@ -16,7 +17,7 @@ CreatePolicy.propTypes = {
 export function CreatePolicy({history, match}) {
   const { activeTeam } = useAppContext();
 
-  const policiesUrl = serviceUrl.getPolicies();
+  const definitionsUrl = serviceUrl.getTemplates();
   const { params } = match;
 
   const [ errors, setErrors ] = useState({});
@@ -25,8 +26,8 @@ export function CreatePolicy({history, match}) {
   const cancelRequestRef = React.useRef();
   
   const { data: definitionsData, isLoading, error } = useQuery({
-    queryKey: policiesUrl,
-    queryFn: resolver.query(policiesUrl)
+    queryKey: definitionsUrl,
+    queryFn: resolver.query(definitionsUrl)
   });
   
   const [createPolicyMutation, { isLoading: createIsLoading }] = useMutation(
@@ -36,7 +37,7 @@ export function CreatePolicy({history, match}) {
       return promise;
     },
     {
-      onSuccess: () => queryCache.invalidateQueries(policiesUrl),
+      onSuccess: () => queryCache.invalidateQueries(definitionsUrl),
     }
   );
   const createPolicy = async () => {
@@ -133,7 +134,7 @@ const validateRow = (definitionKey) => {
   // Local methods
 
   const navigateBack = () => {
-    history.push(`/teams/${params.teamId}`);
+    history.push(appLink.teamOverview({teamId: params.teamId}));
   };
 
     const form = {

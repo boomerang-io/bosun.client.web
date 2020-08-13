@@ -3,7 +3,7 @@ import { startApiServer } from "ApiServer";
 
 let server;
 
-describe("Policies Overview", function () {
+describe("Team Overview", function () {
   beforeEach(() => {
     server = startApiServer({ environment: "test" });
     cy.visit(buildVisitUrl());

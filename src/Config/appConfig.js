@@ -27,8 +27,11 @@ export const appLink = {
   componentModes: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/component-modes`,
   policyTemplates: () => `/templates`,
 
-  editPolicy: ({teamId, policyId}) => `/teams/${teamId}/policy/edit/${policyId}`,
   createPolicy: ({teamId}) => `/teams/${teamId}/policy/create`,
+  createTemplate: () => `/templates/create`,
+  editPolicy: ({teamId, policyId}) => `/teams/${teamId}/policy/edit/${policyId}`,
+  editTemplate: ({templateId}) => `/templates/edit/${templateId}`,
+  teamOverview: ({teamId}) => `/teams/${teamId}`
 };
 
 export const FeatureFlag = {

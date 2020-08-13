@@ -53,11 +53,7 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
       this.get(serviceUrl.getTeams(), (schema) => {
         return schema.db.teams;
       });
-
-      this.get(serviceUrl.getPolicies(), (schema) => {
-        return schema.db.templates;
-      });
-
+      
       this.get(serviceUrl.getPolicy({policyId: ":policyId"}), (schema, request) => {
         let { policyId } = request.params;
         let activePolicy = schema.policies.find(policyId);

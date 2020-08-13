@@ -3,11 +3,12 @@ import { useMutation, queryCache } from "react-query";
 import { notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants";
+import { appLink } from "Config/appConfig";
 import { resolver, serviceUrl } from "Config/servicesConfig";
 
 function CreateTemplate(props) {
   function navigateBack() {
-    props.history.push("/templates");
+    props.history.push(appLink.policyTemplates());
   }
   const cancelRequestRef = React.useRef();
 

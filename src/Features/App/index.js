@@ -7,6 +7,7 @@ import Main from "./Main";
 import Navbar from "./Navbar";
 import { PRODUCT_STANDALONE } from "Config/appConfig";
 import { serviceUrl, resolver } from "Config/servicesConfig";
+import { appLink } from "Config/appConfig";
 import AppContext from "State/context/appContext";
 import styles from "./App.module.scss";
 
@@ -47,7 +48,7 @@ export function App() {
       const firstTeam = teamsState.data[0];
       setActiveTeam(firstTeam);
       if (!templatesMatch) {
-        history.push(`/teams/${firstTeam.id}`);
+        history.push(appLink.teamOverview({teamId: firstTeam.id}));
       }
     }
   }, [activeTeam, activeTeamId, history, setActiveTeam, teamsState, templatesMatch]);

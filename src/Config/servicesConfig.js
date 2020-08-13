@@ -39,7 +39,6 @@ export const serviceUrl = {
   getInsights: ({teamId}) => `${BASE_SERVICE_PRODUCT_URL}/policies/insights?teamId=${teamId}`,
   getInsightsOverview: () => `${BASE_SERVICE_PRODUCT_URL}/policies/insights`,
   getNavigation: () => `${BASE_SERVICE_USERS_URL}/navigation`,
-  getPolicies: () => `${BASE_SERVICE_PRODUCT_URL}/templates`,
   getPolicy: ({policyId}) => `${BASE_SERVICE_PRODUCT_URL}/policies/${policyId}`,
   getPolicyOverview: () => `${BASE_SERVICE_PRODUCT_URL}/policies`,
   getTeams: () => `${BASE_SERVICE_PRODUCT_URL}/teams`,

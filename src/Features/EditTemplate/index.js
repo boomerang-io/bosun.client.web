@@ -6,11 +6,12 @@ import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
 import NoDisplay from "Components/NoDisplay";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants";
 import { serviceUrl, resolver } from "Config/servicesConfig";
+import { appLink } from "Config/appConfig";
 
 function EditTemplate(props) {
   const history = useHistory();
   function navigateBack() {
-    history.push("/templates");
+    history.push(appLink.policyTemplates());
   }
   const cancelRequestRef = React.useRef();
 

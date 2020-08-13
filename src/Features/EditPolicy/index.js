@@ -6,6 +6,7 @@ import { ErrorDragon, Loading, notify, ToastNotification } from "@boomerang-io/c
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
 import { serviceUrl, resolver } from "Config/servicesConfig";
+import { appLink } from "Config/appConfig";
 import { POLICY_INTERACTION_TYPES } from "Constants";
 import styles from "./editPolicy.module.scss";
 
@@ -20,7 +21,7 @@ function EditPolicy ({ history, match }) {
   const [ name, setName ] = useState("");
   const cancelRequestRef = React.useRef();
 
-  const policiesUrl = serviceUrl.getPolicies();
+  const definitionsUrl = serviceUrl.getTemplates();
   const policyUrl = serviceUrl.getPolicy({policyId: match.params.policyId});
   const validateInfoUrl = serviceUrl.getValidateInfo({policyId: match.params.policyId});
 
@@ -47,9 +48,9 @@ function EditPolicy ({ history, match }) {
     return newInputsState;
   }
 
-  const { data: definitionsData, isLoading: policiesIsLoading, error: policiesError } = useQuery({
-    queryKey: policiesUrl,
-    queryFn: resolver.query(policiesUrl),
+  const { data: definitionsData, isLoading: definitionsIsLoading, error: definitionsError } = useQuery({
+    queryKey: definitionsUrl,
+    queryFn: resolver.query(definitionsUrl),
     config: {
       onSuccess: (data) => setInputs(formatPolicyDataForForm(policyData, data))
     }
@@ -77,7 +78,7 @@ function EditPolicy ({ history, match }) {
       return promise;
     },
     {
-      onSuccess: () => queryCache.invalidateQueries(policiesUrl),
+      onSuccess: () => queryCache.invalidateQueries(definitionsUrl),
     }
   );
   const [deletePolicyMutation, { isLoading: isDeleting }] = useMutation(
@@ -87,7 +88,7 @@ function EditPolicy ({ history, match }) {
       return promise;
     },
     {
-      onSuccess: () => queryCache.invalidateQueries(policiesUrl),
+      onSuccess: () => queryCache.invalidateQueries(definitionsUrl),
     }
   );
 
@@ -212,13 +213,13 @@ function EditPolicy ({ history, match }) {
   // Local methods
 
   const navigateBack = () => {
-    history.push(`/teams/${match.params.teamId}`);
+    history.push(appLink.teamOverview({teamId: match.params.teamId}));
   };
 
-    if (policiesIsLoading || policyIsLoading || validateInfoIsLoading) {
+    if (definitionsIsLoading || policyIsLoading || validateInfoIsLoading) {
       return <Loading />;
     }
-    if (policiesError || policyError || validateInfoError) {
+    if (definitionsError || policyError || validateInfoError) {
       return <ErrorDragon />;
     }
 
