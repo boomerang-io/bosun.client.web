@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 import { Error404, Loading, NotificationsContainer } from "@boomerang-io/carbon-addons-boomerang-react";
+import { appPath } from "Config/appConfig";
 import styles from "./Main.module.scss";
 
 const EditPolicy = lazy(() => import(/* webpackChunkName: "EditPolicy" */ "Features/EditPolicy"));
@@ -15,12 +16,12 @@ function Main() {
     <main id="content" className={styles.container}>
       <Suspense fallback={<Loading />}>
         <Switch>
-          <Route path="/templates/create" component={CreateTemplate} />
-          <Route path="/templates/edit/:templateId" component={EditTemplate} />
-          <Route exact path="/templates" component={Templates} />
-          <Route path="/teams/:teamId/policy/edit/:policyId" component={EditPolicy} />
-          <Route path="/teams/:teamId/policy/create" component={CreatePolicy} />
-          <Route path="/teams/:teamId" component={Overview} />
+          <Route path={appPath.createTemplate} component={CreateTemplate} />
+          <Route path={appPath.editTemplate} component={EditTemplate} />
+          <Route exact path={appPath.templates} component={Templates} />
+          <Route path={appPath.editPolicy} component={EditPolicy} />
+          <Route path={appPath.createPolicy} component={CreatePolicy} />
+          <Route path={appPath.overview} component={Overview} />
           <Route exact path="/" component={Overview} />
           <Route path="*" component={Error404} />
         </Switch>

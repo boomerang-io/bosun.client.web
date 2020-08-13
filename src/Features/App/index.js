@@ -9,6 +9,7 @@ import { PRODUCT_STANDALONE } from "Config/appConfig";
 import { serviceUrl, resolver } from "Config/servicesConfig";
 import { appLink } from "Config/appConfig";
 import AppContext from "State/context/appContext";
+import { appPath } from "Config/appConfig";
 import styles from "./App.module.scss";
 
 const userUrl = serviceUrl.getUserProfile();
@@ -18,8 +19,8 @@ const teamsUrl = serviceUrl.getTeams();
 export function App() {
   const history = useHistory();
   const location = useLocation();
-  const teamsMatch = matchPath(location.pathname, { path: "/teams/:teamId" });
-  const templatesMatch = matchPath(location.pathname, { path: "/templates" });
+  const teamsMatch = matchPath(location.pathname, { path: appPath.overview });
+  const templatesMatch = matchPath(location.pathname, { path: appPath.templates });
   
   const userState = useQuery({
     queryKey: userUrl,

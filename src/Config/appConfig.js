@@ -7,9 +7,14 @@ export const PRODUCT_STANDALONE = process.env.PRODUCT_STANDALONE === "true" ?? f
 
 // TODO
 export const ROUTES = {};
-export const AppPath = {
-  EditPolicy: "/:teamId/policy/edit/:policyId",
-  PolicyTemplates: "/templates",
+export const appPath = {
+  root: APP_ROOT,
+  createPolicy: "/teams/:teamId/policy/create",
+  createTemplate: "/templates/create",
+  editPolicy: "/teams/:teamId/policy/edit/:policyId",
+  editTemplate: "/templates/edit/:templateId",
+  overview: "/teams/:teamId",
+  templates: "/templates",
 };
 
 export const appLink = {

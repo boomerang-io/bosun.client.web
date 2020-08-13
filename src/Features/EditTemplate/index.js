@@ -79,7 +79,7 @@ function EditTemplate(props) {
     return (
       <>
         <Error />
-        <Link to="/templates">Go to Templates</Link>
+        <Link to={appLink.policyTemplates()}>Go to Templates</Link>
       </>
     );
   }
@@ -107,7 +107,7 @@ function EditTemplate(props) {
             text="No matching template found. Are you sure you have the right link?"
             style={{ width: "30rem", marginTop: "10rem" }}
           />
-          <Link to="/templates">Go to Templates</Link>
+          <Link to={appLink.policyTemplates()}>Go to Templates</Link>
         </div>
       );
     }

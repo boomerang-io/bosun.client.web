@@ -6,7 +6,7 @@ import { LeftSideNav, UIShell, SideNavLink, SideNavItems, SideNavMenu, SideNavMe
 import { SideNav } from "carbon-components-react";
 import { BASE_LAUNCH_ENV_URL } from "Config/platformUrlConfig";
 import { BASE_SERVICE_ENV_URL } from "Config/servicesConfig";
-import { appLink } from "Config/appConfig";
+import { appLink, appPath } from "Config/appConfig";
 import {
   Apps16,
   Analytics16,
@@ -55,7 +55,7 @@ function Navbar({ activeTeam, navigationState, userState }) {
                 large
                 activeClassName={ACTIVE_CLASS_NAME}
                 element={NavLink}
-                isActive={!location.pathname.startsWith("/templates")}
+                isActive={!location.pathname.startsWith(appPath.templates)}
                 onClick={onMenuClose}
                 renderIcon={Rocket16}
                 to="/"
@@ -127,7 +127,7 @@ function Navbar({ activeTeam, navigationState, userState }) {
                 large
                 activeClassName={ACTIVE_CLASS_NAME}
                 element={NavLink}
-                isActive={!location.pathname.startsWith("/templates")}
+                isActive={!location.pathname.startsWith(appPath.templates)}
                 onClick={onMenuClose}
                 renderIcon={Locked16}
                 to="/"
