@@ -51,24 +51,20 @@ export default class TemplateRulesModalContent extends Component {
   };
 
   handleOnChange = (e, formikChange) => {
-    this.props.setShouldConfirmModalClose(true);
     formikChange(e);
   };
 
   handleOnFieldValueChange = (value, id, setFieldValue) => {
-    this.props.setShouldConfirmModalClose(true);
     setFieldValue(id, value);
   };
 
   handleOnTypeChange = (selectedItem, setFieldValue) => {
-    this.props.setShouldConfirmModalClose(true);
     setFieldValue(FIELD.TYPE, selectedItem);
     setFieldValue(FIELD.DEFAULT_VALUE, selectedItem.value === INPUT_TYPES.BOOLEAN ? false : undefined);
   };
 
   // Only save an array of strings to match api and simplify renderDefaultValue()
   handleOptionsChange = (values, setFieldValue) => {
-    this.props.setShouldConfirmModalClose(true);
     setFieldValue(FIELD.OPTIONS, values);
   };
 
@@ -98,7 +94,7 @@ export default class TemplateRulesModalContent extends Component {
       this.props.createConfig(inputProperties);
     }
 
-    this.props.forceCloseModal();
+    this.props.closeModal();
   };
 
   renderDefaultValue = formikProps => {

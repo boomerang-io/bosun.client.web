@@ -51,12 +51,13 @@ export default function TemplateRules({ arrayHelpers, rules = [], inputsKeys = [
               isEdit
               inputsKeys={inputsKeys.filter(inputName => inputName !== input.key)}
               input={input}
-              updateConfig={arrayHelpers.replace}
+              updateConfig={(values) => arrayHelpers.replace(index, values)}
             />
             <ConfirmModal
               affirmativeAction={() => {
                 arrayHelpers.remove(index);
               }}
+              affirmativeButtonProps={{ kind: "danger" }}
               children="It will be gone once you save."
               title="Delete This Property?"
               modalTrigger={({ openModal }) => <CloseButton className={styles.deleteProperty} onClick={openModal} />}

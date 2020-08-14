@@ -16,7 +16,6 @@ const props = {
   },
   loading: false,
   updateInputs: mockfn,
-  setShouldConfirmModalClose: mockfn,
   closeModal: mockfn,
   inputsName: [],
   workflowActions: { updateWorkflowInput: mockfn, createWorkflowInput: mockfn }

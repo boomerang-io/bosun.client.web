@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { ModalFlow } from "@boomerang-io/carbon-addons-boomerang-react";
+import { ComposedModal } from "@boomerang-io/carbon-addons-boomerang-react";
 import TemplateRulesModalContent from "./TemplateRulesModalContent";
 import EditButton from "Components/EditButton";
 import { Add32 } from "@carbon/icons-react";
@@ -37,7 +37,7 @@ class WorkflowProperties extends Component {
     const { isEdit } = this.props;
 
     return (
-      <ModalFlow
+      <ComposedModal
         confirmModalProps={{
           title: "Are you sure?",
           children: "Your rule will not be saved"
@@ -48,12 +48,16 @@ class WorkflowProperties extends Component {
         }}
         modalTrigger={this.editTrigger}
       >
-        <TemplateRulesModalContent
-          createConfig={this.props.createConfig}
-          updateConfig={this.props.updateConfig}
-          {...this.props}
-        />
-      </ModalFlow>
+      {
+        ({closeModal}) =>
+          <TemplateRulesModalContent
+            createConfig={this.props.createConfig}
+            updateConfig={this.props.updateConfig}
+            closeModal={closeModal}
+            {...this.props}
+          />
+      }
+      </ComposedModal>
     );
   }
 }

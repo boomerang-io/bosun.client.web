@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button, Modal } from "@boomerang-io/carbon-addons-boomerang-react";
+import { Button, ConfirmModal } from "@boomerang-io/carbon-addons-boomerang-react";
 import FullPageHeader from "Components/FullPageHeader";
 import { formatDateTimeString } from "Utils";
 import { Add16, Delete16, Save16 } from "@carbon/icons-react";
@@ -26,12 +26,12 @@ const ACTION_TYPE_CONFIG = {
 
 CreateEditPolicyHeader.propTypes = {
   form: PropTypes.object.isRequired,
-  policy: PropTypes.object,
+  template: PropTypes.object,
   navigateBack: PropTypes.func.isRequired,
   type: PropTypes.oneOf(Object.values(TEMPLATE_INTERACTION_TYPES))
 };
 
-function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, onCancel }) {
+function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCancel }) {
   const config = ACTION_TYPE_CONFIG[type];
   const { isSubmitting, isValid } = form;
 
@@ -49,11 +49,11 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, onCance
       <div className={styles.content}>
         <div className={styles.info}>
           <h1 className={styles.title}>{`${config.title} Template`}</h1>
-          {policy.createdDate && (
+          {template.createdDate && (
             <div>
               <p className={styles.metaData}>
                 <span className={styles.metaDataLabel}>Created: </span>
-                {formatDateTimeString(policy.createdDate)}
+                {formatDateTimeString(template.createdDate)}
               </p>
             </div>
           )}
@@ -62,7 +62,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, onCance
           <Button className={styles.button} kind="secondary" onClick={handleOnCancel} size="field">
             Cancel
           </Button>
-          {type === TEMPLATE_INTERACTION_TYPES.EDIT && policy.id && (
+          {type === TEMPLATE_INTERACTION_TYPES.EDIT && template.id && (
             <Button
               disabled={isSubmitting}
               className={styles.button}
@@ -90,17 +90,16 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, onCance
         </section>
       </div>
       {deleteModalIsOpen && (
-        <Modal
-          danger
-          open
-          shouldSubmitOnEnter
-          className={styles.deleteConfirmModal}
-          modalHeading={`Delete ${policy.name}?`}
-          primaryButtonText="Yes"
-          secondaryButtonText="No"
-          onRequestClose={() => setDeleteModalIsOpen(false)}
-          onSecondarySubmit={() => setDeleteModalIsOpen(false)}
-          onRequestSubmit={() => {
+        <ConfirmModal
+          isOpen
+          title={`Delete ${template.name}?`}
+          negativeText="No"
+          affirmativeText="Yes"
+          onCloseModal={() => {
+            setDeleteModalIsOpen(false);
+          }}
+          affirmativeButtonProps={{ kind: "danger" }}
+          affirmativeAction={() => {
             form.deletePolicy();
             setDeleteModalIsOpen(false);
           }}
