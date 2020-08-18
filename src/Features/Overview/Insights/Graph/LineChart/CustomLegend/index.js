@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { isAccessibleEvent } from "Utils";
+import { isAccessibleEvent } from "@boomerang-io/utils";
 import LegendIcon from "./LegendIcon";
 import "./styles.scss";
 
@@ -12,14 +12,14 @@ class CustomLegend extends Component {
     return (
       <div className="c-legend">
         {this.props.payload.map((data, index) => {
-          let isToggled = this.props.toggledItems.find(item => data.payload.name === item);
-          let lastDot = this.props.lastDots.find(dot => dot.key === data.payload.dataKey);
+          let isToggled = this.props.toggledItems.find((item) => data.payload.name === item);
+          let lastDot = this.props.lastDots.find((dot) => dot.key === data.payload.dataKey);
           return (
             <div
               key={`${data.payload.name}-${index}`}
               className="c-legend-icon"
-              onClick={e => this.toggleWithIsAccessibleEventCheck(e, data)}
-              onKeyDown={e => this.toggleWithIsAccessibleEventCheck(e, data)}
+              onClick={(e) => this.toggleWithIsAccessibleEventCheck(e, data)}
+              onKeyDown={(e) => this.toggleWithIsAccessibleEventCheck(e, data)}
               role="button"
               tabIndex="0"
               style={{
@@ -27,7 +27,7 @@ class CustomLegend extends Component {
                 left: "2rem",
                 top: lastDot ? lastDot.y : "",
                 marginTop: "-1.75rem",
-                padding: "0.25rem"
+                padding: "0.25rem",
               }}
             >
               <LegendIcon className="b-legend-icon" strokeColor={data.payload.stroke} />
@@ -46,7 +46,7 @@ CustomLegend.propTypes = {
   payload: PropTypes.array,
   toggleItem: PropTypes.func,
   toggledItems: PropTypes.array,
-  lastDots: PropTypes.array
+  lastDots: PropTypes.array,
 };
 
 export default CustomLegend;

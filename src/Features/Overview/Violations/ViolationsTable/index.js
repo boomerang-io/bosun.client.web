@@ -12,7 +12,7 @@ import {
   Tag,
 } from "@boomerang-io/carbon-addons-boomerang-react";
 import copy from "copy-to-clipboard";
-import { isAccessibleEvent } from "Utils";
+import { isAccessibleEvent } from "@boomerang-io/utils";
 import styles from "./violationsTable.module.scss";
 
 export class ViolationsTable extends Component {
@@ -119,75 +119,77 @@ export class ViolationsTable extends Component {
     const selectedViolation = violations[this.state.selectedPolicyIndex];
     return (
       <>
-        <ComposedModal 
-          isOpen={this.state.isModalOpen} 
-          composedModalProps={{shouldCloseOnOverlayClick: true}}
+        <ComposedModal
+          isOpen={this.state.isModalOpen}
+          composedModalProps={{ shouldCloseOnOverlayClick: true }}
           onCloseModal={() => this.setState({ isModalOpen: false })}
-          modalHeaderProps={{title: selectedViolation?.policyName}}
+          modalHeaderProps={{ title: selectedViolation?.policyName }}
         >
-          {
-            () => (
-              <ModalForm>
-                <ModalBody>
-                  <h2 className={styles.modalSectionTitle}>{`Violations (${selectedViolation?.violations?.length ?? 0})`}</h2>
-                  <ul className={styles.modalLabels}>
-                    {(selectedViolation?.violations ?? [])?.map(({ metric, message }, index) => (
-                      <li key={index}>
-                        <span>{metric} : </span>
-                        <span style={{ fontStyle: "italic" }}>{message}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <h2 className={styles.modalSectionTitle}>Failed Definition Types</h2>
-                  <p>
-                    {selectedViolation?.policyDefinitionTypes && selectedViolation?.policyDefinitionTypes.length
-                      ? selectedViolation?.policyDefinitionTypes.join(", ")
-                      : "---"}
-                  </p>
-                  <h2 className={styles.modalSectionTitle}>Labels</h2>
-                  <ul className={styles.modalLabels}>
-                    {Object.entries(selectedViolation?.labels ?? {})?.map((entry) => (
-                      <li key={entry[0]}>
-                        <Tag type="purple">
-                          {entry[0]}
-                          <span>:</span>
-                          {entry[1]}
-                        </Tag>
-                      </li>
-                    ))}
-                  </ul>
-                  <h2 className={styles.modalSectionTitle}>Reference Link</h2>
-                  {selectedViolation?.referenceLink ? (
-                    <a href={selectedViolation.referenceLink} alt="Reference link">
-                      {selectedViolation.referenceLink}
-                    </a>
-                  ) : (
-                    <p>No reference link provided</p>
-                  )}
+          {() => (
+            <ModalForm>
+              <ModalBody>
+                <h2 className={styles.modalSectionTitle}>{`Violations (${
+                  selectedViolation?.violations?.length ?? 0
+                })`}</h2>
+                <ul className={styles.modalLabels}>
+                  {(selectedViolation?.violations ?? [])?.map(({ metric, message }, index) => (
+                    <li key={index}>
+                      <span>{metric} : </span>
+                      <span style={{ fontStyle: "italic" }}>{message}</span>
+                    </li>
+                  ))}
+                </ul>
+                <h2 className={styles.modalSectionTitle}>Failed Definition Types</h2>
+                <p>
+                  {selectedViolation?.policyDefinitionTypes && selectedViolation?.policyDefinitionTypes.length
+                    ? selectedViolation?.policyDefinitionTypes.join(", ")
+                    : "---"}
+                </p>
+                <h2 className={styles.modalSectionTitle}>Labels</h2>
+                <ul className={styles.modalLabels}>
+                  {Object.entries(selectedViolation?.labels ?? {})?.map((entry) => (
+                    <li key={entry[0]}>
+                      <Tag type="purple">
+                        {entry[0]}
+                        <span>:</span>
+                        {entry[1]}
+                      </Tag>
+                    </li>
+                  ))}
+                </ul>
+                <h2 className={styles.modalSectionTitle}>Reference Link</h2>
+                {selectedViolation?.referenceLink ? (
+                  <a href={selectedViolation.referenceLink} alt="Reference link">
+                    {selectedViolation.referenceLink}
+                  </a>
+                ) : (
+                  <p>No reference link provided</p>
+                )}
 
-                  <h2 className={styles.modalSectionTitle}>Reference ID</h2>
-                  <p>{selectedViolation?.referenceId ?? "---"}</p>
-                  <h2 className={styles.modalSectionTitle}>Created Date</h2>
-                  <time>{moment(selectedViolation?.createdDate).format("MMM DD, YYYY - hh:mm a")}</time>
-                  <h2 className={styles.modalSectionTitle}>Annotations</h2>
-                  {selectedViolation?.annotations ? (
-                    <CodeSnippet
-                      copyButtonDescription="Copy annotations to clipboard"
-                      onClick={() => copy(JSON.stringify([selectedViolation?.annotations]))}
-                      type="multi"
-                    >
-                      {JSON.stringify([selectedViolation?.annotations], null, 1)}
-                    </CodeSnippet>
-                  ) : (
-                    "---"
-                  )}
-                </ModalBody>
-                <ModalFooter>
-                  <Button onClick={() => this.setState({ isModalOpen: false })} data-testid="close-violation-detail">Close</Button>
-                </ModalFooter>
-              </ModalForm>
-            )
-          }
+                <h2 className={styles.modalSectionTitle}>Reference ID</h2>
+                <p>{selectedViolation?.referenceId ?? "---"}</p>
+                <h2 className={styles.modalSectionTitle}>Created Date</h2>
+                <time>{moment(selectedViolation?.createdDate).format("MMM DD, YYYY - hh:mm a")}</time>
+                <h2 className={styles.modalSectionTitle}>Annotations</h2>
+                {selectedViolation?.annotations ? (
+                  <CodeSnippet
+                    copyButtonDescription="Copy annotations to clipboard"
+                    onClick={() => copy(JSON.stringify([selectedViolation?.annotations]))}
+                    type="multi"
+                  >
+                    {JSON.stringify([selectedViolation?.annotations], null, 1)}
+                  </CodeSnippet>
+                ) : (
+                  "---"
+                )}
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={() => this.setState({ isModalOpen: false })} data-testid="close-violation-detail">
+                  Close
+                </Button>
+              </ModalFooter>
+            </ModalForm>
+          )}
         </ComposedModal>
         <DataTable
           rows={violations}
