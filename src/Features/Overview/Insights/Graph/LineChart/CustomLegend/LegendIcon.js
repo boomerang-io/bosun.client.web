@@ -19,7 +19,7 @@ const LegendIcon = ({ className, strokeColor }) => {
           A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
           H32M21.333333333333332,16
           A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
-        class="recharts-legend-icon"
+        className="recharts-legend-icon"
       />
     </svg>
   );

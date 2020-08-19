@@ -38,7 +38,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
           .notOneOf(validationData?.templateKeys ?? [], "Enter a unique key value")
           .max(64, "Enter no more than 64 character")
           .test("is-valid-key", "Key cannot contain spaces and special characters", validateKey),
-        description: Yup.string().max(128, "Enter no more than 128 character"),
+        description: Yup.string().max(250, "Enter 250 or less character"),
         name: Yup.string()
           .required("Enter a name")
           .notOneOf(validationData?.templateNames ?? [], "Enter a unique name")

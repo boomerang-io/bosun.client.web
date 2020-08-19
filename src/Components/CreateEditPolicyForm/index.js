@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { TextInput } from "@boomerang-io/carbon-addons-boomerang-react";
 import PolicyFormDefinitionSection from "./PolicyFormDefinitionSection";
+import sortBy from "lodash/sortBy";
 import KingJellyGraphic from "Components/KingJellyGraphic";
 import styles from "./createEditPolicyForm.module.scss";
 
@@ -11,6 +12,7 @@ CreateEditPolicyForm.propTypes = {
 };
 
 export default function CreateEditPolicyForm({ definitions, form }) {
+  const sortedDefinitions = React.useMemo(() => sortBy(definitions, "order"), [definitions]);
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -23,7 +25,7 @@ export default function CreateEditPolicyForm({ definitions, form }) {
           value={form.name}
           type="text"
         />
-        {definitions.map((definition) => (
+        {sortedDefinitions.map((definition) => (
           <PolicyFormDefinitionSection key={definition.id + definition.key} definition={definition} form={form} />
         ))}
       </div>

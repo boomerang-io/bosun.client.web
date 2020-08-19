@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ComboBox, TextInput, TextArea, Button } from "@boomerang-io/carbon-addons-boomerang-react";
 import styles from "./policyFormDefinitionSection.module.scss";
 import uuid from "uuid";
-import { Add16, Delete16 } from "@carbon/icons-react";
+import { Add16, TrashCan16 } from "@carbon/icons-react";
 
 const INPUT_TYPES = {
   text: { type: "text" },
@@ -28,7 +28,7 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
     return (
       <TextInput
         autoComplete="off"
-        id={key}
+        id={`${key}-${uuid}`}
         key={key}
         labelText={label}
         name={key}
@@ -44,7 +44,7 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
     return (
       <TextArea
         autoComplete="off"
-        id={key}
+        id={`${key}-${uuid}`}
         key={key}
         labelText={label}
         name={key}
@@ -59,7 +59,7 @@ function determineInput({ onChange, inputs, inputData, uuid }) {
     return (
       <ComboBox
         autoComplete="off"
-        id={key}
+        id={`${key}-${uuid}`}
         key={key}
         titleText={label}
         initialSelectedItem={inputs[key]}
@@ -113,7 +113,7 @@ function PolicyFormDefinitionSection({ definition, form }) {
         {rows.map((row, index) => {
           return (
             <div className={styles.row} key={row.uuid}>
-              {row.rules.map((input) =>
+              {row.rules?.map((input) =>
                 determineInput({
                   onChange,
                   inputs: inputs[row.uuid] || {},
@@ -121,9 +121,9 @@ function PolicyFormDefinitionSection({ definition, form }) {
                   definitionKey: definition.key,
                   uuid: row.uuid,
                 })
-              )}
+              ) ?? <p>No rules found. Check the policy template.</p>}
               <button className={styles.delete} onClick={() => removeRow(index)}>
-                <Delete16 />
+                <TrashCan16 />
               </button>
             </div>
           );

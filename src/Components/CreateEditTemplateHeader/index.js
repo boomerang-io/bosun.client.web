@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button, ConfirmModal } from "@boomerang-io/carbon-addons-boomerang-react";
 import FullPageHeader from "Components/FullPageHeader";
 import { formatDateTimeString } from "Utils";
-import { Add16, Delete16, Save16 } from "@carbon/icons-react";
+import { Add16, TrashCan16, Save16 } from "@carbon/icons-react";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants/";
 import styles from "./createEditPolicyHeader.module.scss";
 
@@ -12,7 +12,7 @@ const ACTION_TYPE_CONFIG = {
     title: "Create",
     affirmativeActionVerb: "Create",
     isPerformingActionVerb: "Creating...",
-    icon: Add16
+    icon: Add16,
   },
   [TEMPLATE_INTERACTION_TYPES.EDIT]: {
     title: "Edit",
@@ -20,15 +20,15 @@ const ACTION_TYPE_CONFIG = {
     isPerformingActionVerb: "Saving...",
     deleteActionVerb: "Delete",
     isDeletingActionVerb: "Deleting...",
-    icon: Save16
-  }
+    icon: Save16,
+  },
 };
 
 CreateEditPolicyHeader.propTypes = {
   form: PropTypes.object.isRequired,
   template: PropTypes.object,
   navigateBack: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(Object.values(TEMPLATE_INTERACTION_TYPES))
+  type: PropTypes.oneOf(Object.values(TEMPLATE_INTERACTION_TYPES)),
 };
 
 function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCancel }) {
@@ -38,10 +38,8 @@ function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCan
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
   const handleOnCancel = () => {
-    if(isSubmitting  && onCancel)
-      onCancel();
-    else
-      navigateBack();
+    if (isSubmitting && onCancel) onCancel();
+    else navigateBack();
   };
 
   return (
@@ -68,7 +66,7 @@ function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCan
               className={styles.button}
               onClick={() => setDeleteModalIsOpen(true)}
               kind="danger"
-              renderIcon={Delete16}
+              renderIcon={TrashCan16}
               iconDescription="Delete"
               size="field"
             >

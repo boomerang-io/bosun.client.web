@@ -143,6 +143,44 @@ exports[`CreatePolicy --- Snapshot renders correctly 1`] = `
             class="section"
           >
             <h2>
+              asdadsf
+            </h2>
+            <p>
+              asdsdaf
+            </p>
+            <div
+              class="rowsContainer"
+            />
+            <button
+              class="bx--btn bx--btn--field bx--btn--ghost"
+              style="margin-left: -0.625rem;"
+              tabindex="0"
+              type="button"
+            >
+              Add Rule
+              <svg
+                aria-hidden="true"
+                aria-label="Add Rule"
+                class="bx--btn__icon"
+                fill="currentColor"
+                focusable="false"
+                height="16"
+                preserveAspectRatio="xMidYMid meet"
+                role="img"
+                viewBox="0 0 32 32"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17 15L17 8 15 8 15 15 8 15 8 17 15 17 15 24 17 24 17 17 24 17 24 15z"
+                />
+              </svg>
+            </button>
+          </section>
+          <section
+            class="section"
+          >
+            <h2>
               Package Safe List
             </h2>
             <p>
@@ -223,44 +261,6 @@ exports[`CreatePolicy --- Snapshot renders correctly 1`] = `
             </h2>
             <p>
               The Common Vulnerabilities & Exposures (CVE) are validated against JFrog Xray Security Issues. Artifact and Version are validated through regular expression.
-            </p>
-            <div
-              class="rowsContainer"
-            />
-            <button
-              class="bx--btn bx--btn--field bx--btn--ghost"
-              style="margin-left: -0.625rem;"
-              tabindex="0"
-              type="button"
-            >
-              Add Rule
-              <svg
-                aria-hidden="true"
-                aria-label="Add Rule"
-                class="bx--btn__icon"
-                fill="currentColor"
-                focusable="false"
-                height="16"
-                preserveAspectRatio="xMidYMid meet"
-                role="img"
-                viewBox="0 0 32 32"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17 15L17 8 15 8 15 15 8 15 8 17 15 17 15 24 17 24 17 17 24 17 24 15z"
-                />
-              </svg>
-            </button>
-          </section>
-          <section
-            class="section"
-          >
-            <h2>
-              asdadsf
-            </h2>
-            <p>
-              asdsdaf
             </p>
             <div
               class="rowsContainer"

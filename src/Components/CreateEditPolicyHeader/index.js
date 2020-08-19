@@ -15,7 +15,7 @@ import FullPageHeader from "Components/FullPageHeader";
 import { formatDateTimeString } from "Utils";
 import { PRODUCT_SERVICE_ENV_URL } from "Config/servicesConfig";
 import copy from "copy-to-clipboard";
-import { Add16, Delete16, Save16 } from "@carbon/icons-react";
+import { Add16, TrashCan16, Save16 } from "@carbon/icons-react";
 import { POLICY_INTERACTION_TYPES } from "Constants/";
 
 import styles from "./createEditPolicyHeader.module.scss";
@@ -53,10 +53,8 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
 
   const handleOnCancel = () => {
-    if((isPerformingAffirmativeAction || isDeleting) && onCancel)
-      onCancel();
-    else
-      navigateBack();
+    if ((isPerformingAffirmativeAction || isDeleting) && onCancel) onCancel();
+    else navigateBack();
   };
 
   return (
@@ -88,7 +86,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
               className={styles.button}
               onClick={() => setIsDeleteModalOpen(true)}
               kind="danger"
-              renderIcon={Delete16}
+              renderIcon={TrashCan16}
               iconDescription="Delete"
               size="field"
             >
@@ -126,50 +124,48 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
         />
       )}
       {type === POLICY_INTERACTION_TYPES.EDIT && (
-        <ComposedModal 
-          isOpen={isDetailsModalOpen} 
-          composedModalProps={{shouldCloseOnOverlayClick: true}}
+        <ComposedModal
+          isOpen={isDetailsModalOpen}
+          composedModalProps={{ shouldCloseOnOverlayClick: true }}
           onCloseModal={() => setIsDetailsModalOpen(false)}
-          modalHeaderProps={{title: "Validation Guide", subtitle: "How to use this policy"}}
+          modalHeaderProps={{ title: "Validation Guide", subtitle: "How to use this policy" }}
         >
-          {
-            () => (
-              <ModalForm>
-                <ModalBody>
-                  <h2 className={styles.modalSectionTitle}>Validation Endpoint</h2>
-                  <p>{`${PRODUCT_SERVICE_ENV_URL}/policy/validate`}</p>
-                  <h2 className={styles.modalSectionTitle}>Sample Payload</h2>
-                  <CodeSnippet
-                    copyButtonDescription="Copy annotations to clipboard"
-                    onClick={() => copy(JSON.stringify(validateInfo))}
-                    type="multi"
-                  >
-                    {JSON.stringify(validateInfo, null, 1)}
-                  </CodeSnippet>
-                  <h2 className={styles.modalSectionTitle}>Next Steps (things to adjust)</h2>
-                  <OrderedList className={styles.orderedList}>
-                    <ListItem>
-                      Update <code>ReferenceId</code> to a unique identifier to ensure you can track specific xyz
-                    </ListItem>
-                    <ListItem>
-                      Update <code>ReferenceLink</code> a link back to xyz
-                    </ListItem>
-                    <ListItem>
-                      Supply{" "}
-                      <a href="https://github.com/boomerang-io/boomerang.docs/blob/stable/content/bosun.md#labels-required">
-                        labels
-                      </a>{" "}
-                      that can be used by the integrations to integrate and retrieve backend information
-                    </ListItem>
-                    <ListItem>Call the validation endpoint with the updated data</ListItem>
-                  </OrderedList>
-                </ModalBody>
-                <ModalFooter>
-                  <Button onClick={() => setIsDetailsModalOpen(false)}>Close</Button>
-                </ModalFooter>
-              </ModalForm>
-            )
-          }
+          {() => (
+            <ModalForm>
+              <ModalBody>
+                <h2 className={styles.modalSectionTitle}>Validation Endpoint</h2>
+                <p>{`${PRODUCT_SERVICE_ENV_URL}/policy/validate`}</p>
+                <h2 className={styles.modalSectionTitle}>Sample Payload</h2>
+                <CodeSnippet
+                  copyButtonDescription="Copy annotations to clipboard"
+                  onClick={() => copy(JSON.stringify(validateInfo))}
+                  type="multi"
+                >
+                  {JSON.stringify(validateInfo, null, 1)}
+                </CodeSnippet>
+                <h2 className={styles.modalSectionTitle}>Next Steps (things to adjust)</h2>
+                <OrderedList className={styles.orderedList}>
+                  <ListItem>
+                    Update <code>ReferenceId</code> to a unique identifier to ensure you can track specific xyz
+                  </ListItem>
+                  <ListItem>
+                    Update <code>ReferenceLink</code> a link back to xyz
+                  </ListItem>
+                  <ListItem>
+                    Supply{" "}
+                    <a href="https://github.com/boomerang-io/boomerang.docs/blob/stable/content/bosun.md#labels-required">
+                      labels
+                    </a>{" "}
+                    that can be used by the integrations to integrate and retrieve backend information
+                  </ListItem>
+                  <ListItem>Call the validation endpoint with the updated data</ListItem>
+                </OrderedList>
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={() => setIsDetailsModalOpen(false)}>Close</Button>
+              </ModalFooter>
+            </ModalForm>
+          )}
         </ComposedModal>
       )}
     </FullPageHeader>
