@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 import { TextInput } from "@boomerang-io/carbon-addons-boomerang-react";
 import PolicyFormDefinitionSection from "./PolicyFormDefinitionSection";
 import KingJellyGraphic from "Components/KingJellyGraphic";
-//import ThanksRoosGraphic from "components/ThanksRoosGraphic";
 import styles from "./createEditPolicyForm.module.scss";
 
 CreateEditPolicyForm.propTypes = {
   definitions: PropTypes.array.isRequired,
-  form: PropTypes.object.isRequired
+  form: PropTypes.object.isRequired,
 };
 
 export default function CreateEditPolicyForm({ definitions, form }) {
@@ -24,7 +23,7 @@ export default function CreateEditPolicyForm({ definitions, form }) {
           value={form.name}
           type="text"
         />
-        {definitions.map(definition => (
+        {definitions.map((definition) => (
           <PolicyFormDefinitionSection key={definition.id + definition.key} definition={definition} form={form} />
         ))}
       </div>

@@ -18,27 +18,30 @@ export const appPath = {
 };
 
 export const appLink = {
+  policyTemplates: () => `/templates`,
+  createPolicy: ({ teamId }) => `/teams/${teamId}/policy/create`,
+  createTemplate: () => `/templates/create`,
+  editPolicy: ({ teamId, policyId }) => `/teams/${teamId}/policy/edit/${policyId}`,
+  editTemplate: ({ templateId }) => `/templates/edit/${templateId}`,
+  teamOverview: ({ teamId }) => `/teams/${teamId}`,
+
+  // CICD
   home: ({ activeTeamId }) => `${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}`,
   components: ({ activeTeamId }) => `${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/components`,
   pipelines: ({ activeTeamId }) => `${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/pipelines`,
   scorecard: ({ activeTeamId }) => `${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/scorecard`,
   insights: ({ activeTeamId }) => `${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/insights`,
-  lib: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/lib`,
-  
+  componentModes: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/component-modes`,
   properties: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/properties`,
+  scmRepositories: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/repositories`,
+  settings: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/settings`,
   teamProperties: ({ activeTeamId }) => `${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/properties`,
   teamConfiguration: ({ activeTeamId }) => `${BASE_LAUNCH_ENV_URL}/cicd/apps/teams/${activeTeamId}/configuration`,
-  scmRepositories: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/repositories`,
-  componentModes: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/admin/component-modes`,
-  policyTemplates: () => `/templates`,
 
-  createPolicy: ({teamId}) => `/teams/${teamId}/policy/create`,
-  createTemplate: () => `/templates/create`,
-  editPolicy: ({teamId, policyId}) => `/teams/${teamId}/policy/edit/${policyId}`,
-  editTemplate: ({templateId}) => `/templates/edit/${templateId}`,
-  teamOverview: ({teamId}) => `/teams/${teamId}`
+  // Lib
+  lib: () => `${BASE_LAUNCH_ENV_URL}/cicd/apps/lib`,
 };
 
 export const FeatureFlag = {
-  Standalone: "standalone"
+  Standalone: "standalone",
 };

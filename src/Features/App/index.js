@@ -21,7 +21,7 @@ export function App() {
   const location = useLocation();
   const teamsMatch = matchPath(location.pathname, { path: appPath.overview });
   const templatesMatch = matchPath(location.pathname, { path: appPath.templates });
-  
+
   const userState = useQuery({
     queryKey: userUrl,
     queryFn: resolver.query(userUrl),
@@ -43,13 +43,13 @@ export function App() {
     }
 
     if (activeTeamId) {
-      const activeTeam = teamsState.data?.find(team => team.id === activeTeamId);
+      const activeTeam = teamsState.data?.find((team) => team.id === activeTeamId);
       setActiveTeam(activeTeam);
     } else {
       const firstTeam = teamsState.data[0];
       setActiveTeam(firstTeam);
       if (!templatesMatch) {
-        history.push(appLink.teamOverview({teamId: firstTeam.id}));
+        history.replace(appLink.teamOverview({ teamId: firstTeam.id }));
       }
     }
   }, [activeTeam, activeTeamId, history, setActiveTeam, teamsState, templatesMatch]);

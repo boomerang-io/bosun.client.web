@@ -2,7 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useFeature } from "flagged";
 import { NavLink, useLocation } from "react-router-dom";
-import { LeftSideNav, UIShell, SideNavLink, SideNavItems, SideNavMenu, SideNavMenuItem } from "@boomerang-io/carbon-addons-boomerang-react";
+import {
+  LeftSideNav,
+  UIShell,
+  SideNavLink,
+  SideNavItems,
+  SideNavMenu,
+  SideNavMenuItem,
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import { SideNav } from "carbon-components-react";
 import { BASE_LAUNCH_ENV_URL } from "Config/platformUrlConfig";
 import { BASE_SERVICE_ENV_URL } from "Config/servicesConfig";
@@ -16,6 +23,7 @@ import {
   Document16,
   ReportData16,
   Settings16,
+  SettingsAdjust16,
 } from "@carbon/icons-react";
 import { FeatureFlag } from "Config/appConfig";
 import styles from "./navbar.module.scss";
@@ -49,10 +57,9 @@ function Navbar({ activeTeam, navigationState, userState }) {
       onMenuClick={({ isOpen, onMenuClose }) => (
         <LeftSideNav isOpen={isOpen}>
           <SideNav expanded={isOpen} isChildOfHeader={true}>
-            <SideNavItems>
+            <SideNavItems large>
               <SideNavLink
                 exact
-                large
                 activeClassName={ACTIVE_CLASS_NAME}
                 element={NavLink}
                 isActive={!location.pathname.startsWith(appPath.templates)}
@@ -63,7 +70,6 @@ function Navbar({ activeTeam, navigationState, userState }) {
                 Policies
               </SideNavLink>
               <SideNavLink
-                large
                 activeClassName={ACTIVE_CLASS_NAME}
                 element={NavLink}
                 onClick={onMenuClose}
@@ -85,38 +91,22 @@ function Navbar({ activeTeam, navigationState, userState }) {
       headerConfig={navigationState?.data ?? {}}
       onMenuClick={({ isOpen, onMenuClose }) => (
         <LeftSideNav isOpen={isOpen}>
-          <SideNav expanded={isOpen} isChildOfHeader={true}>
+          <SideNav aria-label="Navigation" expanded={isOpen} isChildOfHeader={true}>
             <SideNavItems>
-              <SideNavLink large href={appLink.home({activeTeamId})} renderIcon={Home16}>
+              <SideNavLink large href={appLink.home({ activeTeamId })} renderIcon={Home16}>
                 Home
               </SideNavLink>
               <div className={styles.divider} />
-              <SideNavLink
-                large
-                href={appLink.components({activeTeamId})}
-                renderIcon={Apps16}
-              >
+              <SideNavLink large href={appLink.components({ activeTeamId })} renderIcon={Apps16}>
                 Components
               </SideNavLink>
-              <SideNavLink
-                large
-                href={appLink.pipelines({activeTeamId})}
-                renderIcon={Rocket16}
-              >
+              <SideNavLink large href={appLink.pipelines({ activeTeamId })} renderIcon={Rocket16}>
                 Pipelines
               </SideNavLink>
-              <SideNavLink
-                large
-                href={appLink.scorecard({activeTeamId})}
-                renderIcon={ReportData16}
-              >
+              <SideNavLink large href={appLink.scorecard({ activeTeamId })} renderIcon={ReportData16}>
                 Scorecard
               </SideNavLink>
-              <SideNavLink
-                large
-                href={appLink.insights({activeTeamId})}
-                renderIcon={Analytics16}
-              >
+              <SideNavLink large href={appLink.insights({ activeTeamId })} renderIcon={Analytics16}>
                 Insights
               </SideNavLink>
               <SideNavLink large href={appLink.lib()} renderIcon={Document16}>
@@ -134,24 +124,8 @@ function Navbar({ activeTeam, navigationState, userState }) {
               >
                 Policies
               </SideNavLink>
-              <SideNavMenu large title="Manage" renderIcon={Settings16}>
-                <SideNavMenuItem large href={appLink.properties()}>
-                  Properties
-                </SideNavMenuItem>
-                <SideNavMenuItem large href={appLink.teamProperties({activeTeamId})}>
-                  Team Properties
-                </SideNavMenuItem>
-                <SideNavMenuItem large href={appLink.teamConfiguration({activeTeamId})}>
-                  Team Configuration
-                </SideNavMenuItem>
-                <SideNavMenuItem large href={appLink.scmRepositories()}>
-                  SCM Repositories
-                </SideNavMenuItem>
-                <SideNavMenuItem large href={appLink.componentModes()}>
-                  Component Modes
-                </SideNavMenuItem>
+              <SideNavMenu large title="Manage" renderIcon={SettingsAdjust16}>
                 <SideNavMenuItem
-                  large
                   activeClassName={ACTIVE_CLASS_NAME}
                   element={NavLink}
                   onClick={onMenuClose}
@@ -159,6 +133,14 @@ function Navbar({ activeTeam, navigationState, userState }) {
                 >
                   Policy Templates
                 </SideNavMenuItem>
+                <SideNavMenuItem href={appLink.teamConfiguration({ activeTeamId })}>Team Configuration</SideNavMenuItem>
+              </SideNavMenu>
+              <SideNavMenu large title="Administer" renderIcon={Settings16}>
+                <SideNavMenuItem href={appLink.componentModes()}>Component Modes</SideNavMenuItem>
+                <SideNavMenuItem href={appLink.properties()}>Properties</SideNavMenuItem>
+                <SideNavMenuItem href={appLink.scmRepositories()}>SCM Repositories</SideNavMenuItem>
+                <SideNavMenuItem href={appLink.settings()}>Settings</SideNavMenuItem>
+                <SideNavMenuItem href={appLink.teamProperties({ activeTeamId })}>Team Properties</SideNavMenuItem>
               </SideNavMenu>
             </SideNavItems>
           </SideNav>

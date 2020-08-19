@@ -10,35 +10,35 @@ import styles from "./templatesTable.module.scss";
 const headers = [
   {
     header: "Name",
-    key: "name"
+    key: "name",
   },
 
   {
     header: "Description",
-    key: "description"
+    key: "description",
   },
   {
     header: "Created Date",
-    key: "createdDate"
+    key: "createdDate",
   },
   {
     header: "Key",
-    key: "key"
-  }
+    key: "key",
+  },
 ];
 
 TemplatesTable.propTypes = {
   data: PropTypes.array,
-  definitions: PropTypes.array
+  definitions: PropTypes.array,
 };
 
 export default function TemplatesTable(props) {
   let history = useHistory();
-  const handleRowClick = row => {
-    history.push(appLink.editTemplate({templateId: row.id}));
+  const handleRowClick = (row) => {
+    history.push(appLink.editTemplate({ templateId: row.id }));
   };
 
-  const handleCreateButtonClick = row => {
+  const handleCreateButtonClick = (row) => {
     history.push(appLink.createTemplate());
   };
 
@@ -52,7 +52,7 @@ export default function TemplatesTable(props) {
       case "Key":
         return <p className={styles.tableTextarea}>{value}</p>;
       case "Created Date":
-        return <time className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</time>;
+        return <time className={styles.tableTextarea}>{value ? moment(value).format("MMMM DD, YYYY") : "---"}</time>;
       default:
         return value || "---";
     }
@@ -80,7 +80,7 @@ export default function TemplatesTable(props) {
             <Table className={styles.tableContainer} sortable={"true"} useZebraStyles={false}>
               <TableHead>
                 <TableRow className={styles.tableHeadRow}>
-                  {headers.map(header => (
+                  {headers.map((header) => (
                     <TableHeader
                       {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
                     >
@@ -91,7 +91,12 @@ export default function TemplatesTable(props) {
               </TableHead>
               <TableBody className={styles.tableBody} data-testid="templates-tbody">
                 {rows.map((row, rowIndex) => (
-                  <TableRow key={row.id} className={styles.tableRow} onClick={() => handleRowClick(row)} data-testid="templates-table-row">
+                  <TableRow
+                    key={row.id}
+                    className={styles.tableRow}
+                    onClick={() => handleRowClick(row)}
+                    data-testid="templates-table-row"
+                  >
                     {row.cells.map((cell, cellIndex) => (
                       <TableCell key={`${cell.id}-${cellIndex}`} style={{ padding: "0" }}>
                         <div className={styles.tableCell}>{renderCell(row.cells, cellIndex, cell.value)}</div>

@@ -9,33 +9,33 @@ import styles from "./policiesTable.module.scss";
 const headers = [
   {
     header: "Name",
-    key: "name"
+    key: "name",
   },
 
   {
     header: "Definitions",
-    key: "definitions"
+    key: "definitions",
   },
   {
     header: "Rules",
-    key: "rules"
+    key: "rules",
   },
   {
     header: "Created Date",
-    key: "createdDate"
-  }
+    key: "createdDate",
+  },
 ];
 
 PoliciesTable.propTypes = {
   poicies: PropTypes.array,
-  definitions: PropTypes.array
+  definitions: PropTypes.array,
 };
 
 export default function PoliciesTable(props) {
   let history = useHistory();
   let params = useParams();
-  const handleRowClick = row => {
-    history.push(appLink.editPolicy({teamId: params.teamId, policyId: row.id}));
+  const handleRowClick = (row) => {
+    history.push(appLink.editPolicy({ teamId: params.teamId, policyId: row.id }));
   };
 
   const renderCell = (cells, cellIndex, value) => {
@@ -46,9 +46,9 @@ export default function PoliciesTable(props) {
       case "Definitions":
         return <p className={styles.tableTextarea}>{Array.isArray(value) ? value.length : "---"}</p>;
       case "Created Date":
-        return <time className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</time>;
+        return <time className={styles.tableTextarea}>{value ? moment(value).format("MMMM DD, YYYY") : "---"}</time>;
       case "Rules":
-        const defValue = cells.find(cell => cell.id.includes("definitions")).value;
+        const defValue = cells.find((cell) => cell.id.includes("definitions")).value;
         return (
           <p className={styles.tableTextarea}>
             {Array.isArray(defValue)
@@ -77,7 +77,7 @@ export default function PoliciesTable(props) {
           <Table className={styles.tableContainer} sortable={"true"} useZebraStyles={false}>
             <TableHead>
               <TableRow className={styles.tableHeadRow}>
-                {headers.map(header => (
+                {headers.map((header) => (
                   <TableHeader
                     {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
                   >
@@ -88,7 +88,12 @@ export default function PoliciesTable(props) {
             </TableHead>
             <TableBody className={styles.tableBody} data-testid="policies-tbody">
               {rows.map((row, rowIndex) => (
-                <TableRow key={row.id} className={styles.tableRow} onClick={() => handleRowClick(row)} data-testid="policies-table-row">
+                <TableRow
+                  key={row.id}
+                  className={styles.tableRow}
+                  onClick={() => handleRowClick(row)}
+                  data-testid="policies-table-row"
+                >
                   {row.cells.map((cell, cellIndex) => (
                     <TableCell key={`${cell.id}-${cellIndex}`} style={{ padding: "0" }}>
                       <div className={styles.tableCell}>{renderCell(row.cells, cellIndex, cell.value)}</div>

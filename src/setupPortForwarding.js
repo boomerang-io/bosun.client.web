@@ -8,5 +8,5 @@ module.exports = {
   "/status": 8085,
   "/ci": 8086,
   "/scm": 8087,
-  "/policy": 8088,
+  "/policy": 8090,
 };

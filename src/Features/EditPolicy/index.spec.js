@@ -9,10 +9,10 @@ import { appLink } from "Config/appConfig";
 
 const teamId = "5a8b331e262a70306622df73";
 const policyId = "5cd49adff6ea74a9bb6adef3";
-const route = appLink.editPolicy({teamId, policyId});
+const route = appLink.editPolicy({ teamId, policyId });
 const props = {
   match: { params: { policyId: "5cd49adff6ea74a9bb6adef3" } },
-  history: {}
+  history: {},
 };
 
 let server;
@@ -45,7 +45,7 @@ describe("EditPolicy --- RTL", () => {
 
   test("renders error message when fetching definitions failed", async () => {
     server.get(serviceUrl.getTemplates(), () => {
-      return new Response(404, {}, {data: {status:404, error: "Error"}})
+      return new Response(404, {}, { data: { status: 404, error: "Error" } });
     });
 
     rtlRouterRender(<EditPolicy {...props} />, { route });
@@ -56,7 +56,7 @@ describe("EditPolicy --- RTL", () => {
   test("renders error message when fetching policy failed", async () => {
     rtlRouterRender(<EditPolicy {...props} />, { route });
     server.get(serviceUrl.getPolicy({ policyId: "5cd49adff6ea74a9bb6adef3" }), () => {
-      return new Response(404, {}, {errors: ["Error"]});
+      return new Response(404, {}, { errors: ["Error"] });
     });
     const errorMessage = await screen.findByText("Don’t lose your daks");
     expect(errorMessage).toBeInTheDocument();
@@ -68,7 +68,7 @@ describe("EditPolicy --- RTL", () => {
 
     const saveButton = await screen.findByTestId("policy-header-affirmative-action");
 
-    expect(saveButton).toBeEnabled();
+    expect(saveButton).toBeDisabled();
 
     const nameInput = screen.getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "" } });
@@ -79,7 +79,6 @@ describe("EditPolicy --- RTL", () => {
   });
 
   test("save button is disabled while saving", async () => {
-
     rtlRouterRender(<EditPolicy {...props} />, { route });
 
     const saveButton = await screen.findByTestId("policy-header-affirmative-action");

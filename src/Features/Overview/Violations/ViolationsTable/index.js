@@ -61,7 +61,7 @@ export class ViolationsTable extends Component {
     const column = this.headers[cellIndex];
     switch (column.header) {
       case "Activity Date":
-        return <time className={styles.tableTextarea}>{moment(value).format("MMM DD, YYYY - hh:mm a")}</time>;
+        return <time className={styles.tableTextarea}>{value ? moment(value).format("MMMM DD, YYYY") : "---"}</time>;
       case "Failed Definition Types":
         return <p className={styles.tableTextarea}>{value && value.length ? value.join(", ") : "---"}</p>;
       default:
@@ -169,7 +169,11 @@ export class ViolationsTable extends Component {
                 <h2 className={styles.modalSectionTitle}>Reference ID</h2>
                 <p>{selectedViolation?.referenceId ?? "---"}</p>
                 <h2 className={styles.modalSectionTitle}>Created Date</h2>
-                <time>{moment(selectedViolation?.createdDate).format("MMM DD, YYYY - hh:mm a")}</time>
+                <time>
+                  {selectedViolation?.createdDate
+                    ? moment(selectedViolation.createdDate).format("MMMM DD, YYYY")
+                    : "---"}
+                </time>
                 <h2 className={styles.modalSectionTitle}>Annotations</h2>
                 {selectedViolation?.annotations ? (
                   <CodeSnippet

@@ -83,8 +83,9 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
               </svg>
             </button>
             <button
-              class="button bx--btn bx--btn--field bx--btn--primary"
+              class="button bx--btn bx--btn--field bx--btn--primary bx--btn--disabled"
               data-testid="policy-header-affirmative-action"
+              disabled=""
               tabindex="0"
               type="submit"
             >
@@ -144,7 +145,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   placeholder="Name"
                   title="Name"
                   type="text"
-                  value="Tyson's Policy"
+                  value=""
                 />
               </div>
             </div>

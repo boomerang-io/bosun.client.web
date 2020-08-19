@@ -6,19 +6,20 @@ import {
   TextArea,
   TextInput,
   Toggle,
-  ModalFlowForm,
-  Button, ModalBody, ModalFooter
+  ModalForm,
+  Button,
+  ModalBody,
+  ModalFooter,
 } from "@boomerang-io/carbon-addons-boomerang-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import clonedeep from "lodash/cloneDeep";
-import styles from "./templateRulesModalContent.module.scss";
 
 const INPUT_TYPES = {
   //BOOLEAN: "boolean",
   SELECT: "select",
   TEXT_AREA: "textarea",
-  TEXT_INPUT: "text"
+  TEXT_INPUT: "text",
 };
 
 const FIELD = {
@@ -28,7 +29,7 @@ const FIELD = {
   REQUIRED: "required",
   TYPE: "type",
   DEFAULT_VALUE: "defaultValue",
-  OPTIONS: "options"
+  OPTIONS: "options",
 };
 
 const INPUT_TYPES_LABELS = [
@@ -37,7 +38,7 @@ const INPUT_TYPES_LABELS = [
   { label: "Password", value: "password" },
   { label: "Select", value: "select" },
   { label: "Text", value: "text" },
-  { label: "Text Area", value: "textarea" }
+  { label: "Text Area", value: "textarea" },
 ];
 
 export default class TemplateRulesModalContent extends Component {
@@ -47,7 +48,7 @@ export default class TemplateRulesModalContent extends Component {
     inputsKeys: PropTypes.array,
     isEdit: PropTypes.bool,
     createConfig: PropTypes.func,
-    updateConfig: PropTypes.func
+    updateConfig: PropTypes.func,
   };
 
   handleOnChange = (e, formikChange) => {
@@ -69,13 +70,13 @@ export default class TemplateRulesModalContent extends Component {
   };
 
   /* Check if key contains space or special characters, only underline is allowed */
-  validateKey = key => {
+  validateKey = (key) => {
     const regexp = new RegExp("[^a-z|^A-Z|^0-9|^_|/.]");
     return !regexp.test(key);
   };
 
   // dispatch Redux action to update store
-  handleConfirm = values => {
+  handleConfirm = (values) => {
     let inputProperties = clonedeep(values);
     inputProperties.type = inputProperties.type.value;
 
@@ -97,7 +98,7 @@ export default class TemplateRulesModalContent extends Component {
     this.props.closeModal();
   };
 
-  renderDefaultValue = formikProps => {
+  renderDefaultValue = (formikProps) => {
     const { values, handleBlur, handleChange, setFieldValue } = formikProps;
 
     switch (values.type.value) {
@@ -108,7 +109,7 @@ export default class TemplateRulesModalContent extends Component {
             id={FIELD.DEFAULT_VALUE}
             toggled={values.defaultValue === "true"}
             labelText="Default Value"
-            onToggle={value => this.handleOnFieldValueChange(value.toString(), FIELD.DEFAULT_VALUE, setFieldValue)}
+            onToggle={(value) => this.handleOnFieldValueChange(value.toString(), FIELD.DEFAULT_VALUE, setFieldValue)}
             orientation="vertical"
           />
         );
@@ -119,7 +120,7 @@ export default class TemplateRulesModalContent extends Component {
             <Creatable
               data-testid="creatable"
               id={FIELD.OPTIONS}
-              onChange={createdItems => this.handleOptionsChange(createdItems, setFieldValue)}
+              onChange={(createdItems) => this.handleOptionsChange(createdItems, setFieldValue)}
               values={options || []}
               labelText="Options"
               placeholder="Enter option"
@@ -146,7 +147,7 @@ export default class TemplateRulesModalContent extends Component {
             placeholder="Default Value"
             value={values.defaultValue || ""}
             onBlur={handleBlur}
-            onChange={e => this.handleOnChange(e, handleChange)}
+            onChange={(e) => this.handleOnChange(e, handleChange)}
             style={{ resize: "none" }}
           />
         );
@@ -161,7 +162,7 @@ export default class TemplateRulesModalContent extends Component {
             type={values.type.value}
             value={values.defaultValue || ""}
             onBlur={handleBlur}
-            onChange={e => this.handleOnChange(e, handleChange)}
+            onChange={(e) => this.handleOnChange(e, handleChange)}
           />
         );
     }
@@ -177,9 +178,9 @@ export default class TemplateRulesModalContent extends Component {
           [FIELD.KEY]: input?.key ?? "",
           [FIELD.LABEL]: input?.label ?? "",
           [FIELD.DESCRIPTION]: input?.description ?? "",
-          [FIELD.TYPE]: input ? INPUT_TYPES_LABELS.find(type => type.value === input.type) : INPUT_TYPES_LABELS[3],
+          [FIELD.TYPE]: input ? INPUT_TYPES_LABELS.find((type) => type.value === input.type) : INPUT_TYPES_LABELS[3],
           [FIELD.DEFAULT_VALUE]: input?.defaultValue ?? "",
-          [FIELD.OPTIONS]: input?.options ?? []
+          [FIELD.OPTIONS]: input?.options ?? [],
         }}
         validationSchema={Yup.object().shape({
           [FIELD.KEY]: Yup.string()
@@ -189,11 +190,11 @@ export default class TemplateRulesModalContent extends Component {
           [FIELD.LABEL]: Yup.string().required("Enter a label"),
           [FIELD.DESCRIPTION]: Yup.string(),
           [FIELD.TYPE]: Yup.object({ label: Yup.string().required(), value: Yup.string().required() }),
-          [FIELD.OPTIONS]: Yup.array()
+          [FIELD.OPTIONS]: Yup.array(),
         })}
         validateOnMount
       >
-        {formikProps => {
+        {(formikProps) => {
           const {
             values,
             touched,
@@ -202,18 +203,18 @@ export default class TemplateRulesModalContent extends Component {
             handleChange,
             setFieldValue,
             isValid,
-            handleSubmit
+            handleSubmit,
           } = formikProps;
           return (
-            <ModalFlowForm onSubmit={handleSubmit}>
-              <ModalBody className={styles.container}>
+            <ModalForm onSubmit={handleSubmit}>
+              <ModalBody>
                 <TextInput
                   id={FIELD.LABEL}
                   labelText="Name"
                   placeholder="Name"
                   value={values.label}
                   onBlur={handleBlur}
-                  onChange={e => this.handleOnChange(e, handleChange)}
+                  onChange={(e) => this.handleOnChange(e, handleChange)}
                   invalid={errors.label && touched.label}
                   invalidText={errors.label}
                 />
@@ -224,7 +225,7 @@ export default class TemplateRulesModalContent extends Component {
                     invalidText={errors.key}
                     labelText="Key"
                     onBlur={handleBlur}
-                    onChange={e => this.handleOnChange(e, handleChange)}
+                    onChange={(e) => this.handleOnChange(e, handleChange)}
                     placeholder="key.value"
                     value={values.key}
                   />
@@ -233,7 +234,7 @@ export default class TemplateRulesModalContent extends Component {
                   id={FIELD.DESCRIPTION}
                   labelText="Description"
                   onBlur={handleBlur}
-                  onChange={e => this.handleOnChange(e, handleChange)}
+                  onChange={(e) => this.handleOnChange(e, handleChange)}
                   placeholder="Description"
                   value={values.description}
                 />
@@ -247,7 +248,7 @@ export default class TemplateRulesModalContent extends Component {
                   }
                   items={INPUT_TYPES_LABELS}
                   initialSelectedItem={values.type}
-                  itemToString={item => item && item.label}
+                  itemToString={(item) => item && item.label}
                   placeholder="Select an item"
                   titleText="Type"
                 />
@@ -262,7 +263,7 @@ export default class TemplateRulesModalContent extends Component {
                   {isEdit ? "Save" : "Create"}
                 </Button>
               </ModalFooter>
-            </ModalFlowForm>
+            </ModalForm>
           );
         }}
       </Formik>

@@ -146,6 +146,7 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
                   </div>
                 </Tab>
                 <Tab label="Rules">
+                  <p>Create at least one</p>
                   <FieldArray
                     name="rules"
                     render={(arrayHelpers) => <TemplateRules arrayHelpers={arrayHelpers} rules={values.rules} />}

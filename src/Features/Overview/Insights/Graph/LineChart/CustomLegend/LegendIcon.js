@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const LegendIcon = ({ className, strokeColor }) => {
-
   return (
     <svg
       className={className}
@@ -13,7 +12,7 @@ const LegendIcon = ({ className, strokeColor }) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        stroke-width="4"
+        strokeWidth="4"
         fill="none"
         stroke={strokeColor}
         d="M0,16h10.666666666666666
@@ -28,7 +27,7 @@ const LegendIcon = ({ className, strokeColor }) => {
 
 LegendIcon.propTypes = {
   className: PropTypes.string,
-  strokeColor: PropTypes.string
+  strokeColor: PropTypes.string,
 };
 
 export default LegendIcon;
