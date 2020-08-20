@@ -8,7 +8,9 @@
   display: flex;
   width: 30rem;
   button {
+    align-self: flex-end;
     margin-left: 1rem;
+    height: 2.45rem;
   }
 }
 .modalForm {
