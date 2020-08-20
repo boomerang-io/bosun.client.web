@@ -1,64 +1,32 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import Enzyme, { shallow, render, mount } from "enzyme";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import Adapter from "enzyme-adapter-react-16";
 import { render as rtlRender } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { AppContext } from "./state/context";
-import configureStore from "./store/configureStore";
+import { ReactQueryConfigProvider } from "react-query";
+import { AppContext } from "State/context";
+import { teams as teamsFixture, profile as userFixture } from "ApiServer/fixtures";
 import "@testing-library/jest-dom/extend-expect";
-
-/**
- * Setup store w/ same config we use for the app so things like thunks work
- * The entire store  w/ the root reducer gets created, but its is relatively lightweight if there is no data in it
- * The alternative is passing in the reducer to this function for each test. I prefer this simpler setup.
- */
-
-function rtlReduxRender(ui, { initialState = {} } = {}) {
-  const store = configureStore(initialState);
-  return {
-    ...rtlRender(<Provider store={store}>{ui}</Provider>),
-    store,
-  };
-}
 
 function rtlRouterRender(
   ui,
+  queryConfig = {},
   { route = "/", history = createMemoryHistory({ initialEntries: [route] }), ...options } = {}
 ) {
   return {
-    ...rtlRender(<Router history={history}>{ui}</Router>, options),
-    history,
-  };
-}
-
-function rtlReduxRouterRender(
-  ui,
-  { initialState = {}, route = "/", history = createMemoryHistory({ initialEntries: [route] }), ...options } = {}
-) {
-  let { store } = options;
-  if (!store) {
-    store = configureStore(initialState, history);
-  }
-
-  return {
     ...rtlRender(
-      <Provider store={store}>
+      <ReactQueryConfigProvider config={{ queries: { retry: false }, ...queryConfig }}>
         <Router history={history}>{ui}</Router>
-      </Provider>,
+      </ReactQueryConfigProvider>,
       options
     ),
     history,
-    store,
   };
 }
 
 const defaultContextValue = {
-  user: { id: "1", email: "boomrng@us.ibm.com", type: "admin" },
-  activeTeam: { id: "1", userRoles: ["operator"] },
-  teams: [],
+  user: userFixture,
+  teams: teamsFixture,
+  activeTeam: { id: "5a8b331e262a70306622df73", userRoles: ["operator"] },
   setActiveTeam: () => {},
   refetchTeams: () => {},
 };
@@ -67,34 +35,31 @@ function rtlContextRouterRender(
   {
     contextValue = {},
     initialState = {},
+    queryConfig = {},
     route = "/",
     history = createMemoryHistory({ initialEntries: [route] }),
     ...options
   } = {}
 ) {
-  const store = configureStore(initialState);
   return {
     ...rtlRender(
-      <Provider store={store}>
+      <ReactQueryConfigProvider config={{ queries: { retry: false }, ...queryConfig }}>
         <AppContext.Provider value={{ ...defaultContextValue, ...contextValue }}>
           <Router history={history}>{ui}</Router>
         </AppContext.Provider>
-      </Provider>,
+      </ReactQueryConfigProvider>,
       options
-    ), history,
+    ),
+    history,
   };
 }
 
 // RTL globals
 // Open question if we want to attach these to the global or required users to import
 global.rtlRender = rtlRender;
-global.rtlReduxRender = rtlReduxRender;
 global.rtlRouterRender = rtlRouterRender;
-global.rtlReduxRouterRender = rtlReduxRouterRender;
 global.rtlContextRouterRender = rtlContextRouterRender;
 
-// Make renderer global
-global.renderer = renderer;
 // mock document text range
 global.document.createRange = () => {
   return {
@@ -103,14 +68,6 @@ global.document.createRange = () => {
     getBoundingClientRect: () => {}
   }
 }
-
-// React 16 Enzyme adapter
-Enzyme.configure({ adapter: new Adapter() });
-
-// Make Enzyme functions available in all test files without importing
-global.shallow = shallow;
-global.render = render;
-global.mount = mount;
 
 const localStorageMock = {
   getItem: jest.fn(),
@@ -146,3 +103,19 @@ jest.doMock("moment", () => {
 beforeEach(() => {
   document.body.setAttribute("id", "app");
 });
+const originalConsoleError = console.error;
+console.error = (message, ...rest) => {
+  if (
+    typeof message === "string" &&
+    !message.includes("react-modal: App element is not defined")
+  ) {
+    originalConsoleError(message, ...rest);
+  }
+};
+
+const originalConsoleWarn = console.warn;
+console.warn = (message, ...rest) => {
+  if (typeof message === "string" && !message.includes("Invalid date provided")) {
+    originalConsoleWarn(message, ...rest);
+  }
+};

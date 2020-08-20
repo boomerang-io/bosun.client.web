@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeamSelector --- Snapshot Capturing Snapshot of TeamSelector 1`] = `
+<body
+  id="app"
+>
+  <div>
+    <section
+      class="container"
+    >
+      <div
+        class="inputs"
+      >
+        <div
+          class="bx--bmrg-select"
+        >
+          <div
+            class="bx--list-box__wrapper"
+          >
+            <label
+              class="bx--label"
+              for="team"
+            >
+              <div
+                style="display: flex;"
+              >
+                <div>
+                  Team
+                </div>
+              </div>
+            </label>
+            <div
+              class="bx--combo-box bx--list-box"
+            >
+              <div
+                aria-expanded="false"
+                aria-haspopup="true"
+                aria-label="open menu"
+                class="bx--list-box__field"
+                data-toggle="true"
+                role="button"
+                tabindex="-1"
+                type="button"
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-controls="team__menu"
+                  aria-expanded="false"
+                  aria-label="Choose an item"
+                  autocomplete="off"
+                  class="bx--text-input"
+                  id="team"
+                  placeholder="Select a team"
+                  role="combobox"
+                  title="Team"
+                  value=""
+                />
+                
+                <div
+                  class="bx--list-box__menu-icon"
+                >
+                  <svg
+                    aria-label="Open menu"
+                    fill="currentColor"
+                    focusable="false"
+                    height="16"
+                    name="chevron--down"
+                    preserveAspectRatio="xMidYMid meet"
+                    role="img"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"
+                    />
+                    <title>
+                      Open menu
+                    </title>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+`;

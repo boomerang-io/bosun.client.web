@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterDropdown --- Snapshot Capturing Snapshot of FilterDropdown 1`] = `
+<body
+  id="app"
+>
+  <div>
+    <div
+      style="width: 15rem; height: 3rem;"
+    >
+      <div
+        class="bx--dropdown__wrapper bx--list-box__wrapper"
+      >
+        <span
+          class="bx--label"
+        >
+          testLabel
+        </span>
+        <div
+          class="bx--dropdown bx--list-box"
+          id="filter-dropdown"
+        >
+          <div
+            aria-disabled="false"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-labelledby="dropdown-label-filter-dropdown dropdown-field-label-filter-dropdown"
+            class="bx--list-box__field"
+            data-toggle="true"
+            role="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="bx--list-box__label"
+              for="downshift-0-input"
+              id="dropdown-field-label-filter-dropdown"
+              title="testLabel"
+            >
+              testLabel
+            </span>
+            <div
+              class="bx--list-box__menu-icon"
+            >
+              <svg
+                aria-label="Open menu"
+                fill="currentColor"
+                focusable="false"
+                height="16"
+                name="chevron--down"
+                preserveAspectRatio="xMidYMid meet"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"
+                />
+                <title>
+                  Open menu
+                </title>
+              </svg>
+            </div>
+          </div>
+          <div
+            aria-labelledby="filter-dropdown"
+            class="bx--list-box__menu"
+            id="filter-dropdown__menu"
+            role="listbox"
+          >
+            <div
+              class="bx--list-box__menu-item"
+              id="downshift-0-item-0"
+            >
+              <div
+                class="bx--list-box__menu-item__option"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

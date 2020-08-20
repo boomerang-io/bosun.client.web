@@ -5,5 +5,8 @@ module.exports = {
   "/admin": 8082,
   "/auth": 8083,
   "/users": 8084,
-  "/status": 8085
+  "/status": 8085,
+  "/ci": 8086,
+  "/scm": 8087,
+  "/policy": 8090,
 };

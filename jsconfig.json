@@ -1,28 +1,20 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2017",
+    "target": "es2020",
     "allowSyntheticDefaultImports": false,
     "baseUrl": "./src",
     "paths": {
-      "Assets/*": ["assets/*"],
-      "Components/*": ["components/*"],
-      "Config/*": ["config/*"],
-      "Constants/*": ["constants/*"],
-      "Features/*": ["features/*"],
-      "State/*": ["state/*"],
-      "Styles/*": ["styles/*"],
-      "Utilities/*": ["utilities/*"],
-      "Utils/*": ["utils/*"],
-      "~Assets/*": ["assets/*"],
-      "~Components/*": ["components/*"],
-      "~Config/*": ["config/*"],
-      "~Constants/*": ["constants/*"],
-      "~Features/*": ["features/*"],
-      "~State/*": ["state/*"],
-      "~Styles/*": ["styles/*"],
-      "~Utilities/*": ["utilities/*"],
-      "~Utils/*": ["utils/*"]
+      "ApiServer": ["ApiServer/*"],
+      "Assets/*": ["Assets/*"],
+      "Components/*": ["Components/*"],
+      "Config/*": ["Config/*"],
+      "Constants/*": ["Constants/*"],
+      "Features/*": ["Features/*"],
+      "Hooks/*": ["Hooks/*"],
+      "State/*": ["State/*"],
+      "Styles/*": ["Styles/*"],
+      "Utils/*": ["Utils/*"]
     }
   },
   "exclude": ["dist", "node_modules", "public", "server"]
