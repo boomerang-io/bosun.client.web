@@ -1,10 +1,8 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { ErrorDragon, Loading } from "@boomerang-io/carbon-addons-boomerang-react";
-import FullPageHeader from "Components/FullPageHeader";
+import { ErrorDragon, Loading, FeatureHeader, FeatureHeaderTitle, FeatureHeaderSubtitle } from "@boomerang-io/carbon-addons-boomerang-react";
 import TemplatesTable from "./TemplatesTable";
 import { serviceUrl, resolver } from "Config/servicesConfig";
-import styles from "./templates.module.scss";
 
 export function TemplatesContainer() {
 
@@ -23,12 +21,15 @@ export function TemplatesContainer() {
   if (templatesData) {
     return (
       <>
-        <FullPageHeader>
-          <div>
-            <p className={styles.supertitle}>These are the</p>
-            <h1 className={styles.title}>Policy Templates</h1>
-          </div>
-        </FullPageHeader>
+        <FeatureHeader
+          includeBorder={false}
+          header={
+            <>
+              <FeatureHeaderSubtitle>These are the</FeatureHeaderSubtitle>
+              <FeatureHeaderTitle>Policy Templates</FeatureHeaderTitle>
+            </>
+          }
+        />
         <TemplatesTable data={templatesData} />
       </>
     );

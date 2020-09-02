@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button, ConfirmModal } from "@boomerang-io/carbon-addons-boomerang-react";
-import FullPageHeader from "Components/FullPageHeader";
+import { Button, ConfirmModal, FeatureHeader, FeatureHeaderTitle } from "@boomerang-io/carbon-addons-boomerang-react";
 import { formatDateTimeString } from "Utils";
 import { Add16, TrashCan16, Save16 } from "@carbon/icons-react";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants/";
@@ -43,10 +42,11 @@ function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCan
   };
 
   return (
-    <FullPageHeader>
-      <div className={styles.content}>
-        <div className={styles.info}>
-          <h1 className={styles.title}>{`${config.title} Template`}</h1>
+    <FeatureHeader
+      includeBorder={false}
+      header={
+        <>
+          <FeatureHeaderTitle style={{margin:"0"}}>{`${config.title} Template`}</FeatureHeaderTitle>
           {template.createdDate && (
             <div>
               <p className={styles.metaData}>
@@ -55,7 +55,9 @@ function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCan
               </p>
             </div>
           )}
-        </div>
+        </>
+      }
+      actions={
         <section className={styles.buttons}>
           <Button className={styles.button} kind="secondary" onClick={handleOnCancel} size="field">
             Cancel
@@ -86,7 +88,8 @@ function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCan
             {isSubmitting ? config.isPerformingActionVerb : config.affirmativeActionVerb}
           </Button>
         </section>
-      </div>
+      }
+    >
       {deleteModalIsOpen && (
         <ConfirmModal
           isOpen
@@ -103,7 +106,7 @@ function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCan
           }}
         />
       )}
-    </FullPageHeader>
+    </FeatureHeader>
   );
 }
 

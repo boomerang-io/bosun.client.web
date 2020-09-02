@@ -1,43 +1,6 @@
 @import "Styles/variables";
 @import "carbon-components/scss/globals/scss/helper-mixins";
 
-.content {
-  align-items: baseline;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-@media (max-width: 50rem) {
-  .content {
-    flex-direction: column;
-  }
-}
-
-.info {
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 2.5rem;
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.back {
-  background: none;
-  border: none;
-  color: $interactive-01;
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
-}
-
 .metadataContainer {
   display: flex;
   padding: 0.125rem;
@@ -79,12 +42,6 @@
 
 .button {
   width: 9rem;
-}
-
-.deleteConfirmModal {
-  :global .bx--modal-container {
-    width: 32rem;
-  }
 }
 
 .modalSectionTitle {

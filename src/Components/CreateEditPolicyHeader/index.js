@@ -5,13 +5,14 @@ import {
   CodeSnippet,
   ComposedModal,
   ConfirmModal,
+  FeatureHeader, 
+  FeatureHeaderTitle,
   ModalForm,
   ModalFooter,
   ModalBody,
   OrderedList,
   ListItem,
 } from "@boomerang-io/carbon-addons-boomerang-react";
-import FullPageHeader from "Components/FullPageHeader";
 import { formatDateTimeString } from "Utils";
 import { PRODUCT_SERVICE_ENV_URL } from "Config/servicesConfig";
 import copy from "copy-to-clipboard";
@@ -58,10 +59,12 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
   };
 
   return (
-    <FullPageHeader>
-      <div className={styles.content}>
-        <div className={styles.info}>
-          <h1 className={styles.title}>{`${config.title} Policy`}</h1>
+    <FeatureHeader
+      includeBorder={false}
+      style={{top: "3rem"}}
+      header={
+        <>
+          <FeatureHeaderTitle style={{margin:"0"}}>{`${config.title} Policy`}</FeatureHeaderTitle>
           {policy.createdDate && (
             <div className={styles.metadataContainer}>
               <p className={styles.metadata}>
@@ -75,7 +78,9 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
               )}
             </div>
           )}
-        </div>
+        </>
+      }
+      actions={
         <section className={styles.buttons}>
           <Button className={styles.button} kind="secondary" onClick={handleOnCancel} size="field">
             Cancel
@@ -106,7 +111,8 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
             {isPerformingAffirmativeAction ? config.isPerformingActionVerb : config.affirmativeActionVerb}
           </Button>
         </section>
-      </div>
+      }
+    >
       {isDeleteModalOpen && (
         <ConfirmModal
           isOpen
@@ -168,7 +174,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
           )}
         </ComposedModal>
       )}
-    </FullPageHeader>
+    </FeatureHeader>
   );
 }
 
