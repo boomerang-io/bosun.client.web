@@ -18,8 +18,7 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
             class="bx--bmrg-feature-header__header"
           >
             <h1
-              class="bx--bmrg-feature-header-text"
-              style="margin: 0px;"
+              class="bx--bmrg-feature-header-title"
             >
               Create Template
             </h1>

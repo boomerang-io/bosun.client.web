@@ -64,7 +64,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
       style={{top: "3rem"}}
       header={
         <>
-          <FeatureHeaderTitle style={{margin:"0"}}>{`${config.title} Policy`}</FeatureHeaderTitle>
+          <FeatureHeaderTitle>{`${config.title} Policy`}</FeatureHeaderTitle>
           {policy.createdDate && (
             <div className={styles.metadataContainer}>
               <p className={styles.metadata}>

@@ -46,7 +46,7 @@ function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCan
       includeBorder={false}
       header={
         <>
-          <FeatureHeaderTitle style={{margin:"0"}}>{`${config.title} Template`}</FeatureHeaderTitle>
+          <FeatureHeaderTitle>{`${config.title} Template`}</FeatureHeaderTitle>
           {template.createdDate && (
             <div>
               <p className={styles.metaData}>
