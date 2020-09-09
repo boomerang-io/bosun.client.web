@@ -1,5 +1,5 @@
 import React from "react";
-import { TeamSelector } from "./index";
+import TeamSelector from ".";
 
 const mockfn = jest.fn();
 const teams = [

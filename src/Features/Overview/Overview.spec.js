@@ -4,7 +4,7 @@ import { queryCaches } from "react-query";
 import { Route } from "react-router-dom";
 import { startApiServer } from "ApiServer";
 import { appPath, appLink } from "Config/appConfig";
-import { Overview } from "./index";
+import Overview from ".";
 
 let server;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Info } from "./index";
+import Info from ".";
 
 const info = {
   type: "test",
