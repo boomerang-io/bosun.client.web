@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@boomerang-io/carbon-addons-boomerang-react": "0.0.5",
+    "@boomerang-io/carbon-addons-boomerang-react": "0.0.14",
     "@boomerang-io/utils": "0.0.1",
     "axios": "0.19.2",
     "carbon-components": "10.12.0",

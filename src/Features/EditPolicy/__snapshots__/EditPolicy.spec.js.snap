@@ -8,17 +8,18 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
     <div
       class="container"
     >
-      <div
-        class="container"
+      <header
+        class="bx--bmrg-feature-header"
+        style="top: 3rem;"
       >
-        <div
-          class="content"
+        <section
+          class="bx--bmrg-feature-header__content"
         >
-          <div
-            class="info"
+          <hgroup
+            class="bx--bmrg-feature-header__header"
           >
             <h1
-              class="title"
+              class="bx--bmrg-feature-header-title"
             >
               Edit Policy
             </h1>
@@ -44,73 +45,73 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                 How do I use this?
               </button>
             </div>
-          </div>
-          <section
-            class="buttons"
+          </hgroup>
+        </section>
+        <section
+          class="buttons"
+        >
+          <button
+            class="button bx--btn bx--btn--field bx--btn--secondary"
+            tabindex="0"
+            type="button"
           >
-            <button
-              class="button bx--btn bx--btn--field bx--btn--secondary"
-              tabindex="0"
-              type="button"
+            Cancel
+          </button>
+          <button
+            class="button bx--btn bx--btn--field bx--btn--danger"
+            tabindex="0"
+            type="button"
+          >
+            Delete
+            <svg
+              aria-hidden="true"
+              aria-label="Delete"
+              class="bx--btn__icon"
+              fill="currentColor"
+              focusable="false"
+              height="16"
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              viewBox="0 0 32 32"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Cancel
-            </button>
-            <button
-              class="button bx--btn bx--btn--field bx--btn--danger"
-              tabindex="0"
-              type="button"
+              <path
+                d="M12 12H14V24H12zM18 12H20V24H18z"
+              />
+              <path
+                d="M4 6V8H6V28a2 2 0 002 2H24a2 2 0 002-2V8h2V6zM8 28V8H24V28zM12 2H20V4H12z"
+              />
+            </svg>
+          </button>
+          <button
+            class="button bx--btn bx--btn--field bx--btn--primary bx--btn--disabled"
+            data-testid="policy-header-affirmative-action"
+            disabled=""
+            tabindex="0"
+            type="submit"
+          >
+            Save
+            <svg
+              aria-hidden="true"
+              aria-label="Edit"
+              class="bx--btn__icon"
+              fill="currentColor"
+              focusable="false"
+              height="16"
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Delete
-              <svg
-                aria-hidden="true"
-                aria-label="Delete"
-                class="bx--btn__icon"
-                fill="currentColor"
-                focusable="false"
-                height="16"
-                preserveAspectRatio="xMidYMid meet"
-                role="img"
-                viewBox="0 0 32 32"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 12H14V24H12zM18 12H20V24H18z"
-                />
-                <path
-                  d="M4 6V8H6V28a2 2 0 002 2H24a2 2 0 002-2V8h2V6zM8 28V8H24V28zM12 2H20V4H12z"
-                />
-              </svg>
-            </button>
-            <button
-              class="button bx--btn bx--btn--field bx--btn--primary bx--btn--disabled"
-              data-testid="policy-header-affirmative-action"
-              disabled=""
-              tabindex="0"
-              type="submit"
-            >
-              Save
-              <svg
-                aria-hidden="true"
-                aria-label="Edit"
-                class="bx--btn__icon"
-                fill="currentColor"
-                focusable="false"
-                height="16"
-                preserveAspectRatio="xMidYMid meet"
-                role="img"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13.9,4.6l-2.5-2.5C11.3,2.1,11.1,2,11,2H3C2.4,2,2,2.4,2,3v10c0,0.6,0.4,1,1,1h10c0.6,0,1-0.4,1-1V5	C14,4.9,13.9,4.7,13.9,4.6z M6,3h4v2H6V3z M10,13H6V9h4V13z M11,13V9c0-0.6-0.4-1-1-1H6C5.4,8,5,8.4,5,9v4H3V3h2v2c0,0.6,0.4,1,1,1	h4c0.6,0,1-0.4,1-1V3.2l2,2V13H11z"
-                />
-              </svg>
-            </button>
-          </section>
-        </div>
-      </div>
+              <path
+                d="M13.9,4.6l-2.5-2.5C11.3,2.1,11.1,2,11,2H3C2.4,2,2,2.4,2,3v10c0,0.6,0.4,1,1,1h10c0.6,0,1-0.4,1-1V5	C14,4.9,13.9,4.7,13.9,4.6z M6,3h4v2H6V3z M10,13H6V9h4V13z M11,13V9c0-0.6-0.4-1-1-1H6C5.4,8,5,8.4,5,9v4H3V3h2v2c0,0.6,0.4,1,1,1	h4c0.6,0,1-0.4,1-1V3.2l2,2V13H11z"
+              />
+            </svg>
+          </button>
+        </section>
+      </header>
       <div
         class="container"
       >
@@ -173,7 +174,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="metric-0c1ae8a1-a8ab-4a8f-941e-543fb52ffcbd"
+                      for="metric-13e788a0-2049-4242-b7b8-9bb0a03b0869"
                     >
                       <div
                         style="display: flex;"
@@ -198,12 +199,12 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="metric-0c1ae8a1-a8ab-4a8f-941e-543fb52ffcbd__menu"
+                          aria-controls="metric-13e788a0-2049-4242-b7b8-9bb0a03b0869__menu"
                           aria-expanded="false"
                           aria-label="Choose an item"
                           autocomplete="off"
                           class="bx--text-input"
-                          id="metric-0c1ae8a1-a8ab-4a8f-941e-543fb52ffcbd"
+                          id="metric-13e788a0-2049-4242-b7b8-9bb0a03b0869"
                           role="combobox"
                           value="lines"
                         />
@@ -264,7 +265,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="operator-0c1ae8a1-a8ab-4a8f-941e-543fb52ffcbd"
+                      for="operator-13e788a0-2049-4242-b7b8-9bb0a03b0869"
                     >
                       <div
                         style="display: flex;"
@@ -289,12 +290,12 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="operator-0c1ae8a1-a8ab-4a8f-941e-543fb52ffcbd__menu"
+                          aria-controls="operator-13e788a0-2049-4242-b7b8-9bb0a03b0869__menu"
                           aria-expanded="false"
                           aria-label="Choose an item"
                           autocomplete="off"
                           class="bx--text-input"
-                          id="operator-0c1ae8a1-a8ab-4a8f-941e-543fb52ffcbd"
+                          id="operator-13e788a0-2049-4242-b7b8-9bb0a03b0869"
                           role="combobox"
                           value=""
                         />
@@ -334,7 +335,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="value-0c1ae8a1-a8ab-4a8f-941e-543fb52ffcbd"
+                      for="value-13e788a0-2049-4242-b7b8-9bb0a03b0869"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -350,7 +351,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       <input
                         autocomplete="off"
                         class="bx--text-input bx--text__input"
-                        id="value-0c1ae8a1-a8ab-4a8f-941e-543fb52ffcbd"
+                        id="value-13e788a0-2049-4242-b7b8-9bb0a03b0869"
                         name="value"
                         type="text"
                         value="10"
@@ -391,7 +392,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="metric-bea0bdaa-f9c2-46f6-9c89-89998482b352"
+                      for="metric-d12aa117-036e-4582-9ad0-b970ec4367d5"
                     >
                       <div
                         style="display: flex;"
@@ -416,12 +417,12 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="metric-bea0bdaa-f9c2-46f6-9c89-89998482b352__menu"
+                          aria-controls="metric-d12aa117-036e-4582-9ad0-b970ec4367d5__menu"
                           aria-expanded="false"
                           aria-label="Choose an item"
                           autocomplete="off"
                           class="bx--text-input"
-                          id="metric-bea0bdaa-f9c2-46f6-9c89-89998482b352"
+                          id="metric-d12aa117-036e-4582-9ad0-b970ec4367d5"
                           role="combobox"
                           value="complexity"
                         />
@@ -482,7 +483,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="operator-bea0bdaa-f9c2-46f6-9c89-89998482b352"
+                      for="operator-d12aa117-036e-4582-9ad0-b970ec4367d5"
                     >
                       <div
                         style="display: flex;"
@@ -507,12 +508,12 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="operator-bea0bdaa-f9c2-46f6-9c89-89998482b352__menu"
+                          aria-controls="operator-d12aa117-036e-4582-9ad0-b970ec4367d5__menu"
                           aria-expanded="false"
                           aria-label="Choose an item"
                           autocomplete="off"
                           class="bx--text-input"
-                          id="operator-bea0bdaa-f9c2-46f6-9c89-89998482b352"
+                          id="operator-d12aa117-036e-4582-9ad0-b970ec4367d5"
                           role="combobox"
                           value=""
                         />
@@ -552,7 +553,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="value-bea0bdaa-f9c2-46f6-9c89-89998482b352"
+                      for="value-d12aa117-036e-4582-9ad0-b970ec4367d5"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -568,7 +569,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       <input
                         autocomplete="off"
                         class="bx--text-input bx--text__input"
-                        id="value-bea0bdaa-f9c2-46f6-9c89-89998482b352"
+                        id="value-d12aa117-036e-4582-9ad0-b970ec4367d5"
                         name="value"
                         type="text"
                         value="1000"
@@ -686,7 +687,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="type-bcf57057-1a66-4870-9370-c629e3a60f7a"
+                      for="type-7f827741-50b3-46d7-b244-50059e790715"
                     >
                       <div
                         style="display: flex;"
@@ -711,12 +712,12 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="type-bcf57057-1a66-4870-9370-c629e3a60f7a__menu"
+                          aria-controls="type-7f827741-50b3-46d7-b244-50059e790715__menu"
                           aria-expanded="false"
                           aria-label="Choose an item"
                           autocomplete="off"
                           class="bx--text-input"
-                          id="type-bcf57057-1a66-4870-9370-c629e3a60f7a"
+                          id="type-7f827741-50b3-46d7-b244-50059e790715"
                           role="combobox"
                           value="maven"
                         />
@@ -777,7 +778,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="artifact-bcf57057-1a66-4870-9370-c629e3a60f7a"
+                      for="artifact-7f827741-50b3-46d7-b244-50059e790715"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -793,7 +794,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       <input
                         autocomplete="off"
                         class="bx--text-input bx--text__input"
-                        id="artifact-bcf57057-1a66-4870-9370-c629e3a60f7a"
+                        id="artifact-7f827741-50b3-46d7-b244-50059e790715"
                         name="artifact"
                         type="text"
                         value="commons-.*"
@@ -809,7 +810,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="version-bcf57057-1a66-4870-9370-c629e3a60f7a"
+                      for="version-7f827741-50b3-46d7-b244-50059e790715"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -825,7 +826,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       <input
                         autocomplete="off"
                         class="bx--text-input bx--text__input"
-                        id="version-bcf57057-1a66-4870-9370-c629e3a60f7a"
+                        id="version-7f827741-50b3-46d7-b244-50059e790715"
                         name="version"
                         type="text"
                         value=".*"
@@ -866,7 +867,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="type-1dd364b5-f768-4c11-a561-52ca04db385f"
+                      for="type-cf48fd1b-7273-4fc0-b47f-79e311a15352"
                     >
                       <div
                         style="display: flex;"
@@ -891,12 +892,12 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="type-1dd364b5-f768-4c11-a561-52ca04db385f__menu"
+                          aria-controls="type-cf48fd1b-7273-4fc0-b47f-79e311a15352__menu"
                           aria-expanded="false"
                           aria-label="Choose an item"
                           autocomplete="off"
                           class="bx--text-input"
-                          id="type-1dd364b5-f768-4c11-a561-52ca04db385f"
+                          id="type-cf48fd1b-7273-4fc0-b47f-79e311a15352"
                           role="combobox"
                           value="maven"
                         />
@@ -957,7 +958,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="artifact-1dd364b5-f768-4c11-a561-52ca04db385f"
+                      for="artifact-cf48fd1b-7273-4fc0-b47f-79e311a15352"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -973,7 +974,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       <input
                         autocomplete="off"
                         class="bx--text-input bx--text__input"
-                        id="artifact-1dd364b5-f768-4c11-a561-52ca04db385f"
+                        id="artifact-cf48fd1b-7273-4fc0-b47f-79e311a15352"
                         name="artifact"
                         type="text"
                         value="jackson-annotator"
@@ -989,7 +990,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="version-1dd364b5-f768-4c11-a561-52ca04db385f"
+                      for="version-cf48fd1b-7273-4fc0-b47f-79e311a15352"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -1005,7 +1006,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       <input
                         autocomplete="off"
                         class="bx--text-input bx--text__input"
-                        id="version-1dd364b5-f768-4c11-a561-52ca04db385f"
+                        id="version-cf48fd1b-7273-4fc0-b47f-79e311a15352"
                         name="version"
                         type="text"
                         value="1.8.9"

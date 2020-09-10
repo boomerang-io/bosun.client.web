@@ -1,5 +1,5 @@
 import React from "react";
-import Inputs from "../CreateEditTemplateForm";
+import Inputs from ".";
 import { fireEvent } from "@testing-library/react";
 
 global.body = {createTextRange: jest.fn()}
@@ -7,11 +7,9 @@ global.body = {createTextRange: jest.fn()}
 const mockfn = jest.fn();
 
 const props = {
-  loading: false,
-  updateInputs: mockfn,
-  workflowActions: { deleteWorkflowInput: mockfn },
   navigateBack: mockfn,
   onSubmit: mockfn, 
+  onCancel: mockfn, 
   template: {
     rules: [
       {

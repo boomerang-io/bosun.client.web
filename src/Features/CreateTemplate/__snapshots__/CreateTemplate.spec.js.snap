@@ -8,59 +8,59 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
     <form
       action="#"
     >
-      <div
-        class="container"
+      <header
+        class="bx--bmrg-feature-header"
       >
-        <div
-          class="content"
+        <section
+          class="bx--bmrg-feature-header__content"
         >
-          <div
-            class="info"
+          <hgroup
+            class="bx--bmrg-feature-header__header"
           >
             <h1
-              class="title"
+              class="bx--bmrg-feature-header-title"
             >
               Create Template
             </h1>
-          </div>
-          <section
-            class="buttons"
+          </hgroup>
+        </section>
+        <section
+          class="buttons"
+        >
+          <button
+            class="button bx--btn bx--btn--field bx--btn--secondary"
+            tabindex="0"
+            type="button"
           >
-            <button
-              class="button bx--btn bx--btn--field bx--btn--secondary"
-              tabindex="0"
-              type="button"
+            Cancel
+          </button>
+          <button
+            class="button bx--btn bx--btn--field bx--btn--primary"
+            data-testid="policy-header-affirmative-action"
+            tabindex="0"
+            type="submit"
+          >
+            Create
+            <svg
+              aria-hidden="true"
+              aria-label="Create"
+              class="bx--btn__icon"
+              fill="currentColor"
+              focusable="false"
+              height="16"
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              viewBox="0 0 32 32"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Cancel
-            </button>
-            <button
-              class="button bx--btn bx--btn--field bx--btn--primary"
-              data-testid="policy-header-affirmative-action"
-              tabindex="0"
-              type="submit"
-            >
-              Create
-              <svg
-                aria-hidden="true"
-                aria-label="Create"
-                class="bx--btn__icon"
-                fill="currentColor"
-                focusable="false"
-                height="16"
-                preserveAspectRatio="xMidYMid meet"
-                role="img"
-                viewBox="0 0 32 32"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17 15L17 8 15 8 15 15 8 15 8 17 15 17 15 24 17 24 17 17 24 17 24 15z"
-                />
-              </svg>
-            </button>
-          </section>
-        </div>
-      </div>
+              <path
+                d="M17 15L17 8 15 8 15 15 8 15 8 17 15 17 15 24 17 24 17 17 24 17 24 15z"
+              />
+            </svg>
+          </button>
+        </section>
+      </header>
       <section
         class="container"
       >
