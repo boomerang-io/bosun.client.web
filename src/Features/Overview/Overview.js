@@ -1,4 +1,6 @@
 import React from "react";
+import cx from "classnames";
+import { settings } from "carbon-components";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import { ErrorMessage, SkeletonPlaceholder, DataTableSkeleton, ErrorDragon } from "@boomerang-io/carbon-addons-boomerang-react";
@@ -11,6 +13,8 @@ import { serviceUrl, resolver } from "Config/servicesConfig";
 import { appLink } from "Config/appConfig";
 import AppContext from "State/context/appContext";
 import styles from "./overview.module.scss";
+
+const { prefix } = settings;
 
 export function Overview() {
   const history = useHistory();
@@ -67,7 +71,12 @@ export function Overview() {
     return (
       <div className={styles.tableSkeleton}>
         <SkeletonPlaceholder className={styles.titleSkeleton}/>
-        <DataTableSkeleton columnCount={5}/>
+        <DataTableSkeleton 
+          data-testid="policies-loading-skeleton"
+          className={cx(`${prefix}--skeleton`, `${prefix}--data-table`, styles.policiesTableSkeleton)}
+          rowCount={10}
+          columnCount={4}
+        />
       </div>
     );
     if(policiesError)
@@ -84,7 +93,12 @@ export function Overview() {
       return (
         <div className={styles.tableSkeleton}>
           <SkeletonPlaceholder className={styles.titleSkeleton}/>
-          <DataTableSkeleton columnCount={4}/>
+          <DataTableSkeleton
+            data-testid="policies-loading-skeleton"
+            className={cx(`${prefix}--skeleton`, `${prefix}--data-table`, styles.violationsTableSkeleton)}
+            rowCount={10}
+            columnCount={5}
+          />
         </div>
       );
 
