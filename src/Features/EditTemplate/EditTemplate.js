@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useQuery, useMutation, queryCache } from "react-query";
-import { Error, Loading, notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
+import { notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
 import NoDisplay from "Components/NoDisplay";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants";
@@ -71,21 +71,7 @@ function EditTemplate(props) {
 
     return false;
   }
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (error) {
-    return (
-      <>
-        <Error />
-        <Link to={appLink.policyTemplates()}>Go to Templates</Link>
-      </>
-    );
-  }
-
-  if (templatesData) {
-    const template = templatesData.find(template => template.id === templateId);
+    const template = templatesData?.find(template => template.id === templateId);
 
     if (template) {
       const validationData = getTakenNamesAndKeys(templatesData);
@@ -98,9 +84,11 @@ function EditTemplate(props) {
           validationData={validationData}
           type={TEMPLATE_INTERACTION_TYPES.EDIT}
           onCancel={cancelRequestRef.current}
+          isLoading={isLoading}
+          hasError={error}
         />
       );
-    } else {
+    } else if (templatesData) {
       return (
         <div style={{ textAlign: "center" }}>
           <NoDisplay
@@ -111,7 +99,6 @@ function EditTemplate(props) {
         </div>
       );
     }
-  }
   return null;
 }
 

@@ -30,7 +30,7 @@ CreateEditPolicyHeader.propTypes = {
   type: PropTypes.oneOf(Object.values(TEMPLATE_INTERACTION_TYPES)),
 };
 
-function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCancel }) {
+function CreateEditPolicyHeader({ form={isSubmitting:false, isValid: false, affirmativeAction:null}, template = {}, navigateBack, type, onCancel, isLoading=false, hasError=false }) {
   const config = ACTION_TYPE_CONFIG[type];
   const { isSubmitting, isValid } = form;
 
@@ -77,7 +77,7 @@ function CreateEditPolicyHeader({ form, template = {}, navigateBack, type, onCan
           )}
           <Button
             data-testid="policy-header-affirmative-action"
-            disabled={isSubmitting || !isValid}
+            disabled={isSubmitting || !isValid || isLoading || hasError}
             className={styles.button}
             iconDescription={config.title}
             onClick={form.affirmativeAction}

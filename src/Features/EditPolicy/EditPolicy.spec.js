@@ -34,6 +34,7 @@ describe("EditPolicy --- Snapshot", () => {
   it("renders correctly", async () => {
     const { baseElement } = rtlRouterRender(<EditPolicy {...props} />, { route });
     await screen.findByText(/Edit Policy/i);
+    await screen.findByText(/Static Code Analysis/i);
     expect(baseElement).toMatchSnapshot();
   });
 });
@@ -49,7 +50,7 @@ describe("EditPolicy --- RTL", () => {
     });
 
     rtlRouterRender(<EditPolicy {...props} />, { route });
-    const errorMessage = await screen.findByText("Don’t lose your daks");
+    const errorMessage = await screen.findByText("Oops, something went wrong.");
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -58,13 +59,14 @@ describe("EditPolicy --- RTL", () => {
     server.get(serviceUrl.getPolicy({ policyId: "5cd49adff6ea74a9bb6adef3" }), () => {
       return new Response(404, {}, { errors: ["Error"] });
     });
-    const errorMessage = await screen.findByText("Don’t lose your daks");
+    const errorMessage = await screen.findByText("Oops, something went wrong.");
     expect(errorMessage).toBeInTheDocument();
   });
 
   test("it is able to update policy only if it has a name", async () => {
     rtlRouterRender(<EditPolicy {...props} />, { route });
     await screen.findByText(/Edit Policy/i);
+    await screen.findByText(/Static Code Analysis/i);
 
     const saveButton = await screen.findByTestId("policy-header-affirmative-action");
 
@@ -81,6 +83,7 @@ describe("EditPolicy --- RTL", () => {
   test("save button is disabled while saving", async () => {
     rtlRouterRender(<EditPolicy {...props} />, { route });
 
+    await screen.findByText(/Static Code Analysis/i);
     const saveButton = await screen.findByTestId("policy-header-affirmative-action");
 
     const nameInput = screen.getByPlaceholderText(/name/i);

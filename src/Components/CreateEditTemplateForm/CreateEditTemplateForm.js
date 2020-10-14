@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Creatable, TextInput, TextArea, Tabs, Tab } from "@boomerang-io/carbon-addons-boomerang-react";
+import { Creatable, ErrorMessage, TextInput, TextArea, Tabs, Tab, SkeletonPlaceholder, TabsSkeleton } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditTemplateHeader from "Components/CreateEditTemplateHeader";
 import TextEditor from "Components/TextEditor";
 import ValidateFormikOnRender from "Components/ValidateFormikOnRender";
@@ -13,12 +13,43 @@ function validateKey(key) {
   return !regexp.test(key);
 }
 
-function CreateTemplate({ navigateBack, onSubmit, template, type, validationData, onCancel }) {
+const FeatureLayout = ({ children, navigateBack, type, onCancel, formikProps, isLoading, hasError }) => {
+  return (
+    <>
+      <CreateEditTemplateHeader form={formikProps} navigateBack={navigateBack} type={type} onCancel={onCancel} isLoading={isLoading} hasError={hasError}/>
+      {children}
+    </>
+  );
+}
+
+function CreateTemplate({ navigateBack, onSubmit, template, type, validationData, onCancel, isLoading=false, hasError=false }) {
   const codeMirrorEditor = React.useRef(null);
 
   function setCodeMirroEditor(codeMirroEditor) {
     codeMirrorEditor.current = codeMirroEditor;
   }
+
+  if(isLoading) {
+    return (
+      <FeatureLayout isLoading={true} navigateBack={navigateBack} type={type}>
+        <div style={{padding: "2rem"}}>
+          <TabsSkeleton className={styles.tabsSkeleton}/>
+          <SkeletonPlaceholder className={styles.inputsSkeleton} />
+        </div>
+      </FeatureLayout>
+    );
+  }
+
+  if(hasError) {
+    return (
+      <FeatureLayout hasError={true} navigateBack={navigateBack} type={type}>
+        <div style={{padding: "2rem"}}>
+          <ErrorMessage />
+        </div>
+      </FeatureLayout>
+    );
+  }
+
   return (
     <Formik
       onSubmit={onSubmit}
@@ -62,108 +93,109 @@ function CreateTemplate({ navigateBack, onSubmit, template, type, validationData
         } = formikProps;
         return (
           <Form onSubmit={handleSubmit}>
-            <CreateEditTemplateHeader form={formikProps} navigateBack={navigateBack} type={type} onCancel={onCancel} />
-            <section className={styles.container}>
-              <Tabs>
-                <Tab label="About">
-                  <div className={styles.generalContainer}>
-                    <section className={styles.generalSection}>
-                      <h1 className={styles.sectionTitle}>General</h1>
-                      <TextInput
-                        id="name"
-                        name="name"
-                        key="name"
-                        label="Name"
-                        placeholder="Name"
-                        invalid={errors.name && touched.name}
-                        invalidText={errors.name}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.name}
-                      />
-                      <TextInput
-                        id="key"
-                        name="key"
-                        key="key"
-                        label="Key"
-                        placeholder="Key"
-                        helperText="Must match the OPA Rego package declaration"
-                        invalid={errors.key && touched.key}
-                        invalidText={errors.key}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.key}
-                      />
-                      <TextArea
-                        id="description"
-                        name="description"
-                        key="description"
-                        label="Description (optional)"
-                        placeholder="Description"
-                        invalid={errors.description && touched.description}
-                        invalidText={errors.description}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.description}
-                      />
-                      <TextInput
-                        id="order"
-                        name="order"
-                        type="number"
-                        key="order"
-                        label="Order (optional)"
-                        placeholder="0"
-                        helperText="Specify presentation order in Create Policy feature"
-                        invalid={errors.order && touched.order}
-                        invalidText={errors.order}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.order}
-                      />
-                    </section>
-                    <section className={styles.generalSection}>
-                      <h1 className={styles.sectionTitle}>Validation</h1>
-                      {/* <Dropdown
-                        id="integration"
-                        titleText="Integration"
-                        label="integration"
-                        items={["integration", "custom"]}
-                        onChange={({ selectedItem }) => setFieldValue("integration", selectedItem)}
-                        selectedItem={values.integration}
-                      /> */}
-                      <Creatable
-                        id="labels"
-                        name="labels"
-                        label="Labels (optional)"
-                        helperText="Metadata to pass information into the pre-integrated repositories"
-                        onChange={(values) => setFieldValue("labels", values)}
-                        values={values.labels}
-                        placeholder="Create labels"
-                        type="text"
-                        textInputProps={{ maxLength: 64 }}
-                      />
-                    </section>
-                  </div>
-                </Tab>
-                <Tab label="Rules">
-                  <p>Create at least one</p>
-                  <FieldArray
-                    name="rules"
-                    render={(arrayHelpers) => <TemplateRules arrayHelpers={arrayHelpers} rules={values.rules} />}
-                  />
-                </Tab>
-                <Tab label="OPA Rego" onClick={() => codeMirrorEditor.current.refresh()}>
-                  <section className={styles.opaPolicyContainer}>
-                    <TextEditor
-                      onChange={(value) => setFieldValue("rego", value)}
-                      setCodeMirroEditor={setCodeMirroEditor}
-                      value={values.rego}
+            <FeatureLayout formikProps={formikProps} navigateBack={navigateBack} type={type} onCancel={onCancel}>
+              <section className={styles.container}>
+                <Tabs>
+                  <Tab label="About">
+                    <div className={styles.generalContainer}>
+                      <section className={styles.generalSection}>
+                        <h1 className={styles.sectionTitle}>General</h1>
+                        <TextInput
+                          id="name"
+                          name="name"
+                          key="name"
+                          label="Name"
+                          placeholder="Name"
+                          invalid={errors.name && touched.name}
+                          invalidText={errors.name}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.name}
+                        />
+                        <TextInput
+                          id="key"
+                          name="key"
+                          key="key"
+                          label="Key"
+                          placeholder="Key"
+                          helperText="Must match the OPA Rego package declaration"
+                          invalid={errors.key && touched.key}
+                          invalidText={errors.key}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.key}
+                        />
+                        <TextArea
+                          id="description"
+                          name="description"
+                          key="description"
+                          label="Description (optional)"
+                          placeholder="Description"
+                          invalid={errors.description && touched.description}
+                          invalidText={errors.description}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.description}
+                        />
+                        <TextInput
+                          id="order"
+                          name="order"
+                          type="number"
+                          key="order"
+                          label="Order (optional)"
+                          placeholder="0"
+                          helperText="Specify presentation order in Create Policy feature"
+                          invalid={errors.order && touched.order}
+                          invalidText={errors.order}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.order}
+                        />
+                      </section>
+                      <section className={styles.generalSection}>
+                        <h1 className={styles.sectionTitle}>Validation</h1>
+                        {/* <Dropdown
+                          id="integration"
+                          titleText="Integration"
+                          label="integration"
+                          items={["integration", "custom"]}
+                          onChange={({ selectedItem }) => setFieldValue("integration", selectedItem)}
+                          selectedItem={values.integration}
+                        /> */}
+                        <Creatable
+                          id="labels"
+                          name="labels"
+                          label="Labels (optional)"
+                          helperText="Metadata to pass information into the pre-integrated repositories"
+                          onChange={(values) => setFieldValue("labels", values)}
+                          values={values.labels}
+                          placeholder="Create labels"
+                          type="text"
+                          textInputProps={{ maxLength: 64 }}
+                        />
+                      </section>
+                    </div>
+                  </Tab>
+                  <Tab label="Rules">
+                    <p>Create at least one</p>
+                    <FieldArray
+                      name="rules"
+                      render={(arrayHelpers) => <TemplateRules arrayHelpers={arrayHelpers} rules={values.rules} />}
                     />
-                  </section>
-                </Tab>
-              </Tabs>
-            </section>
-            <ValidateFormikOnRender validateForm={validateForm} />
+                  </Tab>
+                  <Tab label="OPA Rego" onClick={() => codeMirrorEditor.current.refresh()}>
+                    <section className={styles.opaPolicyContainer}>
+                      <TextEditor
+                        onChange={(value) => setFieldValue("rego", value)}
+                        setCodeMirroEditor={setCodeMirroEditor}
+                        value={values.rego}
+                      />
+                    </section>
+                  </Tab>
+                </Tabs>
+              </section>
+              <ValidateFormikOnRender validateForm={validateForm} />
+            </FeatureLayout>
           </Form>
         );
       }}

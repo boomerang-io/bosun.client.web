@@ -27,6 +27,7 @@ describe("CreatePolicy --- Snapshot", () => {
   it("renders correctly", async () => {
     const { baseElement, findByText } = rtlRouterRender(<CreatePolicy {...props} />, { route });
     await findByText(/Create Policy/i);
+    await findByText(/Static Code Analysis/i);
     expect(baseElement).toMatchSnapshot();
   });
 });
@@ -37,19 +38,19 @@ describe("CreatePolicy --- RTL", () => {
       return new Response(404, {}, {data: {status:404}})
     });
     const { findByText } = rtlRouterRender(<CreatePolicy {...props} />, { route });
-    const errorMessage = await findByText("Don’t lose your daks");
+    const errorMessage = await findByText("Oops, something went wrong.");
     expect(errorMessage).toBeInTheDocument();
   });
 
   test("it is able to create policy only after adding a name", async () => {
-    const { getByPlaceholderText, findByTestId } = rtlRouterRender(<CreatePolicy {...props} />, {
+    const { getByPlaceholderText, findByTestId, findByPlaceholderText } = rtlRouterRender(<CreatePolicy {...props} />, {
       route
     });
 
     const createButton = await findByTestId("policy-header-affirmative-action");
 
     expect(createButton).toBeDisabled();
-
+    await findByPlaceholderText(/name/i);
     const nameInput = getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "test" } });
 
@@ -57,12 +58,12 @@ describe("CreatePolicy --- RTL", () => {
   });
 
   test("create button is disabled while creating", async () => {
-    const { getByPlaceholderText, findByTestId, findByText } = rtlContextRouterRender(<CreatePolicy {...props} />, {
+    const { getByPlaceholderText, findByTestId, findByText, findByPlaceholderText } = rtlContextRouterRender(<CreatePolicy {...props} />, {
       route
     });
 
     const createButton = await  findByTestId("policy-header-affirmative-action");
-
+    await findByPlaceholderText(/name/i);
     const nameInput = getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "test" } });
     expect(createButton).toBeEnabled();
