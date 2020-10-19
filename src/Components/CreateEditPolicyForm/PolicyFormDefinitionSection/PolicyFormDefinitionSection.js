@@ -84,7 +84,7 @@ function determineInitialState(definition, inputs) {
 }
 
 function PolicyFormDefinitionSection({ definition, form }) {
-  const inputs = form.inputs[definition.key] || {};
+  const inputs = form?.inputs[definition.key] || {};
   const [rows, setRows] = useState(determineInitialState(definition, inputs));
 
   function addRow() {
