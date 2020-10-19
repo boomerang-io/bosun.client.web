@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { ErrorDragon, Loading, FeatureHeader, FeatureHeaderTitle, FeatureHeaderSubtitle } from "@boomerang-io/carbon-addons-boomerang-react";
+import { ErrorMessage, SkeletonPlaceholder, DataTableSkeleton, FeatureHeader, FeatureHeaderTitle, FeatureHeaderSubtitle } from "@boomerang-io/carbon-addons-boomerang-react";
 import TemplatesTable from "./TemplatesTable";
 import { serviceUrl, resolver } from "Config/servicesConfig";
 
@@ -12,30 +12,33 @@ export function TemplatesContainer() {
     queryFn: resolver.query(getTemplatesUrl)
   });
 
-  if (isLoading) return <Loading />;
-
-  if (error) {
-    return <ErrorDragon />;
-  }
-
-  if (templatesData) {
-    return (
-      <>
-        <FeatureHeader
-          includeBorder={false}
-          header={
-            <>
-              <FeatureHeaderSubtitle>These are the</FeatureHeaderSubtitle>
-              <FeatureHeaderTitle>Policy Templates</FeatureHeaderTitle>
-            </>
-          }
-        />
-        <TemplatesTable data={templatesData} />
-      </>
-    );
-  }
-
-  return null;
+  return (
+    <>
+      <FeatureHeader
+        includeBorder={false}
+        header={
+          <>
+            <FeatureHeaderSubtitle>These are the</FeatureHeaderSubtitle>
+            <FeatureHeaderTitle>Policy Templates</FeatureHeaderTitle>
+          </>
+        }
+      />
+      {
+        isLoading ?
+        <div style={{padding:"2rem"}}>
+          <SkeletonPlaceholder style={{maxHeight:"2.5rem", marginBottom:"1rem", width:"100%"}}/>
+          <DataTableSkeleton columnCount={4}/>
+        </div>
+        :
+        error ?
+          <div style={{marginTop:"2rem"}}>
+            <ErrorMessage />
+          </div>
+        :
+          <TemplatesTable data={templatesData} />
+      }
+    </>
+  );
 }
 
 export default TemplatesContainer;

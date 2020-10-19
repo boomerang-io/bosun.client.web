@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useAppContext } from "Hooks";
 import { useQuery, useMutation, queryCache } from "react-query";
-import { ErrorDragon, Loading, notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
+import { notify, ToastNotification, ErrorMessage, TextInputSkeleton } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
+import DefinitionSkeleton from "Components/DefinitionSkeleton";
 import { serviceUrl, resolver } from "Config/servicesConfig";
 import { appLink } from "Config/appConfig";
 import { POLICY_INTERACTION_TYPES } from "Constants";
@@ -151,24 +152,26 @@ const validateRow = (definitionKey) => {
       isPerformingAffirmativeAction: createIsLoading,
     };
 
-    if (isLoading) {
-      return <Loading />;
-    }
-
-    if (error) {
-      return <ErrorDragon />;
-    }
-
-    if (definitionsData) {
-      return (
-        <div className={styles.container}>
-          <CreateEditPolicyHeader form={form} navigateBack={navigateBack} type={POLICY_INTERACTION_TYPES.CREATE} />
+    return (
+      <div className={styles.container}>
+        <CreateEditPolicyHeader form={form} navigateBack={navigateBack} type={POLICY_INTERACTION_TYPES.CREATE} hasError={error}/>
+        {isLoading ? 
+          <div className={styles.skeletonsContainer}>
+            <TextInputSkeleton className={styles.textInputSkeleton}/>
+            <DefinitionSkeleton/>
+            <DefinitionSkeleton/>
+            <DefinitionSkeleton/>
+          </div>
+        :
+        error ?
+          <div style={{marginTop: "2rem"}}>
+            <ErrorMessage />
+          </div>
+        :
           <CreateEditPolicyForm form={form} definitions={definitionsData} />
-        </div>
-      );
-    }
-
-    return null;
+        }
+      </div>
+    );
   }
 
 

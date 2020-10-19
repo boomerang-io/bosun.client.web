@@ -2,9 +2,10 @@ import React, { useCallback, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid";
 import { useQuery, useMutation, queryCache } from "react-query";
-import { ErrorDragon, Loading, notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
+import { notify, ToastNotification, ErrorMessage, TextInputSkeleton } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
+import DefinitionSkeleton from "Components/DefinitionSkeleton";
 import { serviceUrl, resolver } from "Config/servicesConfig";
 import { appLink } from "Config/appConfig";
 import { POLICY_INTERACTION_TYPES } from "Constants";
@@ -196,45 +197,54 @@ function EditPolicy({ history, match }) {
   const navigateBack = () => {
     history.push(appLink.teamOverview({ teamId: match.params.teamId }));
   };
+  const hasError = definitionsError || policyError || validateInfoError;
+  const isLoading = definitionsIsLoading || policyIsLoading || validateInfoIsLoading;
 
-  if (definitionsIsLoading || policyIsLoading || validateInfoIsLoading) {
-    return <Loading />;
-  }
-  if (definitionsError || policyError || validateInfoError) {
-    return <ErrorDragon />;
-  }
+  const form = {
+    name,
+    inputs,
+    errors,
+    setName,
+    setInput,
+    setError,
+    removeRow,
+    validateRow,
+    onCancel: cancelRequestRef.current,
+    affirmativeAction: updatePolicy,
+    deletePolicy,
+    isPerformingAffirmativeAction: isUpdating,
+    isDeleting,
+  };
+  return (
+    <div className={styles.container}>
+      <CreateEditPolicyHeader
+        form={form}
+        navigateBack={navigateBack}
+        policy={policyData}
+        type={POLICY_INTERACTION_TYPES.EDIT}
+        validateInfo={validateInfoData}
+        isLoading={isLoading}
+        hasError={hasError}
+      />
+      {
+      isLoading ? 
+        <div className={styles.skeletonsContainer}>
+          <TextInputSkeleton className={styles.textInputSkeleton}/>
+          <DefinitionSkeleton/>
+          <DefinitionSkeleton/>
+          <DefinitionSkeleton/>
+        </div>
+        :
+        hasError ?
+          <div style={{marginTop: "2rem"}}>
+            <ErrorMessage />
+          </div>
+        :
+          <CreateEditPolicyForm form={form} definitions={definitionsData} />
+      }
+    </div>
+  );
 
-  if (policyData && definitionsData && validateInfoData && inputs) {
-    const form = {
-      name,
-      inputs,
-      errors,
-      setName,
-      setInput,
-      setError,
-      removeRow,
-      validateRow,
-      onCancel: cancelRequestRef.current,
-      affirmativeAction: updatePolicy,
-      deletePolicy,
-      isPerformingAffirmativeAction: isUpdating,
-      isDeleting,
-    };
-    return (
-      <div className={styles.container}>
-        <CreateEditPolicyHeader
-          form={form}
-          navigateBack={navigateBack}
-          policy={policyData}
-          type={POLICY_INTERACTION_TYPES.EDIT}
-          validateInfo={validateInfoData}
-        />
-        <CreateEditPolicyForm form={form} definitions={definitionsData} />
-      </div>
-    );
-  }
-
-  return null;
 }
 
 export default EditPolicy;

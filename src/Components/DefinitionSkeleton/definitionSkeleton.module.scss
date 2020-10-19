@@ -1,0 +1,19 @@
+
+.skeletonContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.5rem;
+}
+.titleSkeleton {
+  max-height: 1.5rem;
+  margin-bottom: 0.5rem;
+  width: 13.75rem;
+}
+.textSkeleton {
+  max-height: 1rem;
+  margin-bottom: 0.5rem;
+  width: 20rem;
+}
+.buttonSkeleton {
+  margin-top: 1rem;
+}

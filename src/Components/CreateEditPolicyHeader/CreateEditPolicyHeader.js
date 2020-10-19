@@ -45,11 +45,10 @@ CreateEditPolicyHeader.propTypes = {
   type: PropTypes.oneOf(Object.values(POLICY_INTERACTION_TYPES)),
 };
 
-function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validateInfo }) {
+function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validateInfo, isLoading=false, hasError: hasFetchError }) {
   const config = ACTION_TYPE_CONFIG[type];
   const { name, errors, isPerformingAffirmativeAction, isDeleting, onCancel } = form;
   const hasErrors = Object.values(errors).filter(Boolean).length;
-
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
 
@@ -62,10 +61,11 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
     <FeatureHeader
       includeBorder={false}
       style={{top: "3rem"}}
+      isLoading={isLoading}
       header={
         <>
           <FeatureHeaderTitle>{`${config.title} Policy`}</FeatureHeaderTitle>
-          {policy.createdDate && (
+          {policy.createdDate && !hasFetchError && (
             <div className={styles.metadataContainer}>
               <p className={styles.metadata}>
                 <span className={styles.metaDataLabel}>Created: </span>{" "}
@@ -87,7 +87,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
           </Button>
           {type === POLICY_INTERACTION_TYPES.EDIT && policy.id && (
             <Button
-              disabled={isPerformingAffirmativeAction || isDeleting}
+              disabled={isPerformingAffirmativeAction || isDeleting || hasFetchError || isLoading}
               className={styles.button}
               onClick={() => setIsDeleteModalOpen(true)}
               kind="danger"
