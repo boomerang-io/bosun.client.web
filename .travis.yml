@@ -3,7 +3,6 @@ sudo: required
 dist: trusty
 before_install:
   - export TZ=Etc/UTC
-  - curl --insecure -u admin:$ARTIFACTORY_API_TOKEN https://tools.boomerangplatform.net/artifactory/api/npm/boomeranglib-npm/auth/boomerang -o .npmrc
 language: node_js
 node_js:
   - "lts/*"
@@ -11,8 +10,6 @@ addons:
   apt:
     packages:
       - libgconf-2-4
-notifications:
-  slack: ibm-aic-offerings:pKEkgH3hXaZQg8UCl6eLWyYB
 cache:
   directories:
     - ~/.npm
@@ -20,6 +17,5 @@ cache:
 install:
   - npm ci
 script:
-  - npm run test
   - npm run test
   - npm run test:ci-cypress
