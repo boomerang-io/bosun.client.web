@@ -11,31 +11,28 @@ exports[`FilterDropdown --- Snapshot Capturing Snapshot of FilterDropdown 1`] = 
       <div
         class="bx--dropdown__wrapper bx--list-box__wrapper"
       >
-        <span
+        <label
           class="bx--label"
+          for="downshift-0-toggle-button"
+          id="downshift-0-label"
         >
           testLabel
-        </span>
+        </label>
         <div
           class="bx--dropdown bx--list-box"
           id="filter-dropdown"
         >
-          <div
+          <button
             aria-disabled="false"
             aria-expanded="false"
-            aria-haspopup="true"
-            aria-labelledby="dropdown-label-filter-dropdown dropdown-field-label-filter-dropdown"
+            aria-haspopup="listbox"
+            aria-labelledby="downshift-0-label downshift-0-toggle-button"
             class="bx--list-box__field"
-            data-toggle="true"
-            role="button"
-            tabindex="0"
+            id="downshift-0-toggle-button"
             type="button"
           >
             <span
               class="bx--list-box__label"
-              for="downshift-0-input"
-              id="dropdown-field-label-filter-dropdown"
-              title="testLabel"
             >
               testLabel
             </span>
@@ -62,22 +59,14 @@ exports[`FilterDropdown --- Snapshot Capturing Snapshot of FilterDropdown 1`] = 
                 </title>
               </svg>
             </div>
-          </div>
+          </button>
           <div
-            aria-labelledby="filter-dropdown"
+            aria-labelledby="downshift-0-label"
             class="bx--list-box__menu"
-            id="filter-dropdown__menu"
+            id="downshift-0-menu"
             role="listbox"
-          >
-            <div
-              class="bx--list-box__menu-item"
-              id="downshift-0-item-0"
-            >
-              <div
-                class="bx--list-box__menu-item__option"
-              />
-            </div>
-          </div>
+            tabindex="-1"
+          />
         </div>
       </div>
     </div>

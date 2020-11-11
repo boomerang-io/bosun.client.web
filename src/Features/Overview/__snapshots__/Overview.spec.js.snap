@@ -18,11 +18,16 @@ exports[`Overview --- Snapshot Capturing Snapshot of Overview 1`] = `
             class="bx--bmrg-select"
           >
             <div
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-labelledby="downshift-0-label"
               class="bx--list-box__wrapper"
+              role="combobox"
             >
               <label
                 class="bx--label"
                 for="team"
+                id="downshift-0-label"
               >
                 <div
                   style="display: flex;"
@@ -33,29 +38,29 @@ exports[`Overview --- Snapshot Capturing Snapshot of Overview 1`] = `
                 </div>
               </label>
               <div
+                aria-label="Choose an item"
                 class="bx--combo-box bx--list-box"
               >
                 <div
-                  aria-expanded="false"
                   aria-haspopup="true"
                   aria-label="open menu"
                   class="bx--list-box__field"
                   data-toggle="true"
+                  id="team"
                   role="button"
                   tabindex="-1"
                   type="button"
                 >
                   <input
                     aria-autocomplete="list"
-                    aria-controls="team__menu"
-                    aria-expanded="false"
-                    aria-label="Choose an item"
+                    aria-labelledby="downshift-0-label"
                     autocomplete="off"
-                    class="bx--text-input"
+                    class="bx--text-input bx--text-input--empty"
                     id="team"
                     placeholder="Select a team"
-                    role="combobox"
+                    tabindex="0"
                     title="Team"
+                    type="text"
                     value=""
                   />
                   
@@ -248,439 +253,462 @@ exports[`Overview --- Snapshot Capturing Snapshot of Overview 1`] = `
         <div
           class="bx--data-table-container"
         >
-          <table
-            class="bx--data-table tableContainer bx--data-table--no-border"
-            sortable="true"
+          <div
+            class="bx--data-table-content"
           >
-            <thead>
-              <tr
-                class="tableHeadRow"
-              >
-                <th
-                  aria-sort="none"
-                  class="tableHeader name"
-                  scope="col"
-                >
-                  <button
-                    class="tableHeader name bx--table-sort"
-                  >
-                    <span
-                      class="bx--table-header-label"
-                    >
-                      Name
-                    </span>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
-                      />
-                    </svg>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon-unsorted"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
-                      />
-                    </svg>
-                  </button>
-                </th>
-                <th
-                  aria-sort="none"
-                  class="tableHeader definitions"
-                  scope="col"
-                >
-                  <button
-                    class="tableHeader definitions bx--table-sort"
-                  >
-                    <span
-                      class="bx--table-header-label"
-                    >
-                      Definitions
-                    </span>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
-                      />
-                    </svg>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon-unsorted"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
-                      />
-                    </svg>
-                  </button>
-                </th>
-                <th
-                  aria-sort="none"
-                  class="tableHeader rules"
-                  scope="col"
-                >
-                  <button
-                    class="tableHeader rules bx--table-sort"
-                  >
-                    <span
-                      class="bx--table-header-label"
-                    >
-                      Rules
-                    </span>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
-                      />
-                    </svg>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon-unsorted"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
-                      />
-                    </svg>
-                  </button>
-                </th>
-                <th
-                  aria-sort="none"
-                  class="tableHeader createdDate"
-                  scope="col"
-                >
-                  <button
-                    class="tableHeader createdDate bx--table-sort"
-                  >
-                    <span
-                      class="bx--table-header-label"
-                    >
-                      Created Date
-                    </span>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
-                      />
-                    </svg>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon-unsorted"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
-                      />
-                    </svg>
-                  </button>
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              aria-live="polite"
-              class="tableBody"
-              data-testid="policies-tbody"
+            <table
+              class="bx--data-table tableContainer bx--data-table--sort bx--data-table--no-border"
             >
-              <tr
-                class="tableRow"
-                data-testid="policies-table-row"
+              <thead>
+                <tr
+                  class="tableHeadRow"
+                >
+                  <th
+                    aria-sort="none"
+                    class="tableHeader name"
+                    scope="col"
+                  >
+                    <button
+                      class="tableHeader name bx--table-sort"
+                      type="button"
+                    >
+                      <span
+                        class="bx--table-sort__flex"
+                      >
+                        <div
+                          class="bx--table-header-label"
+                        >
+                          Name
+                        </div>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
+                          />
+                        </svg>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon-unsorted"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th
+                    aria-sort="none"
+                    class="tableHeader definitions"
+                    scope="col"
+                  >
+                    <button
+                      class="tableHeader definitions bx--table-sort"
+                      type="button"
+                    >
+                      <span
+                        class="bx--table-sort__flex"
+                      >
+                        <div
+                          class="bx--table-header-label"
+                        >
+                          Definitions
+                        </div>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
+                          />
+                        </svg>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon-unsorted"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th
+                    aria-sort="none"
+                    class="tableHeader rules"
+                    scope="col"
+                  >
+                    <button
+                      class="tableHeader rules bx--table-sort"
+                      type="button"
+                    >
+                      <span
+                        class="bx--table-sort__flex"
+                      >
+                        <div
+                          class="bx--table-header-label"
+                        >
+                          Rules
+                        </div>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
+                          />
+                        </svg>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon-unsorted"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th
+                    aria-sort="none"
+                    class="tableHeader createdDate"
+                    scope="col"
+                  >
+                    <button
+                      class="tableHeader createdDate bx--table-sort"
+                      type="button"
+                    >
+                      <span
+                        class="bx--table-sort__flex"
+                      >
+                        <div
+                          class="bx--table-header-label"
+                        >
+                          Created Date
+                        </div>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
+                          />
+                        </svg>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon-unsorted"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                aria-live="polite"
+                class="tableBody"
+                data-testid="policies-tbody"
               >
-                <td
-                  style="padding: 0px;"
+                <tr
+                  class="tableRow"
+                  data-testid="policies-table-row"
                 >
-                  <div
-                    class="tableCell"
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      Tyson's Policy
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
+                      <p
+                        class="tableTextarea"
+                      >
+                        Tyson's Policy
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        5
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        4
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <time
+                        class="tableTextarea"
+                      >
+                        January 01, 2019
+                      </time>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="tableRow"
+                  data-testid="policies-table-row"
                 >
-                  <div
-                    class="tableCell"
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      5
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
+                      <p
+                        class="tableTextarea"
+                      >
+                        Timss
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        2
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        2
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <time
+                        class="tableTextarea"
+                      >
+                        January 01, 2019
+                      </time>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="tableRow"
+                  data-testid="policies-table-row"
                 >
-                  <div
-                    class="tableCell"
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      4
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
+                      <p
+                        class="tableTextarea"
+                      >
+                        New Policy
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        2
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        0
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <time
+                        class="tableTextarea"
+                      >
+                        January 01, 2019
+                      </time>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="tableRow"
+                  data-testid="policies-table-row"
                 >
-                  <div
-                    class="tableCell"
+                  <td
+                    style="padding: 0px;"
                   >
-                    <time
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      January 01, 2019
-                    </time>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="tableRow"
-                data-testid="policies-table-row"
-              >
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
+                      <p
+                        class="tableTextarea"
+                      >
+                        asdasd
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      Timss
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
+                      <p
+                        class="tableTextarea"
+                      >
+                        5
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      2
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
+                      <p
+                        class="tableTextarea"
+                      >
+                        0
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      2
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <time
-                      class="tableTextarea"
-                    >
-                      January 01, 2019
-                    </time>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="tableRow"
-                data-testid="policies-table-row"
-              >
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      New Policy
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      2
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      0
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <time
-                      class="tableTextarea"
-                    >
-                      January 01, 2019
-                    </time>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="tableRow"
-                data-testid="policies-table-row"
-              >
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      asdasd
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      5
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      0
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <time
-                      class="tableTextarea"
-                    >
-                      ---
-                    </time>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                      <time
+                        class="tableTextarea"
+                      >
+                        ---
+                      </time>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
       <section
@@ -701,541 +729,569 @@ exports[`Overview --- Snapshot Capturing Snapshot of Overview 1`] = `
         <div
           class="bx--data-table-container"
         >
-          <table
-            class="bx--data-table tableContainer bx--data-table--no-border"
-            sortable="true"
+          <div
+            class="bx--data-table-content"
           >
-            <thead>
-              <tr
-                class="tableHeadRow"
-              >
-                <th
-                  aria-sort="none"
-                  class="tableHeader policyName"
-                  scope="col"
-                >
-                  <button
-                    class="tableHeader policyName bx--table-sort"
-                  >
-                    <span
-                      class="bx--table-header-label"
-                    >
-                      Policy
-                    </span>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
-                      />
-                    </svg>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon-unsorted"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
-                      />
-                    </svg>
-                  </button>
-                </th>
-                <th
-                  aria-sort="none"
-                  class="tableHeader nbrViolations"
-                  scope="col"
-                >
-                  <button
-                    class="tableHeader nbrViolations bx--table-sort"
-                  >
-                    <span
-                      class="bx--table-header-label"
-                    >
-                      Violations
-                    </span>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
-                      />
-                    </svg>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon-unsorted"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
-                      />
-                    </svg>
-                  </button>
-                </th>
-                <th
-                  aria-sort="none"
-                  class="tableHeader policyDefinitionTypes"
-                  scope="col"
-                >
-                  <button
-                    class="tableHeader policyDefinitionTypes bx--table-sort"
-                  >
-                    <span
-                      class="bx--table-header-label"
-                    >
-                      Failed Definition Types
-                    </span>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
-                      />
-                    </svg>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon-unsorted"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
-                      />
-                    </svg>
-                  </button>
-                </th>
-                <th
-                  aria-sort="none"
-                  class="tableHeader referenceId"
-                  scope="col"
-                >
-                  <button
-                    class="tableHeader referenceId bx--table-sort"
-                  >
-                    <span
-                      class="bx--table-header-label"
-                    >
-                      Reference ID
-                    </span>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
-                      />
-                    </svg>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon-unsorted"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
-                      />
-                    </svg>
-                  </button>
-                </th>
-                <th
-                  aria-sort="none"
-                  class="tableHeader policyActivityCreatedDate"
-                  scope="col"
-                >
-                  <button
-                    class="tableHeader policyActivityCreatedDate bx--table-sort"
-                  >
-                    <span
-                      class="bx--table-header-label"
-                    >
-                      Activity Date
-                    </span>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
-                      />
-                    </svg>
-                    <svg
-                      aria-label="Sort rows by this header in ascending order"
-                      class="bx--table-sort__icon-unsorted"
-                      fill="currentColor"
-                      focusable="false"
-                      height="20"
-                      preserveAspectRatio="xMidYMid meet"
-                      role="img"
-                      viewBox="0 0 32 32"
-                      width="20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
-                      />
-                    </svg>
-                  </button>
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              aria-live="polite"
-              class="tableBody"
+            <table
+              class="bx--data-table tableContainer bx--data-table--sort bx--data-table--no-border"
             >
-              <tr
-                class="tableBodyRow"
-                data-testid="violations-table-row"
-                tabindex="0"
+              <thead>
+                <tr
+                  class="tableHeadRow"
+                >
+                  <th
+                    aria-sort="none"
+                    class="tableHeader policyName"
+                    scope="col"
+                  >
+                    <button
+                      class="tableHeader policyName bx--table-sort"
+                      type="button"
+                    >
+                      <span
+                        class="bx--table-sort__flex"
+                      >
+                        <div
+                          class="bx--table-header-label"
+                        >
+                          Policy
+                        </div>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
+                          />
+                        </svg>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon-unsorted"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th
+                    aria-sort="none"
+                    class="tableHeader nbrViolations"
+                    scope="col"
+                  >
+                    <button
+                      class="tableHeader nbrViolations bx--table-sort"
+                      type="button"
+                    >
+                      <span
+                        class="bx--table-sort__flex"
+                      >
+                        <div
+                          class="bx--table-header-label"
+                        >
+                          Violations
+                        </div>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
+                          />
+                        </svg>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon-unsorted"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th
+                    aria-sort="none"
+                    class="tableHeader policyDefinitionTypes"
+                    scope="col"
+                  >
+                    <button
+                      class="tableHeader policyDefinitionTypes bx--table-sort"
+                      type="button"
+                    >
+                      <span
+                        class="bx--table-sort__flex"
+                      >
+                        <div
+                          class="bx--table-header-label"
+                        >
+                          Failed Definition Types
+                        </div>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
+                          />
+                        </svg>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon-unsorted"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th
+                    aria-sort="none"
+                    class="tableHeader referenceId"
+                    scope="col"
+                  >
+                    <button
+                      class="tableHeader referenceId bx--table-sort"
+                      type="button"
+                    >
+                      <span
+                        class="bx--table-sort__flex"
+                      >
+                        <div
+                          class="bx--table-header-label"
+                        >
+                          Reference ID
+                        </div>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
+                          />
+                        </svg>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon-unsorted"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th
+                    aria-sort="none"
+                    class="tableHeader policyActivityCreatedDate"
+                    scope="col"
+                  >
+                    <button
+                      class="tableHeader policyActivityCreatedDate bx--table-sort"
+                      type="button"
+                    >
+                      <span
+                        class="bx--table-sort__flex"
+                      >
+                        <div
+                          class="bx--table-header-label"
+                        >
+                          Activity Date
+                        </div>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M16 4L6 14 7.41 15.41 15 7.83 15 30 17 30 17 7.83 24.59 15.41 26 14 16 4z"
+                          />
+                        </svg>
+                        <svg
+                          aria-label="Sort rows by this header in ascending order"
+                          class="bx--table-sort__icon-unsorted"
+                          fill="currentColor"
+                          focusable="false"
+                          height="20"
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 32 32"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27.6 20.6L24 24.2 24 4 22 4 22 24.2 18.4 20.6 17 22 23 28 29 22zM9 4L3 10 4.4 11.4 8 7.8 8 28 10 28 10 7.8 13.6 11.4 15 10z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                aria-live="polite"
+                class="tableBody"
               >
-                <td
-                  style="padding: 0px;"
+                <tr
+                  class="tableBodyRow"
+                  data-testid="violations-table-row"
+                  tabindex="0"
                 >
-                  <div
-                    class="tableCell"
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      Glens Policy
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
+                      <p
+                        class="tableTextarea"
+                      >
+                        Glens Policy
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        1
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        Static Code Analysis, Static Code Analysis
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        ---
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <time
+                        class="tableTextarea"
+                      >
+                        January 01, 2019
+                      </time>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="tableBodyRow"
+                  data-testid="violations-table-row"
+                  tabindex="0"
                 >
-                  <div
-                    class="tableCell"
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      1
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
+                      <p
+                        class="tableTextarea"
+                      >
+                        Glens Policy
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        2
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        Static Code Analysis, Unit Tests, Static Code Analysis, Unit Tests
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        ---
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <time
+                        class="tableTextarea"
+                      >
+                        January 01, 2019
+                      </time>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="tableBodyRow"
+                  data-testid="violations-table-row"
+                  tabindex="0"
                 >
-                  <div
-                    class="tableCell"
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      Static Code Analysis, Static Code Analysis
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
+                      <p
+                        class="tableTextarea"
+                      >
+                        Sorin Policy Def
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        2
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        Security Issue Analysis, Package Safe List, Security Issue Analysis, Package Safe List
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <p
+                        class="tableTextarea"
+                      >
+                        ---
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
+                  >
+                    <div
+                      class="tableCell"
+                    >
+                      <time
+                        class="tableTextarea"
+                      >
+                        January 01, 2019
+                      </time>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="tableBodyRow"
+                  data-testid="violations-table-row"
+                  tabindex="0"
                 >
-                  <div
-                    class="tableCell"
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      ---
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
+                      <p
+                        class="tableTextarea"
+                      >
+                        Glens Policy
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
                   >
-                    <time
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      January 01, 2019
-                    </time>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="tableBodyRow"
-                data-testid="violations-table-row"
-                tabindex="0"
-              >
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
+                      <p
+                        class="tableTextarea"
+                      >
+                        3
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      Glens Policy
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
+                      <p
+                        class="tableTextarea"
+                      >
+                        Static Code Analysis, Unit Tests, Security Issue Analysis, Static Code Analysis, Unit Tests, Security Issue Analysis
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      2
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
+                      <p
+                        class="tableTextarea"
+                      >
+                        ---
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    style="padding: 0px;"
                   >
-                    <p
-                      class="tableTextarea"
+                    <div
+                      class="tableCell"
                     >
-                      Static Code Analysis, Unit Tests, Static Code Analysis, Unit Tests
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      ---
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <time
-                      class="tableTextarea"
-                    >
-                      January 01, 2019
-                    </time>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="tableBodyRow"
-                data-testid="violations-table-row"
-                tabindex="0"
-              >
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      Sorin Policy Def
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      2
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      Security Issue Analysis, Package Safe List, Security Issue Analysis, Package Safe List
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      ---
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <time
-                      class="tableTextarea"
-                    >
-                      January 01, 2019
-                    </time>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="tableBodyRow"
-                data-testid="violations-table-row"
-                tabindex="0"
-              >
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      Glens Policy
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      3
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      Static Code Analysis, Unit Tests, Security Issue Analysis, Static Code Analysis, Unit Tests, Security Issue Analysis
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <p
-                      class="tableTextarea"
-                    >
-                      ---
-                    </p>
-                  </div>
-                </td>
-                <td
-                  style="padding: 0px;"
-                >
-                  <div
-                    class="tableCell"
-                  >
-                    <time
-                      class="tableTextarea"
-                    >
-                      January 01, 2019
-                    </time>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                      <time
+                        class="tableTextarea"
+                      >
+                        January 01, 2019
+                      </time>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
     </div>

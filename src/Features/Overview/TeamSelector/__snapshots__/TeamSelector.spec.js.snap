@@ -15,11 +15,16 @@ exports[`TeamSelector --- Snapshot Capturing Snapshot of TeamSelector 1`] = `
           class="bx--bmrg-select"
         >
           <div
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-labelledby="downshift-0-label"
             class="bx--list-box__wrapper"
+            role="combobox"
           >
             <label
               class="bx--label"
               for="team"
+              id="downshift-0-label"
             >
               <div
                 style="display: flex;"
@@ -30,29 +35,29 @@ exports[`TeamSelector --- Snapshot Capturing Snapshot of TeamSelector 1`] = `
               </div>
             </label>
             <div
+              aria-label="Choose an item"
               class="bx--combo-box bx--list-box"
             >
               <div
-                aria-expanded="false"
                 aria-haspopup="true"
                 aria-label="open menu"
                 class="bx--list-box__field"
                 data-toggle="true"
+                id="team"
                 role="button"
                 tabindex="-1"
                 type="button"
               >
                 <input
                   aria-autocomplete="list"
-                  aria-controls="team__menu"
-                  aria-expanded="false"
-                  aria-label="Choose an item"
+                  aria-labelledby="downshift-0-label"
                   autocomplete="off"
-                  class="bx--text-input"
+                  class="bx--text-input bx--text-input--empty"
                   id="team"
                   placeholder="Select a team"
-                  role="combobox"
+                  tabindex="0"
                   title="Team"
+                  type="text"
                   value=""
                 />
                 

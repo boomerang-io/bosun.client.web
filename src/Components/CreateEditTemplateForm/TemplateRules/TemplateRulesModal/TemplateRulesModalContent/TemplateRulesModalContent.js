@@ -98,76 +98,6 @@ export default class TemplateRulesModalContent extends Component {
     this.props.closeModal();
   };
 
-  renderDefaultValue = (formikProps) => {
-    const { values, handleBlur, handleChange, setFieldValue } = formikProps;
-
-    switch (values.type.value) {
-      case INPUT_TYPES.BOOLEAN:
-        return (
-          <Toggle
-            data-testid="toggle"
-            id={FIELD.DEFAULT_VALUE}
-            toggled={values.defaultValue === "true"}
-            labelText="Default Value"
-            onToggle={(value) => this.handleOnFieldValueChange(value.toString(), FIELD.DEFAULT_VALUE, setFieldValue)}
-            orientation="vertical"
-          />
-        );
-      case INPUT_TYPES.SELECT:
-        let options = clonedeep(values.options);
-        return (
-          <>
-            <Creatable
-              data-testid="creatable"
-              id={FIELD.OPTIONS}
-              onChange={(createdItems) => this.handleOptionsChange(createdItems, setFieldValue)}
-              values={options || []}
-              labelText="Options"
-              placeholder="Enter option"
-            />
-            <ComboBox
-              data-testid="select"
-              id={FIELD.DEFAULT_VALUE}
-              onChange={({ selectedItem }) =>
-                this.handleOnFieldValueChange(selectedItem, FIELD.DEFAULT_VALUE, setFieldValue)
-              }
-              items={options || []}
-              initialSelectedItem={values.defaultValue || {}}
-              titleText="Default Option"
-              placeholder="Select option"
-            />
-          </>
-        );
-      case INPUT_TYPES.TEXT_AREA:
-        return (
-          <TextArea
-            data-testid="text-area"
-            id={FIELD.DEFAULT_VALUE}
-            labelText="Default Value"
-            placeholder="Default Value"
-            value={values.defaultValue || ""}
-            onBlur={handleBlur}
-            onChange={(e) => this.handleOnChange(e, handleChange)}
-            style={{ resize: "none" }}
-          />
-        );
-      default:
-        // Fallback to text input here because it covers text, password, and url
-        return (
-          <TextInput
-            data-testid="text-input"
-            id={FIELD.DEFAULT_VALUE}
-            labelText="Default Value"
-            placeholder="Default Value"
-            type={values.type.value}
-            value={values.defaultValue || ""}
-            onBlur={handleBlur}
-            onChange={(e) => this.handleOnChange(e, handleChange)}
-          />
-        );
-    }
-  };
-
   render() {
     const { input, isEdit, inputsKeys, loading } = this.props;
 
@@ -253,7 +183,7 @@ export default class TemplateRulesModalContent extends Component {
                   titleText="Type"
                 />
 
-                {this.renderDefaultValue(formikProps)}
+                <DefaultValue formikProps={formikProps} />
               </ModalBody>
               <ModalFooter>
                 <Button kind="secondary" onClick={this.props.closeModal} type="button">
@@ -268,5 +198,75 @@ export default class TemplateRulesModalContent extends Component {
         }}
       </Formik>
     );
+  }
+}
+
+function DefaultValue({ formikProps }) {
+  const { values, handleBlur, handleChange, setFieldValue } = formikProps;
+
+  switch (values.type.value) {
+    case INPUT_TYPES.BOOLEAN:
+      return (
+        <Toggle
+          data-testid="toggle"
+          id={FIELD.DEFAULT_VALUE}
+          toggled={values.defaultValue === "true"}
+          labelText="Default Value"
+          onToggle={(value) => this.handleOnFieldValueChange(value.toString(), FIELD.DEFAULT_VALUE, setFieldValue)}
+          orientation="vertical"
+        />
+      );
+    case INPUT_TYPES.SELECT:
+      let options = clonedeep(values.options);
+      return (
+        <>
+          <Creatable
+            data-testid="creatable"
+            id={FIELD.OPTIONS}
+            onChange={(createdItems) => this.handleOptionsChange(createdItems, setFieldValue)}
+            values={options || []}
+            labelText="Options"
+            placeholder="Enter option"
+          />
+          <ComboBox
+            data-testid="select"
+            id={FIELD.DEFAULT_VALUE}
+            onChange={({ selectedItem }) =>
+              this.handleOnFieldValueChange(selectedItem, FIELD.DEFAULT_VALUE, setFieldValue)
+            }
+            items={options || []}
+            initialSelectedItem={values.defaultValue || {}}
+            titleText="Default Option"
+            placeholder="Select option"
+          />
+        </>
+      );
+    case INPUT_TYPES.TEXT_AREA:
+      return (
+        <TextArea
+          data-testid="text-area"
+          id={FIELD.DEFAULT_VALUE}
+          labelText="Default Value"
+          placeholder="Default Value"
+          value={values.defaultValue || ""}
+          onBlur={handleBlur}
+          onChange={(e) => this.handleOnChange(e, handleChange)}
+          style={{ resize: "none" }}
+        />
+      );
+    default:
+      // Fallback to text input here because it covers text, password, and url
+      return (
+        <TextInput
+          data-testid="text-input"
+          id={FIELD.DEFAULT_VALUE}
+          labelText="Default Value"
+          placeholder="Default Value"
+          type={values.type.value}
+          value={values.defaultValue || ""}
+          onBlur={handleBlur}
+          onChange={(e) => this.handleOnChange(e, handleChange)}
+        />
+      );
   }
 }

@@ -12,13 +12,13 @@ const props = {
     key: "tim.property",
     label: "Tim Property",
     required: false,
-    type: "text"
+    type: "text",
   },
   loading: false,
   updateInputs: mockfn,
   closeModal: mockfn,
   inputsName: [],
-  workflowActions: { updateWorkflowInput: mockfn, createWorkflowInput: mockfn }
+  workflowActions: { updateWorkflowInput: mockfn, createWorkflowInput: mockfn },
 };
 
 describe("Inputs --- Snapshot Test", () => {
@@ -30,10 +30,10 @@ describe("Inputs --- Snapshot Test", () => {
 
 describe("Inputs --- RTL", () => {
   it("Change default value by type correctly", () => {
-    const { getByText, getByLabelText, queryByTestId } = rtlRender(<Inputs {...props} />);
+    const { getByText, getByPlaceholderText, queryByTestId } = rtlRender(<Inputs {...props} />);
     expect(queryByTestId("text-input")).toBeInTheDocument();
 
-    const typeSelect = getByLabelText(/type/i);
+    const typeSelect = getByPlaceholderText(/select an item/i);
 
     fireEvent.click(typeSelect);
     fireEvent.click(getByText(/text area/i));

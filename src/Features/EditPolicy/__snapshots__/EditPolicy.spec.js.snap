@@ -15,7 +15,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
         <section
           class="bx--bmrg-feature-header__content"
         >
-          <hgroup
+          <div
             class="bx--bmrg-feature-header__header"
           >
             <h1
@@ -45,7 +45,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                 How do I use this?
               </button>
             </div>
-          </hgroup>
+          </div>
         </section>
         <section
           class="buttons"
@@ -137,17 +137,21 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                 </div>
               </label>
               <div
-                class="bx--text-input__field-wrapper"
+                class="bx--text-input__field-outer-wrapper"
               >
-                <input
-                  class="bx--text-input bx--text__input"
-                  id="name"
-                  name="name"
-                  placeholder="Name"
-                  title="Name"
-                  type="text"
-                  value=""
-                />
+                <div
+                  class="bx--text-input__field-wrapper"
+                >
+                  <input
+                    class="bx--text-input bx--text__input"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    title="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -170,11 +174,16 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   class="bx--bmrg-select"
                 >
                   <div
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    aria-labelledby="downshift-0-label"
                     class="bx--list-box__wrapper"
+                    role="combobox"
                   >
                     <label
                       class="bx--label"
-                      for="metric-91f6003d-3021-408b-8fc3-3a0fce46c38d"
+                      for="metric-ea5fdb82-11c1-4027-a27b-532ef67c0bdc"
+                      id="downshift-0-label"
                     >
                       <div
                         style="display: flex;"
@@ -185,27 +194,27 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
+                      aria-label="Choose an item"
                       class="bx--combo-box bx--list-box"
                     >
                       <div
-                        aria-expanded="false"
                         aria-haspopup="true"
                         aria-label="open menu"
                         class="bx--list-box__field"
                         data-toggle="true"
+                        id="metric-ea5fdb82-11c1-4027-a27b-532ef67c0bdc"
                         role="button"
                         tabindex="-1"
                         type="button"
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="metric-91f6003d-3021-408b-8fc3-3a0fce46c38d__menu"
-                          aria-expanded="false"
-                          aria-label="Choose an item"
+                          aria-labelledby="downshift-0-label"
                           autocomplete="off"
                           class="bx--text-input"
-                          id="metric-91f6003d-3021-408b-8fc3-3a0fce46c38d"
-                          role="combobox"
+                          id="metric-ea5fdb82-11c1-4027-a27b-532ef67c0bdc"
+                          tabindex="0"
+                          type="text"
                           value="lines"
                         />
                         <div
@@ -261,11 +270,16 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   class="bx--bmrg-select"
                 >
                   <div
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    aria-labelledby="downshift-1-label"
                     class="bx--list-box__wrapper"
+                    role="combobox"
                   >
                     <label
                       class="bx--label"
-                      for="operator-91f6003d-3021-408b-8fc3-3a0fce46c38d"
+                      for="operator-ea5fdb82-11c1-4027-a27b-532ef67c0bdc"
+                      id="downshift-1-label"
                     >
                       <div
                         style="display: flex;"
@@ -276,27 +290,27 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
+                      aria-label="Choose an item"
                       class="bx--combo-box bx--list-box"
                     >
                       <div
-                        aria-expanded="false"
                         aria-haspopup="true"
                         aria-label="open menu"
                         class="bx--list-box__field"
                         data-toggle="true"
+                        id="operator-ea5fdb82-11c1-4027-a27b-532ef67c0bdc"
                         role="button"
                         tabindex="-1"
                         type="button"
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="operator-91f6003d-3021-408b-8fc3-3a0fce46c38d__menu"
-                          aria-expanded="false"
-                          aria-label="Choose an item"
+                          aria-labelledby="downshift-1-label"
                           autocomplete="off"
-                          class="bx--text-input"
-                          id="operator-91f6003d-3021-408b-8fc3-3a0fce46c38d"
-                          role="combobox"
+                          class="bx--text-input bx--text-input--empty"
+                          id="operator-ea5fdb82-11c1-4027-a27b-532ef67c0bdc"
+                          tabindex="0"
+                          type="text"
                           value=""
                         />
                         
@@ -335,7 +349,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="value-91f6003d-3021-408b-8fc3-3a0fce46c38d"
+                      for="value-ea5fdb82-11c1-4027-a27b-532ef67c0bdc"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -346,16 +360,20 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
-                      class="bx--text-input__field-wrapper"
+                      class="bx--text-input__field-outer-wrapper"
                     >
-                      <input
-                        autocomplete="off"
-                        class="bx--text-input bx--text__input"
-                        id="value-91f6003d-3021-408b-8fc3-3a0fce46c38d"
-                        name="value"
-                        type="text"
-                        value="10"
-                      />
+                      <div
+                        class="bx--text-input__field-wrapper"
+                      >
+                        <input
+                          autocomplete="off"
+                          class="bx--text-input bx--text__input"
+                          id="value-ea5fdb82-11c1-4027-a27b-532ef67c0bdc"
+                          name="value"
+                          type="text"
+                          value="10"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -388,11 +406,16 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   class="bx--bmrg-select"
                 >
                   <div
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    aria-labelledby="downshift-2-label"
                     class="bx--list-box__wrapper"
+                    role="combobox"
                   >
                     <label
                       class="bx--label"
-                      for="metric-381cd3fe-20ce-4ccf-96b2-88fb1520b986"
+                      for="metric-de021a85-5d77-4f8b-a812-9c974858db08"
+                      id="downshift-2-label"
                     >
                       <div
                         style="display: flex;"
@@ -403,27 +426,27 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
+                      aria-label="Choose an item"
                       class="bx--combo-box bx--list-box"
                     >
                       <div
-                        aria-expanded="false"
                         aria-haspopup="true"
                         aria-label="open menu"
                         class="bx--list-box__field"
                         data-toggle="true"
+                        id="metric-de021a85-5d77-4f8b-a812-9c974858db08"
                         role="button"
                         tabindex="-1"
                         type="button"
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="metric-381cd3fe-20ce-4ccf-96b2-88fb1520b986__menu"
-                          aria-expanded="false"
-                          aria-label="Choose an item"
+                          aria-labelledby="downshift-2-label"
                           autocomplete="off"
                           class="bx--text-input"
-                          id="metric-381cd3fe-20ce-4ccf-96b2-88fb1520b986"
-                          role="combobox"
+                          id="metric-de021a85-5d77-4f8b-a812-9c974858db08"
+                          tabindex="0"
+                          type="text"
                           value="complexity"
                         />
                         <div
@@ -479,11 +502,16 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   class="bx--bmrg-select"
                 >
                   <div
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    aria-labelledby="downshift-3-label"
                     class="bx--list-box__wrapper"
+                    role="combobox"
                   >
                     <label
                       class="bx--label"
-                      for="operator-381cd3fe-20ce-4ccf-96b2-88fb1520b986"
+                      for="operator-de021a85-5d77-4f8b-a812-9c974858db08"
+                      id="downshift-3-label"
                     >
                       <div
                         style="display: flex;"
@@ -494,27 +522,27 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
+                      aria-label="Choose an item"
                       class="bx--combo-box bx--list-box"
                     >
                       <div
-                        aria-expanded="false"
                         aria-haspopup="true"
                         aria-label="open menu"
                         class="bx--list-box__field"
                         data-toggle="true"
+                        id="operator-de021a85-5d77-4f8b-a812-9c974858db08"
                         role="button"
                         tabindex="-1"
                         type="button"
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="operator-381cd3fe-20ce-4ccf-96b2-88fb1520b986__menu"
-                          aria-expanded="false"
-                          aria-label="Choose an item"
+                          aria-labelledby="downshift-3-label"
                           autocomplete="off"
-                          class="bx--text-input"
-                          id="operator-381cd3fe-20ce-4ccf-96b2-88fb1520b986"
-                          role="combobox"
+                          class="bx--text-input bx--text-input--empty"
+                          id="operator-de021a85-5d77-4f8b-a812-9c974858db08"
+                          tabindex="0"
+                          type="text"
                           value=""
                         />
                         
@@ -553,7 +581,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="value-381cd3fe-20ce-4ccf-96b2-88fb1520b986"
+                      for="value-de021a85-5d77-4f8b-a812-9c974858db08"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -564,16 +592,20 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
-                      class="bx--text-input__field-wrapper"
+                      class="bx--text-input__field-outer-wrapper"
                     >
-                      <input
-                        autocomplete="off"
-                        class="bx--text-input bx--text__input"
-                        id="value-381cd3fe-20ce-4ccf-96b2-88fb1520b986"
-                        name="value"
-                        type="text"
-                        value="1000"
-                      />
+                      <div
+                        class="bx--text-input__field-wrapper"
+                      >
+                        <input
+                          autocomplete="off"
+                          class="bx--text-input bx--text__input"
+                          id="value-de021a85-5d77-4f8b-a812-9c974858db08"
+                          name="value"
+                          type="text"
+                          value="1000"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -683,11 +715,16 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   class="bx--bmrg-select"
                 >
                   <div
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    aria-labelledby="downshift-4-label"
                     class="bx--list-box__wrapper"
+                    role="combobox"
                   >
                     <label
                       class="bx--label"
-                      for="type-d4c470a6-d562-4252-8154-85755b1fbb9c"
+                      for="type-1620e86d-526d-4060-a0df-8a0d4e4b3c75"
+                      id="downshift-4-label"
                     >
                       <div
                         style="display: flex;"
@@ -698,27 +735,27 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
+                      aria-label="Choose an item"
                       class="bx--combo-box bx--list-box"
                     >
                       <div
-                        aria-expanded="false"
                         aria-haspopup="true"
                         aria-label="open menu"
                         class="bx--list-box__field"
                         data-toggle="true"
+                        id="type-1620e86d-526d-4060-a0df-8a0d4e4b3c75"
                         role="button"
                         tabindex="-1"
                         type="button"
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="type-d4c470a6-d562-4252-8154-85755b1fbb9c__menu"
-                          aria-expanded="false"
-                          aria-label="Choose an item"
+                          aria-labelledby="downshift-4-label"
                           autocomplete="off"
                           class="bx--text-input"
-                          id="type-d4c470a6-d562-4252-8154-85755b1fbb9c"
-                          role="combobox"
+                          id="type-1620e86d-526d-4060-a0df-8a0d4e4b3c75"
+                          tabindex="0"
+                          type="text"
                           value="maven"
                         />
                         <div
@@ -778,7 +815,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="artifact-d4c470a6-d562-4252-8154-85755b1fbb9c"
+                      for="artifact-1620e86d-526d-4060-a0df-8a0d4e4b3c75"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -789,16 +826,20 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
-                      class="bx--text-input__field-wrapper"
+                      class="bx--text-input__field-outer-wrapper"
                     >
-                      <input
-                        autocomplete="off"
-                        class="bx--text-input bx--text__input"
-                        id="artifact-d4c470a6-d562-4252-8154-85755b1fbb9c"
-                        name="artifact"
-                        type="text"
-                        value="commons-.*"
-                      />
+                      <div
+                        class="bx--text-input__field-wrapper"
+                      >
+                        <input
+                          autocomplete="off"
+                          class="bx--text-input bx--text__input"
+                          id="artifact-1620e86d-526d-4060-a0df-8a0d4e4b3c75"
+                          name="artifact"
+                          type="text"
+                          value="commons-.*"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -810,7 +851,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="version-d4c470a6-d562-4252-8154-85755b1fbb9c"
+                      for="version-1620e86d-526d-4060-a0df-8a0d4e4b3c75"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -821,16 +862,20 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
-                      class="bx--text-input__field-wrapper"
+                      class="bx--text-input__field-outer-wrapper"
                     >
-                      <input
-                        autocomplete="off"
-                        class="bx--text-input bx--text__input"
-                        id="version-d4c470a6-d562-4252-8154-85755b1fbb9c"
-                        name="version"
-                        type="text"
-                        value=".*"
-                      />
+                      <div
+                        class="bx--text-input__field-wrapper"
+                      >
+                        <input
+                          autocomplete="off"
+                          class="bx--text-input bx--text__input"
+                          id="version-1620e86d-526d-4060-a0df-8a0d4e4b3c75"
+                          name="version"
+                          type="text"
+                          value=".*"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -863,11 +908,16 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   class="bx--bmrg-select"
                 >
                   <div
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    aria-labelledby="downshift-5-label"
                     class="bx--list-box__wrapper"
+                    role="combobox"
                   >
                     <label
                       class="bx--label"
-                      for="type-78768b44-46ab-4179-928a-3d58e42845f8"
+                      for="type-45cb8395-b7da-48cd-8720-679255e3ec04"
+                      id="downshift-5-label"
                     >
                       <div
                         style="display: flex;"
@@ -878,27 +928,27 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
+                      aria-label="Choose an item"
                       class="bx--combo-box bx--list-box"
                     >
                       <div
-                        aria-expanded="false"
                         aria-haspopup="true"
                         aria-label="open menu"
                         class="bx--list-box__field"
                         data-toggle="true"
+                        id="type-45cb8395-b7da-48cd-8720-679255e3ec04"
                         role="button"
                         tabindex="-1"
                         type="button"
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-controls="type-78768b44-46ab-4179-928a-3d58e42845f8__menu"
-                          aria-expanded="false"
-                          aria-label="Choose an item"
+                          aria-labelledby="downshift-5-label"
                           autocomplete="off"
                           class="bx--text-input"
-                          id="type-78768b44-46ab-4179-928a-3d58e42845f8"
-                          role="combobox"
+                          id="type-45cb8395-b7da-48cd-8720-679255e3ec04"
+                          tabindex="0"
+                          type="text"
                           value="maven"
                         />
                         <div
@@ -958,7 +1008,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="artifact-78768b44-46ab-4179-928a-3d58e42845f8"
+                      for="artifact-45cb8395-b7da-48cd-8720-679255e3ec04"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -969,16 +1019,20 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
-                      class="bx--text-input__field-wrapper"
+                      class="bx--text-input__field-outer-wrapper"
                     >
-                      <input
-                        autocomplete="off"
-                        class="bx--text-input bx--text__input"
-                        id="artifact-78768b44-46ab-4179-928a-3d58e42845f8"
-                        name="artifact"
-                        type="text"
-                        value="jackson-annotator"
-                      />
+                      <div
+                        class="bx--text-input__field-wrapper"
+                      >
+                        <input
+                          autocomplete="off"
+                          class="bx--text-input bx--text__input"
+                          id="artifact-45cb8395-b7da-48cd-8720-679255e3ec04"
+                          name="artifact"
+                          type="text"
+                          value="jackson-annotator"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -990,7 +1044,7 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                   >
                     <label
                       class="bx--label"
-                      for="version-78768b44-46ab-4179-928a-3d58e42845f8"
+                      for="version-45cb8395-b7da-48cd-8720-679255e3ec04"
                     >
                       <div
                         class="bx--bmrg-text-input__label"
@@ -1001,16 +1055,20 @@ exports[`EditPolicy --- Snapshot renders correctly 1`] = `
                       </div>
                     </label>
                     <div
-                      class="bx--text-input__field-wrapper"
+                      class="bx--text-input__field-outer-wrapper"
                     >
-                      <input
-                        autocomplete="off"
-                        class="bx--text-input bx--text__input"
-                        id="version-78768b44-46ab-4179-928a-3d58e42845f8"
-                        name="version"
-                        type="text"
-                        value="1.8.9"
-                      />
+                      <div
+                        class="bx--text-input__field-wrapper"
+                      >
+                        <input
+                          autocomplete="off"
+                          class="bx--text-input bx--text__input"
+                          id="version-45cb8395-b7da-48cd-8720-679255e3ec04"
+                          name="version"
+                          type="text"
+                          value="1.8.9"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

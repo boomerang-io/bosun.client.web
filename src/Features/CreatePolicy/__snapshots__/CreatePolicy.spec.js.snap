@@ -15,7 +15,7 @@ exports[`CreatePolicy --- Snapshot renders correctly 1`] = `
         <section
           class="bx--bmrg-feature-header__content"
         >
-          <hgroup
+          <div
             class="bx--bmrg-feature-header__header"
           >
             <h1
@@ -23,7 +23,7 @@ exports[`CreatePolicy --- Snapshot renders correctly 1`] = `
             >
               Create Policy
             </h1>
-          </hgroup>
+          </div>
         </section>
         <section
           class="buttons"
@@ -88,17 +88,21 @@ exports[`CreatePolicy --- Snapshot renders correctly 1`] = `
                 </div>
               </label>
               <div
-                class="bx--text-input__field-wrapper"
+                class="bx--text-input__field-outer-wrapper"
               >
-                <input
-                  class="bx--text-input bx--text__input"
-                  id="name"
-                  name="name"
-                  placeholder="Name"
-                  title="Name"
-                  type="text"
-                  value=""
-                />
+                <div
+                  class="bx--text-input__field-wrapper"
+                >
+                  <input
+                    class="bx--text-input bx--text__input"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    title="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
               </div>
             </div>
           </div>
