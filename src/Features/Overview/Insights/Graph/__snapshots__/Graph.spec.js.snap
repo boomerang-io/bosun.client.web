@@ -7,7 +7,7 @@ exports[`Graph --- Snapshot Capturing Snapshot of Graph 1`] = `
   <div>
     <div
       class="bx--tile"
-      style="width: 100%; display: flex; flex-direction: column; align-items: spaceBetween; min-height: 10rem;"
+      style="display: flex; flex-direction: column; align-items: spaceBetween; min-height: 10rem;"
     >
       <div
         class="header"
@@ -25,11 +25,18 @@ exports[`Graph --- Snapshot Capturing Snapshot of Graph 1`] = `
         class="container"
         data-testid="insights-graph"
       >
-        <linechart
-          chartdata="[object Object]"
-          highervalue="2"
-          lines="test1,test2"
-        />
+        <div
+          style="display: flex; align-items: center; width: 100%;"
+        >
+          <div
+            class="recharts-responsive-container"
+            style="width: 99%; height: 100%;"
+          >
+            <div
+              style="position: absolute; width: 0px; height: 0px; visibility: hidden; display: none;"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>

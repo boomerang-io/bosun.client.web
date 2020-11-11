@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import {
@@ -201,11 +201,12 @@ export class ViolationsTable extends Component {
           isSortable={true}
           render={({ rows, headers, getHeaderProps, getRowProps }) => (
             <TableContainer>
-              <Table className={styles.tableContainer} isSortable={"true"} useZebraStyles={false}>
+              <Table isSortable className={styles.tableContainer} useZebraStyles={false}>
                 <TableHead>
                   <TableRow className={styles.tableHeadRow}>
                     {headers.map((header) => (
                       <TableHeader
+                        key={header.key}
                         {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
                       >
                         {header.header}
@@ -215,23 +216,21 @@ export class ViolationsTable extends Component {
                 </TableHead>
                 <TableBody className={styles.tableBody}>
                   {rows.map((row, rowIndex) => (
-                    <Fragment key={row.id}>
-                      <TableRow
-                        className={styles.tableBodyRow}
-                        key={row.id}
-                        {...getRowProps({ row })}
-                        onClick={() => this.handleRowClick(rowIndex)}
-                        onKeyDown={(e) => isAccessibleEvent(e) && this.handleRowClick(rowIndex)}
-                        tabIndex={0}
-                        data-testid="violations-table-row"
-                      >
-                        {row.cells.map((cell, cellIndex) => (
-                          <TableCell key={cell.id} style={{ padding: "0" }}>
-                            <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
-                          </TableCell>
-                        ))}
-                      </TableRow>
-                    </Fragment>
+                    <TableRow
+                      className={styles.tableBodyRow}
+                      key={row.id}
+                      {...getRowProps({ row })}
+                      onClick={() => this.handleRowClick(rowIndex)}
+                      onKeyDown={(e) => isAccessibleEvent(e) && this.handleRowClick(rowIndex)}
+                      tabIndex={0}
+                      data-testid="violations-table-row"
+                    >
+                      {row.cells.map((cell, cellIndex) => (
+                        <TableCell key={cellIndex} style={{ padding: "0" }}>
+                          <div className={styles.tableCell}>{this.renderCell(rowIndex, cellIndex, cell.value)}</div>
+                        </TableCell>
+                      ))}
+                    </TableRow>
                   ))}
                 </TableBody>
               </Table>

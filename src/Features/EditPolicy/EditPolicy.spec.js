@@ -15,6 +15,18 @@ const props = {
   history: {},
 };
 
+// Mock "uuid" lib so we can get useful snapshots
+jest.mock("uuid", () => {
+  let count = 0;
+  return {
+    name: "uuid",
+    v4: () => {
+      count += 1;
+      return count;
+    },
+  };
+});
+
 let server;
 
 beforeEach(() => {

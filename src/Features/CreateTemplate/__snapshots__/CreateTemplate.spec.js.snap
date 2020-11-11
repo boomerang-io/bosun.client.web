@@ -384,7 +384,7 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
                       </div>
                     </div>
                     <button
-                      class="bx--bmrg-creatable__button --no-label bx--btn bx--btn--field bx--btn--primary bx--btn--disabled"
+                      class="bx--bmrg-creatable__button bx--btn bx--btn--field bx--btn--primary bx--btn--disabled"
                       disabled=""
                       tabindex="0"
                       type="button"

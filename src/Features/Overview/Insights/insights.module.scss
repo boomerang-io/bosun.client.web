@@ -6,6 +6,7 @@
 .contentContainer {
   display: flex;
   height: auto;
+  flex-flow: row wrap;
 }
 
 .title {
@@ -15,15 +16,10 @@
 
 .tilesContainer {
   display: flex;
-  flex-direction: column;
-  // height: 17rem;
-  min-width: 30rem;
-  min-height: 22rem;
-  margin-right: 2.75rem;
+  width: 100%;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 .graphsContainer {
-  // height: 17rem;
-  // max-width: 65rem;
-  width: 100%;
+  flex-grow: 1;
 }
