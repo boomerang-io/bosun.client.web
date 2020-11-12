@@ -17,5 +17,6 @@ cache:
 install:
   - npm ci
 script:
+  - npm run lint:staged
   - npm run test
   - npm run test:ci-cypress
