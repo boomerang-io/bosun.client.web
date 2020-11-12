@@ -1,7 +1,5 @@
 // actual content of the app
 .container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  min-width: 60rem;
   padding-top: 3rem;
 }

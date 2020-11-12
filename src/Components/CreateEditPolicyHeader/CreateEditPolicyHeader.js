@@ -5,7 +5,7 @@ import {
   CodeSnippet,
   ComposedModal,
   ConfirmModal,
-  FeatureHeader, 
+  FeatureHeader,
   FeatureHeaderTitle,
   ModalForm,
   ModalFooter,
@@ -45,7 +45,15 @@ CreateEditPolicyHeader.propTypes = {
   type: PropTypes.oneOf(Object.values(POLICY_INTERACTION_TYPES)),
 };
 
-function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validateInfo, isLoading=false, hasError: hasFetchError }) {
+function CreateEditPolicyHeader({
+  form,
+  policy = {},
+  navigateBack,
+  type,
+  validateInfo,
+  isLoading = false,
+  hasError: hasFetchError,
+}) {
   const config = ACTION_TYPE_CONFIG[type];
   const { name, errors, isPerformingAffirmativeAction, isDeleting, onCancel } = form;
   const hasErrors = Object.values(errors).filter(Boolean).length;
@@ -60,7 +68,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
   return (
     <FeatureHeader
       includeBorder={false}
-      style={{top: "3rem"}}
+      style={{ top: "3rem" }}
       isLoading={isLoading}
       header={
         <>
@@ -87,7 +95,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
           </Button>
           {type === POLICY_INTERACTION_TYPES.EDIT && policy.id && (
             <Button
-              disabled={isPerformingAffirmativeAction || isDeleting || hasFetchError || isLoading}
+              disabled={isPerformingAffirmativeAction || isDeleting || Boolean(hasFetchError) || isLoading}
               className={styles.button}
               onClick={() => setIsDeleteModalOpen(true)}
               kind="danger"
@@ -100,7 +108,7 @@ function CreateEditPolicyHeader({ form, policy = {}, navigateBack, type, validat
           )}
           <Button
             data-testid="policy-header-affirmative-action"
-            disabled={isPerformingAffirmativeAction || isDeleting || !name || !!hasErrors}
+            disabled={isPerformingAffirmativeAction || isDeleting || !name || Boolean(hasErrors)}
             className={styles.button}
             iconDescription={config.title}
             onClick={form.affirmativeAction}

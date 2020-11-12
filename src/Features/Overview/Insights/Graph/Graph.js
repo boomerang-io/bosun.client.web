@@ -6,13 +6,13 @@ import styles from "./graph.module.scss";
 
 export class Graph extends Component {
   static propTypes = {
-    formatedData: PropTypes.object
+    formatedData: PropTypes.object,
   };
 
   state = {
     fromDate: {},
     standard: {},
-    toDate: {}
+    toDate: {},
   };
 
   render() {
@@ -21,11 +21,10 @@ export class Graph extends Component {
     return (
       <Tile
         style={{
-          width: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "spaceBetween",
-          minHeight: "10rem"
+          minHeight: "10rem",
         }}
       >
         <div className={styles.header}>

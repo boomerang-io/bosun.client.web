@@ -10,12 +10,19 @@ class WorkflowProperties extends Component {
   static propTypes = {
     input: PropTypes.object,
     inputsKeys: PropTypes.array,
-    isEdit: PropTypes.bool.isRequired
+    isEdit: PropTypes.bool.isRequired,
   };
 
   editTrigger = ({ openModal }) => {
-    if(this.props.isEdit) {
-      return <EditButton className={styles.editContainer} onClick={openModal} aria-label="Edit" data-testid="edit-property-trigger" />;
+    if (this.props.isEdit) {
+      return (
+        <EditButton
+          className={styles.editContainer}
+          onClick={openModal}
+          aria-label="Edit"
+          data-testid="edit-property-trigger"
+        />
+      );
     } else {
       return (
         <button
@@ -38,25 +45,20 @@ class WorkflowProperties extends Component {
 
     return (
       <ComposedModal
-        confirmModalProps={{
-          title: "Are you sure?",
-          children: "Your rule will not be saved"
-        }}
         modalHeaderProps={{
           title: isEdit ? "Update Rule" : "Create Rule",
-          subtitle: isEdit ? "Let's update it" : "Let's create a new one"
+          subtitle: isEdit ? "Let's update it" : "Let's create a new one",
         }}
         modalTrigger={this.editTrigger}
       >
-      {
-        ({closeModal}) =>
+        {({ closeModal }) => (
           <TemplateRulesModalContent
             createConfig={this.props.createConfig}
             updateConfig={this.props.updateConfig}
             closeModal={closeModal}
             {...this.props}
           />
-      }
+        )}
       </ComposedModal>
     );
   }

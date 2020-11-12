@@ -65,9 +65,9 @@ global.document.createRange = () => {
   return {
     setEnd: () => {},
     setStart: () => {},
-    getBoundingClientRect: () => {}
-  }
-}
+    getBoundingClientRect: () => {},
+  };
+};
 
 const localStorageMock = {
   getItem: jest.fn(),
@@ -105,17 +105,7 @@ beforeEach(() => {
 });
 const originalConsoleError = console.error;
 console.error = (message, ...rest) => {
-  if (
-    typeof message === "string" &&
-    !message.includes("react-modal: App element is not defined")
-  ) {
+  if (typeof message === "string" && !message.includes("react-modal: App element is not defined")) {
     originalConsoleError(message, ...rest);
-  }
-};
-
-const originalConsoleWarn = console.warn;
-console.warn = (message, ...rest) => {
-  if (typeof message === "string" && !message.includes("Invalid date provided")) {
-    originalConsoleWarn(message, ...rest);
   }
 };

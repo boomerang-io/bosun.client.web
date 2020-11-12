@@ -30,16 +30,20 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               </div>
             </label>
             <div
-              class="bx--text-input__field-wrapper"
+              class="bx--text-input__field-outer-wrapper"
             >
-              <input
-                class="bx--text-input bx--text__input"
-                id="label"
-                placeholder="Name"
-                title="Name"
-                type="text"
-                value="Tim Property"
-              />
+              <div
+                class="bx--text-input__field-wrapper"
+              >
+                <input
+                  class="bx--text-input bx--text__input"
+                  id="label"
+                  placeholder="Name"
+                  title="Name"
+                  type="text"
+                  value="Tim Property"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -62,16 +66,20 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               </div>
             </label>
             <div
-              class="bx--text-input__field-wrapper"
+              class="bx--text-input__field-outer-wrapper"
             >
-              <input
-                class="bx--text-input bx--text__input"
-                id="description"
-                placeholder="Description"
-                title="Description"
-                type="text"
-                value="Tim property"
-              />
+              <div
+                class="bx--text-input__field-wrapper"
+              >
+                <input
+                  class="bx--text-input bx--text__input"
+                  id="description"
+                  placeholder="Description"
+                  title="Description"
+                  type="text"
+                  value="Tim property"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -79,11 +87,16 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
           class="bx--bmrg-select"
         >
           <div
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-labelledby="downshift-0-label"
             class="bx--list-box__wrapper"
+            role="combobox"
           >
             <label
               class="bx--label"
               for="type"
+              id="downshift-0-label"
             >
               <div
                 style="display: flex;"
@@ -94,28 +107,28 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               </div>
             </label>
             <div
+              aria-label="Choose an item"
               class="bx--combo-box bx--list-box"
             >
               <div
-                aria-expanded="false"
                 aria-haspopup="true"
                 aria-label="open menu"
                 class="bx--list-box__field"
                 data-toggle="true"
+                id="type"
                 role="button"
                 tabindex="-1"
                 type="button"
               >
                 <input
                   aria-autocomplete="list"
-                  aria-controls="type__menu"
-                  aria-expanded="false"
-                  aria-label="Choose an item"
+                  aria-labelledby="downshift-0-label"
                   autocomplete="off"
                   class="bx--text-input"
                   id="type"
                   placeholder="Select an item"
-                  role="combobox"
+                  tabindex="0"
+                  type="text"
                   value="Text"
                 />
                 <div
@@ -186,23 +199,27 @@ exports[`Inputs --- Snapshot Test Capturing Snapshot of Inputs 1`] = `
               </div>
             </label>
             <div
-              class="bx--text-input__field-wrapper"
+              class="bx--text-input__field-outer-wrapper"
             >
-              <input
-                class="bx--text-input bx--text__input"
-                data-testid="text-input"
-                id="defaultValue"
-                placeholder="Default Value"
-                title="Default Value"
-                type="text"
-                value="dogs"
-              />
+              <div
+                class="bx--text-input__field-wrapper"
+              >
+                <input
+                  class="bx--text-input bx--text__input"
+                  data-testid="text-input"
+                  id="defaultValue"
+                  placeholder="Default Value"
+                  title="Default Value"
+                  type="text"
+                  value="dogs"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div
-        class="bx--modal-footer"
+        class="bx--modal-footer bx--btn-set"
       >
         <button
           class="bx--btn bx--btn--secondary"

@@ -47,6 +47,13 @@
 
 .opaPolicyContainer {
   margin-top: 2rem;
+  :global .CodeMirror {
+    background: var(--cds-text-01) !important;
+    padding: 0.5rem 0;
+  }
+  :global .CodeMirror-gutter{
+    background: var(--cds-text-01) !important;
+  }
 }
 
 .propertyList {
