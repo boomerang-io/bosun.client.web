@@ -79,6 +79,7 @@
     "docker:run": "docker run -i -t -p 3000:3000 -e APP_ROOT=/BMRG_APP_ROOT_CONTEXT -e BASE_SERVICE_ENV_URL=http://localhost:8000 BMRG_APP_ROOT_CONTEXT",
     "eject": "react-scripts eject",
     "lint": "eslint -f json -o lint-report.json ./src",
+    "lint:staged": "eslint ./src",
     "predocker": "run-s build docker:build",
     "preprod": "run-s build prod:installServerDependencies prod:rewriteAssetPaths",
     "prod": "run-p prod:server",
@@ -88,8 +89,7 @@
     "start": "react-scripts start",
     "start:pf": "cross-env REACT_APP_PORT_FORWARD=true react-scripts start",
     "test": "react-scripts test --coverage --env=jsdom-fourteen",
-    "test:ci": "react-scripts test --coverage --env=jsdom-fourteen",
-    "test:ci-cypress": "start-server-and-test start http://localhost:3000 test:cypress",
+    "test:ci-cypress": "start-server-and-test start http://localhost:3000 cypress:run",
     "test:cypress": "$(npm bin)/cypress run --config video=false",
     "test:staged": "cross-env CI=true react-scripts test --passWithNoTests --findRelatedTests --bail --env=jsdom-fourteen",
     "upgradePackage": "react-scripts upgradePackage"
@@ -130,20 +130,20 @@
       "prettier --print-width 120 --write"
     ],
     "src/**/*.{js,jsx}": [
-      "npm run-script lint",
+      "npm run-script lint:staged",
       "npm run-script test:staged"
     ]
   },
   "jest": {
     "collectCoverageFrom": [
       "!**/*.spec.{js,jsx}",
-      "!**/assets/**",
-      "!**/apiServer/**",
-      "**/src/components/**/*.{js,jsx}",
-      "**/src/features/**/*.{js,jsx}",
-      "**/src/hooks/**/*.{js,jsx}",
-      "**/src/state/**/*.{js,jsx}",
-      "**/src/utils/**/*.{js,jsx}"
+      "!**/Assets/**",
+      "!**/ApiServer/**",
+      "**/src/Components/**/*.{js,jsx}",
+      "**/src/Features/**/*.{js,jsx}",
+      "**/src/Hooks/**/*.{js,jsx}",
+      "**/src/State/**/*.{js,jsx}",
+      "**/src/Utils/**/*.{js,jsx}"
     ]
   }
 }
