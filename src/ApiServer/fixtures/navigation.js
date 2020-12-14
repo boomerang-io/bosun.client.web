@@ -1,5 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
-export default {
+const navigation = {
   navigation: [
     {
       name: "Launchpad",
@@ -32,3 +32,5 @@ export default {
     displayLogo: true,
   },
 };
+
+export default navigation;
