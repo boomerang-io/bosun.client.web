@@ -3,7 +3,13 @@ import cx from "classnames";
 import { settings } from "carbon-components";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
-import { ErrorMessage, SkeletonPlaceholder, DataTableSkeleton, ErrorDragon } from "@boomerang-io/carbon-addons-boomerang-react";
+import { Helmet } from "react-helmet";
+import {
+  ErrorMessage,
+  SkeletonPlaceholder,
+  DataTableSkeleton,
+  ErrorDragon,
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import Welcome from "Components/Welcome";
 import Insights from "./Insights";
 import Policies from "./Policies";
@@ -21,78 +27,68 @@ export function Overview() {
   const { activeTeam, teams } = React.useContext(AppContext);
   const activeTeamId = activeTeam?.id;
 
-  const policiesUrl = serviceUrl.getTeamPolicies({teamId: activeTeamId});
-  const insightsUrl = serviceUrl.getInsights({teamId: activeTeamId});
-  const violationsUrl = serviceUrl.getViolations({teamId: activeTeamId});
+  const policiesUrl = serviceUrl.getTeamPolicies({ teamId: activeTeamId });
+  const insightsUrl = serviceUrl.getInsights({ teamId: activeTeamId });
+  const violationsUrl = serviceUrl.getViolations({ teamId: activeTeamId });
 
   const { data: policiesData, isLoading: policiesIsLoading, error: policiesError } = useQuery({
     queryKey: policiesUrl,
-    queryFn: resolver.query(policiesUrl)
+    queryFn: resolver.query(policiesUrl),
   });
 
   const { data: insightsData, isLoading: insightsIsLoading, error: insightsError } = useQuery({
     queryKey: insightsUrl,
-    queryFn: resolver.query(insightsUrl)
+    queryFn: resolver.query(insightsUrl),
   });
 
   const { data: violationsData, isLoading: violationsIsLoading, error: violationsError } = useQuery({
     queryKey: violationsUrl,
-    queryFn: resolver.query(violationsUrl)
+    queryFn: resolver.query(violationsUrl),
   });
 
   const handleChangeTeam = ({ selectedItem }) => {
     if (selectedItem?.id) {
-      history.push(appLink.teamOverview({teamId: selectedItem.id}));
+      history.push(appLink.teamOverview({ teamId: selectedItem.id }));
     }
   };
 
   const RenderInsights = () => {
-    if(insightsIsLoading || policiesIsLoading || violationsIsLoading)
+    if (insightsIsLoading || policiesIsLoading || violationsIsLoading)
       return (
         <div className={styles.skeletonContainer}>
           <div className={styles.dataSkeleton}>
-            <SkeletonPlaceholder className={styles.tileSkeleton}/>
-            <SkeletonPlaceholder className={styles.tileSkeleton}/>
+            <SkeletonPlaceholder className={styles.tileSkeleton} />
+            <SkeletonPlaceholder className={styles.tileSkeleton} />
           </div>
-          <SkeletonPlaceholder className={styles.chartTileSkeleton}/>
+          <SkeletonPlaceholder className={styles.chartTileSkeleton} />
         </div>
       );
-    if(insightsError || policiesError || violationsError)
-      return (
-        <ErrorMessage />
-      );
-    return (
-      <Insights insights={insightsData} policies={policiesData} violations={violationsData} />
-    );
+    if (insightsError || policiesError || violationsError) return <ErrorMessage />;
+    return <Insights insights={insightsData} policies={policiesData} violations={violationsData} />;
   };
 
   const RenderPolicies = () => {
-    if(policiesIsLoading)
-    return (
-      <div className={styles.tableSkeleton}>
-        <SkeletonPlaceholder className={styles.titleSkeleton}/>
-        <DataTableSkeleton 
-          data-testid="policies-loading-skeleton"
-          className={cx(`${prefix}--skeleton`, `${prefix}--data-table`, styles.policiesTableSkeleton)}
-          rowCount={10}
-          columnCount={4}
-        />
-      </div>
-    );
-    if(policiesError)
+    if (policiesIsLoading)
       return (
-        <ErrorMessage />
+        <div className={styles.tableSkeleton}>
+          <SkeletonPlaceholder className={styles.titleSkeleton} />
+          <DataTableSkeleton
+            data-testid="policies-loading-skeleton"
+            className={cx(`${prefix}--skeleton`, `${prefix}--data-table`, styles.policiesTableSkeleton)}
+            rowCount={10}
+            columnCount={4}
+          />
+        </div>
       );
-    return (
-      <Policies policies={policiesData} activeTeamId={activeTeam.id}/>
-    );
+    if (policiesError) return <ErrorMessage />;
+    return <Policies policies={policiesData} activeTeamId={activeTeam.id} />;
   };
 
   const RenderViolations = () => {
-    if(violationsIsLoading)
+    if (violationsIsLoading)
       return (
         <div className={styles.tableSkeleton}>
-          <SkeletonPlaceholder className={styles.titleSkeleton}/>
+          <SkeletonPlaceholder className={styles.titleSkeleton} />
           <DataTableSkeleton
             data-testid="policies-loading-skeleton"
             className={cx(`${prefix}--skeleton`, `${prefix}--data-table`, styles.violationsTableSkeleton)}
@@ -102,14 +98,9 @@ export function Overview() {
         </div>
       );
 
-    if(violationsError)
-      return (
-        <ErrorMessage />
-      );
+    if (violationsError) return <ErrorMessage />;
 
-    return (
-      <Violations hasPolicies={policiesData?.length} violations={violationsData??[]} />
-    );
+    return <Violations hasPolicies={policiesData?.length} violations={violationsData ?? []} />;
   };
 
   function renderContent() {
@@ -131,6 +122,9 @@ export function Overview() {
 
   return (
     <div className={styles.container}>
+      <Helmet>
+        <title>Bosun Home</title>
+      </Helmet>
       <TeamSelector activeTeam={activeTeam} handleChangeTeam={handleChangeTeam} teams={teams} />
       {renderContent()}
     </div>
