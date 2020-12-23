@@ -1,3 +1,4 @@
+export { default as cicdNavigation } from "./cicdNavigation";
 export { default as contact } from "./contact";
 export { default as insights } from "./insights";
 export { default as navigation } from "./navigation";
