@@ -41,6 +41,7 @@ export function App() {
   const cicdNavigationState = useQuery({
     queryKey: cicdNavigationUrl,
     queryFn: resolver.query(cicdNavigationUrl),
+    config: { enabled: !Boolean(PRODUCT_STANDALONE) },
   });
 
   React.useEffect(() => {
