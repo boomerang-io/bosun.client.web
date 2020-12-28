@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@boo... Remove this comment to see the full error message
 import { Button, ConfirmModal, FeatureHeader, FeatureHeaderTitle } from "@boomerang-io/carbon-addons-boomerang-react";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Utils' or its corresponding ty... Remove this comment to see the full error message
 import { formatDateTimeString } from "Utils";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@car... Remove this comment to see the full error message
 import { Add16, TrashCan16, Save16 } from "@carbon/icons-react";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Constants/' or its correspondi... Remove this comment to see the full error message
 import { TEMPLATE_INTERACTION_TYPES } from "Constants/";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './createEditPolicyHeader.modul... Remove this comment to see the full error message
 import styles from "./createEditPolicyHeader.module.scss";
 
 const ACTION_TYPE_CONFIG = {
@@ -23,14 +27,15 @@ const ACTION_TYPE_CONFIG = {
   },
 };
 
-CreateEditPolicyHeader.propTypes = {
-  form: PropTypes.object.isRequired,
-  template: PropTypes.object,
-  navigateBack: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(Object.values(TEMPLATE_INTERACTION_TYPES)),
+type Props = {
+    form: any;
+    template?: any;
+    navigateBack: (...args: any[]) => any;
+    type?: any; // TODO: PropTypes.oneOf(Object.values(TEMPLATE_INTERACTION_TYPES))
 };
 
-function CreateEditPolicyHeader({ form={isSubmitting:false, isValid: false, affirmativeAction:null}, template = {}, navigateBack, type, onCancel, isLoading=false, hasError=false }) {
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'onCancel' does not exist on type 'Props'... Remove this comment to see the full error message
+function CreateEditPolicyHeader({ form = { isSubmitting: false, isValid: false, affirmativeAction: null }, template = {}, navigateBack, type, onCancel, isLoading = false, hasError = false }: Props) {
   const config = ACTION_TYPE_CONFIG[type];
   const { isSubmitting, isValid } = form;
 
@@ -42,14 +47,20 @@ function CreateEditPolicyHeader({ form={isSubmitting:false, isValid: false, affi
   };
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <FeatureHeader
       includeBorder={false}
       header={
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <FeatureHeaderTitle>{`${config.title} Template`}</FeatureHeaderTitle>
           {template.createdDate && (
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div>
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <p className={styles.metaData}>
+                {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                 <span className={styles.metaDataLabel}>Created: </span>
                 {formatDateTimeString(template.createdDate)}
               </p>
@@ -58,11 +69,14 @@ function CreateEditPolicyHeader({ form={isSubmitting:false, isValid: false, affi
         </>
       }
       actions={
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <section className={styles.buttons}>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Button className={styles.button} kind="secondary" onClick={handleOnCancel} size="field">
             Cancel
           </Button>
           {type === TEMPLATE_INTERACTION_TYPES.EDIT && template.id && (
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <Button
               disabled={isSubmitting}
               className={styles.button}
@@ -75,6 +89,7 @@ function CreateEditPolicyHeader({ form={isSubmitting:false, isValid: false, affi
               {isSubmitting ? config.isDeletingActionVerb : config.deleteActionVerb}
             </Button>
           )}
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Button
             data-testid="policy-header-affirmative-action"
             disabled={isSubmitting || !isValid || isLoading || hasError}
@@ -91,6 +106,7 @@ function CreateEditPolicyHeader({ form={isSubmitting:false, isValid: false, affi
       }
     >
       {deleteModalIsOpen && (
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <ConfirmModal
           isOpen
           title={`Delete ${template.name}?`}

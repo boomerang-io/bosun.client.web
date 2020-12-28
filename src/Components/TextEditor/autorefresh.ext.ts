@@ -12,10 +12,10 @@
 
 (function(mod) {
   mod(require("codemirror"));
-})(function(CodeMirror) {
+})(function(CodeMirror: any) {
   "use strict";
 
-  CodeMirror.defineOption("autoRefresh", false, function(cm, val) {
+  CodeMirror.defineOption("autoRefresh", false, function(cm: any, val: any) {
     if (cm.state.autoRefresh) {
       stopListening(cm, cm.state.autoRefresh);
       cm.state.autoRefresh = null;
@@ -24,7 +24,7 @@
       startListening(cm, (cm.state.autoRefresh = { delay: val.delay || 250 }));
   });
 
-  function startListening(cm, state) {
+  function startListening(cm: any, state: any) {
     function check() {
       if (cm.display.wrapper.offsetHeight) {
         stopListening(cm, state);
@@ -42,7 +42,7 @@
     CodeMirror.on(window, "keyup", state.hurry);
   }
 
-  function stopListening(_cm, state) {
+  function stopListening(_cm: any, state: any) {
     clearTimeout(state.timeout);
     CodeMirror.off(window, "mouseup", state.hurry);
     CodeMirror.off(window, "keyup", state.hurry);

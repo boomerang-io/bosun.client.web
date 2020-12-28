@@ -23,6 +23,7 @@ const props = {
 
 describe("Inputs --- Snapshot Test", () => {
   it("Capturing Snapshot of Inputs", () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'rtlRender'.
     const { baseElement } = rtlRender(<Inputs {...props} />);
     expect(baseElement).toMatchSnapshot();
   });
@@ -30,6 +31,7 @@ describe("Inputs --- Snapshot Test", () => {
 
 describe("Inputs --- RTL", () => {
   it("Change default value by type correctly", () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'rtlRender'.
     const { getByText, getByPlaceholderText, queryByTestId } = rtlRender(<Inputs {...props} />);
     expect(queryByTestId("text-input")).toBeInTheDocument();
 
@@ -49,7 +51,9 @@ describe("Inputs --- RTL", () => {
   });
 
   it("Shouldn't save property without key and label", async () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'rtlRender'.
     const { getByText, getByPlaceholderText, getByTestId } = rtlRender(
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Inputs {...props} isEdit={false} input={undefined} />
     );
     fireEvent.click(getByText(/create/i));
