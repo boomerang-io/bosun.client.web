@@ -1,12 +1,15 @@
 import React from "react";
 import { fireEvent } from "@testing-library/react";
 import { queryCaches } from "react-query";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Route } from "react-router-dom";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'ApiServer' or its correspondin... Remove this comment to see the full error message
 import { startApiServer } from "ApiServer";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Config/appConfig' or its corre... Remove this comment to see the full error message
 import { appPath, appLink } from "Config/appConfig";
 import Overview from ".";
 
-let server;
+let server: any;
 
 beforeEach(() => {
   server = startApiServer();
@@ -20,8 +23,11 @@ afterEach(() => {
 describe("Overview --- Snapshot", () => {
 
   it("Capturing Snapshot of Overview", async () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'rtlContextRouterRender'.
     const { baseElement, findByText } = rtlContextRouterRender(
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <Route path={appPath.overview}>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Overview /> 
     </Route>,
     {
@@ -37,8 +43,11 @@ describe("Overview --- RTL", () => {
 
   it("Render Overview Content", async () => {
     
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'rtlContextRouterRender'.
     const { getByText, getAllByText, getAllByTestId, getByTestId, findByText } = rtlContextRouterRender(
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Route path={appPath.overview}>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Overview /> 
       </Route>,
       {
@@ -59,8 +68,11 @@ describe("Overview --- RTL", () => {
     expect(getByTestId("violations-container")).toBeInTheDocument();
   });
   it("Redirect to Create Policy", async () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'rtlContextRouterRender'.
     const { history, findByText, getByText } = rtlContextRouterRender(
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Route path={appPath.overview}>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Overview /> 
       </Route>,
       {
@@ -73,8 +85,11 @@ describe("Overview --- RTL", () => {
     expect(history.location.pathname).toEqual(appLink.createPolicy({teamId: "5a8b331e262a70306622df73"}));
   });
   it("Redirect to Edit Policy", async () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'rtlContextRouterRender'.
     const { getByTestId, history, findByText } = rtlContextRouterRender(
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Route path={appPath.overview}>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Overview /> 
       </Route>,
       {

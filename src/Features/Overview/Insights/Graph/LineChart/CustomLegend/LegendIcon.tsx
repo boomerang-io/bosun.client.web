@@ -1,8 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const LegendIcon = ({ className, strokeColor }) => {
+type Props = {
+    className?: string;
+    strokeColor?: string;
+};
+
+const LegendIcon = ({ className, strokeColor }: Props) => {
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <svg
       className={className}
       width="100%"
@@ -11,6 +16,7 @@ const LegendIcon = ({ className, strokeColor }) => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <path
         strokeWidth="4"
         fill="none"
@@ -23,11 +29,6 @@ const LegendIcon = ({ className, strokeColor }) => {
       />
     </svg>
   );
-};
-
-LegendIcon.propTypes = {
-  className: PropTypes.string,
-  strokeColor: PropTypes.string,
 };
 
 export default LegendIcon;

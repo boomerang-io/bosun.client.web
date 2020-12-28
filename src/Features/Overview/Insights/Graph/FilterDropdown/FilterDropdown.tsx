@@ -1,17 +1,19 @@
 import React from "react";
-import PropTypes from "prop-types";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@boo... Remove this comment to see the full error message
 import { Dropdown } from "@boomerang-io/carbon-addons-boomerang-react";
 
-FilterDropdown.propTypes = {
-  label: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired,
-  selectedItem: PropTypes.object
+type Props = {
+    label: string;
+    options: any[];
+    onChange: (...args: any[]) => any;
+    selectedItem?: any;
 };
 
-export function FilterDropdown({ selectedItem, onChange, options, label }) {
+export function FilterDropdown({ selectedItem, onChange, options, label }: Props) {
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div style={{ width: "15rem", height: "3rem" }}>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Dropdown
         id="filter-dropdown"
         label={label}
