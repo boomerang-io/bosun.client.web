@@ -6,6 +6,10 @@
   "dependencies": {
     "@boomerang-io/carbon-addons-boomerang-react": "1.0.0",
     "@boomerang-io/utils": "0.0.1",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.16",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "axios": "0.19.2",
     "carbon-components": "^10.22.0",
     "carbon-components-react": "^7.22.0",
@@ -26,7 +30,9 @@
     "react-scripts": "^3.4.1",
     "react-test-renderer": "^16.13.1",
     "recharts": "^1.8.5",
+    "ts-migrate": "^0.1.12",
     "typeface-ibm-plex-sans": "0.0.75",
+    "typescript": "^4.1.3",
     "uuid": "^3.3.2",
     "yup": "^0.27.0"
   },
