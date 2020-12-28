@@ -2,9 +2,13 @@ import React, { useCallback, useState, useEffect } from "react";
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'uuid... Remove this comment to see the full error message
 import uuid from "uuid";
 import { useQuery, useMutation, queryCache } from "react-query";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@boo... Remove this comment to see the full error message
-import { notify, ToastNotification, ErrorMessage, TextInputSkeleton } from "@boomerang-io/carbon-addons-boomerang-react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/CreateEditPolicyFor... Remove this comment to see the full error message
+import { Helmet } from "react-helmet";
+import {
+  notify,
+  ToastNotification,
+  ErrorMessage,
+  TextInputSkeleton,
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 // @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/CreateEditPolicyHea... Remove this comment to see the full error message
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
@@ -252,10 +256,14 @@ function EditPolicy({ history, match }: Props) {
     isPerformingAffirmativeAction: isUpdating,
     isDeleting,
   };
+
+  const helmetTitle = policyData?.name ? `${policyData.name} - ` : "";
   return (
     // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div className={styles.container}>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
+      <Helmet>
+        <title>{`${helmetTitle}Bosun Policies`}</title>
+      </Helmet>
       <CreateEditPolicyHeader
         form={form}
         navigateBack={navigateBack}
@@ -265,33 +273,22 @@ function EditPolicy({ history, match }: Props) {
         isLoading={isLoading}
         hasError={hasError}
       />
-      {
-      isLoading ? 
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+      {isLoading ? (
         <div className={styles.skeletonsContainer}>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-          <TextInputSkeleton className={styles.textInputSkeleton}/>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-          <DefinitionSkeleton/>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-          <DefinitionSkeleton/>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-          <DefinitionSkeleton/>
+          <TextInputSkeleton className={styles.textInputSkeleton} />
+          <DefinitionSkeleton />
+          <DefinitionSkeleton />
+          <DefinitionSkeleton />
         </div>
-        :
-        hasError ?
-          // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-          <div style={{marginTop: "2rem"}}>
-            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-            <ErrorMessage />
-          </div>
-        :
-          // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-          <CreateEditPolicyForm form={form} definitions={definitionsData} />
-      }
+      ) : hasError ? (
+        <div style={{ marginTop: "2rem" }}>
+          <ErrorMessage />
+        </div>
+      ) : (
+        <CreateEditPolicyForm form={form} definitions={definitionsData} />
+      )}
     </div>
   );
-
 }
 
 export default EditPolicy;

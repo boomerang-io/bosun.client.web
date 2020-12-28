@@ -2,7 +2,7 @@ import React from "react";
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useQuery, useMutation, queryCache } from "react-query";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@boo... Remove this comment to see the full error message
+import { Helmet } from "react-helmet";
 import { notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
 // @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/CreateEditTemplateF... Remove this comment to see the full error message
 import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
@@ -41,7 +41,7 @@ function EditTemplate(props: any) {
   const getTemplatesUrl = serviceUrl.getTemplates();
   const { data: templatesData, isLoading, error } = useQuery({
     queryKey: getTemplatesUrl,
-    queryFn: resolver.query(getTemplatesUrl)
+    queryFn: resolver.query(getTemplatesUrl),
   });
 
   const [updatePolicyTemplateMutation] = useMutation(
@@ -58,26 +58,13 @@ function EditTemplate(props: any) {
   async function updateTemplate(values: any) {
     const valuesToSave = { ...values, rego: btoa(values.rego), id: templateId };
     try {
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ templateId: any; body: any; }'... Remove this comment to see the full error message
-      await updatePolicyTemplateMutation({templateId, body: valuesToSave});
+      await updatePolicyTemplateMutation({ templateId, body: valuesToSave });
       notify(
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <ToastNotification
-          kind="success"
-          title="Template Updated"
-          subtitle="Template was successfully updated"
-        />
+        <ToastNotification kind="success" title="Template Updated" subtitle="Template was successfully updated" />
       );
       navigateBack();
     } catch (e) {
-      notify(
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <ToastNotification
-          kind="error"
-          title="Something's Wrong"
-          subtitle="Request to update template failed"
-        />
-      );
+      notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to update template failed" />);
     }
 
     return false;
@@ -90,32 +77,33 @@ function EditTemplate(props: any) {
       const validationData = getTakenNamesAndKeys(templatesData);
 
       return (
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <CreateEditTemplateForm
-          onSubmit={updateTemplate}
-          navigateBack={navigateBack}
-          template={template}
-          validationData={validationData}
-          type={TEMPLATE_INTERACTION_TYPES.EDIT}
-          onCancel={cancelRequestRef.current}
-          isLoading={isLoading}
-          hasError={error}
-        />
-      );
-    } else if (templatesData) {
-      return (
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <div style={{ textAlign: "center" }}>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-          <NoDisplay
-            text="No matching template found. Are you sure you have the right link?"
-            style={{ width: "30rem", marginTop: "10rem" }}
+        <>
+          <Helmet>
+            <title>{`${template.name} - Bosun Policy Templates`}</title>
+          </Helmet>
+          <CreateEditTemplateForm
+            onSubmit={updateTemplate}
+            navigateBack={navigateBack}
+            template={template}
+            validationData={validationData}
+            type={TEMPLATE_INTERACTION_TYPES.EDIT}
+            onCancel={cancelRequestRef.current}
+            isLoading={isLoading}
+            hasError={error}
           />
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-          <Link to={appLink.policyTemplates()}>Go to Templates</Link>
-        </div>
-      );
-    }
+      </>
+    );
+  } else if (templatesData) {
+    return (
+      <div style={{ textAlign: "center" }}>
+        <NoDisplay
+          text="No matching template found. Are you sure you have the right link?"
+          style={{ width: "30rem", marginTop: "10rem" }}
+        />
+        <Link to={appLink.policyTemplates()}>Go to Templates</Link>
+      </div>
+    );
+  }
   return null;
 }
 
