@@ -1,5 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 import React, { useRef, useState } from "react";
+import PropTypes from "prop-types";
 import { Controlled as CodeMirrorReact } from "react-codemirror2";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
@@ -18,22 +19,13 @@ import "codemirror/addon/fold/comment-fold.js";
 import "codemirror/addon/comment/comment.js";
 import "codemirror-rego/mode";
 import "./autorefresh.ext.js";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@car... Remove this comment to see the full error message
 import { Undo20, Redo20, Copy20, Cut20, Paste20, ArrowUp16, ArrowDown16 } from "@carbon/icons-react";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@boo... Remove this comment to see the full error message
 import { Toolbar, ToolbarItem, Search, Button } from "@boomerang-io/carbon-addons-boomerang-react";
 import "./styles.scss";
 
 const languageParams = { mode: "rego" };
 
-type Props = {
-    onChange: (...args: any[]) => any;
-    value: string;
-};
-
-// @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'props'. Did you mean 'Props'?
-const TextEditorView =props: Props => {
-  // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'props'. Did you mean 'Props'?
+const TextEditorView = props => {
   const { setCodeMirroEditor, value } = props;
 
   const editor = useRef(null);
@@ -42,68 +34,52 @@ const TextEditorView =props: Props => {
   const [clipboard, setClipboard] = useState("");
 
   const undo = () => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     doc.undo();
   };
 
   const redo = () => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     doc.redo();
   };
 
   const cut = () => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     setClipboard(doc.getSelection());
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     doc.replaceSelection("");
   };
 
   const copy = () => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     setClipboard(doc.getSelection());
   };
 
   const paste = () => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     doc.replaceSelection(clipboard);
   };
 
-  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'e' implicitly has an 'any' type.
   const handleKeyPress = e => {
     if (e.key === "Enter") {
       findNext();
     }
   };
 
-  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'e' implicitly has an 'any' type.
   const handleSearchText = e => {
     const { value } = e.target;
     setSearchText(value);
   };
 
   const findNext = () => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     const cursor = doc.getSearchCursor(searchText, doc.getCursor());
     if (cursor.findNext()) {
-      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       doc.setCursor(cursor.to());
-      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       doc.setSelection(cursor.from(), cursor.to());
     }
-    // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
     editor.current.focus();
   };
 
   const findPrevious = () => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     const cursor = doc.getSearchCursor(searchText, doc.getCursor("start"));
     if (cursor.findPrevious()) {
-      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       doc.setCursor(cursor.to());
-      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       doc.setSelection(cursor.from(), cursor.to());
     }
-    // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
     editor.current.focus();
   };
 
@@ -113,21 +89,16 @@ const TextEditorView =props: Props => {
   //   setLanguageParams(languages.find(value => value.id === language.selectedItem.id).params);
   // };
 
-  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'cm' implicitly has an 'any' type.
   const foldCode = cm => {
     cm.foldCode(cm.getCursor());
   };
 
-  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'cm' implicitly has an 'any' type.
   const toggleComment = cm => {
     cm.toggleComment();
   };
 
-  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'cm' implicitly has an 'any' type.
   const blockComment = cm => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     if (doc.somethingSelected()) {
-      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       const selPosition = doc.listSelections();
       if (!cm.uncomment(selPosition[0].head, selPosition[0].anchor, { fullLines: false })) {
         cm.blockComment(selPosition[0].head, selPosition[0].anchor, { fullLines: false });
@@ -288,6 +259,11 @@ const TextEditorView =props: Props => {
       />
     </div>
   );
+};
+
+TextEditorView.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
 };
 
 export default TextEditorView;

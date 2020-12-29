@@ -7,7 +7,7 @@ import styles from "./WorkflowCloseButton.module.scss";
 type Props = {
     alt?: string;
     className?: string;
-    onClick: (...args: any[]) => any;
+    onClick: (...args: any[]) => void;
 };
 
 export default function WorkflowCloseButton({ alt = "Workflow close button", className, onClick, ...rest }: Props) {

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@boo... Remove this comment to see the full error message
 import { ComboBox, TextInput, TextArea, Button } from "@boomerang-io/carbon-addons-boomerang-react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './policyFormDefinitionSection.... Remove this comment to see the full error message
-import styles from "./policyFormDefinitionSection.module.scss";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'uuid... Remove this comment to see the full error message
 import uuid from "uuid";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@car... Remove this comment to see the full error message
 import { Add16, TrashCan16 } from "@carbon/icons-react";
+import { PolicyInput, PolicyDefinition, StringKeyObject } from "Types";
+import styles from "./policyFormDefinitionSection.module.scss";
 
-const INPUT_TYPES = {
+interface InputTypes { [key: string]: {type: string} };
+
+const INPUT_TYPES:InputTypes = {
   text: { type: "text" },
   password: { type: "password" },
   number: { type: "number" },
@@ -25,18 +24,24 @@ const SELECT_TYPES = {
   multiselect: { type: "multiselect", isMultiselect: true, valueProperty: "values" },
 };
 
+type InputProps = {
+  uuid?: string;
+  inputData: PolicyInput;
+  inputs: StringKeyObject;
+  onChange: (...args: any[]) => void;
+};
+
 function determineInput({
   onChange,
   inputs,
   inputData,
   uuid
-}: any) {
+}: InputProps) {
   const { type, label, key, required, options } = inputData;
   if (Object.keys(INPUT_TYPES).includes(type)) {
-    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     const config = INPUT_TYPES[type];
+
     return (
-      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <TextInput
         autoComplete="off"
         id={`${key}-${uuid}`}
@@ -53,7 +58,6 @@ function determineInput({
 
   if (Object.keys(TEXT_AREA_TYPES).includes(type)) {
     return (
-      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <TextArea
         autoComplete="off"
         id={`${key}-${uuid}`}
@@ -69,7 +73,6 @@ function determineInput({
 
   if (Object.keys(SELECT_TYPES).includes(type)) {
     return (
-      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <ComboBox
         autoComplete="off"
         id={`${key}-${uuid}`}
@@ -89,7 +92,7 @@ function determineInput({
   return null;
 }
 
-function determineInitialState(definition: any, inputs: any) {
+function determineInitialState(definition: PolicyDefinition, inputs: StringKeyObject) {
   let initialRowsState = [];
   for (let row in inputs) {
     initialRowsState.push({ rules: definition.rules, uuid: row });
@@ -98,12 +101,17 @@ function determineInitialState(definition: any, inputs: any) {
   return initialRowsState;
 }
 
+type Props = {
+  definition: PolicyDefinition;
+  form: any;
+}
+
 function PolicyFormDefinitionSection({
   definition,
   form
-}: any) {
+}: Props) {
   const inputs = form?.inputs?.[definition.key] || {};
-  const [rows, setRows] = useState(determineInitialState(definition, inputs));
+  const [rows, setRows] = useState<Array<any>>(determineInitialState(definition, inputs));
 
   function addRow() {
     const newRows = [...rows, { rules: definition.rules, uuid: uuid.v4() }];
@@ -111,7 +119,7 @@ function PolicyFormDefinitionSection({
     form.validateRow(definition.key);
   }
 
-  function removeRow(index: any) {
+  function removeRow(index: number) {
     const rowToRemove = rows[index];
     const newRows = [...rows];
     newRows.splice(index, 1);
@@ -119,42 +127,32 @@ function PolicyFormDefinitionSection({
     form.removeRow({ definitionKey: definition.key, uuid: rowToRemove.uuid });
   }
 
-  function onChange(e: any, uuid: any) {
+  function onChange(e: any, uuid: string) {
     form.setInput({ event: e, definitionKey: definition.key, uuid: uuid });
   }
 
   return (
-    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <section className={styles.section}>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <h2>{definition.name}</h2>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <p>{definition.description}</p>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className={styles.rowsContainer}>
         {rows.map((row, index) => {
           return (
-            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div className={styles.row} key={row.uuid}>
               {row.rules?.map((input: any) => determineInput({
                 onChange,
                 inputs: inputs[row.uuid] || {},
                 inputData: input,
-                definitionKey: definition.key,
                 uuid: row.uuid,
               })
-              // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
               ) ?? <p>No rules found. Check the policy template.</p>}
-              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <button className={styles.delete} onClick={() => removeRow(index)}>
-                {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                 <TrashCan16 />
               </button>
             </div>
           );
         })}
       </div>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Button
         kind="ghost"
         iconDescription={"Add Rule"}

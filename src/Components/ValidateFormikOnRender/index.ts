@@ -1,1 +1,1 @@
-export { default } from "./ValidateFormikOnRender"
+export { default } from "./ValidateFormikOnRender";

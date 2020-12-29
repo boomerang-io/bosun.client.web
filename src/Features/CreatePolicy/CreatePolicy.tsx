@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 // @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Hooks' or its corresponding ty... Remove this comment to see the full error message
+import { Helmet } from "react-helmet";
 import { useAppContext } from "Hooks";
 import { useQuery, useMutation, queryCache } from "react-query";
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@boo... Remove this comment to see the full error message
@@ -183,6 +184,9 @@ const validateRow = (definitionKey: any) => {
     return (
       // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <div className={styles.container}>
+        <Helmet>
+          <title>Create Policy - Bosun Policies</title>
+        </Helmet>
         {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <CreateEditPolicyHeader form={form} navigateBack={navigateBack} type={POLICY_INTERACTION_TYPES.CREATE} hasError={error}/>
         {isLoading ? 

@@ -1,23 +1,28 @@
 import React from "react";
 import { Formik, Form, FieldArray } from "formik";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'yup'... Remove this comment to see the full error message
 import * as Yup from "yup";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@boo... Remove this comment to see the full error message
 import { Creatable, ErrorMessage, TextInput, TextArea, Tabs, Tab, SkeletonPlaceholder, TabsSkeleton } from "@boomerang-io/carbon-addons-boomerang-react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/CreateEditTemplateH... Remove this comment to see the full error message
 import CreateEditTemplateHeader from "Components/CreateEditTemplateHeader";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/TextEditor' or its ... Remove this comment to see the full error message
 import TextEditor from "Components/TextEditor";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/ValidateFormikOnRen... Remove this comment to see the full error message
 import ValidateFormikOnRender from "Components/ValidateFormikOnRender";
 import TemplateRules from "./TemplateRules";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './createTemplate.module.scss' ... Remove this comment to see the full error message
+import { PolicyDefinition } from "Types";
 import styles from "./createTemplate.module.scss";
 
 function validateKey(key: any) {
   const regexp = new RegExp("[^a-z|^A-Z|^0-9|^_|/.]");
   return !regexp.test(key);
 }
+
+type LayoutProps = {
+  children: React.ReactNode,
+  navigateBack: (...args: any[]) => void,
+  type: string,
+  onCancel?:(...args: any[]) => void,
+  formikProps?: any,
+  isLoading?: boolean;
+  hasError?: boolean;
+};
 
 const FeatureLayout = ({
   children,
@@ -27,16 +32,28 @@ const FeatureLayout = ({
   formikProps,
   isLoading,
   hasError
-}: any) => {
+}: LayoutProps) => {
   return (
-    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <CreateEditTemplateHeader form={formikProps} navigateBack={navigateBack} type={type} onCancel={onCancel} isLoading={isLoading} hasError={hasError}/>
       {children}
     </>
   );
 }
+
+type Props = {
+  navigateBack: (...args: any[]) => void;
+  onSubmit: (...args: any[]) => void;
+  template: PolicyDefinition;
+  type: string;
+  validationData: {
+    templateNames: string[];
+    templateKeys: string[];
+  },
+  onCancel:(...args: any[]) => void;
+  isLoading: boolean;
+  hasError: boolean;
+};
 
 function CreateTemplate({
   navigateBack,
@@ -47,7 +64,7 @@ function CreateTemplate({
   onCancel,
   isLoading=false,
   hasError=false
-}: any) {
+}: Props) {
   const codeMirrorEditor = React.useRef(null);
 
   function setCodeMirroEditor(codeMirroEditor: any) {
@@ -56,13 +73,9 @@ function CreateTemplate({
 
   if(isLoading) {
     return (
-      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <FeatureLayout isLoading={true} navigateBack={navigateBack} type={type}>
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div style={{padding: "2rem"}}>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <TabsSkeleton className={styles.tabsSkeleton}/>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <SkeletonPlaceholder className={styles.inputsSkeleton} />
         </div>
       </FeatureLayout>
@@ -71,11 +84,8 @@ function CreateTemplate({
 
   if(hasError) {
     return (
-      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <FeatureLayout hasError={true} navigateBack={navigateBack} type={type}>
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div style={{padding: "2rem"}}>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <ErrorMessage />
         </div>
       </FeatureLayout>
@@ -83,7 +93,6 @@ function CreateTemplate({
   }
 
   return (
-    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <Formik
       onSubmit={onSubmit}
       initialValues={{
@@ -125,23 +134,14 @@ function CreateTemplate({
           validateForm,
         } = formikProps;
         return (
-          // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <Form onSubmit={handleSubmit}>
-            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <FeatureLayout formikProps={formikProps} navigateBack={navigateBack} type={type} onCancel={onCancel}>
-              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <section className={styles.container}>
-                {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                 <Tabs>
-                  {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                   <Tab label="About">
-                    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                     <div className={styles.generalContainer}>
-                      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                       <section className={styles.generalSection}>
-                        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                         <h1 className={styles.sectionTitle}>General</h1>
-                        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                         <TextInput
                           id="name"
                           name="name"
@@ -154,7 +154,6 @@ function CreateTemplate({
                           onBlur={handleBlur}
                           value={values.name}
                         />
-                        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                         <TextInput
                           id="key"
                           name="key"
@@ -168,7 +167,6 @@ function CreateTemplate({
                           onBlur={handleBlur}
                           value={values.key}
                         />
-                        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                         <TextArea
                           id="description"
                           name="description"
@@ -181,7 +179,6 @@ function CreateTemplate({
                           onBlur={handleBlur}
                           value={values.description}
                         />
-                        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                         <TextInput
                           id="order"
                           name="order"
@@ -197,9 +194,7 @@ function CreateTemplate({
                           value={values.order}
                         />
                       </section>
-                      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                       <section className={styles.generalSection}>
-                        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                         <h1 className={styles.sectionTitle}>Validation</h1>
                         {/* <Dropdown
                           id="integration"
@@ -209,7 +204,6 @@ function CreateTemplate({
                           onChange={({ selectedItem }) => setFieldValue("integration", selectedItem)}
                           selectedItem={values.integration}
                         /> */}
-                        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                         <Creatable
                           id="labels"
                           name="labels"
@@ -224,22 +218,19 @@ function CreateTemplate({
                       </section>
                     </div>
                   </Tab>
-                  {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                   <Tab label="Rules">
-                    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                     <p>Create at least one</p>
-                    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                     <FieldArray
                       name="rules"
-                      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                       render={(arrayHelpers) => <TemplateRules arrayHelpers={arrayHelpers} rules={values.rules} />}
                     />
                   </Tab>
-                  {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-                  <Tab label="OPA Rego" onClick={() => codeMirrorEditor.current.refresh()}>
-                    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
+                  <Tab 
+                    label="OPA Rego"
+                    //@ts-ignore
+                    onClick={() => codeMirrorEditor.current.refresh()}
+                  >
                     <section className={styles.opaPolicyContainer}>
-                      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                       <TextEditor
                         onChange={(value: any) => setFieldValue("rego", value)}
                         setCodeMirroEditor={setCodeMirroEditor}
@@ -249,7 +240,6 @@ function CreateTemplate({
                   </Tab>
                 </Tabs>
               </section>
-              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <ValidateFormikOnRender validateForm={validateForm} />
             </FeatureLayout>
           </Form>

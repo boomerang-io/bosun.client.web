@@ -1,1 +1,1 @@
-export { default } from "./CastleDrawbridgeGraphic"
+export { default } from "./CastleDrawbridgeGraphic";
