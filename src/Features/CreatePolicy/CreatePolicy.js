@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useAppContext } from "Hooks";
 import { useQuery, useMutation, queryCache } from "react-query";
-import { notify, ToastNotification, ErrorMessage, TextInputSkeleton } from "@boomerang-io/carbon-addons-boomerang-react";
+import { Helmet } from "react-helmet";
+import {
+  notify,
+  ToastNotification,
+  ErrorMessage,
+  TextInputSkeleton,
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
 import DefinitionSkeleton from "Components/DefinitionSkeleton";
@@ -15,22 +21,22 @@ CreatePolicy.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-export function CreatePolicy({history, match}) {
+export function CreatePolicy({ history, match }) {
   const { activeTeam } = useAppContext();
 
   const definitionsUrl = serviceUrl.getTemplates();
   const { params } = match;
 
-  const [ errors, setErrors ] = useState({});
-  const [ inputs, setInputs ] = useState({});
-  const [ name, setName ] = useState("");
+  const [errors, setErrors] = useState({});
+  const [inputs, setInputs] = useState({});
+  const [name, setName] = useState("");
   const cancelRequestRef = React.useRef();
-  
+
   const { data: definitionsData, isLoading, error } = useQuery({
     queryKey: definitionsUrl,
-    queryFn: resolver.query(definitionsUrl)
+    queryFn: resolver.query(definitionsUrl),
   });
-  
+
   const [createPolicyMutation, { isLoading: createIsLoading }] = useMutation(
     (args) => {
       const { promise, cancel } = resolver.postCreatePolicy(args);
@@ -62,117 +68,108 @@ export function CreatePolicy({history, match}) {
     });
 
     try {
-      await createPolicyMutation({body: policyObject});
-      notify(
-        <ToastNotification
-          kind="success"
-          title="Policy Created"
-          subtitle="Policy was successfully created"
-        />
-      );
+      await createPolicyMutation({ body: policyObject });
+      notify(<ToastNotification kind="success" title="Policy Created" subtitle="Policy was successfully created" />);
       navigateBack();
     } catch (e) {
-      notify(
-        <ToastNotification
-          kind="error"
-          title="Something's Wrong"
-          subtitle="Request to create policy failed"
-        />
-      );
+      notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to create policy failed" />);
     }
   };
 
   // State updates
 
- const setError = (error) => {
+  const setError = (error) => {
     setErrors((prevState) => ({ ...prevState, ...error }));
   };
 
- const setInput = async ({ event: e, definitionKey, uuid }) => {
+  const setInput = async ({ event: e, definitionKey, uuid }) => {
     const { name, value } = e.target;
-    await setInputs(
-      (prevState) => {
-        const prevStateDefinitionRows = prevState[definitionKey] ? prevState[definitionKey][uuid] : {};
-        return {
-          ...prevState,
-          [definitionKey]: {
-            ...prevState[definitionKey],
-            [uuid]: { ...prevStateDefinitionRows, [name]: value },
-          },
-        };
-      }
-    );
+    await setInputs((prevState) => {
+      const prevStateDefinitionRows = prevState[definitionKey] ? prevState[definitionKey][uuid] : {};
+      return {
+        ...prevState,
+        [definitionKey]: {
+          ...prevState[definitionKey],
+          [uuid]: { ...prevStateDefinitionRows, [name]: value },
+        },
+      };
+    });
     validateRow(definitionKey);
   };
 
- const removeRow = async ({ definitionKey, uuid }) => {
+  const removeRow = async ({ definitionKey, uuid }) => {
     let definitionRows = { ...inputs[definitionKey] };
     if (definitionRows) {
       delete definitionRows[uuid];
-      await setInputs(
-        (prevState) => ({
-           ...prevState, [definitionKey]: definitionRows
-        })
-      );
+      await setInputs((prevState) => ({
+        ...prevState,
+        [definitionKey]: definitionRows,
+      }));
       validateRow(definitionKey);
     }
   };
 
-const validateRow = (definitionKey) => {
-  const definitionRows = inputs[definitionKey] || {};
-  const definitionRowsInputCount = Object.keys(definitionRows).reduce((accum, uuid) => {
-    const inputCount = Object.values(definitionRows[uuid]).filter(Boolean).length;
-    accum += inputCount;
-    return accum;
-  }, 0);
+  const validateRow = (definitionKey) => {
+    const definitionRows = inputs[definitionKey] || {};
+    const definitionRowsInputCount = Object.keys(definitionRows).reduce((accum, uuid) => {
+      const inputCount = Object.values(definitionRows[uuid]).filter(Boolean).length;
+      accum += inputCount;
+      return accum;
+    }, 0);
 
-  // Each row should have the same number of inputs as the number of inputs in the policy definition rules
-  const matchingDefintion = definitionsData.find((definition) => definition.key === definitionKey);
-  const isInvalid = Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
-  setErrors((prevState) => ({  ...prevState, [definitionKey]: isInvalid }));
-};
+    // Each row should have the same number of inputs as the number of inputs in the policy definition rules
+    const matchingDefintion = definitionsData.find((definition) => definition.key === definitionKey);
+    const isInvalid = Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
+    setErrors((prevState) => ({ ...prevState, [definitionKey]: isInvalid }));
+  };
 
   // Local methods
 
   const navigateBack = () => {
-    history.push(appLink.teamOverview({teamId: params.teamId}));
+    history.push(appLink.teamOverview({ teamId: params.teamId }));
   };
 
-    const form = {
-      name,
-      inputs,
-      errors,
-      setName,
-      setInput: setInput,
-      setError: setError,
-      removeRow,
-      validateRow,
-      onCancel: cancelRequestRef.current,
-      affirmativeAction: createPolicy,
-      isPerformingAffirmativeAction: createIsLoading,
-    };
+  const form = {
+    name,
+    inputs,
+    errors,
+    setName,
+    setInput: setInput,
+    setError: setError,
+    removeRow,
+    validateRow,
+    onCancel: cancelRequestRef.current,
+    affirmativeAction: createPolicy,
+    isPerformingAffirmativeAction: createIsLoading,
+  };
 
-    return (
-      <div className={styles.container}>
-        <CreateEditPolicyHeader form={form} navigateBack={navigateBack} type={POLICY_INTERACTION_TYPES.CREATE} hasError={error}/>
-        {isLoading ? 
-          <div className={styles.skeletonsContainer}>
-            <TextInputSkeleton className={styles.textInputSkeleton}/>
-            <DefinitionSkeleton/>
-            <DefinitionSkeleton/>
-            <DefinitionSkeleton/>
-          </div>
-        :
-        error ?
-          <div style={{marginTop: "2rem"}}>
-            <ErrorMessage />
-          </div>
-        :
-          <CreateEditPolicyForm form={form} definitions={definitionsData} />
-        }
-      </div>
-    );
-  }
-
+  return (
+    <div className={styles.container}>
+      <Helmet>
+        <title>Create Policy - Bosun Policies</title>
+      </Helmet>
+      <CreateEditPolicyHeader
+        form={form}
+        navigateBack={navigateBack}
+        type={POLICY_INTERACTION_TYPES.CREATE}
+        hasError={error}
+      />
+      {isLoading ? (
+        <div className={styles.skeletonsContainer}>
+          <TextInputSkeleton className={styles.textInputSkeleton} />
+          <DefinitionSkeleton />
+          <DefinitionSkeleton />
+          <DefinitionSkeleton />
+        </div>
+      ) : error ? (
+        <div style={{ marginTop: "2rem" }}>
+          <ErrorMessage />
+        </div>
+      ) : (
+        <CreateEditPolicyForm form={form} definitions={definitionsData} />
+      )}
+    </div>
+  );
+}
 
 export default CreatePolicy;

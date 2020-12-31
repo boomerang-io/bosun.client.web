@@ -1,1 +1,3 @@
-export default [{ data: ["Automation", "Mobile"] }];
+const contact = [{ data: ["Automation", "Mobile"] }];
+
+export default contact;

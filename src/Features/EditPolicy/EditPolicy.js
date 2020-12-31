@@ -2,7 +2,13 @@ import React, { useCallback, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid";
 import { useQuery, useMutation, queryCache } from "react-query";
-import { notify, ToastNotification, ErrorMessage, TextInputSkeleton } from "@boomerang-io/carbon-addons-boomerang-react";
+import { Helmet } from "react-helmet";
+import {
+  notify,
+  ToastNotification,
+  ErrorMessage,
+  TextInputSkeleton,
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
 import DefinitionSkeleton from "Components/DefinitionSkeleton";
@@ -215,8 +221,13 @@ function EditPolicy({ history, match }) {
     isPerformingAffirmativeAction: isUpdating,
     isDeleting,
   };
+
+  const helmetTitle = policyData?.name ? `${policyData.name} - ` : "";
   return (
     <div className={styles.container}>
+      <Helmet>
+        <title>{`${helmetTitle}Bosun Policies`}</title>
+      </Helmet>
       <CreateEditPolicyHeader
         form={form}
         navigateBack={navigateBack}
@@ -226,25 +237,22 @@ function EditPolicy({ history, match }) {
         isLoading={isLoading}
         hasError={hasError}
       />
-      {
-      isLoading ? 
+      {isLoading ? (
         <div className={styles.skeletonsContainer}>
-          <TextInputSkeleton className={styles.textInputSkeleton}/>
-          <DefinitionSkeleton/>
-          <DefinitionSkeleton/>
-          <DefinitionSkeleton/>
+          <TextInputSkeleton className={styles.textInputSkeleton} />
+          <DefinitionSkeleton />
+          <DefinitionSkeleton />
+          <DefinitionSkeleton />
         </div>
-        :
-        hasError ?
-          <div style={{marginTop: "2rem"}}>
-            <ErrorMessage />
-          </div>
-        :
-          <CreateEditPolicyForm form={form} definitions={definitionsData} />
-      }
+      ) : hasError ? (
+        <div style={{ marginTop: "2rem" }}>
+          <ErrorMessage />
+        </div>
+      ) : (
+        <CreateEditPolicyForm form={form} definitions={definitionsData} />
+      )}
     </div>
   );
-
 }
 
 export default EditPolicy;
