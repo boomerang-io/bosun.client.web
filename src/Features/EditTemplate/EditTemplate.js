@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useQuery, useMutation, queryCache } from "react-query";
+import { Helmet } from "react-helmet";
 import { notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
 import NoDisplay from "Components/NoDisplay";
@@ -18,7 +19,7 @@ function EditTemplate(props) {
   function getTakenNamesAndKeys() {
     const templateNames = [];
     const templateKeys = [];
-    templatesData.forEach(template => {
+    templatesData.forEach((template) => {
       if (template.id !== templateId) {
         templateNames.push(template.name);
         templateKeys.push(template.key);
@@ -33,7 +34,7 @@ function EditTemplate(props) {
   const getTemplatesUrl = serviceUrl.getTemplates();
   const { data: templatesData, isLoading, error } = useQuery({
     queryKey: getTemplatesUrl,
-    queryFn: resolver.query(getTemplatesUrl)
+    queryFn: resolver.query(getTemplatesUrl),
   });
 
   const [updatePolicyTemplateMutation] = useMutation(
@@ -50,33 +51,27 @@ function EditTemplate(props) {
   async function updateTemplate(values) {
     const valuesToSave = { ...values, rego: btoa(values.rego), id: templateId };
     try {
-      await updatePolicyTemplateMutation({templateId, body: valuesToSave});
+      await updatePolicyTemplateMutation({ templateId, body: valuesToSave });
       notify(
-        <ToastNotification
-          kind="success"
-          title="Template Updated"
-          subtitle="Template was successfully updated"
-        />
+        <ToastNotification kind="success" title="Template Updated" subtitle="Template was successfully updated" />
       );
       navigateBack();
     } catch (e) {
-      notify(
-        <ToastNotification
-          kind="error"
-          title="Something's Wrong"
-          subtitle="Request to update template failed"
-        />
-      );
+      notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to update template failed" />);
     }
 
     return false;
   }
-    const template = templatesData?.find(template => template.id === templateId);
+  const template = templatesData?.find((template) => template.id === templateId);
 
-    if (template) {
-      const validationData = getTakenNamesAndKeys(templatesData);
+  if (template) {
+    const validationData = getTakenNamesAndKeys(templatesData);
 
-      return (
+    return (
+      <>
+        <Helmet>
+          <title>{`${template.name} - Bosun Policy Templates`}</title>
+        </Helmet>
         <CreateEditTemplateForm
           onSubmit={updateTemplate}
           navigateBack={navigateBack}
@@ -87,18 +82,19 @@ function EditTemplate(props) {
           isLoading={isLoading}
           hasError={error}
         />
-      );
-    } else if (templatesData) {
-      return (
-        <div style={{ textAlign: "center" }}>
-          <NoDisplay
-            text="No matching template found. Are you sure you have the right link?"
-            style={{ width: "30rem", marginTop: "10rem" }}
-          />
-          <Link to={appLink.policyTemplates()}>Go to Templates</Link>
-        </div>
-      );
-    }
+      </>
+    );
+  } else if (templatesData) {
+    return (
+      <div style={{ textAlign: "center" }}>
+        <NoDisplay
+          text="No matching template found. Are you sure you have the right link?"
+          style={{ width: "30rem", marginTop: "10rem" }}
+        />
+        <Link to={appLink.policyTemplates()}>Go to Templates</Link>
+      </div>
+    );
+  }
   return null;
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useMutation, queryCache } from "react-query";
+import { Helmet } from "react-helmet";
 import { notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants";
@@ -26,35 +27,30 @@ function CreateTemplate(props) {
   async function createTemplate(values) {
     const valuesToSave = { ...values, rego: btoa(values.rego) };
     try {
-      await createPolicyTemplateMutation({body: valuesToSave});
+      await createPolicyTemplateMutation({ body: valuesToSave });
       notify(
-        <ToastNotification
-          kind="success"
-          title="Template Created"
-          subtitle="Template was successfully created"
-        />
+        <ToastNotification kind="success" title="Template Created" subtitle="Template was successfully created" />
       );
       navigateBack();
     } catch (e) {
-      notify(
-        <ToastNotification
-          kind="error"
-          title="Something's Wrong"
-          subtitle="Request to create template failed"
-        />
-      );
+      notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to create template failed" />);
     }
 
     return false;
   }
 
   return (
-    <CreateEditTemplateForm
-      navigateBack={navigateBack}
-      onSubmit={createTemplate}
-      type={TEMPLATE_INTERACTION_TYPES.CREATE}
-      onCancel={cancelRequestRef.current}
-    />
+    <>
+      <Helmet>
+        <title>Create Template - Bosun Policy Templates</title>
+      </Helmet>
+      <CreateEditTemplateForm
+        navigateBack={navigateBack}
+        onSubmit={createTemplate}
+        type={TEMPLATE_INTERACTION_TYPES.CREATE}
+        onCancel={cancelRequestRef.current}
+      />
+    </>
   );
 }
 

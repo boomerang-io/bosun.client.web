@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useFeature } from "flagged";
 import { NavLink, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import {
   LeftSideNav,
   UIShell,
@@ -114,9 +115,7 @@ function Navbar({ activeTeam, platformNavigationState, cicdNavigationState, user
           </SideNav>
         </LeftSideNav>
       )}
-      user={userState?.data ?? {}}
-      skipToContentProps={skipToContentProps}
-    />
+    </>
   );
 }
 
