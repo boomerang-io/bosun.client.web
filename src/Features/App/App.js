@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { matchPath, useLocation, useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import { FlagsProvider } from "flagged";
@@ -15,6 +16,7 @@ import styles from "./App.module.scss";
 const userUrl = serviceUrl.getUserProfile();
 const platformNavigationUrl = serviceUrl.getPlatformNavigation();
 const teamsUrl = serviceUrl.getTeams();
+const BOOMERANG_FALLBACK = "Boomerang";
 
 export function App() {
   const history = useHistory();
@@ -43,6 +45,12 @@ export function App() {
     queryFn: resolver.query(cicdNavigationUrl),
     config: { enabled: !Boolean(PRODUCT_STANDALONE) },
   });
+
+  const platformName = platformNavigationState.data?.platform?.platformName ?? "";
+  const isBoomerangInPlatformName = platformName?.includes(BOOMERANG_FALLBACK);
+  const appTitle = !isBoomerangInPlatformName
+    ? `${BOOMERANG_FALLBACK} Bosun - ${platformName}`
+    : `${BOOMERANG_FALLBACK} Bosun`;
 
   React.useEffect(() => {
     if (!teamsState?.data) {
@@ -85,6 +93,7 @@ export function App() {
     <ErrorBoundary errorComponent={ErrorDragon}>
       <FlagsProvider features={{ standalone: PRODUCT_STANDALONE }}>
         <div className={styles.container}>
+          {platformNavigationState?.data && userState?.data && <Helmet defaultTitle={appTitle} titleTemplate={`%s - ${appTitle}`} />}
           <Navbar activeTeam={activeTeam} platformNavigationState={platformNavigationState} cicdNavigationState={cicdNavigationState} userState={userState} />
           {renderMain()}
         </div>

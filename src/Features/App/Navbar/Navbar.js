@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useFeature } from "flagged";
 import { NavLink, useLocation } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import {
   LeftSideNav,
   UIShell,
@@ -54,6 +53,7 @@ const defaultUIShellProps = {
 const skipToContentProps = {
   href: "#content",
 };
+
 
 Navbar.propTypes = {
   activeTeam: PropTypes.object.isRequired,
@@ -115,7 +115,7 @@ function Navbar({ activeTeam, platformNavigationState, cicdNavigationState, user
           </SideNav>
         </LeftSideNav>
       )}
-    </>
+    />
   );
 }
 
