@@ -4,9 +4,9 @@
   "private": true,
   "homepage": "https://launch.boomerangplatform.net/BMRG_APP_ROOT_CONTEXT",
   "dependencies": {
-    "@boomerang-io/carbon-addons-boomerang-react": "1.0.0",
+    "@boomerang-io/carbon-addons-boomerang-react": "1.1.3",
     "@boomerang-io/utils": "0.0.1",
-    "axios": "0.19.2",
+    "axios": "0.21.1",
     "carbon-components": "^10.22.0",
     "carbon-components-react": "^7.22.0",
     "classnames": "^2.2.6",
@@ -14,7 +14,7 @@
     "codemirror-rego": "^1.1.0",
     "copy-to-clipboard": "^3.2.0",
     "flagged": "^2.0.1",
-    "formik": "^2.0.1",
+    "formik": "^2.1.4",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.31",
     "prop-types": "15.7.2",
@@ -27,6 +27,7 @@
     "react-scripts": "^4.0.1",
     "react-test-renderer": "^16.13.1",
     "recharts": "^1.8.5",
+    "ts-loader": "^8.0.14",
     "ts-migrate": "^0.1.12",
     "typeface-ibm-plex-sans": "0.0.75",
     "typescript": "^4.1.3",
@@ -154,14 +155,14 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "!**/*.spec.{js,jsx}",
+      "!**/*.spec.{js,jsx,ts,tsx}",
       "!**/Assets/**",
       "!**/ApiServer/**",
-      "**/src/Components/**/*.{js,jsx}",
-      "**/src/Features/**/*.{js,jsx}",
-      "**/src/Hooks/**/*.{js,jsx}",
-      "**/src/State/**/*.{js,jsx}",
-      "**/src/Utils/**/*.{js,jsx}"
+      "**/src/Components/**/*.{js,jsx,ts,tsx}",
+      "**/src/Features/**/*.{js,jsx,ts,tsx}",
+      "**/src/Hooks/**/*.{js,jsx,ts,tsx}",
+      "**/src/State/**/*.{js,jsx,ts,tsx}",
+      "**/src/Utils/**/*.{js,jsx,ts,tsx}"
     ]
   }
 }
