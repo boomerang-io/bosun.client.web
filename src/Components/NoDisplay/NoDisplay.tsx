@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import NoGraphic from "./NoGraphic.js";
+import NoGraphic from "./NoGraphic";
 import styles from "./noDisplay.module.scss";
 
 const TEXT_LOCATIONS = {

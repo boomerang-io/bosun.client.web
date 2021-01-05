@@ -18,7 +18,6 @@ export class Graph extends Component<Props> {
 
   render() {
     const { formatedData } = this.props;
-
     return (
       <Tile
         style={{

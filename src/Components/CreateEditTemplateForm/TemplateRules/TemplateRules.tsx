@@ -29,7 +29,7 @@ function RulePropertyHeader({
   );
 }
 
-function formatDefaultValue(value: string) {
+function formatDefaultValue(value: string | undefined) {
   if (!value) {
     return "---";
   }

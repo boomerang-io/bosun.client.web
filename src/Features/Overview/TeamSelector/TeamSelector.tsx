@@ -11,7 +11,7 @@ import { PolicyTeam } from "Types";
 import styles from "./TeamSelector.module.scss";
 
 type Props = {
-    activeTeam?: PolicyTeam;
+    activeTeam?: PolicyTeam | null;
     handleChangeTeam: (...args: any[]) => void;
     teams: PolicyTeam[];
 };

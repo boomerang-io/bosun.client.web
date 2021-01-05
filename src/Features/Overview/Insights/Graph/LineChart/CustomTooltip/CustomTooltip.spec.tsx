@@ -16,7 +16,6 @@ const payload = [
 ];
 describe("CustomTooltip --- Snapshot", () => {
     it("Capturing Snapshot of CustomTooltip", async () => {
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         const { baseElement } = (global as any).rtlRouterRender(<CustomTooltip payload={payload}/>);
         expect(baseElement).toMatchSnapshot();
     });

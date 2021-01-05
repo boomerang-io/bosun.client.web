@@ -7,7 +7,7 @@ export enum PlatformRole {
 
 export interface AppContextProps {
   teams: Array<PolicyTeam>;
-  activeTeam: PolicyTeam;
+  activeTeam: PolicyTeam | null;
 }
 
 export interface StringKeyObject {
@@ -92,8 +92,8 @@ export interface PolicyDataProps {
 }
 export interface PolicyData extends PolicyDataProps {
   id: string;
-  createdDate: string;
-  definitions: PolicyDefinitionTemplate[];
+  createdDate?: string;
+  definitions: PolicyDefinitionTemplate[] | PolicyDefinition[];
   stages?: string[];
 }
 export interface EditPolicyData extends PolicyDataProps {
@@ -111,7 +111,7 @@ export interface PolicyInput {
   defaultValue: string;
   required?: boolean;
   description: string;
-  options?: string[];
+  options?: string[] | null;
 }
 
 export interface PolicyDefinitionTemplate {
@@ -128,7 +128,7 @@ export interface PolicyDefinitionTemplate {
 
 export interface PolicyDefinition {
   policyTemplateId: string;
-  rules: StringKeyObject[] | string[];
+  rules: StringKeyObject[] | string[] | {metric: string; operator: string; value: string;}[];
 }
 
 export interface ValidateInfo {
@@ -165,9 +165,13 @@ export interface Violation {
   policyActivityCreatedDate: string;
   policyDefinitionTypes: string[];
   nbrViolations: number;
-  violations: never[];
+  violations: {
+    metric: string;
+    message: string;
+    valid: boolean;
+  }[];
   labels: StringKeyObject;
-  annotations: StringKeyObject;
+  annotations?: StringKeyObject;
   referenceLink?:string;
   referenceId?:string;
 };

@@ -46,7 +46,7 @@ export function CreatePolicy({ history, match }: Props) {
   const createPolicy = async () => {
     let policyObject: CreatePolicyData = {
       name: name,
-      teamId: activeTeam.id,
+      teamId: activeTeam?.id ?? "",
       definitions: [],
     };
 

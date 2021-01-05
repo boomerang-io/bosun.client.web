@@ -88,7 +88,7 @@ export function Overview() {
         <ErrorMessage />
       );
     return (
-      <Policies policies={policiesData??[]} activeTeamId={activeTeam.id}/>
+      <Policies policies={policiesData??[]} activeTeamId={activeTeam?.id}/>
     );
   };
 

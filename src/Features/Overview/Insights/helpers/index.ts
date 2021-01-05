@@ -1,1 +1,1 @@
-export { default } from "./helpers";
+export { getLineChartData } from "./formatLineChartData";

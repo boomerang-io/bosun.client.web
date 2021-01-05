@@ -15,7 +15,6 @@ beforeEach(() => {
 
 describe("Inputs --- Snapshot Test", () => {
   it("Capturing Snapshot of Inputs", () => {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'rtlRender'.
     const { baseElement } = rtlRender(<Inputs {...props} />);
     expect(baseElement).toMatchSnapshot();
   });
