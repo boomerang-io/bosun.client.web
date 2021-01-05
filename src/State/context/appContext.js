@@ -1,3 +1,8 @@
 import React from "react";
+import { AppContextProps } from "Types";
 
-export default React.createContext({ activeTeam: null, teams: [] });
+const AppContext = React.createContext<AppContextProps>({
+  teams: [],
+  activeTeam: null,
+});
+export default AppContext;

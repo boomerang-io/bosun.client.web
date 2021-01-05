@@ -1,5 +1,4 @@
 import moment from "moment";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { sortBy } from "lodash";
 
 export const getLineChartData = (data: any) => {
@@ -12,8 +11,7 @@ export const getLineChartData = (data: any) => {
     policy.insights.forEach((insight: any) => {
       if (
         dateName.find(
-          // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'date' implicitly has an 'any' type.
-          (date) =>
+          (date: any) =>
             moment(date).format("MMM DD - YYYY") === moment(insight.policyActivityCreatedDate).format("MMM DD - YYYY")
         )
       ) {
@@ -41,9 +39,8 @@ export const getLineChartData = (data: any) => {
       higherValue = higherValue > violationCount ? higherValue : violationCount;
       return { count: violationCount, name: policy.policyName };
     });
-    let policiesData = {};
+    let policiesData: any = {};
     violationsData.forEach((violation: any) => {
-      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       policiesData[violation.name] = violation.count;
     });
     finalData.push({ date: date ? moment(date).format("MMMM DD, YYYY") : "---", ...policiesData });

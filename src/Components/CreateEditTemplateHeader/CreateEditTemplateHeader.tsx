@@ -3,7 +3,7 @@ import { Button, ConfirmModal, FeatureHeader, FeatureHeaderTitle } from "@boomer
 import { formatDateTimeString } from "Utils";
 import { Add16, TrashCan16, Save16 } from "@carbon/icons-react";
 import { TEMPLATE_INTERACTION_TYPES } from "Constants/";
-import { PolicyDefinition } from "Types";
+import { PolicyDefinitionTemplate } from "Types";
 import styles from "./createEditPolicyHeader.module.scss";
 
 const ACTION_TYPE_CONFIG = {
@@ -37,10 +37,10 @@ const defaultTemplate = {
 
 type Props = {
     form?: any;
-    template?: PolicyDefinition;
+    template?: PolicyDefinitionTemplate;
     navigateBack: (...args: any[]) => void;
     type?: any; // TODO: PropTypes.oneOf(Object.values(TEMPLATE_INTERACTION_TYPES))
-    onCancel: (...args: any[]) => void;
+    onCancel?: (...args: any[]) => void;
     isLoading?: boolean;
     hasError?: boolean; 
 };

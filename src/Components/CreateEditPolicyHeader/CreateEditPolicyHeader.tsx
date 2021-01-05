@@ -42,18 +42,7 @@ const defaultPolicy = {
   createdDate: "",
   name: "",
   teamId: "",
-  definitions: [
-    {
-      policyTemplateId: "",
-      rules: [
-        {
-          metric: "",
-          operator: "",
-          value: "",
-        }
-      ]
-    },
-  ],
+  definitions: [],
   stages:[],
 };
 
@@ -62,8 +51,8 @@ type Props = {
     policy?: PolicyData;
     navigateBack: (...args: any[]) => void;
     type: string; // TODO: PropTypes.oneOf(Object.values(POLICY_INTERACTION_TYPES))
-    isLoading: boolean;
-    validateInfo: ValidateInfo;
+    isLoading?: boolean;
+    validateInfo?: ValidateInfo;
     hasError: boolean;
 };
 

@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useEffect } from "react";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'uuid... Remove this comment to see the full error message
 import uuid from "uuid";
 import { useQuery, useMutation, queryCache } from "react-query";
 import { Helmet } from "react-helmet";
@@ -10,43 +9,50 @@ import {
   TextInputSkeleton,
 } from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/CreateEditPolicyHea... Remove this comment to see the full error message
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/DefinitionSkeleton'... Remove this comment to see the full error message
 import DefinitionSkeleton from "Components/DefinitionSkeleton";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Config/servicesConfig' or its ... Remove this comment to see the full error message
 import { serviceUrl, resolver } from "Config/servicesConfig";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Config/appConfig' or its corre... Remove this comment to see the full error message
 import { appLink } from "Config/appConfig";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Constants' or its correspondin... Remove this comment to see the full error message
 import { POLICY_INTERACTION_TYPES } from "Constants";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './editPolicy.module.scss' or i... Remove this comment to see the full error message
+import { PolicyDefinitionTemplate, PolicyDefinition, EditPolicyData, ObjectOfStringKeyObject, PolicyData, ValidateInfo, StringKeyObject } from "Types";
 import styles from "./editPolicy.module.scss";
 
+const defaultTemplate = {
+  id: "",
+  key: "",
+  createdDate: "",
+  name: "",
+  description: "",
+  order: 0,
+  rego: "",
+  labels: [],
+  rules: [],
+};
+
 type Props = {
-    history?: any;
-    match?: any;
+  history: any;
+  match: any;
 };
 
 function EditPolicy({ history, match }: Props) {
-  const [inputs, setInputs] = useState();
+  const [inputs, setInputs] = useState<ObjectOfStringKeyObject>();
   const [errors, setErrors] = useState({});
-  const [name, setName] = useState("");
-  const cancelRequestRef = React.useRef();
+  const [name, setName] = useState<string>("");
+  const cancelRequestRef = React.useRef<any>();
 
   const definitionsUrl = serviceUrl.getTemplates();
   const policyUrl = serviceUrl.getPolicy({ policyId: match.params.policyId });
   const validateInfoUrl = serviceUrl.getValidateInfo({ policyId: match.params.policyId });
 
-  const { data: definitionsData, isLoading: definitionsIsLoading, error: definitionsError } = useQuery({
+  const { data: definitionsData, isLoading: definitionsIsLoading, error: definitionsError } = useQuery<Array<PolicyDefinitionTemplate>, any>({
     queryKey: definitionsUrl,
     queryFn: resolver.query(definitionsUrl),
   });
-  const { data: policyData, isLoading: policyIsLoading, error: policyError } = useQuery({
+  const { data: policyData, isLoading: policyIsLoading, error: policyError } = useQuery<PolicyData, any>({
     queryKey: policyUrl,
     queryFn: resolver.query(policyUrl),
   });
-  const { data: validateInfoData, isLoading: validateInfoIsLoading, error: validateInfoError } = useQuery({
+  const { data: validateInfoData, isLoading: validateInfoIsLoading, error: validateInfoError } = useQuery<ValidateInfo, any>({
     queryKey: validateInfoUrl,
     queryFn: resolver.query(validateInfoUrl),
   });
@@ -57,16 +63,14 @@ function EditPolicy({ history, match }: Props) {
    * @param {array} definitionsData - definitionsData referenced in policy
    * @returns {object} - new state object for "inputs" key
    */
-  const formatPolicyDataForForm = useCallback((policyData, definitionsData) => {
-    const newInputsState = {};
+  const formatPolicyDataForForm = useCallback((policyData: PolicyData, definitionsData: PolicyDefinitionTemplate[]) => {
+    const newInputsState: ObjectOfStringKeyObject = {};
     policyData.definitions.forEach((definition: any) => {
-      const policyDefinition = definitionsData.find(
-        (policyDefinition: any) => policyDefinition.id === definition.policyTemplateId
-      );
-      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
+      const policyDefinition: PolicyDefinitionTemplate = definitionsData.find(
+        (policyDefinition: PolicyDefinitionTemplate) => policyDefinition.id === definition.policyTemplateId
+      ) ?? defaultTemplate;
       newInputsState[policyDefinition.key] = {};
-      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
-      const definitionRows = newInputsState[policyDefinition.key];
+      const definitionRows: StringKeyObject = newInputsState[policyDefinition.key];
       definition.rules.forEach((rule: any) => {
         definitionRows[uuid.v4()] = rule;
       });
@@ -76,13 +80,12 @@ function EditPolicy({ history, match }: Props) {
 
   useEffect(() => {
     if (policyData && definitionsData) {
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{}' is not assignable to paramet... Remove this comment to see the full error message
       setInputs(formatPolicyDataForForm(policyData, definitionsData));
     }
   }, [formatPolicyDataForForm, policyData, definitionsData]);
 
   const [updatePolicyMutation, { isLoading: isUpdating }] = useMutation(
-    (args) => {
+    (args: { body: EditPolicyData, policyId: string }) => {
       const { promise, cancel } = resolver.patchUpdatePolicy(args);
       cancelRequestRef.current = cancel;
       return promise;
@@ -93,7 +96,7 @@ function EditPolicy({ history, match }: Props) {
   );
 
   const [deletePolicyMutation, { isLoading: isDeleting }] = useMutation(
-    (args) => {
+    (args: { policyId: string }) => {
       const { promise, cancel } = resolver.deletePolicy(args);
       cancelRequestRef.current = cancel;
       return promise;
@@ -104,61 +107,49 @@ function EditPolicy({ history, match }: Props) {
   );
 
   const updatePolicy = async () => {
-    let policyObject = {
-      // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
-      id: policyData.id,
+    let policyObject: EditPolicyData = {
+      id: policyData?.id??"",
       name: name,
-      // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
-      teamId: policyData.teamId,
+      teamId: policyData?.teamId??"",
       definitions: [],
     };
 
-    // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
-    definitionsData.forEach((definition: any) => {
-      let newDefinition = {
+    definitionsData?.forEach((definition: PolicyDefinitionTemplate) => {
+      let newDefinition: PolicyDefinition = {
         policyTemplateId: definition.id,
+        rules: [],
       };
-      let rules = [];
-      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-      const definitionRows = inputs[definition.key];
+      let rules: any[] = [];
+      const definitionRows = inputs && inputs[definition.key];
       for (let row in definitionRows) {
-        rules.push(definitionRows[row]);
+        Boolean(definitionRows[row]) && rules.push(definitionRows[row]);
       }
-      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       newDefinition["rules"] = rules;
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ policyTemplateId: any; }' is n... Remove this comment to see the full error message
       policyObject.definitions.push(newDefinition);
     });
 
     try {
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ body: { id: any; name: string;... Remove this comment to see the full error message
-      await updatePolicyMutation({ body: policyObject, policyId: policyData.id });
-      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+      await updatePolicyMutation({ body: policyObject, policyId: policyData?.id ?? "" });
       notify(<ToastNotification kind="success" title="Policy Updated" subtitle="Policy successfully updated" />);
       navigateBack();
     } catch (e) {
-      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to update policy failed" />);
     }
   };
 
   const deletePolicy = async () => {
     try {
-      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ policyId: any; }' is not assig... Remove this comment to see the full error message
-      await deletePolicyMutation({ policyId: policyData.id });
+      await deletePolicyMutation({ policyId: policyData?.id ?? "" });
       notify(
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <ToastNotification
           kind="success"
           title="Policy Deleted"
-          // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
-          subtitle={`Policy ${policyData.name} successfully deleted`}
+          subtitle={`Policy ${policyData?.name} successfully deleted`}
         />
       );
       navigateBack();
     } catch (err) {
       const { data } = err && err.response;
-      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       notify(<ToastNotification kind="error" title={`${data.status} - ${data.error}`} subtitle={data.message} />, {
         autoClose: 5000,
       });
@@ -167,7 +158,7 @@ function EditPolicy({ history, match }: Props) {
 
   // State updates
   const setError = (error: any) => {
-    setErrors((prevState) => ({ ...prevState, ...error }));
+    setErrors((prevState: any) => ({ ...prevState, ...error }));
   };
 
   const setInput = async ({
@@ -176,11 +167,9 @@ function EditPolicy({ history, match }: Props) {
     uuid
   }: any) => {
     const { name, value } = e.target;
-    await setInputs((prevState) => {
-      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
+    await setInputs((prevState: any) => {
       const prevStateDefinitionRows = prevState[definitionKey] ? prevState[definitionKey][uuid] : {};
       return {
-        // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
         ...prevState,
         [definitionKey]: {
           ...prevState[definitionKey],
@@ -195,12 +184,10 @@ function EditPolicy({ history, match }: Props) {
     definitionKey,
     uuid
   }: any) => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-    let definitionRows = { ...inputs[definitionKey] };
+    let definitionRows = inputs && { ...inputs[definitionKey] };
     if (definitionRows) {
       delete definitionRows[uuid];
-      await setInputs((prevState) => ({
-        // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
+      await setInputs((prevState: any) => ({
         ...prevState,
         [definitionKey]: definitionRows,
       }));
@@ -212,19 +199,17 @@ function EditPolicy({ history, match }: Props) {
    *
    * @param {definitionKey} - key reference to a definition type e.g. static_code_analysis
    */
-  const validateRow = (definitionKey: any) => {
-    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
-    const definitionRows = inputs[definitionKey] || {};
+  const validateRow = (definitionKey: string) => {
+    const definitionRows = (inputs && inputs[definitionKey]) || {};
     const definitionRowsInputCount = Object.keys(definitionRows).reduce((accum, uuid) => {
-      const inputCount = Object.values(definitionRows[uuid]).filter(Boolean).length;
+      const inputCount = Object.values(definitionRows[uuid]??[]).filter(Boolean).length;
       accum += inputCount;
       return accum;
     }, 0);
 
     // Each row should have the same number of inputs as the number of inputs in the policy definition rules
-    // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
-    const matchingDefintion = definitionsData.find((definition: any) => definition.key === definitionKey);
-    const isInvalid = Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
+    const matchingDefintion = definitionsData?.find((definition: PolicyDefinitionTemplate) => definition.key === definitionKey);
+    const isInvalid = matchingDefintion &&  Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
     setErrors((prevState) => ({ ...prevState, [definitionKey]: isInvalid }));
   };
 
@@ -259,7 +244,6 @@ function EditPolicy({ history, match }: Props) {
 
   const helmetTitle = policyData?.name ? `${policyData.name} - ` : "";
   return (
-    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div className={styles.container}>
       <Helmet>
         <title>{`${helmetTitle}Bosun Policies`}</title>
@@ -285,7 +269,7 @@ function EditPolicy({ history, match }: Props) {
           <ErrorMessage />
         </div>
       ) : (
-        <CreateEditPolicyForm form={form} definitions={definitionsData} />
+        <CreateEditPolicyForm form={form} definitions={definitionsData??[]} />
       )}
     </div>
   );

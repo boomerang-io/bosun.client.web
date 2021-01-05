@@ -2,23 +2,20 @@ import React from "react";
 import { useMutation, queryCache } from "react-query";
 import { Helmet } from "react-helmet";
 import { notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Components/CreateEditTemplateF... Remove this comment to see the full error message
 import CreateEditTemplateForm from "Components/CreateEditTemplateForm";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Constants' or its correspondin... Remove this comment to see the full error message
 import { TEMPLATE_INTERACTION_TYPES } from "Constants";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Config/appConfig' or its corre... Remove this comment to see the full error message
 import { appLink } from "Config/appConfig";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Config/servicesConfig' or its ... Remove this comment to see the full error message
+import { PolicyDefinitionTemplate } from "Types";
 import { resolver, serviceUrl } from "Config/servicesConfig";
 
 function CreateTemplate(props: any) {
   function navigateBack() {
     props.history.push(appLink.policyTemplates());
   }
-  const cancelRequestRef = React.useRef();
+  const cancelRequestRef = React.useRef<any>();
 
   const [createPolicyTemplateMutation] = useMutation(
-    (args) => {
+    (args: { body: PolicyDefinitionTemplate }) => {
       const { promise, cancel } = resolver.postCreatePolicyTemplate(args);
       cancelRequestRef.current = cancel;
       return promise;
@@ -28,8 +25,8 @@ function CreateTemplate(props: any) {
     }
   );
 
-  async function createTemplate(values: any) {
-    const valuesToSave = { ...values, rego: btoa(values.rego) };
+  async function createTemplate(values: PolicyDefinitionTemplate) {
+    const valuesToSave:PolicyDefinitionTemplate = { ...values, rego: btoa(values.rego) };
     try {
       await createPolicyTemplateMutation({ body: valuesToSave });
       notify(

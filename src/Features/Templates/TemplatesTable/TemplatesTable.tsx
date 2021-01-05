@@ -1,14 +1,10 @@
 import React from "react";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useHistory } from "react-router-dom";
 import moment from "moment";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@boo... Remove this comment to see the full error message
 import { Button, DataTable } from "@boomerang-io/carbon-addons-boomerang-react";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module '@car... Remove this comment to see the full error message
 import { Add16 } from "@carbon/icons-react";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'Config/appConfig' or its corre... Remove this comment to see the full error message
 import { appLink } from "Config/appConfig";
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './templatesTable.module.scss' ... Remove this comment to see the full error message
+import { PolicyDefinitionTemplate } from "Types";
 import styles from "./templatesTable.module.scss";
 
 const headers = [
@@ -32,8 +28,7 @@ const headers = [
 ];
 
 type Props = {
-    data?: any[];
-    definitions?: any[];
+  data: PolicyDefinitionTemplate[];
 };
 
 export default function TemplatesTable(props: Props) {
@@ -46,20 +41,16 @@ export default function TemplatesTable(props: Props) {
     history.push(appLink.createTemplate());
   };
 
-  const renderCell = (cells: any, cellIndex: any, value: any) => {
+  const renderCell = (cells: any, cellIndex: number, value: any) => {
     const column = headers[cellIndex];
     switch (column.header) {
       case "Name":
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         return <p className={styles.tableTextarea}>{value}</p>;
       case "Description":
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         return <p className={styles.tableTextarea}>{value || "---"}</p>;
       case "Key":
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         return <p className={styles.tableTextarea}>{value}</p>;
       case "Created Date":
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         return <time className={styles.tableTextarea}>{value ? moment(value).format("MMMM DD, YYYY") : "---"}</time>;
       default:
         return value || "---";
@@ -69,9 +60,7 @@ export default function TemplatesTable(props: Props) {
   const { data } = props;
   const { TableContainer, Table, TableHead, TableRow, TableBody, TableCell, TableHeader } = DataTable;
   return (
-    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div className={styles.container}>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Button
         className={styles.createButton}
         iconDescription="Create Template"
@@ -81,7 +70,6 @@ export default function TemplatesTable(props: Props) {
       >
         Create Template
       </Button>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <DataTable
         rows={data}
         headers={headers}
@@ -91,36 +79,27 @@ export default function TemplatesTable(props: Props) {
           headers,
           getHeaderProps
         }: any) => (
-          // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <TableContainer>
-            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <Table isSortable className={styles.tableContainer} useZebraStyles={false}>
-              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <TableHead>
-                {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                 <TableRow className={styles.tableHeadRow}>
-                  {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-                  {headers.map((header: any) => <TableHeader
+                  {headers.map((header: { key:string; header:string; }) => <TableHeader
                     {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
                   >
                     {header.header}
                   </TableHeader>)}
                 </TableRow>
               </TableHead>
-              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <TableBody className={styles.tableBody} data-testid="templates-tbody">
-                {rows.map((row: any, rowIndex: any) => (
-                  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+                {rows.map((row: any, rowIndex: number) => (
                   <TableRow
                     key={row.id}
                     className={styles.tableRow}
                     onClick={() => handleRowClick(row)}
                     data-testid="templates-table-row"
                   >
-                    {row.cells.map((cell: any, cellIndex: any) => (
-                      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+                    {row.cells.map((cell: any, cellIndex: number) => (
                       <TableCell key={`${cell.id}-${cellIndex}`} style={{ padding: "0" }}>
-                        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                         <div className={styles.tableCell}>{renderCell(row.cells, cellIndex, cell.value)}</div>
                       </TableCell>
                     ))}

@@ -5,8 +5,17 @@ export enum PlatformRole {
   User = "user",
 }
 
+export interface AppContextProps {
+  teams: Array<PolicyTeam>;
+  activeTeam: PolicyTeam;
+}
+
 export interface StringKeyObject {
-  [key: string]: string;
+  [key: string]: string | string[] | undefined | number;
+};
+
+export interface ObjectOfStringKeyObject {
+  [key: string]: StringKeyObject;
 };
 
 export interface FormikSetFieldValue {
@@ -73,44 +82,53 @@ export interface CICDTeam {
   boomerangTeamName: string;
   boomerangTeamShortname: string;
 }
-
-export interface PolicyData {
+export interface PolicyTeam {
   id: string;
-  createdDate: string;
+  name: string;
+}
+export interface PolicyDataProps {
   name: string;
   teamId: string;
-  definitions: {
-      policyTemplateId: string;
-      rules: {
-          metric: string;
-          operator: string;
-          value: string;
-      }[];
-  }[];
-  stages: string[];
 }
-
+export interface PolicyData extends PolicyDataProps {
+  id: string;
+  createdDate: string;
+  definitions: PolicyDefinitionTemplate[];
+  stages?: string[];
+}
+export interface EditPolicyData extends PolicyDataProps {
+  id: string;
+  definitions: PolicyDefinition[];
+}
+ export interface CreatePolicyData extends PolicyDataProps {
+  definitions: PolicyDefinition[];
+ }
 export interface PolicyInput {
   id?: string;
   key: string;
   label: string;
   type: string;
   defaultValue: string;
-  required: boolean;
+  required?: boolean;
   description: string;
-  options: string[];
+  options?: string[];
 }
 
-export interface PolicyDefinition {
+export interface PolicyDefinitionTemplate {
   id: string;
   key: string;
-  createdDate: string;
+  createdDate?: string;
   name: string;
   description: string;
   order: number;
   rego: string;
   labels: string[];
   rules: Array<PolicyInput>;
+}
+
+export interface PolicyDefinition {
+  policyTemplateId: string;
+  rules: StringKeyObject[] | string[];
 }
 
 export interface ValidateInfo {
@@ -127,3 +145,45 @@ export interface ValidateInfo {
   annotations: null;
   data: null;
 }
+
+
+// Insights
+export interface InsightsData {
+  policyId: string;
+  policyName: string;
+  policyCreatedDate: string;
+  insights: {
+      policyActivityId: string;
+      policyActivityCreatedDate: string;
+      violations: number;
+  }[];
+};
+export interface Violation {
+  id: string;
+  policyId: string;
+  policyName: string;
+  policyActivityCreatedDate: string;
+  policyDefinitionTypes: string[];
+  nbrViolations: number;
+  violations: never[];
+  labels: StringKeyObject;
+  annotations: StringKeyObject;
+  referenceLink?:string;
+  referenceId?:string;
+};
+export interface ChartsData {
+  chartData: ObjectOfStringKeyObject[];
+  higherValue: number;
+  lines: string[];
+  totalViolations: number;
+};
+export interface ChartsDot {
+  key: string;
+  y: string;
+};
+export interface Info {
+  type: string;
+  title: string;
+  content: string;
+  count: number;
+};

@@ -3,11 +3,11 @@ import { TextInput } from "@boomerang-io/carbon-addons-boomerang-react";
 import PolicyFormDefinitionSection from "./PolicyFormDefinitionSection";
 import sortBy from "lodash/sortBy";
 import KingJellyGraphic from "Components/KingJellyGraphic";
-import { PolicyDefinition } from "Types";
+import { PolicyDefinitionTemplate } from "Types";
 import styles from "./createEditPolicyForm.module.scss";
 
 type Props = {
-    definitions: PolicyDefinition[];
+    definitions: PolicyDefinitionTemplate[];
     form: any;
 };
 
@@ -25,7 +25,7 @@ export default function CreateEditPolicyForm({ definitions, form }: Props) {
           value={form.name}
           type="text"
         />
-        {sortedDefinitions.map((definition: PolicyDefinition) => <PolicyFormDefinitionSection key={definition.id + definition.key} definition={definition} form={form} />)}
+        {sortedDefinitions.map((definition: PolicyDefinitionTemplate) => <PolicyFormDefinitionSection key={definition.id + definition.key} definition={definition} form={form} />)}
       </div>
       <div className={styles.containerGraphics}>
         <KingJellyGraphic className={styles.graphic} />

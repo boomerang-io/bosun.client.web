@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ComboBox, TextInput, TextArea, Button } from "@boomerang-io/carbon-addons-boomerang-react";
 import uuid from "uuid";
 import { Add16, TrashCan16 } from "@carbon/icons-react";
-import { PolicyInput, PolicyDefinition, StringKeyObject } from "Types";
+import { PolicyInput, PolicyDefinitionTemplate, StringKeyObject } from "Types";
 import styles from "./policyFormDefinitionSection.module.scss";
 
 interface InputTypes { [key: string]: {type: string} };
@@ -92,7 +92,7 @@ function determineInput({
   return null;
 }
 
-function determineInitialState(definition: PolicyDefinition, inputs: StringKeyObject) {
+function determineInitialState(definition: PolicyDefinitionTemplate, inputs: StringKeyObject) {
   let initialRowsState = [];
   for (let row in inputs) {
     initialRowsState.push({ rules: definition.rules, uuid: row });
@@ -102,7 +102,7 @@ function determineInitialState(definition: PolicyDefinition, inputs: StringKeyOb
 }
 
 type Props = {
-  definition: PolicyDefinition;
+  definition: PolicyDefinitionTemplate;
   form: any;
 }
 

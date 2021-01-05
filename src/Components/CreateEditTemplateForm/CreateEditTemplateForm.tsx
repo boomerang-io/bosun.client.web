@@ -6,7 +6,7 @@ import CreateEditTemplateHeader from "Components/CreateEditTemplateHeader";
 import TextEditor from "Components/TextEditor";
 import ValidateFormikOnRender from "Components/ValidateFormikOnRender";
 import TemplateRules from "./TemplateRules";
-import { PolicyDefinition } from "Types";
+import { PolicyDefinitionTemplate } from "Types";
 import styles from "./createTemplate.module.scss";
 
 function validateKey(key: any) {
@@ -44,15 +44,15 @@ const FeatureLayout = ({
 type Props = {
   navigateBack: (...args: any[]) => void;
   onSubmit: (...args: any[]) => void;
-  template: PolicyDefinition;
+  template?: PolicyDefinitionTemplate;
   type: string;
-  validationData: {
+  validationData?: {
     templateNames: string[];
     templateKeys: string[];
   },
   onCancel:(...args: any[]) => void;
-  isLoading: boolean;
-  hasError: boolean;
+  isLoading?: boolean;
+  hasError?: boolean;
 };
 
 function CreateTemplate({
@@ -233,6 +233,7 @@ function CreateTemplate({
                     <section className={styles.opaPolicyContainer}>
                       <TextEditor
                         onChange={(value: any) => setFieldValue("rego", value)}
+                        //@ts-ignore
                         setCodeMirroEditor={setCodeMirroEditor}
                         value={values.rego}
                       />
