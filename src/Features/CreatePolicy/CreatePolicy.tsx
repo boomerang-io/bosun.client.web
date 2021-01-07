@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet";
 import { useAppContext } from "Hooks";
 import { useQuery, useMutation, queryCache } from "react-query";
-import { notify, ToastNotification, ErrorMessage, TextInputSkeleton } from "@boomerang-io/carbon-addons-boomerang-react";
+import { Helmet } from "react-helmet";
+import {
+  notify,
+  ToastNotification,
+  ErrorMessage,
+  TextInputSkeleton,
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import CreateEditPolicyForm from "Components/CreateEditPolicyForm";
 import CreateEditPolicyHeader from "Components/CreateEditPolicyHeader";
 import DefinitionSkeleton from "Components/DefinitionSkeleton";
@@ -30,9 +35,9 @@ export function CreatePolicy({ history, match }: Props) {
   
   const { data: definitionsData, isLoading, error } = useQuery<Array<PolicyDefinitionTemplate>, any>({
     queryKey: definitionsUrl,
-    queryFn: resolver.query(definitionsUrl)
+    queryFn: resolver.query(definitionsUrl),
   });
-  
+
   const [createPolicyMutation, { isLoading: createIsLoading }] = useMutation(
     (args: { body: CreatePolicyData }) => {
       const { promise, cancel } = resolver.postCreatePolicy(args);
@@ -65,23 +70,11 @@ export function CreatePolicy({ history, match }: Props) {
     });
     
     try {
-      await createPolicyMutation({body: policyObject});
-      notify(
-        <ToastNotification
-          kind="success"
-          title="Policy Created"
-          subtitle="Policy was successfully created"
-        />
-      );
+      await createPolicyMutation({ body: policyObject });
+      notify(<ToastNotification kind="success" title="Policy Created" subtitle="Policy was successfully created" />);
       navigateBack();
     } catch (e) {
-      notify(
-        <ToastNotification
-          kind="error"
-          title="Something's Wrong"
-          subtitle="Request to create policy failed"
-        />
-      );
+      notify(<ToastNotification kind="error" title="Something's Wrong" subtitle="Request to create policy failed" />);
     }
   };
 
@@ -145,7 +138,7 @@ const validateRow = (definitionKey: any) => {
   // Local methods
 
   const navigateBack = () => {
-    history.push(appLink.teamOverview({teamId: params.teamId}));
+    history.push(appLink.teamOverview({ teamId: params.teamId }));
   };
 
     const form = {
@@ -186,6 +179,5 @@ const validateRow = (definitionKey: any) => {
       </div>
     );
   }
-
 
 export default CreatePolicy;

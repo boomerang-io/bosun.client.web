@@ -1,17 +1,23 @@
 import React from "react";
-import { Helmet } from "react-helmet";
 import { useQuery } from "react-query";
-import { ErrorMessage, SkeletonPlaceholder, DataTableSkeleton, FeatureHeader, FeatureHeaderTitle, FeatureHeaderSubtitle } from "@boomerang-io/carbon-addons-boomerang-react";
+import { Helmet } from "react-helmet";
+import {
+  ErrorMessage,
+  SkeletonPlaceholder,
+  DataTableSkeleton,
+  FeatureHeader,
+  FeatureHeaderTitle,
+  FeatureHeaderSubtitle,
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import TemplatesTable from "./TemplatesTable";
 import { serviceUrl, resolver } from "Config/servicesConfig";
 import { PolicyDefinitionTemplate } from "Types";
 
 export function TemplatesContainer() {
-
   const getTemplatesUrl = serviceUrl.getTemplates();
   const { data: templatesData, isLoading, error } = useQuery<PolicyDefinitionTemplate[], any>({
     queryKey: getTemplatesUrl,
-    queryFn: resolver.query(getTemplatesUrl)
+    queryFn: resolver.query(getTemplatesUrl),
   });
 
   return (
@@ -28,19 +34,17 @@ export function TemplatesContainer() {
           </>
         }
       />
-      {
-        isLoading ?
-        <div style={{padding:"2rem"}}>
-          <SkeletonPlaceholder style={{maxHeight:"2.5rem", marginBottom:"1rem", width:"100%"}}/>
-          <DataTableSkeleton columnCount={4}/>
+      {isLoading ? (
+        <div style={{ padding: "2rem" }}>
+          <SkeletonPlaceholder style={{ maxHeight: "2.5rem", marginBottom: "1rem", width: "100%" }} />
+          <DataTableSkeleton columnCount={4} />
         </div>
+      ) : error ? (
+        <div style={{ marginTop: "2rem" }}>
+          <ErrorMessage />
+        </div>)
         :
-        error ?
-          <div style={{marginTop:"2rem"}}>
-            <ErrorMessage />
-          </div>
-        :
-          <TemplatesTable data={templatesData??[]} />
+        <TemplatesTable data={templatesData??[]} />
       }
     </>
   );
