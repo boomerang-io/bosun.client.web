@@ -17,7 +17,8 @@ type Props = {
 };
 
 export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
-  const [modalIsOpen, setModalIsOpen] = React.useState(false);
+  const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
+  const [requestError, setRequestError] = React.useState<boolean>(false);
   const isStandaloneMode = useFeature(FeatureFlag.Standalone);
   const cancelRequestRef = React.useRef<any>();
 
@@ -53,6 +54,7 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
       notify(<ToastNotification kind="success" title="Team Created" subtitle="Team successfully created" />);
       setModalIsOpen(false);
     } catch (e) {
+      setRequestError(true)
       notify(
         <ToastNotification
           kind="error"
@@ -108,6 +110,7 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
                       }}
                       onCloseModal={() => { 
                         resetForm();
+                        setRequestError(false);
                         setModalIsOpen(false);
                       }} 
                       isOpen={modalIsOpen}>
@@ -115,7 +118,6 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
                       () => (
                         <ModalForm>
                           <ModalBody>
-                            { createIsLoading && <Loading />}
                             <TextInput
                               id="name"
                               placeholder="Enter team name"
@@ -126,15 +128,17 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
                               invalidText={errors.name}
                               value={values.name}
                             />
-                          </ModalBody>
-                          { createError && 
+                            { requestError && 
                             <InlineNotification
                               lowContrast
                               kind="error"
                               title="Something's Wrong"
                               subtitle="Request to create version failed"
+                              onCloseButtonClick={() => setRequestError(false)}
                             /> 
                           }
+                          </ModalBody>
+                          { createIsLoading && <Loading />}
                           <ModalFooter>
                             <Button onClick={() =>setModalIsOpen(false)} kind="secondary">
                               Cancel

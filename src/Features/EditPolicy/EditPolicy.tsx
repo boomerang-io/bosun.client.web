@@ -51,6 +51,7 @@ function EditPolicy({ history, match }: Props) {
   const { data: policyData, isLoading: policyIsLoading, error: policyError } = useQuery<PolicyData, any>({
     queryKey: policyUrl,
     queryFn: resolver.query(policyUrl),
+    config:{onSuccess: (data: PolicyData) => setName(data.name)},
   });
   const { data: validateInfoData, isLoading: validateInfoIsLoading, error: validateInfoError } = useQuery<ValidateInfo, any>({
     queryKey: validateInfoUrl,
@@ -241,7 +242,7 @@ function EditPolicy({ history, match }: Props) {
     isPerformingAffirmativeAction: isUpdating,
     isDeleting,
   };
-
+  
   const helmetTitle = policyData?.name ? `${policyData.name} - ` : "";
   return (
     <div className={styles.container}>

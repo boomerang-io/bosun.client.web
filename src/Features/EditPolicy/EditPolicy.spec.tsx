@@ -82,8 +82,6 @@ describe("EditPolicy --- RTL", () => {
 
     const saveButton = await screen.findByTestId("policy-header-affirmative-action");
 
-    expect(saveButton).toBeDisabled();
-
     const nameInput = screen.getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "" } });
     expect(saveButton).toBeDisabled();

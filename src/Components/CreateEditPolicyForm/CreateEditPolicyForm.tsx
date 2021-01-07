@@ -7,8 +7,8 @@ import { PolicyDefinitionTemplate } from "Types";
 import styles from "./createEditPolicyForm.module.scss";
 
 type Props = {
-    definitions: PolicyDefinitionTemplate[];
-    form: any;
+  definitions: PolicyDefinitionTemplate[];
+  form: any;
 };
 
 export default function CreateEditPolicyForm({ definitions, form }: Props) {
