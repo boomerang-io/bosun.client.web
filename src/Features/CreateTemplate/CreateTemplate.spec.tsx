@@ -6,7 +6,7 @@ const mockfn = jest.fn();
 const props = {
   loading: false,
   updateInputs: mockfn,
-  workflowActions: { deleteWorkflowInput: mockfn }
+  workflowActions: { deleteWorkflowInput: mockfn },
 };
 
 beforeEach(() => {
@@ -19,4 +19,3 @@ describe("Inputs --- Snapshot Test", () => {
     expect(baseElement).toMatchSnapshot();
   });
 });
-

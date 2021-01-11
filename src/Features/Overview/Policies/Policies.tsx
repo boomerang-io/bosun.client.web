@@ -25,7 +25,7 @@ export function Policies({ policies, activeTeamId }: Props) {
         <Button
           data-testid="add-policy-button"
           iconDescription="Create Policy"
-          onClick={() => history.push(appLink.createPolicy({teamId: activeTeamId}))}
+          onClick={() => history.push(appLink.createPolicy({ teamId: activeTeamId }))}
           renderIcon={Add16}
           size="field"
         >

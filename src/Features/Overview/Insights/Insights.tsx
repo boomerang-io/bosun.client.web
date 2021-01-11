@@ -6,9 +6,9 @@ import { PolicyData, InsightsData, Violation, Info as InfoProps, ChartsData } fr
 import styles from "./insights.module.scss";
 
 type Props = {
-    insights: InsightsData[];
-    policies: PolicyData[];
-    violations: Violation[];
+  insights: InsightsData[];
+  policies: PolicyData[];
+  violations: Violation[];
 };
 
 function Insights({ insights, violations, policies }: Props) {

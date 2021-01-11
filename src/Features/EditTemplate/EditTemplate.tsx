@@ -39,7 +39,7 @@ function EditTemplate() {
   });
 
   const [updatePolicyTemplateMutation] = useMutation(
-    (args: { templateId: string, body: PolicyDefinitionTemplate}) => {
+    (args: { templateId: string; body: PolicyDefinitionTemplate }) => {
       const { promise, cancel } = resolver.patchUpdatePolicyTemplate(args);
       cancelRequestRef.current = cancel;
       return promise;
@@ -63,26 +63,26 @@ function EditTemplate() {
 
     return false;
   }
-    const template = templatesData?.find((template: PolicyDefinitionTemplate) => template.id === templateId);
+  const template = templatesData?.find((template: PolicyDefinitionTemplate) => template.id === templateId);
 
-    if (template) {
-      const validationData = getTakenNamesAndKeys();
+  if (template) {
+    const validationData = getTakenNamesAndKeys();
 
-      return (
-        <>
-          <Helmet>
-            <title>{`${template.name} - Bosun Policy Templates`}</title>
-          </Helmet>
-          <CreateEditTemplateForm
-            onSubmit={updateTemplate}
-            navigateBack={navigateBack}
-            template={template}
-            validationData={validationData}
-            type={TEMPLATE_INTERACTION_TYPES.EDIT}
-            onCancel={cancelRequestRef.current}
-            isLoading={isLoading}
-            hasError={Boolean(error)}
-          />
+    return (
+      <>
+        <Helmet>
+          <title>{`${template.name} - Bosun Policy Templates`}</title>
+        </Helmet>
+        <CreateEditTemplateForm
+          onSubmit={updateTemplate}
+          navigateBack={navigateBack}
+          template={template}
+          validationData={validationData}
+          type={TEMPLATE_INTERACTION_TYPES.EDIT}
+          onCancel={cancelRequestRef.current}
+          isLoading={isLoading}
+          hasError={Boolean(error)}
+        />
       </>
     );
   } else if (templatesData) {

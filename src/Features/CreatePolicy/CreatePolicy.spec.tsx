@@ -7,10 +7,10 @@ import CreatePolicy from "../CreatePolicy";
 import { serviceUrl } from "Config/servicesConfig";
 import { appLink } from "Config/appConfig";
 
-const route = appLink.createPolicy({teamId: "5a8b331e262a70306622df73"});
+const route = appLink.createPolicy({ teamId: "5a8b331e262a70306622df73" });
 const props = {
   match: { params: { policyId: "5cd49adff6ea74a9bb6adef3" } },
-  history: {}
+  history: {},
 };
 let server: any;
 
@@ -35,7 +35,7 @@ describe("CreatePolicy --- Snapshot", () => {
 describe("CreatePolicy --- RTL", () => {
   test("renders error message when fetching definitions failed", async () => {
     server.get(serviceUrl.getTemplates(), () => {
-      return new Response(404, {}, {data: {status:404}})
+      return new Response(404, {}, { data: { status: 404 } });
     });
     const { findByText } = rtlRouterRender(<CreatePolicy {...props} />, { route });
     const errorMessage = await findByText("Oops, something went wrong.");
@@ -44,7 +44,7 @@ describe("CreatePolicy --- RTL", () => {
 
   test("it is able to create policy only after adding a name", async () => {
     const { getByPlaceholderText, findByTestId, findByPlaceholderText } = rtlRouterRender(<CreatePolicy {...props} />, {
-      route
+      route,
     });
 
     const createButton = await findByTestId("policy-header-affirmative-action");
@@ -58,11 +58,14 @@ describe("CreatePolicy --- RTL", () => {
   });
 
   test("create button is disabled while creating", async () => {
-    const { getByPlaceholderText, findByTestId, findByText, findByPlaceholderText } = rtlContextRouterRender(<CreatePolicy {...props} />, {
-      route
-    });
+    const { getByPlaceholderText, findByTestId, findByText, findByPlaceholderText } = rtlContextRouterRender(
+      <CreatePolicy {...props} />,
+      {
+        route,
+      }
+    );
 
-    const createButton = await  findByTestId("policy-header-affirmative-action");
+    const createButton = await findByTestId("policy-header-affirmative-action");
     await findByPlaceholderText(/name/i);
     const nameInput = getByPlaceholderText(/name/i);
     fireEvent.change(nameInput, { target: { value: "test" } });

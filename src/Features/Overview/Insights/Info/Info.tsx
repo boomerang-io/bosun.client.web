@@ -4,7 +4,7 @@ import { Info as InfoProps } from "Types";
 import styles from "./info.module.scss";
 
 type Props = {
-    info: InfoProps;
+  info: InfoProps;
 };
 
 export function Info({ info }: Props) {

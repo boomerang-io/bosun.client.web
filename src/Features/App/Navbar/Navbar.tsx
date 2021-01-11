@@ -44,7 +44,7 @@ const skipToContentProps = {
 type Props = {
   activeTeam: PolicyTeam | undefined;
   navigationData: PlatformNavigation | undefined;
-  userData: CICDUser| undefined;
+  userData: CICDUser | undefined;
 };
 
 function Navbar({ activeTeam, navigationData, userData }: Props) {
@@ -52,7 +52,7 @@ function Navbar({ activeTeam, navigationData, userData }: Props) {
   const location = useLocation();
   const activeTeamId = activeTeam?.id;
   const platformName = navigationData?.platform?.platformName ?? "Boomerang";
-  
+
   return (
     <>
       <Helmet defaultTitle={`Bosun - ${platformName}`} titleTemplate={`%s - ${platformName}`} />
@@ -61,10 +61,7 @@ function Navbar({ activeTeam, navigationData, userData }: Props) {
           {...defaultUIShellProps}
           productName="Bosun"
           headerConfig={navigationData ?? {}}
-          onMenuClick={({
-            isOpen,
-            onMenuClose
-          }: any) => (
+          onMenuClick={({ isOpen, onMenuClose }: any) => (
             <LeftSideNav isOpen={isOpen}>
               <SideNav expanded={isOpen} isChildOfHeader={true}>
                 <SideNavItems large>
@@ -99,10 +96,7 @@ function Navbar({ activeTeam, navigationData, userData }: Props) {
         <UIShell
           {...defaultUIShellProps}
           headerConfig={navigationData ?? {}}
-          onMenuClick={({
-            isOpen,
-            onMenuClose
-          }: any) => (
+          onMenuClick={({ isOpen, onMenuClose }: any) => (
             <LeftSideNav isOpen={isOpen}>
               <SideNav aria-label="Navigation" expanded={isOpen} isChildOfHeader={true}>
                 <SideNavItems>
@@ -146,7 +140,9 @@ function Navbar({ activeTeam, navigationData, userData }: Props) {
                     >
                       Policy Templates
                     </SideNavMenuItem>
-                    <SideNavMenuItem href={appLink.teamConfiguration({ activeTeamId })}>Team Configuration</SideNavMenuItem>
+                    <SideNavMenuItem href={appLink.teamConfiguration({ activeTeamId })}>
+                      Team Configuration
+                    </SideNavMenuItem>
                   </SideNavMenu>
                   <SideNavMenu large title="Administer" renderIcon={Settings16}>
                     <SideNavMenuItem href={appLink.componentModes()}>Component Modes</SideNavMenuItem>

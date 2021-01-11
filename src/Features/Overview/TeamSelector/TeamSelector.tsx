@@ -3,7 +3,19 @@ import { useMutation, queryCache } from "react-query";
 import { useFeature } from "flagged";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { ComboBox, TextInput, Button, ComposedModal, ModalFooter, ModalBody, ModalForm, Loading, InlineNotification, notify, ToastNotification } from "@boomerang-io/carbon-addons-boomerang-react";
+import {
+  ComboBox,
+  TextInput,
+  Button,
+  ComposedModal,
+  ModalFooter,
+  ModalBody,
+  ModalForm,
+  Loading,
+  InlineNotification,
+  notify,
+  ToastNotification,
+} from "@boomerang-io/carbon-addons-boomerang-react";
 import { FeatureFlag } from "Config/appConfig";
 import { serviceUrl, resolver } from "Config/servicesConfig";
 import { Add16 } from "@carbon/icons-react";
@@ -11,9 +23,9 @@ import { PolicyTeam } from "Types";
 import styles from "./TeamSelector.module.scss";
 
 type Props = {
-    activeTeam?: PolicyTeam | null;
-    handleChangeTeam: (...args: any[]) => void;
-    teams: PolicyTeam[];
+  activeTeam?: PolicyTeam | null;
+  handleChangeTeam: (...args: any[]) => void;
+  teams: PolicyTeam[];
 };
 
 export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
@@ -23,7 +35,7 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
   const cancelRequestRef = React.useRef<any>();
 
   const [createTeamMutation, { isLoading: createIsLoading, error: createError }] = useMutation(
-    (args: {body: {name: string}}) => {
+    (args: { body: { name: string } }) => {
       const { promise, cancel } = resolver.postCreateTeam(args);
       cancelRequestRef.current = cancel;
       return promise;
@@ -37,31 +49,25 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
     ? {
         id: activeTeam.id,
         label: activeTeam.name,
-        name: activeTeam.name
+        name: activeTeam.name,
       }
     : null;
-  const teamsList = teams.map(team => ({
+  const teamsList = teams.map((team) => ({
     id: team.id,
     label: team.name,
-    name: team.name
+    name: team.name,
   }));
 
-  const teamNames = teams.map(team => team.name);
+  const teamNames = teams.map((team) => team.name);
 
-  async function createTeam(body: {name: string}) {
+  async function createTeam(body: { name: string }) {
     try {
-      await createTeamMutation({body});
+      await createTeamMutation({ body });
       notify(<ToastNotification kind="success" title="Team Created" subtitle="Team successfully created" />);
       setModalIsOpen(false);
     } catch (e) {
-      setRequestError(true)
-      notify(
-        <ToastNotification
-          kind="error"
-          title="Team Creation Failure"
-          subtitle="Request to create team failed"
-        />
-      );
+      setRequestError(true);
+      notify(<ToastNotification kind="error" title="Team Creation Failure" subtitle="Request to create team failed" />);
     }
   }
 
@@ -83,14 +89,21 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
             initialValues={{ name: "" }}
             validateOnMount={false}
             validationSchema={Yup.object().shape({
-              name: Yup.string()
-                .required("Enter a name")
-                .notOneOf(teamNames, "Name must be unique")
+              name: Yup.string().required("Enter a name").notOneOf(teamNames, "Name must be unique"),
             })}
             enableReinitialize
           >
-            {formikProps => {
-              const { isSubmitting, values, touched, errors, handleBlur, handleChange, handleSubmit, resetForm } = formikProps;
+            {(formikProps) => {
+              const {
+                isSubmitting,
+                values,
+                touched,
+                errors,
+                handleBlur,
+                handleChange,
+                handleSubmit,
+                resetForm,
+              } = formikProps;
               return (
                 <>
                   <Button
@@ -102,20 +115,20 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
                     Create Team
                   </Button>
                   <form onSubmit={handleSubmit}>
-                    <ComposedModal 
-                     composedModalProps={{ containerClassName: styles.modalForm }}
+                    <ComposedModal
+                      composedModalProps={{ containerClassName: styles.modalForm }}
                       modalHeaderProps={{
                         title: "Create team",
                         subtitle: "Add a new one",
                       }}
-                      onCloseModal={() => { 
+                      onCloseModal={() => {
                         resetForm();
                         setRequestError(false);
                         setModalIsOpen(false);
-                      }} 
-                      isOpen={modalIsOpen}>
-                    {
-                      () => (
+                      }}
+                      isOpen={modalIsOpen}
+                    >
+                      {() => (
                         <ModalForm>
                           <ModalBody>
                             <TextInput
@@ -128,28 +141,30 @@ export function TeamSelector({ activeTeam, handleChangeTeam, teams }: Props) {
                               invalidText={errors.name}
                               value={values.name}
                             />
-                            { requestError && 
-                            <InlineNotification
-                              lowContrast
-                              kind="error"
-                              title="Something's Wrong"
-                              subtitle="Request to create version failed"
-                              onCloseButtonClick={() => setRequestError(false)}
-                            /> 
-                          }
+                            {requestError && (
+                              <InlineNotification
+                                lowContrast
+                                kind="error"
+                                title="Something's Wrong"
+                                subtitle="Request to create version failed"
+                                onCloseButtonClick={() => setRequestError(false)}
+                              />
+                            )}
                           </ModalBody>
-                          { createIsLoading && <Loading />}
+                          {createIsLoading && <Loading />}
                           <ModalFooter>
-                            <Button onClick={() =>setModalIsOpen(false)} kind="secondary">
+                            <Button onClick={() => setModalIsOpen(false)} kind="secondary">
                               Cancel
                             </Button>
-                            <Button disabled={!values.name || Object.values(errors).length || isSubmitting} type="submit">
-                              { createIsLoading ? "Creating" :  createError? "Try Again" : "Create" }
+                            <Button
+                              disabled={!values.name || Object.values(errors).length || isSubmitting}
+                              type="submit"
+                            >
+                              {createIsLoading ? "Creating" : createError ? "Try Again" : "Create"}
                             </Button>
                           </ModalFooter>
                         </ModalForm>
-                      )
-                    }
+                      )}
                     </ComposedModal>
                   </form>
                 </>

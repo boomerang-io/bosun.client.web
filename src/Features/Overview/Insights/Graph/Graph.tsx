@@ -5,11 +5,10 @@ import { ChartsData } from "Types";
 import styles from "./graph.module.scss";
 
 type Props = {
-    formatedData: ChartsData;
+  formatedData: ChartsData;
 };
 
 export class Graph extends Component<Props> {
-
   state = {
     fromDate: {},
     standard: {},
