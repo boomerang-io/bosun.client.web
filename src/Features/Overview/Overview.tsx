@@ -47,9 +47,7 @@ export function Overview() {
     queryFn: resolver.query(violationsUrl),
   });
 
-  const handleChangeTeam = ({
-    selectedItem
-  }: { selectedItem: PolicyTeam } ) => {
+  const handleChangeTeam = ({ selectedItem }: { selectedItem: PolicyTeam }) => {
     if (selectedItem?.id) {
       history.push(appLink.teamOverview({ teamId: selectedItem.id }));
     }
@@ -66,13 +64,8 @@ export function Overview() {
           <SkeletonPlaceholder className={styles.chartTileSkeleton} />
         </div>
       );
-    if(insightsError || policiesError || violationsError)
-      return (
-        <ErrorMessage />
-      );
-    return (
-      <Insights insights={insightsData??[]} policies={policiesData??[]} violations={violationsData??[]} />
-    );
+    if (insightsError || policiesError || violationsError) return <ErrorMessage />;
+    return <Insights insights={insightsData ?? []} policies={policiesData ?? []} violations={violationsData ?? []} />;
   };
 
   const RenderPolicies = () => {
@@ -89,9 +82,7 @@ export function Overview() {
         </div>
       );
     if (policiesError) return <ErrorMessage />;
-    return (
-      <Policies policies={policiesData??[]} activeTeamId={activeTeam?.id}/>
-    );
+    return <Policies policies={policiesData ?? []} activeTeamId={activeTeam?.id} />;
   };
 
   const RenderViolations = () => {
@@ -110,9 +101,7 @@ export function Overview() {
 
     if (violationsError) return <ErrorMessage />;
 
-    return (
-      <Violations hasPolicies={Boolean(policiesData?.length)} violations={violationsData??[]} />
-    );
+    return <Violations hasPolicies={Boolean(policiesData?.length)} violations={violationsData ?? []} />;
   };
 
   function renderContent() {

@@ -14,7 +14,15 @@ import DefinitionSkeleton from "Components/DefinitionSkeleton";
 import { serviceUrl, resolver } from "Config/servicesConfig";
 import { appLink } from "Config/appConfig";
 import { POLICY_INTERACTION_TYPES } from "Constants";
-import { PolicyDefinitionTemplate, PolicyDefinition, EditPolicyData, ObjectOfStringKeyObject, PolicyData, ValidateInfo, StringKeyObject } from "Types";
+import {
+  PolicyDefinitionTemplate,
+  PolicyDefinition,
+  EditPolicyData,
+  ObjectOfStringKeyObject,
+  PolicyData,
+  ValidateInfo,
+  StringKeyObject,
+} from "Types";
 import styles from "./editPolicy.module.scss";
 
 const defaultTemplate = {
@@ -44,16 +52,22 @@ function EditPolicy({ history, match }: Props) {
   const policyUrl = serviceUrl.getPolicy({ policyId: match.params.policyId });
   const validateInfoUrl = serviceUrl.getValidateInfo({ policyId: match.params.policyId });
 
-  const { data: definitionsData, isLoading: definitionsIsLoading, error: definitionsError } = useQuery<Array<PolicyDefinitionTemplate>, any>({
+  const { data: definitionsData, isLoading: definitionsIsLoading, error: definitionsError } = useQuery<
+    Array<PolicyDefinitionTemplate>,
+    any
+  >({
     queryKey: definitionsUrl,
     queryFn: resolver.query(definitionsUrl),
   });
   const { data: policyData, isLoading: policyIsLoading, error: policyError } = useQuery<PolicyData, any>({
     queryKey: policyUrl,
     queryFn: resolver.query(policyUrl),
-    config:{onSuccess: (data: PolicyData) => setName(data.name)},
+    config: { onSuccess: (data: PolicyData) => setName(data.name) },
   });
-  const { data: validateInfoData, isLoading: validateInfoIsLoading, error: validateInfoError } = useQuery<ValidateInfo, any>({
+  const { data: validateInfoData, isLoading: validateInfoIsLoading, error: validateInfoError } = useQuery<
+    ValidateInfo,
+    any
+  >({
     queryKey: validateInfoUrl,
     queryFn: resolver.query(validateInfoUrl),
   });
@@ -67,9 +81,10 @@ function EditPolicy({ history, match }: Props) {
   const formatPolicyDataForForm = useCallback((policyData: PolicyData, definitionsData: PolicyDefinitionTemplate[]) => {
     const newInputsState: ObjectOfStringKeyObject = {};
     policyData.definitions.forEach((definition: any) => {
-      const policyDefinition: PolicyDefinitionTemplate = definitionsData.find(
-        (policyDefinition: PolicyDefinitionTemplate) => policyDefinition.id === definition.policyTemplateId
-      ) ?? defaultTemplate;
+      const policyDefinition: PolicyDefinitionTemplate =
+        definitionsData.find(
+          (policyDefinition: PolicyDefinitionTemplate) => policyDefinition.id === definition.policyTemplateId
+        ) ?? defaultTemplate;
       newInputsState[policyDefinition.key] = {};
       const definitionRows: StringKeyObject = newInputsState[policyDefinition.key];
       definition.rules.forEach((rule: any) => {
@@ -86,7 +101,7 @@ function EditPolicy({ history, match }: Props) {
   }, [formatPolicyDataForForm, policyData, definitionsData]);
 
   const [updatePolicyMutation, { isLoading: isUpdating }] = useMutation(
-    (args: { body: EditPolicyData, policyId: string }) => {
+    (args: { body: EditPolicyData; policyId: string }) => {
       const { promise, cancel } = resolver.patchUpdatePolicy(args);
       cancelRequestRef.current = cancel;
       return promise;
@@ -109,9 +124,9 @@ function EditPolicy({ history, match }: Props) {
 
   const updatePolicy = async () => {
     let policyObject: EditPolicyData = {
-      id: policyData?.id??"",
+      id: policyData?.id ?? "",
       name: name,
-      teamId: policyData?.teamId??"",
+      teamId: policyData?.teamId ?? "",
       definitions: [],
     };
 
@@ -162,11 +177,7 @@ function EditPolicy({ history, match }: Props) {
     setErrors((prevState: any) => ({ ...prevState, ...error }));
   };
 
-  const setInput = async ({
-    event: e,
-    definitionKey,
-    uuid
-  }: any) => {
+  const setInput = async ({ event: e, definitionKey, uuid }: any) => {
     const { name, value } = e.target;
     await setInputs((prevState: any) => {
       const prevStateDefinitionRows = prevState[definitionKey] ? prevState[definitionKey][uuid] : {};
@@ -181,10 +192,7 @@ function EditPolicy({ history, match }: Props) {
     validateRow(definitionKey);
   };
 
-  const removeRow = async ({
-    definitionKey,
-    uuid
-  }: any) => {
+  const removeRow = async ({ definitionKey, uuid }: any) => {
     let definitionRows = inputs && { ...inputs[definitionKey] };
     if (definitionRows) {
       delete definitionRows[uuid];
@@ -203,14 +211,18 @@ function EditPolicy({ history, match }: Props) {
   const validateRow = (definitionKey: string) => {
     const definitionRows = (inputs && inputs[definitionKey]) || {};
     const definitionRowsInputCount = Object.keys(definitionRows).reduce((accum, uuid) => {
-      const inputCount = Object.values(definitionRows[uuid]??[]).filter(Boolean).length;
+      const inputCount = Object.values(definitionRows[uuid] ?? []).filter(Boolean).length;
       accum += inputCount;
       return accum;
     }, 0);
 
     // Each row should have the same number of inputs as the number of inputs in the policy definition rules
-    const matchingDefintion = definitionsData?.find((definition: PolicyDefinitionTemplate) => definition.key === definitionKey);
-    const isInvalid = matchingDefintion &&  Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
+    const matchingDefintion = definitionsData?.find(
+      (definition: PolicyDefinitionTemplate) => definition.key === definitionKey
+    );
+    const isInvalid =
+      matchingDefintion &&
+      Object.keys(definitionRows).length * matchingDefintion.rules.length !== definitionRowsInputCount;
     setErrors((prevState) => ({ ...prevState, [definitionKey]: isInvalid }));
   };
 
@@ -242,7 +254,7 @@ function EditPolicy({ history, match }: Props) {
     isPerformingAffirmativeAction: isUpdating,
     isDeleting,
   };
-  
+
   const helmetTitle = policyData?.name ? `${policyData.name} - ` : "";
   return (
     <div className={styles.container}>
@@ -270,7 +282,7 @@ function EditPolicy({ history, match }: Props) {
           <ErrorMessage />
         </div>
       ) : (
-        <CreateEditPolicyForm form={form} definitions={definitionsData??[]} />
+        <CreateEditPolicyForm form={form} definitions={definitionsData ?? []} />
       )}
     </div>
   );

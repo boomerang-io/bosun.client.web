@@ -71,20 +71,18 @@ export default function PoliciesTable(props: Props) {
       rows={policies}
       headers={headers}
       isSortable={true}
-      render={({
-        rows,
-        headers,
-        getHeaderProps
-      }: any) => (
+      render={({ rows, headers, getHeaderProps }: any) => (
         <TableContainer>
           <Table isSortable className={styles.tableContainer} useZebraStyles={false}>
             <TableHead>
               <TableRow className={styles.tableHeadRow}>
-                {headers.map((header: {key:string; header:string;}) => <TableHeader
-                  {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
-                >
-                  {header.header}
-                </TableHeader>)}
+                {headers.map((header: { key: string; header: string }) => (
+                  <TableHeader
+                    {...getHeaderProps({ header, className: `${styles.tableHeader} ${styles[header.key]}` })}
+                  >
+                    {header.header}
+                  </TableHeader>
+                ))}
               </TableRow>
             </TableHead>
             <TableBody className={styles.tableBody} data-testid="policies-tbody">

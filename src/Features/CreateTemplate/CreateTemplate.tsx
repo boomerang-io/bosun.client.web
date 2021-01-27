@@ -26,7 +26,7 @@ function CreateTemplate(props: any) {
   );
 
   async function createTemplate(values: PolicyDefinitionTemplate) {
-    const valuesToSave:PolicyDefinitionTemplate = { ...values, rego: btoa(values.rego) };
+    const valuesToSave: PolicyDefinitionTemplate = { ...values, rego: btoa(values.rego) };
     try {
       await createPolicyTemplateMutation({ body: valuesToSave });
       notify(

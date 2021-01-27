@@ -42,10 +42,10 @@ export function TemplatesContainer() {
       ) : error ? (
         <div style={{ marginTop: "2rem" }}>
           <ErrorMessage />
-        </div>)
-        :
-        <TemplatesTable data={templatesData??[]} />
-      }
+        </div>
+      ) : (
+        <TemplatesTable data={templatesData ?? []} />
+      )}
     </>
   );
 }
