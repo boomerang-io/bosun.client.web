@@ -10,6 +10,9 @@ export const BASE_SERVICE_ENV_URL =
 export const PRODUCT_SERVICE_ENV_URL =
   process.env.NODE_ENV === "production" ? window._SERVER_DATA && window._SERVER_DATA.PRODUCT_SERVICE_ENV_URL : "/api";
 
+export const CICD_PRODUCT_SERVICE_ENV_URL =
+  process.env.NODE_ENV === "production" ? window._SERVER_DATA && window._SERVER_DATA.CICD_PRODUCT_SERVICE_ENV_URL : "/api";
+
 const REACT_APP_PORT_FORWARD = process.env.REACT_APP_PORT_FORWARD;
 
 /**
@@ -28,6 +31,7 @@ function determineUrl(baseUrl, serviceContextPath) {
 }
 export const BASE_SERVICE_USERS_URL = determineUrl(BASE_SERVICE_ENV_URL, "/users");
 export const BASE_SERVICE_PRODUCT_URL = determineUrl(PRODUCT_SERVICE_ENV_URL, "/policy");
+export const BASE_CICD_PRODUCT_URL = determineUrl(CICD_PRODUCT_SERVICE_ENV_URL, "/ci");
 // Product
 export const SERVICE_REQUEST_STATUSES = {
   FAILURE: "failure",
@@ -36,9 +40,10 @@ export const SERVICE_REQUEST_STATUSES = {
 
 export const serviceUrl = {
   deletePolicy: ({policyId}) => `${BASE_SERVICE_PRODUCT_URL}/policies/${policyId}`,
+  getCicdNavigation: ({ teamId }) => `${BASE_CICD_PRODUCT_URL}/navigation${teamId ? "?teamId=" + teamId : ""}`,
   getInsights: ({teamId}) => `${BASE_SERVICE_PRODUCT_URL}/policies/insights?teamId=${teamId}`,
   getInsightsOverview: () => `${BASE_SERVICE_PRODUCT_URL}/policies/insights`,
-  getNavigation: () => `${BASE_SERVICE_USERS_URL}/navigation`,
+  getPlatformNavigation: () => `${BASE_SERVICE_USERS_URL}/navigation`,
   getPolicy: ({policyId}) => `${BASE_SERVICE_PRODUCT_URL}/policies/${policyId}`,
   getPolicyOverview: () => `${BASE_SERVICE_PRODUCT_URL}/policies`,
   getTeams: () => `${BASE_SERVICE_PRODUCT_URL}/teams`,

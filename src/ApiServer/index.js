@@ -45,8 +45,17 @@ export function startApiServer({ environment = "test", timing = 0 } = {}) {
       this.get(serviceUrl.getUserProfile(), (schema) => {
         return schema.db.profile[0];
       });
+      this.get(serviceUrl.getCicdNavigation({}), (schema, request) => {
+        return schema.db.cicdNavigation.map((item) => {
+          if (typeof item.link === "string") {
+            item.link = item.link.replace(":teamId", request.queryParams.teamId);
+          }
 
-      this.get(serviceUrl.getNavigation(), (schema) => {
+          return item;
+        });
+      });
+
+      this.get(serviceUrl.getPlatformNavigation(), (schema) => {
         return schema.db.navigation[0];
       });
 
