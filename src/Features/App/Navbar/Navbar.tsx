@@ -47,6 +47,7 @@ const navigationIconMap: {
 };
 
 const defaultUIShellProps = {
+  appName: "Bosun",
   baseLaunchEnvUrl: BASE_LAUNCH_ENV_URL,
   baseServiceUrl: BASE_SERVICE_ENV_URL,
   renderLogo: true,
