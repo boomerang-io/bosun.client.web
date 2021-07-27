@@ -1,7 +1,7 @@
 const teams = [
   {
     id: "5a8b331e262a70306622df73",
-    name: "ATT",
+    name: "Ben's team",
     higherLevelGroupId: "59aebcf47424530fce952fa2",
     ucdApplicationId: "96c22f37-5443-4bf5-83bb-7ce90deec820",
     isActive: true,
@@ -211,7 +211,7 @@ const teams = [
   },
   {
     id: "5a8b331f262a70306622df80",
-    name: "United Airlines",
+    name: "Testing Team",
     higherLevelGroupId: "59aebce67424530fce952f33",
     ucdApplicationId: "02e31184-c8c3-47ed-b8ec-f2a2aa154ddf",
     isActive: true,
