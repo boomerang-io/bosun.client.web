@@ -14,6 +14,6 @@
   ],
   "dependencies": {
     "@boomerang-io/webapp-spa-server": "0.0.10",
-    "replace-in-file": "^6.2.0"
+    "replace-in-file": "^6.3.2"
   }
 }
