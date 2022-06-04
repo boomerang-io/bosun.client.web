@@ -30,7 +30,7 @@
     "ts-loader": "^8.0.14",
     "ts-migrate": "^0.1.12",
     "typeface-ibm-plex-sans": "0.0.75",
-    "typescript": "^3.9.7",
+    "typescript": "^4.6.4",
     "typescript-plugin-css-modules": "^3.0.1",
     "uuid": "^3.3.3",
     "yup": "^0.32.9"
